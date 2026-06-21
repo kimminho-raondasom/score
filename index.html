@@ -118,6 +118,12 @@ body.login-active .glow-bg { opacity: 0; }
   z-index: 200;
   overflow: hidden;
   padding: 0;
+  display: none;          /* 기본 숨김 */
+  flex-direction: column;
+}
+
+#view-login.active {
+  display: flex;          /* active일 때만 표시 */
 }
 
 /* ── 로그인 배경 — 영화 포스터 그리드 ──────────────────────────────────── */
@@ -1949,12 +1955,8 @@ button, .btn {
     <div class="glow-circle glow-circle-1"></div>
   </div>
 
-  <div class="app-container">
-    
-    <!-- 1. SPLASH / LOGIN SCREEN (Netflix/Tving style fullscreen) -->
-    <section id="view-login" class="view-section active">
-
-      <!-- 풀스크린 배경: 영화 콜라주 그리드 -->
+  <!-- 1. SPLASH / LOGIN SCREEN — app-container 밖에 독립 배치 -->
+  <section id="view-login" class="view-section active">
       <div class="login-bg-grid" aria-hidden="true">
         <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=60&w=200&auto=format&fit=crop')"></div>
         <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=60&w=200&auto=format&fit=crop')"></div>
@@ -1969,33 +1971,21 @@ button, .btn {
         <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=60&w=200&auto=format&fit=crop')"></div>
         <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=60&w=200&auto=format&fit=crop')"></div>
       </div>
-
-      <!-- 오버레이 그라디언트 -->
       <div class="login-overlay" aria-hidden="true"></div>
-
-      <!-- 콘텐츠 영역 -->
       <div class="login-content">
-
-        <!-- 로고 -->
         <div class="login-logo-wrap">
           <span class="material-symbols-outlined login-logo-icon">movie_filter</span>
           <span class="login-logo-text">score<span class="login-logo-dot">.</span></span>
         </div>
-
-        <!-- 메인 카피 -->
         <div class="login-headline">
           <h1 class="login-title">당신의 영화 예측 본능을<br>시험하세요</h1>
           <p class="login-desc">박스오피스 스코어 예측 · 필모그래피 매칭 · 명대사 초성 퀴즈<br>대한민국 시네마 흥행 데이터 기반</p>
         </div>
-
-        <!-- 기능 하이라이트 배지 -->
         <div class="login-badges">
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">analytics</span> 흥행 예측</span>
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">recent_actors</span> 필모그래피</span>
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">campaign</span> 명대사 퀴즈</span>
         </div>
-
-        <!-- 구글 로그인 버튼 -->
         <div class="login-btn-area">
           <button id="btn-google-login" class="login-google-btn">
             <svg viewBox="0 0 24 24" width="20" height="20" class="login-google-svg">
@@ -2006,12 +1996,12 @@ button, .btn {
             </svg>
             <span id="login-btn-label">Google 계정으로 시작하기</span>
           </button>
-          <p class="login-terms">계속 진행하면 <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:underline;">이용약관</a> 및 개인정보 처리방침에 동의하는 것으로 간주됩니다.</p>
+          <p class="login-terms">계속 진행하면 이용약관 및 개인정보 처리방침에 동의하는 것으로 간주됩니다.</p>
         </div>
-
       </div>
-    </section>
+  </section>
 
+  <div class="app-container">
     <!-- 2. REGISTRATION & CHARACTER NICKNAME SCREEN -->
     <section id="view-register" class="view-section">
       <div class="glass-card register-card fade-in">
@@ -3754,14 +3744,16 @@ class CineMasterApp {
       target.classList.add('active');
     }
 
-    // Show/hide bottom nav
+    // 바텀 내비 표시/숨김
     const bottomNav = document.getElementById('bottom-nav-bar');
     if (bottomNav) {
-      if (['dashboard', 'forum', 'myroom'].includes(viewId)) {
-        bottomNav.style.display = 'block';
-      } else {
-        bottomNav.style.display = 'none';
-      }
+      bottomNav.style.display = ['dashboard', 'forum', 'myroom'].includes(viewId) ? 'block' : 'none';
+    }
+
+    // 로그인 화면일 때 app-container 숨김 (풀스크린 로그인이 가리도록)
+    const appContainer = document.querySelector('.app-container');
+    if (appContainer) {
+      appContainer.style.visibility = viewId === 'login' ? 'hidden' : 'visible';
     }
   }
 
