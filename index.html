@@ -60,6 +60,7 @@
 
 html {
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -69,6 +70,7 @@ body {
   font-family: var(--font-family-sans);
   font-weight: 300;
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -135,17 +137,16 @@ body.login-active .glow-bg { opacity: 0; }
 /* ── 로그인 배경 — 영화 포스터 그리드 ──────────────────────────────────── */
 .login-bg-grid {
   position: absolute;
-  inset: 0;
+  inset: -5%;           /* scale 대신 inset으로 크롭 */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 2px;
-  transform: scale(1.06);          /* 테두리 크롭 */
   animation: bgDrift 18s ease-in-out infinite alternate;
 }
 @keyframes bgDrift {
-  from { transform: scale(1.06) translateY(0); }
-  to   { transform: scale(1.06) translateY(-2%); }
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2%); }
 }
 
 .login-bg-cell {
