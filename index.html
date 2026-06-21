@@ -3448,13 +3448,6 @@ class CineMasterApp {
     on('form-forum-post', 'submit', (e) => { e.preventDefault(); this.createForumPost(); });
   }
 
-    // Forum post creation form submit
-    document.getElementById('form-forum-post').addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.createForumPost();
-    });
-  }
-
   // Synthesizer Audio Synth (Web Audio API)
   playSynthSound(type) {
     if (!this.soundEnabled) return;
@@ -4842,6 +4835,8 @@ class CineMasterApp {
       this.startQuiz('score');
     }, 2000);
   }
+
+  shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
