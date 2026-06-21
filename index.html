@@ -2685,606 +2685,381 @@ button, .btn {
 
   <!-- Scripts -->
   <script>
-// score - Movies and Quizzes Database
-// 기존 수동 입력 데이터 + KOBIS Open API 자동 수집 데이터 통합
-// 최종 업데이트: 2026-06-22 (KOBIS 연동)
+// score - Movies Database
+// 자동 업데이트: 2026-06-22 08:51 KST
+// 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 0편
 
 const MOVIES_DATABASE = [
-  // ── 기존 핵심 데이터 (명대사/초성 포함) ──────────────────────────────────
+  // ── 수동 입력 핵심 데이터 (명대사/초성/정답 포함) ──────────────────────────
   {
-    id: "seoul_spring",
-    title: "서울의 봄",
-    director: "김성수",
+    id: "seoul_spring", title: "서울의 봄", director: "김성수",
     cast: ["황정민", "정우성", "이성민", "박해준", "김성균"],
-    releaseDate: "2023-11-22",
-    genre: ["드라마", "스릴러"],
-    openingSeats: "71만석 이상",
-    openingDayScore: "11~20만명",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "41억~50억",
-    svodOtt: "디즈니플러스",
-    similarRefs: ["남산의 부장들", "헌트", "변호인", "공작"],
+    releaseDate: "2023-11-22", genre: ["드라마", "스릴러"],
+    openingSeats: "71만석 이상", openingDayScore: "11~20만명",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "41억~50억", svodOtt: "디즈니플러스",
+    similarRefs: ["남산의 부장들", "헌트", "변호인"],
     famousLines: [
       { line: "실패하면 반역, 성공하면 혁명 아닙니까!", character: "전두광 (황정민)" },
       { line: "대한민국 육군은 다 같은 편입니다!", character: "이태신 (정우성)" }
     ],
     choseong: "ㅅㅇㅇ ㅂ",
-    posterUrl: "https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=80&w=300&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w300/wjpRNDRqI0KAg95F7HFG0LjdFQX.jpg"
   },
   {
-    id: "exhuma",
-    title: "파묘",
-    director: "장재현",
+    id: "exhuma", title: "파묘", director: "장재현",
     cast: ["최민식", "김고은", "유해진", "이도현"],
-    releaseDate: "2024-02-22",
-    genre: ["스릴러", "공포"],
-    openingSeats: "71만석 이상",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "41억~50억",
-    svodOtt: "넷플릭스",
-    similarRefs: ["곡성", "사바하", "검은 사제들", "신과함께"],
+    releaseDate: "2024-02-22", genre: ["스릴러", "공포"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "41억~50억", svodOtt: "넷플릭스",
+    similarRefs: ["곡성", "사바하", "검은 사제들"],
     famousLines: [
       { line: "여우가 범의 허리를 끊었다.", character: "상덕 (최민식)" },
       { line: "얘들아, 굿하자!", character: "화림 (김고은)" }
     ],
     choseong: "ㅍㅁ",
-    posterUrl: "https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=300&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w300/sGaKrQpmHmMWyGbBjM9RFD6x9ij.jpg"
   },
   {
-    id: "parasite",
-    title: "기생충",
-    director: "봉준호",
+    id: "parasite", title: "기생충", director: "봉준호",
     cast: ["송강호", "이선균", "조여정", "최우식", "박소담"],
-    releaseDate: "2019-05-30",
-    genre: ["드라마", "스릴러"],
-    openingSeats: "71만석 이상",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "51억 이상",
-    svodOtt: "넷플릭스",
-    similarRefs: ["설국열차", "마더", "하녀", "괴물"],
+    releaseDate: "2019-05-30", genre: ["드라마", "스릴러"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["설국열차", "마더", "괴물"],
     famousLines: [
       { line: "아들아, 너는 계획이 다 있구나.", character: "기택 (송강호)" },
       { line: "가장 완벽한 계획이 뭔지 아냐? 무계획이야.", character: "기택 (송강호)" }
     ],
     choseong: "ㄱㅅㅊ",
-    posterUrl: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=300&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
   },
   {
-    id: "extreme_job",
-    title: "극한직업",
-    director: "이병헌",
+    id: "extreme_job", title: "극한직업", director: "이병헌",
     cast: ["류승룡", "이하늬", "진선규", "이동휘", "공명"],
-    releaseDate: "2019-01-23",
-    genre: ["코미디", "액션"],
-    openingSeats: "51~70만석",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "51억 이상",
-    svodOtt: "넷플릭스",
-    similarRefs: ["베테랑", "공조", "해적", "엑시트"],
+    releaseDate: "2019-01-23", genre: ["코미디", "액션"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["베테랑", "공조", "엑시트"],
     famousLines: [
-      { line: "지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가. 예, 수원왕갈비통닭입니다.", character: "고반장 (류승룡)" },
+      { line: "지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.", character: "고반장 (류승룡)" },
       { line: "왜 자꾸 장사가 잘 되는 건데!", character: "마형사 (진선규)" }
     ],
     choseong: "ㄱㅎㅈㅇ",
-    posterUrl: "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?q=80&w=300&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w300/aGPHBpBPDlqRIZHHfzE4aXnpZmL.jpg"
   },
   {
-    id: "concrete_utopia",
-    title: "콘크리트 유토피아",
-    director: "엄태화",
-    cast: ["이병헌", "박서준", "박보영", "김선영"],
-    releaseDate: "2023-08-09",
-    genre: ["드라마", "스릴러"],
-    openingSeats: "51~70만석",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "301~400만명",
-    vodSales: "16~20억",
-    svodOtt: "넷플릭스",
-    similarRefs: ["터널", "부산행", "설국열차", "감기"],
-    famousLines: [
-      { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" },
-      { line: "아파트는 주민의 것!", character: "주민대표 (이병헌)" }
-    ],
-    choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
-    posterUrl: "https://images.unsplash.com/photo-1535083783855-76ae62b2914e?q=80&w=300&auto=format&fit=crop"
-  },
-  {
-    id: "sleep",
-    title: "잠",
-    director: "유재선",
-    cast: ["정유미", "이선균"],
-    releaseDate: "2023-09-06",
-    genre: ["스릴러", "공포"],
-    openingSeats: "21~30만석",
-    openingDayScore: "6~7만명",
-    openingWeekScore: "51~70만명",
-    finalScore: "100~150만명",
-    vodSales: "4.1~5억",
-    svodOtt: "넷플릭스",
-    similarRefs: ["곡성", "장화, 홍련", "도어락", "기생충"],
-    famousLines: [
-      { line: "누가 들어왔어.", character: "수진 (정유미)" },
-      { line: "매일 밤 그분이 잠에서 깨어난다.", character: "현수 (이선균)" }
-    ],
-    choseong: "ㅈ",
-    posterUrl: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=300&auto=format&fit=crop"
-  },
-  {
-    id: "crime_city_4",
-    title: "범죄도시4",
-    director: "허명행",
+    id: "crime_city_4", title: "범죄도시4", director: "허명행",
     cast: ["마동석", "김무열", "박지환", "이동휘"],
-    releaseDate: "2024-04-24",
-    genre: ["액션", "코미디"],
-    openingSeats: "71만석 이상",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "51억 이상",
-    svodOtt: "넷플릭스",
-    similarRefs: ["범죄도시3", "베테랑", "공조", "신세계"],
+    releaseDate: "2024-04-24", genre: ["액션", "코미디"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["범죄도시3", "베테랑", "신세계"],
     famousLines: [
       { line: "약속하지. 내가 꼭 잡는다.", character: "마석도 (마동석)" },
       { line: "이유가 어딨어, 나쁜 놈은 그냥 잡는 거지.", character: "마석도 (마동석)" }
     ],
     choseong: "ㅂㅈㄷㅅ4",
-    posterUrl: "https://images.unsplash.com/photo-1542204172-e70528091b50?q=80&w=300&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w300/vUiUXkDeXAuMCCJLvvhRNTFNxjT.jpg"
   },
   {
-    id: "smugglers",
-    title: "밀수",
-    director: "류승완",
-    cast: ["김혜수", "염정아", "조인성", "박정민", "김종수", "고민시"],
-    releaseDate: "2023-07-26",
-    genre: ["액션", "드라마"],
-    openingSeats: "51~70만석",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "21~30억",
-    svodOtt: "넷플릭스",
-    similarRefs: ["도둑들", "범죄와의 전쟁", "베테랑", "공작"],
+    id: "smugglers", title: "밀수", director: "류승완",
+    cast: ["김혜수", "염정아", "조인성", "박정민", "고민시"],
+    releaseDate: "2023-07-26", genre: ["액션", "드라마"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "21~30억", svodOtt: "넷플릭스",
+    similarRefs: ["도둑들", "베테랑", "공작"],
     famousLines: [
       { line: "바다 밑에는 건지는 사람이 임자야.", character: "춘자 (김혜수)" },
       { line: "이 판에 의리가 어딨어, 돈만 있으면 그만이지.", character: "권필삼 (조인성)" }
     ],
     choseong: "ㅁㅅ",
-    posterUrl: "https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=300&auto=format&fit=crop"
+    posterUrl: "https://image.tmdb.org/t/p/w300/8bKQICnBHPo6eCIcjxRkJfFrAeT.jpg"
   },
   {
-    id: "handsome_guys",
-    title: "핸섬가이즈",
-    director: "남동협",
-    cast: ["이성민", "이희준", "공승연", "박지환", "우현"],
-    releaseDate: "2024-06-26",
-    genre: ["코미디", "공포"],
-    openingSeats: "21~30만석",
-    openingDayScore: "4~5만명",
-    openingWeekScore: "31~50만명",
-    finalScore: "151~200만명",
-    vodSales: "7.6~10억",
-    svodOtt: "쿠팡플레이",
-    similarRefs: ["육사오", "극한직업", "킬링 로맨스"],
+    id: "concrete_utopia", title: "콘크리트 유토피아", director: "엄태화",
+    cast: ["이병헌", "박서준", "박보영", "김선영"],
+    releaseDate: "2023-08-09", genre: ["드라마", "스릴러"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "301~400만명",
+    vodSales: "16~20억", svodOtt: "넷플릭스",
+    similarRefs: ["터널", "부산행", "설국열차"],
     famousLines: [
-      { line: "우리가 얼굴이 이래도 속은 참 따뜻한 사람들입니다.", character: "재필 (이성민)" }
+      { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" }
     ],
-    choseong: "ㅎㅅㄱㅇㅈ",
-    posterUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300&auto=format&fit=crop"
+    choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
+  },
+  // ── KOBIS 자동 수집 (2026-06-22 08:51 KST) ─────────────────────────────────────────
+  {
+    id: "kobis_20259781", title: "\ud1a0\uc774 \uc2a4\ud1a0\ub9ac 5", director: "\uc564\ub4dc\ub958 \uc2a4\ud0e0\ud2bc",
+    cast: ["톰 행크스", "팀 알렌", "조앤 쿠삭", "그레타 리"],
+    releaseDate: "2026-06-17", genre: ["애니메이션", "어드벤처", "코미디"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "75~100\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314c\u3147 \u3145\u314c\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg"
   },
   {
-    id: "picnic",
-    title: "소풍",
-    director: "김용균",
-    cast: ["나문희", "김영옥", "박근형"],
-    releaseDate: "2024-02-07",
-    genre: ["드라마"],
-    openingSeats: "11~20만석",
-    openingDayScore: "2~3만명",
-    openingWeekScore: "11~15만명",
-    finalScore: "31~50만명",
-    vodSales: "1.6~2억",
-    svodOtt: "쿠팡플레이",
-    similarRefs: ["장수상회", "로망", "허스토리"],
-    famousLines: [
-      { line: "우리가 살면 얼마나 더 살겠냐.", character: "은심 (나문희)" },
-      { line: "고맙다 친구야, 내 옆에 있어줘서.", character: "금순 (김영옥)" }
-    ],
-    choseong: "ㅅㅍ",
-    posterUrl: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=300&auto=format&fit=crop"
-  },
-  // ── KOBIS API 자동 수집 데이터 (2025~2026 최신 박스오피스) ─────────────────
-  {
-    id: "kobis_20242837",
-    title: "왕과 사는 남자",
-    director: "장항준",
-    cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
-    releaseDate: "2026-02-04",
-    genre: ["사극", "드라마"],
-    openingSeats: "51~70만석",
-    openingDayScore: "11~20만명",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "51억 이상",
-    svodOtt: "넷플릭스",
-    similarRefs: ["광해", "사도", "관상"],
-    famousLines: [
-      { line: "왕과 함께 산다는 건, 매일 죽음과 함께 사는 것이오.", character: "내관 (유해진)" }
-    ],
-    choseong: "ㅇㄱ ㅅㄴ ㄴㅈ",
-    posterUrl: "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=300&auto=format&fit=crop"
-  },
-  {
-    id: "kobis_20252402",
-    title: "군체",
-    director: "연상호",
+    id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
     cast: ["전지현", "구교환", "지창욱", "신현빈", "김신록"],
-    releaseDate: "2026-05-21",
-    genre: ["액션", "스릴러"],
-    openingSeats: "71만석 이상",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "51억 이상",
-    svodOtt: "넷플릭스",
-    similarRefs: ["부산행", "반도", "지옥"],
-    famousLines: [
-      { line: "우리가 살아남으려면 뭉쳐야 해.", character: "서현 (전지현)" }
-    ],
-    choseong: "ㄱㅊ",
-    posterUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=300&auto=format&fit=crop"
+    releaseDate: "2026-05-21", genre: ["액션", "스릴러"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "6~7\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u314a",
+    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
   },
   {
-    id: "kobis_20254121",
-    title: "살목지",
-    director: "이상민",
-    cast: ["김혜윤", "이종원", "김준한"],
-    releaseDate: "2026-04-08",
-    genre: ["스릴러"],
-    openingSeats: "6~10만석",
-    openingDayScore: "8~10만명",
-    openingWeekScore: "71~100만명",
-    finalScore: "301~400만명",
-    vodSales: "16~20억",
-    svodOtt: "티빙",
-    similarRefs: ["곤지암", "사바하", "검은 사제들"],
-    famousLines: [
-      { line: "그곳엔 절대 가지 마세요.", character: "형사 (이종원)" }
-    ],
-    choseong: "ㅅㅁㅈ",
-    posterUrl: "https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=300&auto=format&fit=crop"
+    id: "kobis_20248252", title: "\uc640\uc77c\ub4dc \uc53d", director: "\uc190\uc7ac\uace4",
+    cast: ["강동원", "엄태구", "박지현", "오정세"],
+    releaseDate: "2026-06-03", genre: ["코미디"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "4~5\ub9cc\uba85",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "100~150\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3147\u3137 \u3146",
+    posterUrl: "https://image.tmdb.org/t/p/w300/s4IUDzLZJb4CosgEXcmouY32Jfg.jpg"
   },
   {
-    id: "kobis_20261782",
-    title: "프로젝트 헤일메리",
-    director: "필 로드",
+    id: "kobis_20263030", title: "\ubc31\ub8f8", director: "\ucf00\uc778 \ud30c\uc2a8\uc2a4",
+    cast: ["치웨텔 에지오포", "레나테 레인스베"],
+    releaseDate: "2026-05-27", genre: ["공포(호러)", "스릴러"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "2~3\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "100~150\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3142\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/c3Cb7h4ecFsGfUM02KF638kbbtC.jpg"
+  },
+  {
+    id: "kobis_20250655", title: "\ub514\uc2a4\ud074\ub85c\uc800 \ub370\uc774", director: "\uc2a4\ud2f0\ube10 \uc2a4\ud544\ubc84\uadf8",
+    cast: ["에밀리 블런트", "조쉬 오코너", "콜린 퍼스", "이브 휴슨", "콜먼 도밍고"],
+    releaseDate: "2026-06-10", genre: ["SF", "미스터리"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
+    openingWeekScore: "15~30\ub9cc\uba85", finalScore: "21~30\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3137\u3145\u314b\u3139\u3148 \u3137\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/86EdVHOEFjFNPeE0sWjpCqcUORj.jpg"
+  },
+  {
+    id: "kobis_20259626", title: "\ub9c8\uc774\ud074", director: "\uc548\ud1a4 \ud6c4\ucfe0\uc544",
+    cast: ["자파 잭슨", "니아 롱", "로라 해리어", "줄리아노 크루 발디", "마일즈 텔러"],
+    releaseDate: "2026-05-13", genre: ["드라마"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.4~0.5\ub9cc\uba85",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "151~200\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3147\u314b",
+    posterUrl: "https://image.tmdb.org/t/p/w300/piMZqtd0gGS7OgkhDwiQ7vVViBQ.jpg"
+  },
+  {
+    id: "kobis_20149629", title: "\ube44\uae34 \uc5b4\uac8c\uc778", director: "\uc874 \uce74\ub2c8",
+    cast: ["키이라 나이틀리", "마크 러팔로", "애덤 리바인", "헤일리 스테인펠드", "제임스 코든"],
+    releaseDate: "2014-08-13", genre: ["멜로/로맨스"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.4~0.5\ub9cc\uba85",
+    openingWeekScore: "11~15\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3142\u3131 \u3147\u3131\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/xVXC1mDkjJ1pK9tTFgO2DGPavJj.jpg"
+  },
+  {
+    id: "kobis_20261766", title: "\uc0c1\uc790 \uc18d\uc758 \uc591", director: "\uace0\ub808\uc5d0\ub2e4 \ud788\ub85c\uce74\uc988",
+    cast: ["아야세 하루카", "다이고"],
+    releaseDate: "2026-06-10", genre: ["드라마", "SF"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "4~5\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u3148 \u3145\u3147 \u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/s6rXbKa97PTO2zVJyuAtccJKv1z.jpg"
+  },
+  {
+    id: "kobis_20258236", title: "\ub9cc\ub2ec\ub85c\ub9ac\uc548\uacfc \uadf8\ub85c\uad6c", director: "\uc874 \ud30c\ube0c\ub85c",
+    cast: ["페드로 파스칼", "시고니 위버"],
+    releaseDate: "2026-05-27", genre: ["액션", "어드벤처"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "11~15\ub9cc\uba85", finalScore: "21~30\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3137\u3139\u3139\u3147\u3131 \u3131\u3139\u3131",
+    posterUrl: "https://image.tmdb.org/t/p/w300/tMP99wq45GQMoeZwITgjAS8Wihm.jpg"
+  },
+  {
+    id: "kobis_19960126", title: "\ube44\ud3ec \uc120\ub77c\uc774\uc988", director: "\ub9ac\ucc28\ub4dc \ub9c1\ud074\ub808\uc774\ud130",
+    cast: ["에단 호크", "줄리 델피"],
+    releaseDate: "1996-03-30", genre: ["멜로/로맨스", "드라마"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "5~10\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3142\u314d \u3145\u3139\u3147\u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/o7mLGNdzY1z6w2bQv0NJNOoVKks.jpg"
+  },
+  {
+    id: "kobis_20163018", title: "\uc2f1 \uc2a4\ud2b8\ub9ac\ud2b8", director: "\uc874 \uce74\ub2c8",
+    cast: ["퍼디아 월시-필로", "루시 보인턴", "잭 레이너"],
+    releaseDate: "2016-05-19", genre: ["드라마", "멜로/로맨스"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "15~30\ub9cc\uba85", finalScore: "51~75\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145 \u3145\u314c\u3139\u314c",
+    posterUrl: "https://image.tmdb.org/t/p/w300/kUYfLv9V5mKPb2lJadzgOI67AFt.jpg"
+  },
+  {
+    id: "kobis_20263512", title: "\uc774\uc0c1\ud55c \uacfc\uc790 \uac00\uac8c \uc804\ucc9c\ub2f9", director: "\ubc15\ubd09\uc12d",
+    cast: ["라미란", "이레"],
+    releaseDate: "2026-05-29", genre: ["판타지", "드라마"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
+    openingWeekScore: "5~10\ub9cc\uba85", finalScore: "11~20\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3145\u314e \u3131\u3148 \u3131\u3131 \u3148\u314a\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/xHnw4j8F0xMFB1P7mxD4rJsp87J.jpg"
+  },
+  {
+    id: "kobis_20040734", title: "\ub178\ud2b8\ubd81", director: "\ub2c9 \uce74\uc0ac\ubca0\uce20",
+    cast: ["레이첼 맥아담스", "라이언 고슬링"],
+    releaseDate: "2004-11-26", genre: ["멜로/로맨스"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "11~15\ub9cc\uba85", finalScore: "75~100\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3134\u314c\u3142",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ntdgcdsmMuHd9s4oEKTvWDiUyU7.jpg"
+  },
+  {
+    id: "kobis_20263344", title: "\ub108\ubc14\ub098 \ub354 \ubc34\ub4dc : \uc804\uc124\uc801 \ubc34\ub4dc \u2018\ub108\ubc14\ub098\u2019\uc640\ub294 \ubcc4 \uad00\ub828 \uc5c6\ub294 \u2018\ub108\ubc14\ub098 \ub354 \ubc34\ub4dc\u2019\uc758 \ucf64\ube44 \ub9f7\uacfc \uc81c\uc774. \uc5b4\ub290 \ub0a0 \uacf5\uc5f0\uc744 \uc704\ud574 \ud0c0\uc784\uba38\uc2e0\uc744 \ub9cc\ub4dc\ub294 \ud669\ub2f9\ud55c \uc791\uc804\uc744 \uc138\uc6b0\uace0 \ucc98\uc74c \ub9cc\ub0ac\ub358 17\ub144 \uc804\uc73c\ub85c \ub3cc", director: "\ub9f7 \uc874\uc2a8",
+    cast: ["맷 존슨"],
+    releaseDate: "2026-05-20", genre: ["코미디", "어드벤처", "SF"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "2~3\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3134\u3142\u3134 \u3137 \u3142\u3137  \u3148\u3145\u3148 \u3142\u3137 \u3134\u3142\u3134\u3147\u3134 \u3142 \u3131\u3139 \u3147\u3134 \u3134\u3142\u3134 \u3137 \u3142\u3137\u3147 \u314b\u3142 \u3141\u3131 \u3148\u3147 \u3147\u3134 \u3134 \u3131\u3147\u3147 \u3147\u314e \u314c\u3147\u3141\u3145\u3147 \u3141\u3137\u3134 \u314e\u3137\u314e \u3148\u3148\u3147 \u3145\u3147\u3131 \u314a\u3147 \u3141\u3134\u3137 \u3134 \u3148\u3147\u3139 \u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/tfYsOt4sIeN4iIcuMqwLLGm0VJx.jpg"
+  },
+  {
+    id: "kobis_20259773", title: "\uc288\ud37c \ub9c8\ub9ac\uc624 \uac24\ub7ed\uc2dc", director: "\uc544\ub860 \ud638\ubc14\uc2a4",
+    cast: ["크리스 프랫", "안야 테일러 조이", "잭 블랙", "찰리 데이", "브리 라슨"],
+    releaseDate: "2026-04-29", genre: ["애니메이션"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "151~200\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u314d \u3141\u3139\u3147 \u3131\u3139\u3145",
+    posterUrl: "https://image.tmdb.org/t/p/w300/knaXOBDBecVBWZVup3zXaOoy23v.jpg"
+  },
+  {
+    id: "kobis_20259791", title: "\uc545\ub9c8\ub294 \ud504\ub77c\ub2e4\ub97c \uc785\ub294\ub2e4 2", director: "\ub370\uc774\ube57 \ud504\ub7ad\ud074",
+    cast: ["메릴 스트립", "앤 해서웨이", "에밀리 블런트", "스탠리 투치"],
+    releaseDate: "2026-04-29", genre: ["드라마"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "151~200\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3141\u3134 \u314d\u3139\u3137\u3139 \u3147\u3134\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/28A1VUDML1RzENYNtIU1WkBLT9V.jpg"
+  },
+  {
+    id: "kobis_20262975", title: "\uc2e0\uadf9\uc7a5\ud310 \uc740\ud63c: \uc694\uc2dc\uc640\ub77c \ub300\uc5fc\uc0c1", director: "",
+    cast: ["스기타 토모카즈", "사카구치 다이스케", "쿠기미야 리에"],
+    releaseDate: "2026-05-20", genre: ["애니메이션"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.1\ub9cc\uba85 \uc774\ud558",
+    openingWeekScore: "4~5\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u3131\u3148\u314d \u3147\u314e \u3147\u3145\u3147\u3139 \u3137\u3147\u3145",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mVtUatYLMj30v8Gpv5dYfE2p2XT.jpg"
+  },
+  {
+    id: "kobis_20261782", title: "\ud504\ub85c\uc81d\ud2b8 \ud5e4\uc77c\uba54\ub9ac", director: "\ud544 \ub85c\ub4dc",
     cast: ["라이언 고슬링", "산드라 휠러"],
-    releaseDate: "2026-03-18",
-    genre: ["판타지 (SF)"],
-    openingSeats: "21~30만석",
-    openingDayScore: "8~10만명",
-    openingWeekScore: "51~70만명",
-    finalScore: "251~300만명",
-    vodSales: "11~15억",
-    svodOtt: "디즈니플러스",
-    similarRefs: ["마션", "인터스텔라", "그래비티"],
-    famousLines: [
-      { line: "나는 혼자가 아니야.", character: "라일랜드 (라이언 고슬링)" }
-    ],
-    choseong: "ㅍㄹㅈㅌ ㅎㅇㅁㄹ",
-    posterUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=300&auto=format&fit=crop"
+    releaseDate: "2026-03-18", genre: ["SF"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.1\ub9cc\uba85 \uc774\ud558",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314d\u3139\u3148\u314c \u314e\u3147\u3141\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/qqGpVVZk2KD1lAvccgTU4Z6nh1H.jpg"
   },
   {
-    id: "kobis_20259773",
-    title: "슈퍼 마리오 갤럭시",
-    director: "아론 호바스",
-    cast: ["크리스 프랫", "안야 테일러 조이", "잭 블랙"],
-    releaseDate: "2026-04-29",
-    genre: ["애니메이션"],
-    openingSeats: "11~20만석",
-    openingDayScore: "6~7만명",
-    openingWeekScore: "101만명 이상",
-    finalScore: "151~200만명",
-    vodSales: "7.6~10억",
-    svodOtt: "넷플릭스",
-    similarRefs: ["슈퍼 마리오 브라더스", "미니언즈", "라야와 마지막 드래곤"],
-    famousLines: [
-      { line: "레츠어고!", character: "마리오 (크리스 프랫)" }
-    ],
-    choseong: "ㅅㅍ ㅁㄹㅇ ㄱㄹㅅ",
-    posterUrl: "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?q=80&w=300&auto=format&fit=crop"
+    id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
+    cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
+    releaseDate: "2026-02-04", genre: ["사극", "드라마"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.1\ub9cc\uba85 \uc774\ud558",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3131 \u3145\u3134 \u3134\u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/kkJB3SeUJp7Y0IXXLkv5QZHJGkH.jpg"
   },
   {
-    id: "kobis_20259626",
-    title: "마이클",
-    director: "안톤 후쿠아",
-    cast: ["자파 잭슨", "니아 롱", "마일즈 텔러"],
-    releaseDate: "2026-05-13",
-    genre: ["드라마"],
-    openingSeats: "41~50만석",
-    openingDayScore: "8~10만명",
-    openingWeekScore: "71~100만명",
-    finalScore: "151~200만명",
-    vodSales: "7.6~10억",
-    svodOtt: "디즈니플러스",
-    similarRefs: ["보헤미안 랩소디", "로켓맨", "엘비스"],
-    famousLines: [
-      { line: "음악은 멈추지 않아.", character: "마이클 (자파 잭슨)" }
-    ],
-    choseong: "ㅁㅇㅋ",
-    posterUrl: "https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=300&auto=format&fit=crop"
-  },
-  {
-    id: "kobis_20253782",
-    title: "악마는 프라다를 입는다 2",
-    director: "데이빗 프랭클",
-    cast: ["메릴 스트립", "앤 해서웨이", "에밀리 블런트"],
-    releaseDate: "2026-06-04",
-    genre: ["드라마"],
-    openingSeats: "31~40만석",
-    openingDayScore: "11~20만명",
-    openingWeekScore: "71~100만명",
-    finalScore: "151~200만명",
-    vodSales: "7.6~10억",
-    svodOtt: "디즈니플러스",
-    similarRefs: ["악마는 프라다를 입는다", "섹스 앤 더 시티"],
-    famousLines: [
-      { line: "그게 전부야. 끝이야.", character: "미란다 (메릴 스트립)" }
-    ],
-    choseong: "ㅇㅁㄴ ㅍㄹㄷㄹ ㅇㄴㄷ 2",
-    posterUrl: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=300&auto=format&fit=crop"
-  },
-  {
-    id: "kobis_20255341",
-    title: "와일드 씽",
-    director: "손재곤",
-    cast: ["김혜윤", "지수", "정소민"],
-    releaseDate: "2026-05-28",
-    genre: ["드라마"],
-    openingSeats: "21~30만석",
-    openingDayScore: "11~20만명",
-    openingWeekScore: "71~100만명",
-    finalScore: "100~150만명",
-    vodSales: "4.1~5억",
-    svodOtt: "티빙",
-    similarRefs: ["써니", "벌새", "우리들"],
-    famousLines: [
-      { line: "우리는 달라. 우리는 특별해.", character: "주인공 (김혜윤)" }
-    ],
-    choseong: "ㅇㅇㄷ ㅆ",
-    posterUrl: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=300&auto=format&fit=crop"
+    id: "kobis_20254121", title: "\uc0b4\ubaa9\uc9c0", director: "\uc774\uc0c1\ubbfc",
+    cast: ["김혜윤", "이종원", "김준한", "김영성", "오동민"],
+    releaseDate: "2026-04-08", genre: ["공포(호러)", "스릴러"],
+    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u3141\u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/uVJyWlSPCWftRUXRM6lxTqOzPY6.jpg"
   }
 ];
 
-// Filmographies for director/actor matching game
 const FILMOGRAPHIES = {
   directors: [
-    {
-      name: "봉준호",
-      movies: ["기생충", "설국열차", "괴물", "마더", "살인의 추억", "플란다스의 개", "옥자"],
-      fake: ["올드보이", "아가씨", "헤어질 결심", "곡성", "부산행"]
-    },
-    {
-      name: "류승완",
-      movies: ["밀수", "모가디슈", "베테랑", "베를린", "부당거래", "짝패", "군함도"],
-      fake: ["해운대", "도둑들", "아저씨", "범죄도시"]
-    },
-    {
-      name: "장재현",
-      movies: ["파묘", "사바하", "검은 사제들"],
-      fake: ["곡성", "추격자", "신과함께", "부산행"]
-    },
-    {
-      name: "김성수",
-      movies: ["서울의 봄", "아수라", "감기", "무사", "비트", "태양은 없다"],
-      fake: ["신세계", "내부자들", "범죄도시", "명량"]
-    },
-    {
-      name: "연상호",
-      movies: ["군체", "부산행", "반도", "지옥", "염력", "돼지의 왕"],
-      fake: ["파묘", "공조", "베테랑", "밀수"]
-    }
+    { name: "봉준호", movies: ["기생충", "설국열차", "괴물", "마더", "살인의 추억", "옥자"], fake: ["올드보이", "아가씨", "헤어질 결심", "곡성", "부산행"] },
+    { name: "류승완", movies: ["밀수", "모가디슈", "베테랑", "베를린", "부당거래", "군함도"], fake: ["해운대", "도둑들", "아저씨", "범죄도시"] },
+    { name: "장재현", movies: ["파묘", "사바하", "검은 사제들"], fake: ["곡성", "추격자", "신과함께", "부산행"] },
+    { name: "김성수", movies: ["서울의 봄", "아수라", "감기", "무사", "비트"], fake: ["신세계", "내부자들", "범죄도시", "명량"] },
+    { name: "연상호", movies: ["부산행", "반도", "지옥", "염력", "돼지의 왕"], fake: ["파묘", "공조", "베테랑", "밀수"] }
   ],
   actors: [
-    {
-      name: "송강호",
-      movies: ["기생충", "택시운전사", "변호인", "설국열차", "괴물", "살인의 추억", "공동경비구역 JSA", "밀정", "관상"],
-      fake: ["명량", "범죄도시", "올드보이", "베테랑", "부산행"]
-    },
-    {
-      name: "황정민",
-      movies: ["서울의 봄", "베테랑", "국제시장", "신세계", "곡성", "공작", "검사외전", "다만 악에서 구하소서"],
-      fake: ["기생충", "명량", "도둑들", "공조"]
-    },
-    {
-      name: "정우성",
-      movies: ["서울의 봄", "헌트", "강철비", "아수라", "더 킹", "감시자들", "좋은 놈 나쁜 놈 이상한 놈", "비트"],
-      fake: ["택시운전사", "신세계", "범죄도시", "괴물"]
-    },
-    {
-      name: "김고은",
-      movies: ["파묘", "영웅", "은교", "차이나타운", "계춘할망", "변산"],
-      fake: ["기생충", "아가씨", "밀수", "써니"]
-    },
-    {
-      name: "이성민",
-      movies: ["서울의 봄", "핸섬가이즈", "대외비", "남산의 부장들", "공작", "보안관", "검사외전"],
-      fake: ["파묘", "도둑들", "명량", "베테랑"]
-    },
-    {
-      name: "전지현",
-      movies: ["군체", "도둑들", "암살", "엽기적인 그녀", "베를린", "피 끓는 청춘"],
-      fake: ["파묘", "밀수", "기생충", "신과함께"]
-    },
-    {
-      name: "유해진",
-      movies: ["왕과 사는 남자", "파묘", "택시운전사", "럭키", "베테랑", "완득이", "국제시장"],
-      fake: ["기생충", "서울의 봄", "극한직업", "밀수"]
-    }
+    { name: "송강호", movies: ["기생충", "택시운전사", "변호인", "설국열차", "괴물", "살인의 추억", "밀정"], fake: ["명량", "범죄도시", "올드보이", "베테랑", "부산행"] },
+    { name: "황정민", movies: ["서울의 봄", "베테랑", "국제시장", "신세계", "곡성", "공작", "다만 악에서 구하소서"], fake: ["기생충", "명량", "도둑들", "공조"] },
+    { name: "정우성", movies: ["서울의 봄", "헌트", "강철비", "아수라", "더 킹", "비트"], fake: ["택시운전사", "신세계", "범죄도시", "괴물"] },
+    { name: "김고은", movies: ["파묘", "영웅", "은교", "차이나타운", "변산"], fake: ["기생충", "아가씨", "밀수", "써니"] },
+    { name: "마동석", movies: ["범죄도시4", "범죄도시3", "범죄도시2", "범죄도시", "부산행", "아이 캔 스피크"], fake: ["베테랑", "서울의 봄", "기생충", "공조"] },
+    { name: "유해진", movies: ["파묘", "택시운전사", "럭키", "베테랑", "완득이", "국제시장"], fake: ["기생충", "서울의 봄", "극한직업", "밀수"] }
   ]
 };
 
-// Share options mapping exactly to the Google Form options
 const GAME_OPTIONS = {
-  openingSeats: [
-    "5만석 이하",
-    "6~10만석",
-    "11~20만석",
-    "21~30만석",
-    "31~40만석",
-    "41~50만석",
-    "51~70만석",
-    "71만석 이상"
-  ],
-  openingDayScore: [
-    "0.1만명 이하",
-    "0.2~0.3만명",
-    "0.4~0.5만명",
-    "0.6~1만명",
-    "2~3만명",
-    "4~5만명",
-    "6~7만명",
-    "8~10만명",
-    "11~20만명",
-    "21만명 이상"
-  ],
-  openingWeekScore: [
-    "1만명 이하",
-    "2~3만명",
-    "4~5만명",
-    "5~10만명",
-    "11~15만명",
-    "15~30만명",
-    "31~50만명",
-    "51~70만명",
-    "71~100만명",
-    "101만명 이상"
-  ],
-  finalScore: [
-    "2만명 이하",
-    "3~5만명",
-    "6~10만명",
-    "11~20만명",
-    "21~30만명",
-    "31~50만명",
-    "51~75만명",
-    "75~100만명",
-    "100~150만명",
-    "151~200만명",
-    "201~250만명",
-    "251~300만명",
-    "301~400만명",
-    "401~500만명",
-    "501만명 이상"
-  ],
-  vodSales: [
-    "0.5억 이하",
-    "0.5~1억",
-    "1.1~1.5억",
-    "1.6~2억",
-    "2.1~2.5억",
-    "2.6~3억",
-    "3.1~4억",
-    "4.1~5억",
-    "5.1~7.5억",
-    "7.6~10억",
-    "11~15억",
-    "16~20억",
-    "21~30억",
-    "31~40억",
-    "41억~50억",
-    "51억 이상"
-  ],
-  svodOtt: [
-    "넷플릭스",
-    "디즈니플러스",
-    "쿠팡플레이",
-    "티빙",
-    "웨이브",
-    "기타",
-    "판매 불가"
-  ],
-  genres: [
-    "코미디", "드라마", "액션", "스릴러", "로맨스",
-    "판타지 (SF)", "뮤지컬", "사극", "공포", "어드벤처", "애니메이션"
-  ]
+  openingSeats: ["5만석 이하","6~10만석","11~20만석","21~30만석","31~40만석","41~50만석","51~70만석","71만석 이상"],
+  openingDayScore: ["0.1만명 이하","0.2~0.3만명","0.4~0.5만명","0.6~1만명","2~3만명","4~5만명","6~7만명","8~10만명","11~20만명","21만명 이상"],
+  openingWeekScore: ["1만명 이하","2~3만명","4~5만명","5~10만명","11~15만명","15~30만명","31~50만명","51~70만명","71~100만명","101만명 이상"],
+  finalScore: ["2만명 이하","3~5만명","6~10만명","11~20만명","21~30만명","31~50만명","51~75만명","75~100만명","100~150만명","151~200만명","201~250만명","251~300만명","301~400만명","401~500만명","501만명 이상"],
+  vodSales: ["0.5억 이하","0.5~1억","1.1~1.5억","1.6~2억","2.1~2.5억","2.6~3억","3.1~4억","4.1~5억","5.1~7.5억","7.6~10억","11~15억","16~20억","21~30억","31~40억","41억~50억","51억 이상"],
+  svodOtt: ["넷플릭스","디즈니플러스","쿠팡플레이","티빙","웨이브","기타","판매 불가"]
 };
 
-// Famous Korean characters list for nickname generation
 const FAMOUS_CHARACTERS = [
-  "아이언맨", "해리포터", "엘사", "타노스", "존윅", "잭스패로우", "할리퀸",
-  "조커", "도민준", "천송이", "마석도", "장첸", "전두광", "이태신",
-  "덤블도어", "간달프", "레골라스", "피터팬", "슈퍼맨", "배트맨", "스파이더맨",
-  "괴물", "기택", "상덕", "화림", "고반장", "춘자", "영탁", "네오", "모피어스",
-  "서현", "라일랜드", "마리오"
+  "아이언맨","해리포터","엘사","타노스","존윅","잭스패로우","할리퀸","조커","도민준","천송이",
+  "마석도","장첸","전두광","이태신","덤블도어","간달프","레골라스","피터팬","슈퍼맨","배트맨",
+  "스파이더맨","괴물","기택","상덕","화림","고반장","춘자","영탁","네오","모피어스"
 ];
 
 const NICKNAME_MODIFIERS = [
-  "시네필", "천만감독", "박스오피스", "황금종려상", "칸영화제", "영화비평가",
-  "스포일러", "티켓마스터", "무비매니아", "엔딩크레딧", "영화배급사", "시네마키드",
-  "오스카", "레드카펫", "필름메이커", "상영관지킴이", "팝콘귀신", "러닝타임"
+  "시네필","천만감독","박스오피스","황금종려상","칸영화제","영화비평가","스포일러","티켓마스터",
+  "무비매니아","엔딩크레딧","영화배급사","시네마키드","오스카","레드카펫","필름메이커","팝콘귀신"
 ];
 
-// Upcoming Movies Database (개봉예정작 — KOBIS 미개봉 또는 예측용)
 const UPCOMING_MOVIES_DATABASE = [
-  {
-    id: "upcoming_gunchae",
-    title: "군체",
-    director: "연상호",
-    cast: ["전지현", "구교환", "지창욱"],
-    releaseDate: "2026-05-21",
-    openingSeats: "71만석 이상",
-    openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상",
-    finalScore: "501만명 이상",
-    vodSales: "51억 이상",
-    svodOtt: "넷플릭스",
-    posterUrl: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=300&auto=format&fit=crop",
-    isRevealed: true,   // 이미 개봉 완료 → 정답 공개 가능
-    revealedDate: "2026-06-01"
-  },
-  {
-    id: "upcoming_wildthing",
-    title: "와일드 씽",
-    director: "손재곤",
-    cast: ["김혜윤", "지수", "정소민"],
-    releaseDate: "2026-05-28",
-    openingSeats: "21~30만석",
-    openingDayScore: "11~20만명",
-    openingWeekScore: "71~100만명",
-    finalScore: "100~150만명",
-    vodSales: "4.1~5억",
-    svodOtt: "티빙",
-    posterUrl: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=300&auto=format&fit=crop",
-    isRevealed: true,
-    revealedDate: "2026-06-10"
-  },
-  {
-    id: "upcoming_devil2",
-    title: "악마는 프라다를 입는다 2",
-    director: "데이빗 프랭클",
-    cast: ["메릴 스트립", "앤 해서웨이", "에밀리 블런트"],
-    releaseDate: "2026-06-04",
-    openingSeats: "31~40만석",
-    openingDayScore: "11~20만명",
-    openingWeekScore: "71~100만명",
-    finalScore: "151~200만명",
-    vodSales: "7.6~10억",
-    svodOtt: "디즈니플러스",
-    posterUrl: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=300&auto=format&fit=crop",
-    isRevealed: true,
-    revealedDate: "2026-06-15"
-  }
+
 ];
 
-// Helper to export if we need standard ES module
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { MOVIES_DATABASE, UPCOMING_MOVIES_DATABASE, FILMOGRAPHIES, GAME_OPTIONS, FAMOUS_CHARACTERS, NICKNAME_MODIFIERS };
 }
