@@ -65,9 +65,6 @@ body {
   font-weight: 300;
   overflow-x: hidden;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Changed to flex-start for better top alignment */
 }
 
 /* 2. Background Glow — 로그인 화면 이외 구간에만 적용 */
@@ -93,7 +90,9 @@ body.login-active .glow-bg { opacity: 0; }
   flex-direction: column;
   padding: 20px;
   position: relative;
-  padding-bottom: 90px; /* Space for bottom nav */
+  padding-bottom: 90px;
+  margin: 0 auto;        /* 중앙 정렬 */
+  box-sizing: border-box;
 }
 
 /* 4. SPA view sections */
