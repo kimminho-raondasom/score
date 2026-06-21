@@ -3422,85 +3422,41 @@ class CineMasterApp {
   }
 
   setupEventListeners() {
-    // Google Login click simulator
-    document.getElementById('btn-google-login').addEventListener('click', () => {
-      this.simulateGoogleLogin();
-    });
+    // 헬퍼: 요소가 없으면 조용히 건너뜀
+    const on = (id, event, fn) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener(event, fn);
+    };
 
-    // Registration Form submit
-    document.getElementById('form-register').addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.submitRegistration();
-    });
+    // Google Login
+    on('btn-google-login', 'click', () => this.simulateGoogleLogin());
 
-    // Nickname recommendations generator
-    document.getElementById('btn-generate-nickname').addEventListener('click', () => {
-      this.generateNickname();
-    });
+    // Registration Form
+    on('form-register', 'submit', (e) => { e.preventDefault(); this.submitRegistration(); });
+    on('btn-generate-nickname', 'click', () => this.generateNickname());
 
-    // Logout trigger
-    document.getElementById('btn-logout').addEventListener('click', () => {
-      this.logout();
-    });
+    // Dashboard
+    on('btn-logout',            'click', () => this.logout());
+    on('btn-open-achievements', 'click', () => this.openModal('achievements'));
+    on('btn-show-tiers',        'click', () => this.openModal('tiers'));
+    on('btn-toggle-sound',      'click', () => this.toggleSound());
 
-    // Achievements modal open
-    document.getElementById('btn-open-achievements').addEventListener('click', () => {
-      this.openModal('achievements');
-    });
+    // Quiz
+    on('btn-exit-quiz',  'click', () => this.exitQuiz());
+    on('btn-next-step',  'click', () => this.submitScoreStepAnswer());
+    on('form-lines-quiz','submit', (e) => { e.preventDefault(); this.gradeChoseongQuiz(); });
+    on('btn-back-to-dash','click', () => { this.switchView('dashboard'); this.renderDashboard(); });
+    on('btn-next-round', 'click', () => { this.closeAnswerOverlay(); this.nextRound(); });
 
-    // Tiers guide modal open
-    document.getElementById('btn-show-tiers').addEventListener('click', () => {
-      this.openModal('tiers');
-    });
-
-    // Sound settings toggle
-    document.getElementById('btn-toggle-sound').addEventListener('click', () => {
-      this.toggleSound();
-    });
-
-    // Exit quiz button
-    document.getElementById('btn-exit-quiz').addEventListener('click', () => {
-      this.exitQuiz();
-    });
-
-    // Score quiz step answer next btn
-    document.getElementById('btn-next-step').addEventListener('click', () => {
-      this.submitScoreStepAnswer();
-    });
-
-    // Quote game form submit
-    document.getElementById('form-lines-quiz').addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.gradeChoseongQuiz();
-    });
-
-    // Finale back to dash
-    document.getElementById('btn-back-to-dash').addEventListener('click', () => {
-      this.switchView('dashboard');
-      this.renderDashboard();
-    });
-
-    // Next round button in answer overlay
-    document.getElementById('btn-next-round').addEventListener('click', () => {
-      this.closeAnswerOverlay();
-      this.nextRound();
-    });
-
-    // Tab buttons event listeners (Bottom Nav)
-    document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // the onclick is already handled in HTML inline, but we can bind here if we want.
-        // let's leave it to inline `onclick="app.switchTab('...')"`
-      });
-    });
-
-    // Movie Search Input Event
+    // Movie Search
     const searchInput = document.getElementById('movie-search-input');
     if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        this.renderReleasedMoviesSearch(e.target.value);
-      });
+      searchInput.addEventListener('input', (e) => this.renderReleasedMoviesSearch(e.target.value));
     }
+
+    // Forum
+    on('form-forum-post', 'submit', (e) => { e.preventDefault(); this.createForumPost(); });
+  }
 
     // Forum post creation form submit
     document.getElementById('form-forum-post').addEventListener('submit', (e) => {
