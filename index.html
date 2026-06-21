@@ -58,11 +58,17 @@
   padding: 0;
 }
 
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-main);
   font-family: var(--font-family-sans);
   font-weight: 300;
+  width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
 }
@@ -89,10 +95,11 @@ body.login-active .glow-bg { opacity: 0; }
   display: flex;
   flex-direction: column;
   padding: 20px;
-  position: relative;
   padding-bottom: 90px;
-  margin: 0 auto;        /* 중앙 정렬 */
+  position: relative;
+  margin: 0 auto;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* 4. SPA view sections */
