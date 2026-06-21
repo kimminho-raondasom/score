@@ -1987,7 +1987,7 @@ button, .btn {
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">campaign</span> 명대사 퀴즈</span>
         </div>
         <div class="login-btn-area">
-          <button id="btn-google-login" class="login-google-btn">
+          <button id="btn-google-login" class="login-google-btn" onclick="doLogin()">
             <svg viewBox="0 0 24 24" width="20" height="20" class="login-google-svg">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -4868,9 +4868,16 @@ function showToast(msg, type = 'info', duration = 2800) {
   }, duration);
 }
 
-// Global Application Initialization
-const app = new CineMasterApp();
+// ── 전역 앱 인스턴스 & 초기화 ────────────────────────────────────────────
+let app;
+
+// 로그인 버튼 onclick에서 직접 호출되는 전역 함수
+function doLogin() {
+  if (app) app.simulateGoogleLogin();
+}
+
 window.addEventListener('DOMContentLoaded', () => {
+  app = new CineMasterApp();
   app.init();
 });
 
