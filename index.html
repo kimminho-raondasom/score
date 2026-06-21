@@ -3458,7 +3458,6 @@ class CineMasterApp {
   // Synthesizer Audio Synth (Web Audio API)
   playSynthSound(type) {
     if (!this.soundEnabled) return;
-    
     try {
       if (!this.audioCtx) {
         this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -3551,13 +3550,10 @@ class CineMasterApp {
 
   // Google Login flow simulation
   simulateGoogleLogin() {
-    this.playSynthSound('click');
     const loginBtn = document.getElementById('btn-google-login');
-    const labelEl  = document.getElementById('login-btn-label');
     if (!loginBtn) return;
 
     loginBtn.disabled = true;
-    // 스피너 + 텍스트로 교체
     loginBtn.innerHTML = `
       <span class="login-spinner"></span>
       <span>계정 인증 중...</span>
@@ -3577,14 +3573,14 @@ class CineMasterApp {
       };
       this.switchView('register');
       this.generateNickname();
-    }, 1000);
+    }, 800);
   }
 
   // Random nickname generator - returns just one character word
   generateNickname() {
-    this.playSynthSound('click');
     const randChar = FAMOUS_CHARACTERS[Math.floor(Math.random() * FAMOUS_CHARACTERS.length)];
-    document.getElementById('reg-nickname').value = randChar;
+    const el = document.getElementById('reg-nickname');
+    if (el) el.value = randChar;
   }
 
   // Submit registration form
