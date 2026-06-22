@@ -81,43 +81,55 @@
 .splash-inner {
   text-align: center;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 
-/* 카피: "당신의 영화를 score하세요" */
-.splash-copy {
+/* 공통: 한글 3글자 줄 */
+.splash-line {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-size: clamp(1.4rem, 5vw, 1.8rem);
   font-weight: 300;
-  color: rgba(255,255,255,0.75);
-  letter-spacing: 0.05em;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: -52px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.18em;
+  line-height: 1.7;
   opacity: 0;
-  transform: translateY(10px);
-  animation: splashCopyIn 0.7s 0.3s ease forwards,
-             splashCopyOut 0.5s 2.0s ease forwards;
+  transform: translateY(14px);
 }
 
-@keyframes splashCopyIn {
+/* 첫 번째 줄: 당신의 */
+.splash-line-1 {
+  animation: splashLineIn 0.6s 0.2s cubic-bezier(0.2,0,0,1) forwards,
+             splashLineOut 0.45s 2.0s ease forwards;
+}
+
+/* 두 번째 줄: 영화를 */
+.splash-line-2 {
+  animation: splashLineIn 0.6s 0.65s cubic-bezier(0.2,0,0,1) forwards,
+             splashLineOut 0.45s 2.0s ease forwards;
+}
+
+@keyframes splashLineIn {
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes splashCopyOut {
-  to { opacity: 0; transform: translateY(-8px); }
+@keyframes splashLineOut {
+  to { opacity: 0; transform: translateY(-10px); }
 }
 
-/* 로고: "score." */
+/* 세 번째 줄: score (로고 역할) */
 .splash-logo {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(3rem, 12vw, 5rem);
   font-weight: 600;
   color: #fff;
   letter-spacing: 4px;
+  line-height: 1.4;
   opacity: 0;
   transform: scale(0.92);
-  animation: splashLogoIn 0.8s 0.2s cubic-bezier(0.2,0,0,1) forwards,
-             splashLogoSettle 0.4s 2.5s ease forwards;
+  animation: splashLogoIn 0.7s 1.1s cubic-bezier(0.2,0,0,1) forwards,
+             splashLogoSettle 0.55s 2.6s ease forwards;
 }
 
 .splash-dot {
@@ -128,11 +140,11 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-/* 로고만 남기고 크게 + 중앙 유지 후 페이드아웃 */
+/* score만 남고 확대되면서 페이드아웃 */
 @keyframes splashLogoSettle {
   0%   { opacity: 1; transform: scale(1); }
-  50%  { opacity: 1; transform: scale(1.04); }
-  100% { opacity: 0; transform: scale(1.08); }
+  40%  { opacity: 1; transform: scale(1.12); }
+  100% { opacity: 0; transform: scale(1.22); }
 }
 
 html {
@@ -2204,6 +2216,275 @@ html, body, .app-container, .view-section, .glass-card {
   margin-bottom: 6px;
 }
 
+/* ── mode-card (섹션 카드) 재설계 ──────────────────────────────────────── */
+.mode-card {
+  padding: 0;
+  overflow: hidden;
+  cursor: default;
+}
+
+.mode-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
+}
+
+.mode-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mode-icon-container {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+}
+
+.mode-icon-container .material-symbols-outlined {
+  font-size: 1.3rem;
+  font-weight: 300;
+}
+
+.mode-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-main);
+}
+
+.mode-enter-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.mode-enter-btn:hover {
+  border-color: var(--text-main);
+  color: var(--text-main);
+}
+
+.mode-enter-btn .material-symbols-outlined {
+  font-size: 0.9rem;
+}
+
+/* ── 포스터 롤링 배너 ────────────────────────────────────────────────────── */
+.poster-banner-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 16px;
+  position: relative;
+}
+
+.poster-banner-wrap::before,
+.poster-banner-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  z-index: 2;
+  pointer-events: none;
+}
+.poster-banner-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-card), transparent);
+}
+.poster-banner-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-card), transparent);
+}
+
+.poster-track {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
+  animation: posterScroll 28s linear infinite;
+  width: max-content;
+}
+
+.poster-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes posterScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.poster-item {
+  flex-shrink: 0;
+  width: 72px;
+  height: 108px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  position: relative;
+}
+
+.poster-item:hover {
+  opacity: 0.82;
+  transform: scale(1.04);
+}
+
+.poster-item-title {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.72);
+  color: #fff;
+  font-size: 0.6rem;
+  padding: 3px 4px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.poster-item:hover .poster-item-title {
+  opacity: 1;
+}
+
+/* ── 로그인 후 헤더 score 로고 스타일 ──────────────────────────────────── */
+.logo-title-hero {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.logo-dot-gold {
+  color: #e6b87a;
+}
+
+/* ── 서브메뉴 공통 (Otaku/Mania/Light) ──────────────────────────────────── */
+.sub-menu-header {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.sub-option-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.sub-option-btn:hover {
+  border-color: var(--text-main);
+  background: var(--bg-secondary);
+}
+
+.sub-option-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sub-option-icon {
+  font-size: 1.6rem;
+  font-weight: 100;
+  color: var(--text-main);
+}
+
+.sub-option-text h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.sub-option-text p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ── 개인전/단체전 상하 배치 ────────────────────────────────────────────── */
+.battle-options-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.battle-option-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.battle-option-btn:hover {
+  border-color: var(--text-main);
+  background: var(--bg-secondary);
+}
+
+.battle-option-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.battle-option-icon {
+  font-size: 1.5rem;
+  font-weight: 100;
+  color: var(--text-main);
+}
+
+.battle-option-text h4 {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ── 토론/MY 섹션 상단 여백 수정 ────────────────────────────────────────── */
+#view-forum,
+#view-myroom {
+  padding-top: 0 !important;
+}
+
+#view-forum > .app-header,
+#view-myroom > .app-header {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 
 </style>
 </head>
@@ -2212,7 +2493,8 @@ html, body, .app-container, .view-section, .glass-card {
   <!-- ── SPLASH SCREEN (로딩 애니메이션) ── -->
   <div id="splash-screen" aria-hidden="true">
     <div class="splash-inner">
-      <div class="splash-copy">당신의 영화를 score하세요</div>
+      <div class="splash-line splash-line-1">당신의</div>
+      <div class="splash-line splash-line-2">영화를</div>
       <div class="splash-logo">score<span class="splash-dot">.</span></div>
     </div>
   </div>
@@ -2353,8 +2635,7 @@ html, body, .app-container, .view-section, .glass-card {
       <!-- Header Area -->
       <header class="app-header">
         <div class="logo-area-sm">
-          <span class="material-symbols-outlined logo-icon-sm">movie_filter</span>
-          <span class="logo-title-sm">score<span>.</span></span>
+          <span class="logo-title-hero">score<span class="logo-dot-gold">.</span></span>
         </div>
         <div class="user-profile-widget" id="user-profile-widget">
           <div class="user-avatar" id="dash-user-avatar">🎬</div>
@@ -2372,70 +2653,88 @@ html, body, .app-container, .view-section, .glass-card {
 
 
         <div class="menu-section fade-in">
-          <h2 class="menu-title">퀴즈 리그 선택</h2>
           <div class="mode-grid">
             
             <!-- Main Modes Container -->
             <div id="main-modes-container" style="display: flex; flex-direction: column; gap: 16px;">
-              <!-- Mode 1: 스코어 & 부가매출 -->
-              <div class="mode-card glass-card hover-lift" onclick="app.showScoreOptions()">
-                <div class="mode-icon-container boxoffice-color">
-                  <span class="material-symbols-outlined">analytics</span>
+
+              <!-- Mode 1: Otaku -->
+              <div class="mode-card glass-card">
+                <div class="mode-card-header">
+                  <div class="mode-card-title-row">
+                    <div class="mode-icon-container boxoffice-color">
+                      <span class="material-symbols-outlined">analytics</span>
+                    </div>
+                    <span class="mode-card-title">Otaku</span>
+                  </div>
+                  <button class="mode-enter-btn" onclick="app.showScoreOptions()">
+                    입장하기 <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
                 </div>
-                <h3>스코어 &amp; 부가매출</h3>
-                <div class="mode-action">
-                  <span>선택하기</span>
-                  <span class="material-symbols-outlined">arrow_forward</span>
+                <div class="poster-banner-wrap">
+                  <div class="poster-track" id="poster-track-otaku"></div>
                 </div>
               </div>
 
-              <!-- Mode 2: 필모그래피 -->
-              <div class="mode-card glass-card hover-lift" onclick="app.startQuiz('filmo')">
-                <div class="mode-icon-container filmo-color">
-                  <span class="material-symbols-outlined">recent_actors</span>
+              <!-- Mode 2: Mania -->
+              <div class="mode-card glass-card">
+                <div class="mode-card-header">
+                  <div class="mode-card-title-row">
+                    <div class="mode-icon-container filmo-color">
+                      <span class="material-symbols-outlined">recent_actors</span>
+                    </div>
+                    <span class="mode-card-title">Mania</span>
+                  </div>
+                  <button class="mode-enter-btn" onclick="app.showFilmoOptions()">
+                    입장하기 <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
                 </div>
-                <h3>필모그래피</h3>
-                <div class="mode-action">
-                  <span>시작하기</span>
-                  <span class="material-symbols-outlined">arrow_forward</span>
+                <div class="poster-banner-wrap">
+                  <div class="poster-track" id="poster-track-mania"></div>
                 </div>
               </div>
 
-              <!-- Mode 3: 명대사 & 초성 -->
-              <div class="mode-card glass-card hover-lift" onclick="app.startQuiz('lines')">
-                <div class="mode-icon-container quote-color">
-                  <span class="material-symbols-outlined">campaign</span>
+              <!-- Mode 3: Light -->
+              <div class="mode-card glass-card">
+                <div class="mode-card-header">
+                  <div class="mode-card-title-row">
+                    <div class="mode-icon-container quote-color">
+                      <span class="material-symbols-outlined">campaign</span>
+                    </div>
+                    <span class="mode-card-title">Light</span>
+                  </div>
+                  <button class="mode-enter-btn" onclick="app.showLinesOptions()">
+                    입장하기 <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
                 </div>
-                <h3>명대사 &amp; 초성</h3>
-                <div class="mode-action">
-                  <span>시작하기</span>
-                  <span class="material-symbols-outlined">arrow_forward</span>
+                <div class="poster-banner-wrap">
+                  <div class="poster-track" id="poster-track-light"></div>
                 </div>
               </div>
             </div>
 
-            <!-- Mode 1: 스코어 & 부가매출 서브메뉴 -->
+            <!-- Otaku 서브메뉴: 개봉예정/개봉작 선택 -->
             <div class="quiz-options-container" id="score-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <h3 style="font-weight: 500; font-size: 1rem; margin-bottom: 12px;">스코어 &amp; 부가매출</h3>
+              <div class="sub-menu-header">Otaku</div>
 
               <!-- 개봉예정작 -->
-              <div style="margin-bottom:12px;">
+              <div style="margin-bottom:16px;">
                 <div class="quiz-section-label">개봉예정작</div>
-                <div style="display:flex;gap:8px;">
-                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showUpcomingList('solo')">
-                    <div class="quiz-option-info">
-                      <span class="material-symbols-outlined quiz-option-icon">person</span>
-                      <div class="quiz-option-text"><h4>개인전</h4></div>
+                <div class="battle-options-col">
+                  <div class="battle-option-btn" onclick="app.showUpcomingList('solo')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">person</span>
+                      <div class="battle-option-text"><h4>개인전</h4></div>
                     </div>
                     <span class="material-symbols-outlined text-muted">chevron_right</span>
                   </div>
-                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showUpcomingList('group')">
-                    <div class="quiz-option-info">
-                      <span class="material-symbols-outlined quiz-option-icon">groups</span>
-                      <div class="quiz-option-text"><h4>단체전</h4></div>
+                  <div class="battle-option-btn" onclick="app.showUpcomingList('group')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">groups</span>
+                      <div class="battle-option-text"><h4>단체전</h4></div>
                     </div>
                     <span class="material-symbols-outlined text-muted">chevron_right</span>
                   </div>
@@ -2445,21 +2744,125 @@ html, body, .app-container, .view-section, .glass-card {
               <!-- 개봉작 -->
               <div>
                 <div class="quiz-section-label">개봉작</div>
-                <div style="display:flex;gap:8px;">
-                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showReleasedSearch('solo')">
-                    <div class="quiz-option-info">
-                      <span class="material-symbols-outlined quiz-option-icon">person</span>
-                      <div class="quiz-option-text"><h4>개인전</h4></div>
+                <div class="battle-options-col">
+                  <div class="battle-option-btn" onclick="app.showReleasedSearch('solo')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">person</span>
+                      <div class="battle-option-text"><h4>개인전</h4></div>
                     </div>
                     <span class="material-symbols-outlined text-muted">chevron_right</span>
                   </div>
-                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showReleasedSearch('group')">
-                    <div class="quiz-option-info">
-                      <span class="material-symbols-outlined quiz-option-icon">groups</span>
-                      <div class="quiz-option-text"><h4>단체전</h4></div>
+                  <div class="battle-option-btn" onclick="app.showReleasedSearch('group')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">groups</span>
+                      <div class="battle-option-text"><h4>단체전</h4></div>
                     </div>
                     <span class="material-symbols-outlined text-muted">chevron_right</span>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mania 서브메뉴: 감독/배우 선택 -->
+            <div id="filmo-quiz-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header">Mania</div>
+              <div class="sub-option-btn" onclick="app.showFilmoBattleOptions('director')">
+                <div class="sub-option-info">
+                  <span class="material-symbols-outlined sub-option-icon">movie_creation</span>
+                  <div class="sub-option-text">
+                    <h4>감독</h4>
+                    <p>영화감독 필모그래피 맞추기</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-muted">chevron_right</span>
+              </div>
+              <div class="sub-option-btn" onclick="app.showFilmoBattleOptions('actor')">
+                <div class="sub-option-info">
+                  <span class="material-symbols-outlined sub-option-icon">recent_actors</span>
+                  <div class="sub-option-text">
+                    <h4>배우</h4>
+                    <p>배우 출연작 필모그래피 맞추기</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-muted">chevron_right</span>
+              </div>
+            </div>
+
+            <!-- Mania 배틀 선택: 개인전/단체전 -->
+            <div id="filmo-battle-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.showFilmoOptions()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header" id="filmo-battle-title">Mania — 감독</div>
+              <div class="battle-options-col">
+                <div class="battle-option-btn" id="filmo-solo-btn">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">person</span>
+                    <div class="battle-option-text"><h4>개인전</h4></div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+                <div class="battle-option-btn" id="filmo-group-btn">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">groups</span>
+                    <div class="battle-option-text"><h4>단체전</h4></div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Light 서브메뉴: 명대사/초성 선택 -->
+            <div id="lines-quiz-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header">Light</div>
+              <div class="sub-option-btn" onclick="app.showLinesBattleOptions('quote')">
+                <div class="sub-option-info">
+                  <span class="material-symbols-outlined sub-option-icon">format_quote</span>
+                  <div class="sub-option-text">
+                    <h4>명대사</h4>
+                    <p>명대사로 영화 제목 맞추기</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-muted">chevron_right</span>
+              </div>
+              <div class="sub-option-btn" onclick="app.showLinesBattleOptions('choseong')">
+                <div class="sub-option-info">
+                  <span class="material-symbols-outlined sub-option-icon">spellcheck</span>
+                  <div class="sub-option-text">
+                    <h4>초성</h4>
+                    <p>초성 힌트로 영화 제목 맞추기</p>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined text-muted">chevron_right</span>
+              </div>
+            </div>
+
+            <!-- Light 배틀 선택: 개인전/단체전 -->
+            <div id="lines-battle-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.showLinesOptions()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header" id="lines-battle-title">Light — 명대사</div>
+              <div class="battle-options-col">
+                <div class="battle-option-btn" id="lines-solo-btn">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">person</span>
+                    <div class="battle-option-text"><h4>개인전</h4></div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+                <div class="battle-option-btn" id="lines-group-btn">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">groups</span>
+                    <div class="battle-option-text"><h4>단체전</h4></div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
                 </div>
               </div>
             </div>
@@ -2487,16 +2890,13 @@ html, body, .app-container, .view-section, .glass-card {
 
           </div>
         </div>
-          </div>
-        </div>
-      <!-- Tab Content ends here (div closes at 313) -->
+      <!-- Tab Content ends here -->
 
-      </div>
     </section>
 
     <!-- 3.5. FORUM (COMMUNITY) TAB SECTION -->
     <section id="view-forum" class="view-section">
-      <header class="app-header">
+      <header class="app-header" style="margin-top:0;padding-top:0;">
         <h2 class="section-title" style="margin-bottom:0;">영화 토론방</h2>
       </header>
       <div class="glass-card forum-composer fade-in">
@@ -2523,7 +2923,7 @@ html, body, .app-container, .view-section, .glass-card {
 
     <!-- 3.6. MY ROOM (PROFILE/STATS) TAB SECTION -->
     <section id="view-myroom" class="view-section">
-      <header class="app-header">
+      <header class="app-header" style="margin-top:0;padding-top:0;">
         <h2 class="section-title" style="margin-bottom:0;">내 정보 (MY)</h2>
       </header>
       <!-- Stats Grid -->
@@ -3842,6 +4242,9 @@ class CineMasterApp {
   renderDashboard() {
     if (!this.currentUser) return;
 
+    // 포스터 롤링 배너 초기화
+    this.initPosterBanners();
+
     // Header Profile widgets
     document.getElementById('dash-user-nickname').innerText = this.currentUser.nickname;
     document.getElementById('dash-user-rank').innerText = this.calculateRankLabel(this.currentUser.xp);
@@ -3970,9 +4373,10 @@ class CineMasterApp {
     } else if (tabId === 'dashboard') {
       // Hide sub-sections when returning to dashboard
       document.getElementById('released-search-section').style.display = 'none';
-      
       document.getElementById('score-quiz-options').style.display = 'none';
       document.getElementById('main-modes-container').style.display = 'flex';
+      const ids = ['filmo-quiz-options','filmo-battle-options','lines-quiz-options','lines-battle-options','upcoming-list-section'];
+      ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
     }
   }
 
@@ -3991,8 +4395,85 @@ class CineMasterApp {
     document.getElementById('score-quiz-options').style.display = 'none';
     document.getElementById('upcoming-list-section').style.display = 'none';
     document.getElementById('released-search-section').style.display = 'none';
+    const filmoOpts = document.getElementById('filmo-quiz-options');
+    if (filmoOpts) filmoOpts.style.display = 'none';
+    const filmoBattle = document.getElementById('filmo-battle-options');
+    if (filmoBattle) filmoBattle.style.display = 'none';
+    const linesOpts = document.getElementById('lines-quiz-options');
+    if (linesOpts) linesOpts.style.display = 'none';
+    const linesBattle = document.getElementById('lines-battle-options');
+    if (linesBattle) linesBattle.style.display = 'none';
     
     document.getElementById('main-modes-container').style.display = 'flex';
+  }
+
+  // ── Mania (필모그래피) 서브메뉴 ────────────────────────────────────────
+  showFilmoOptions() {
+    this.playSynthSound('click');
+    document.getElementById('main-modes-container').style.display = 'none';
+    document.getElementById('score-quiz-options').style.display = 'none';
+    document.getElementById('upcoming-list-section').style.display = 'none';
+    document.getElementById('released-search-section').style.display = 'none';
+    const filmoBattle = document.getElementById('filmo-battle-options');
+    if (filmoBattle) filmoBattle.style.display = 'none';
+    const linesOpts = document.getElementById('lines-quiz-options');
+    if (linesOpts) linesOpts.style.display = 'none';
+    const linesBattle = document.getElementById('lines-battle-options');
+    if (linesBattle) linesBattle.style.display = 'none';
+
+    document.getElementById('filmo-quiz-options').style.display = 'block';
+  }
+
+  showFilmoBattleOptions(subType) {
+    this.playSynthSound('click');
+    this._filmoSubType = subType; // 'director' | 'actor'
+    document.getElementById('filmo-quiz-options').style.display = 'none';
+
+    const titleEl = document.getElementById('filmo-battle-title');
+    if (titleEl) titleEl.innerText = subType === 'director' ? 'Mania — 감독' : 'Mania — 배우';
+
+    const soloBtn = document.getElementById('filmo-solo-btn');
+    const groupBtn = document.getElementById('filmo-group-btn');
+    if (soloBtn) soloBtn.onclick = () => this.startQuiz('filmo', subType, 'solo');
+    if (groupBtn) groupBtn.onclick = () => this.startQuiz('filmo', subType, 'group');
+
+    document.getElementById('filmo-battle-options').style.display = 'block';
+  }
+
+  // ── Light (명대사/초성) 서브메뉴 ────────────────────────────────────────
+  showLinesOptions() {
+    this.playSynthSound('click');
+    document.getElementById('main-modes-container').style.display = 'none';
+    document.getElementById('score-quiz-options').style.display = 'none';
+    document.getElementById('upcoming-list-section').style.display = 'none';
+    document.getElementById('released-search-section').style.display = 'none';
+    const linesOpts = document.getElementById('lines-quiz-options');
+    const linesBattle = document.getElementById('lines-battle-options');
+    if (linesBattle) linesBattle.style.display = 'none';
+    const filmoOpts = document.getElementById('filmo-quiz-options');
+    if (filmoOpts) filmoOpts.style.display = 'none';
+    const filmoBattle = document.getElementById('filmo-battle-options');
+    if (filmoBattle) filmoBattle.style.display = 'none';
+
+    if (linesOpts) linesOpts.style.display = 'block';
+  }
+
+  showLinesBattleOptions(subType) {
+    this.playSynthSound('click');
+    this._linesSubType = subType; // 'quote' | 'choseong'
+    const linesOpts = document.getElementById('lines-quiz-options');
+    if (linesOpts) linesOpts.style.display = 'none';
+
+    const titleEl = document.getElementById('lines-battle-title');
+    if (titleEl) titleEl.innerText = subType === 'quote' ? 'Light — 명대사' : 'Light — 초성';
+
+    const soloBtn = document.getElementById('lines-solo-btn');
+    const groupBtn = document.getElementById('lines-group-btn');
+    if (soloBtn) soloBtn.onclick = () => this.startQuiz('lines', subType, 'solo');
+    if (groupBtn) groupBtn.onclick = () => this.startQuiz('lines', subType, 'group');
+
+    const linesBattle = document.getElementById('lines-battle-options');
+    if (linesBattle) linesBattle.style.display = 'block';
   }
 
   showUpcomingList(mode = 'solo') {
@@ -4412,9 +4893,11 @@ class CineMasterApp {
   }
 
   // Quiz Control Center
-  startQuiz(type) {
+  startQuiz(type, subType = null, battleMode = 'solo') {
     this.playSynthSound('click');
     this.currentQuiz.type = type;
+    this.currentQuiz.subType = subType;   // 'director'|'actor' / 'quote'|'choseong' / null
+    this.currentQuiz.battleMode = battleMode;
     this.currentQuiz.currentIndex = 0;
     this.currentQuiz.score = 0;
     this.currentQuiz.totalXpEarned = 0;
@@ -4434,13 +4917,23 @@ class CineMasterApp {
       this.setupScoreQuizLayout();
     } 
     else if (type === 'filmo') {
-      const directors = FILMOGRAPHIES.directors.map(d => ({ ...d, role: "영화감독" }));
-      const actors = FILMOGRAPHIES.actors.map(a => ({ ...a, role: "배우" }));
-      this.currentQuiz.movies = this.shuffleArray([...directors, ...actors]).slice(0, 5);
+      let pool;
+      if (subType === 'director') {
+        pool = FILMOGRAPHIES.directors.map(d => ({ ...d, role: "영화감독" }));
+      } else if (subType === 'actor') {
+        pool = FILMOGRAPHIES.actors.map(a => ({ ...a, role: "배우" }));
+      } else {
+        const directors = FILMOGRAPHIES.directors.map(d => ({ ...d, role: "영화감독" }));
+        const actors = FILMOGRAPHIES.actors.map(a => ({ ...a, role: "배우" }));
+        pool = [...directors, ...actors];
+      }
+      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this.setupFilmoQuizLayout();
     } 
     else if (type === 'lines') {
-      this.currentQuiz.movies = this.shuffleArray([...MOVIES_DATABASE]).slice(0, 5);
+      // famousLines가 있는 영화만 필터
+      const pool = MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0);
+      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this.setupLinesQuizLayout();
     }
 
@@ -4835,11 +5328,32 @@ class CineMasterApp {
   // MODE 3: Quotes & Choseong layout init
   setupLinesQuizLayout() {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
-    const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
-    
-    document.getElementById('quote-display').innerText = `“${quoteObj.line}”`;
-    document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
-    document.getElementById('choseong-display').innerText = movie.choseong;
+    const subType = this.currentQuiz.subType; // 'quote' | 'choseong' | null
+
+    const quoteCard = document.querySelector('.quote-card');
+    const choseongCard = document.querySelector('.choseong-card');
+
+    if (subType === 'quote') {
+      // 명대사 모드: 명대사만 표시, 초성 숨김
+      if (quoteCard) quoteCard.style.display = '';
+      if (choseongCard) choseongCard.style.display = 'none';
+      const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
+      document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
+      document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
+    } else if (subType === 'choseong') {
+      // 초성 모드: 초성만 표시, 명대사 숨김
+      if (quoteCard) quoteCard.style.display = 'none';
+      if (choseongCard) choseongCard.style.display = '';
+      document.getElementById('choseong-display').innerText = movie.choseong;
+    } else {
+      // 기본: 둘 다 표시
+      if (quoteCard) quoteCard.style.display = '';
+      if (choseongCard) choseongCard.style.display = '';
+      const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
+      document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
+      document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
+      document.getElementById('choseong-display').innerText = movie.choseong;
+    }
     
     document.getElementById('input-lines-answer').value = '';
     
@@ -5123,7 +5637,7 @@ class CineMasterApp {
       return;
     }
 
-    const typeLabel = { score: '흥행 예측', filmo: '필모그래피', lines: '명대사 초성' };
+    const typeLabel = { score: 'Otaku', filmo: 'Mania', lines: 'Light' };
     container.innerHTML = history.map((r, idx) => {
       const pct = r.accuracy ?? Math.round((r.score / r.total) * 100);
       const color = pct >= 80 ? 'var(--color-success)' : pct >= 50 ? 'var(--color-primary)' : 'var(--color-danger)';
@@ -5212,6 +5726,86 @@ class CineMasterApp {
     this.showScoreOptions();
   }
 
+  // ── 포스터 롤링 배너 초기화 ────────────────────────────────────────────
+  initPosterBanners() {
+    // Otaku: 개봉예정작
+    this._buildPosterTrack(
+      'poster-track-otaku',
+      (typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : []),
+      (movie) => {
+        // 포스터 클릭 → 개봉예정작 퀴즈 직접 진입
+        const safeTitle = movie.title.replace(/'/g, "\\'");
+        return `app.startSpecificQuiz('${safeTitle}', true, 'solo')`;
+      }
+    );
+
+    // Mania: 개봉작
+    this._buildPosterTrack(
+      'poster-track-mania',
+      (typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : []),
+      (movie) => {
+        // 포스터 클릭 → Mania 서브타입 없이 바로 퀴즈 (감독+배우 혼합)
+        const safeTitle = movie.title.replace(/'/g, "\\'");
+        return `app._filmoSubType = null; app.startQuiz('filmo', null, 'solo')`;
+      }
+    );
+
+    // Light: 명대사 있는 개봉작
+    const lightMovies = (typeof MOVIES_DATABASE !== 'undefined'
+      ? MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0)
+      : []);
+    this._buildPosterTrack(
+      'poster-track-light',
+      lightMovies,
+      (movie) => {
+        // 포스터 클릭 → 해당 영화 명대사/초성 퀴즈 (기본: 둘 다 보이는 모드)
+        return `app._startLinesWithMovie('${movie.title.replace(/'/g, "\\'")}')`;
+      }
+    );
+  }
+
+  _buildPosterTrack(trackId, movies, getOnclick) {
+    const track = document.getElementById(trackId);
+    if (!track || !movies || movies.length === 0) return;
+
+    // 포스터 아이템 생성
+    const items = movies.map(m => {
+      const style = m.posterUrl
+        ? `background-image:url('${m.posterUrl}')`
+        : `background:var(--bg-secondary)`;
+      const onclick = getOnclick(m);
+      return `
+        <div class="poster-item" style="${style}" onclick="${onclick}" title="${m.title}">
+          <div class="poster-item-title">${m.title}</div>
+        </div>`;
+    }).join('');
+
+    // 2배 복제로 무한 루프
+    track.innerHTML = items + items;
+  }
+
+  // Light 배너 포스터 클릭 → 해당 영화 1편으로 Lines 퀴즈
+  _startLinesWithMovie(movieTitle) {
+    this.playSynthSound('click');
+    const movie = MOVIES_DATABASE.find(m => m.title === movieTitle);
+    if (!movie) return;
+
+    this.currentQuiz.type = 'lines';
+    this.currentQuiz.subType = null; // 명대사+초성 둘 다 표시
+    this.currentQuiz.currentIndex = 0;
+    this.currentQuiz.score = 0;
+    this.currentQuiz.totalXpEarned = 0;
+    this.currentQuiz.combo = 0;
+    this.currentQuiz.maxComboThisRun = 0;
+    this.currentQuiz.movies = [movie];
+
+    this.switchView('quiz');
+    this.activateQuizPanel('lines');
+    this.setupLinesQuizLayout();
+    document.getElementById('quiz-round-container').style.display = 'none';
+    this.startTimer();
+  }
+
   shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -5247,13 +5841,13 @@ function doLogin() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // 스플래시 자동 제거 (애니메이션 총 3.2초 후)
+  // 스플래시 자동 제거 (애니메이션 총 3.4초 후)
   const splash = document.getElementById('splash-screen');
   if (splash) {
     setTimeout(() => {
       splash.classList.add('hidden');
       setTimeout(() => splash.remove(), 700);
-    }, 3100);
+    }, 3400);
   }
 
   app = new CineMasterApp();
