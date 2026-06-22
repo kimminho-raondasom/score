@@ -2675,6 +2675,224 @@ html, body, .app-container, .view-section, .glass-card {
   color: var(--text-muted);
 }
 
+/* ── 모드 카드 설명 텍스트 ─────────────────────────────────────────────── */
+.mode-card-desc {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.mode-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.mode-card-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mode-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 0 10px 0;
+}
+
+.mode-letter-badge {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--text-main);
+  color: var(--text-main);
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+
+.mode-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-main);
+}
+
+/* ── 알림 배지 (개봉예정작 결과 공개) ───────────────────────────────────── */
+.notify-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #c0392b;
+  border-radius: 50%;
+  margin-left: 6px;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ── OTP 인증 UI ────────────────────────────────────────────────────────── */
+.otp-step {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.otp-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.otp-input-row input {
+  flex: 1;
+}
+
+.otp-input-row button {
+  flex-shrink: 0;
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.otp-timer-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  letter-spacing: 0.3px;
+}
+
+.otp-timer-text.expired {
+  color: var(--color-danger);
+}
+
+/* ── Challenge 퀴즈 ─────────────────────────────────────────────────────── */
+#quiz-panel-challenge {
+  display: none;
+  flex-direction: column;
+}
+
+#quiz-panel-challenge.active {
+  display: flex;
+}
+
+.challenge-date-input-wrap {
+  margin-top: 20px;
+}
+
+.challenge-date-input-wrap label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.challenge-date-input {
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  padding: 18px 16px;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.challenge-date-input:focus {
+  border-color: var(--text-main);
+}
+
+.challenge-digit-compare {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.digit-cell {
+  width: 36px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  border: 1px solid var(--border-color);
+}
+
+.digit-cell.match {
+  background: var(--color-success);
+  color: #fff;
+  border-color: var(--color-success);
+}
+
+.digit-cell.miss {
+  color: var(--text-muted);
+}
+
+/* ── Ordinary 퀴즈 (포스터 원형 조각) ──────────────────────────────────── */
+#quiz-panel-ordinary {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+#quiz-panel-ordinary.active {
+  display: flex;
+}
+
+.ordinary-poster-stage {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  margin: 0 auto 24px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ordinary-poster-stage .poster-crop {
+  position: absolute;
+  width: 540px;  /* 원본 포스터 너비 (3×180) — 6분할 */
+  height: 1080px; /* 원본 포스터 높이 (6×180) — 6분할 */
+  background-size: 540px 1080px;
+  background-repeat: no-repeat;
+}
+
+.ordinary-answer-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ── 서브메뉴 헤더 공통 ─────────────────────────────────────────────────── */
+.sub-menu-header {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  color: var(--text-main);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
 
 </style>
 </head>
@@ -2726,15 +2944,43 @@ html, body, .app-container, .view-section, .glass-card {
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">campaign</span> 명대사 퀴즈</span>
         </div>
         <div class="login-btn-area">
-          <button id="btn-google-login" class="login-google-btn" onclick="doLogin()">
-            <svg viewBox="0 0 24 24" width="20" height="20" class="login-google-svg">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.62-.63-1.03-1.42-1.03-2.63z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-            </svg>
-            <span id="login-btn-label">Google 계정으로 시작하기</span>
-          </button>
+          <!-- Step 1: 이메일 입력 + 인증코드 받기 -->
+          <div id="otp-step-email" class="otp-step">
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <input type="email" id="otp-email-input" class="form-control" placeholder="이메일 주소 입력"
+                style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;flex:1;"
+                autocomplete="email" autocapitalize="none" spellcheck="false">
+              <button id="btn-send-otp" onclick="app.sendOtp()"
+                style="background:#fff;color:#1a1a1a;border:none;padding:14px 14px;font-size:0.82rem;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Noto Sans KR',sans-serif;">
+                인증코드 받기
+              </button>
+            </div>
+            <p style="margin-top:10px;font-size:0.7rem;color:rgba(255,255,255,0.4);line-height:1.5;">
+              입력한 이메일로 6자리 인증 코드를 전송합니다.<br>신규 가입 시 이메일 인증이 필요합니다.
+            </p>
+          </div>
+
+          <!-- Step 2: 인증코드 입력 (hidden until sent) -->
+          <div id="otp-step-code" class="otp-step" style="display:none;">
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <input type="text" id="otp-code-input" class="form-control" placeholder="인증코드 6자리"
+                maxlength="6" inputmode="numeric" pattern="[0-9]*"
+                style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;letter-spacing:8px;text-align:center;padding:14px 16px;flex:1;"
+                autocomplete="one-time-code">
+              <button id="btn-verify-otp" onclick="app.verifyOtp()"
+                style="background:#fff;color:#1a1a1a;border:none;padding:14px 14px;font-size:0.82rem;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Noto Sans KR',sans-serif;">
+                인증 확인
+              </button>
+            </div>
+            <p id="otp-timer-display" class="otp-timer-text" style="color:rgba(255,255,255,0.5);margin-top:8px;font-size:0.72rem;">
+              유효 시간: 5:00
+            </p>
+            <button onclick="app.resendOtp()"
+              style="background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:0.72rem;cursor:pointer;margin-top:4px;padding:0;font-family:'Noto Sans KR',sans-serif;">
+              코드 재전송
+            </button>
+          </div>
+
           <p class="login-terms">계속 진행하면 이용약관 및 개인정보 처리방침에 동의하는 것으로 간주됩니다.</p>
         </div>
       </div>
@@ -2848,61 +3094,108 @@ html, body, .app-container, .view-section, .glass-card {
             <!-- Main Modes Container -->
             <div id="main-modes-container" style="display: flex; flex-direction: column; gap: 16px;">
 
-              <!-- Mode 1: Otaku -->
+              <!-- Mode S: Special (흥행 스코어 예측) -->
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
-                    <div class="mode-letter-badge">O</div>
-                    <span class="mode-card-title">Otaku</span>
+                    <div class="mode-letter-badge" id="special-badge">S</div>
+                    <div class="mode-card-title-col">
+                      <span class="mode-card-title">Special</span>
+                      <span class="mode-card-desc">영화의 흥행 지표를 예측하는 스코어 퀴즈</span>
+                    </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showScoreOptions()">
                     더 보기 <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
                 <div class="poster-banner-wrap">
-                  <div class="poster-track" id="poster-track-otaku"></div>
+                  <div class="poster-track" id="poster-track-special"></div>
                 </div>
               </div>
 
-              <!-- Mode 2: Mania -->
+              <!-- Mode C: Challenge (개봉일 맞추기) -->
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
-                    <div class="mode-letter-badge">M</div>
-                    <span class="mode-card-title">Mania</span>
+                    <div class="mode-letter-badge">C</div>
+                    <div class="mode-card-title-col">
+                      <span class="mode-card-title">Challenge</span>
+                      <span class="mode-card-desc">영화의 개봉일을 6자리로 맞히는 날짜 퀴즈</span>
+                    </div>
+                  </div>
+                  <button class="mode-enter-btn" onclick="app.showChallengeOptions()">
+                    더 보기 <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
+                </div>
+                <div class="poster-banner-wrap">
+                  <div class="poster-track" id="poster-track-challenge"></div>
+                </div>
+              </div>
+
+              <!-- Mode O: Ordinary (포스터 일부분 맞추기) -->
+              <div class="mode-card glass-card">
+                <div class="mode-card-header">
+                  <div class="mode-card-title-row">
+                    <div class="mode-letter-badge">O</div>
+                    <div class="mode-card-title-col">
+                      <span class="mode-card-title">Ordinary</span>
+                      <span class="mode-card-desc">포스터 일부만 보고 영화 제목을 맞히는 퀴즈</span>
+                    </div>
+                  </div>
+                  <button class="mode-enter-btn" onclick="app.showOrdinaryOptions()">
+                    더 보기 <span class="material-symbols-outlined">arrow_forward</span>
+                  </button>
+                </div>
+                <div class="poster-banner-wrap">
+                  <div class="poster-track" id="poster-track-ordinary"></div>
+                </div>
+              </div>
+
+              <!-- Mode R: Regular (필모그래피) -->
+              <div class="mode-card glass-card">
+                <div class="mode-card-header">
+                  <div class="mode-card-title-row">
+                    <div class="mode-letter-badge">R</div>
+                    <div class="mode-card-title-col">
+                      <span class="mode-card-title">Regular</span>
+                      <span class="mode-card-desc">감독·배우의 필모그래피를 매칭하는 퀴즈</span>
+                    </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showFilmoOptions()">
                     더 보기 <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
                 <div class="poster-banner-wrap">
-                  <div class="poster-track" id="poster-track-mania"></div>
+                  <div class="poster-track" id="poster-track-regular"></div>
                 </div>
               </div>
 
-              <!-- Mode 3: Light -->
+              <!-- Mode E: Easy (명대사 & 초성) -->
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
-                    <div class="mode-letter-badge">L</div>
-                    <span class="mode-card-title">Light</span>
+                    <div class="mode-letter-badge">E</div>
+                    <div class="mode-card-title-col">
+                      <span class="mode-card-title">Easy</span>
+                      <span class="mode-card-desc">명대사와 초성으로 영화를 맞히는 퀴즈</span>
+                    </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showLinesOptions()">
                     더 보기 <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
                 <div class="poster-banner-wrap">
-                  <div class="poster-track" id="poster-track-light"></div>
+                  <div class="poster-track" id="poster-track-easy"></div>
                 </div>
               </div>
             </div>
 
-            <!-- Otaku 서브메뉴: 개봉예정/개봉작 선택 -->
+            <!-- Special 서브메뉴: 개봉예정/개봉작 선택 -->
             <div class="quiz-options-container" id="score-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <div class="sub-menu-header">Otaku</div>
+              <div class="sub-menu-header">Special</div>
 
               <!-- 개봉예정작 -->
               <div style="margin-bottom:16px;">
@@ -2947,12 +3240,72 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Mania 서브메뉴: 감독/배우 선택 -->
+            <!-- Challenge 서브메뉴: 개봉작만 (개봉예정 제외) -->
+            <div id="challenge-quiz-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header">Challenge</div>
+              <div class="battle-options-col">
+                <div class="battle-option-btn" onclick="app.startQuiz('challenge', null, 'solo')">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">person</span>
+                    <div class="battle-option-text">
+                      <h4>개인전</h4>
+                      <p>개봉일 6자리 맞추기 5라운드</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+                <div class="battle-option-btn" onclick="app.startQuiz('challenge', null, 'group')">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">groups</span>
+                    <div class="battle-option-text">
+                      <h4>단체전</h4>
+                      <p>여러 명이 번갈아 플레이</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ordinary 서브메뉴 -->
+            <div id="ordinary-quiz-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header">Ordinary</div>
+              <div class="battle-options-col">
+                <div class="battle-option-btn" onclick="app.startQuiz('ordinary', null, 'solo')">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">person</span>
+                    <div class="battle-option-text">
+                      <h4>개인전</h4>
+                      <p>포스터 1/36 조각으로 영화 맞추기</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+                <div class="battle-option-btn" onclick="app.startQuiz('ordinary', null, 'group')">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">groups</span>
+                    <div class="battle-option-text">
+                      <h4>단체전</h4>
+                      <p>여러 명이 번갈아 플레이</p>
+                    </div>
+                  </div>
+                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Regular 서브메뉴: 감독/배우 선택 -->
             <div id="filmo-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <div class="sub-menu-header">Mania</div>
+              <div class="sub-menu-header">Regular</div>
               <div class="sub-option-btn" onclick="app.showFilmoBattleOptions('director')">
                 <div class="sub-option-info">
                   <span class="material-symbols-outlined sub-option-icon">movie_creation</span>
@@ -2975,12 +3328,12 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Mania 배틀 선택: 개인전/단체전 -->
+            <!-- Regular 배틀 선택: 개인전/단체전 -->
             <div id="filmo-battle-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.showFilmoOptions()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <div class="sub-menu-header" id="filmo-battle-title">Mania — 감독</div>
+              <div class="sub-menu-header" id="filmo-battle-title">Regular — 감독</div>
               <div class="battle-options-col">
                 <div class="battle-option-btn" id="filmo-solo-btn">
                   <div class="battle-option-info">
@@ -2999,12 +3352,12 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Light 서브메뉴: 명대사/초성 선택 -->
+            <!-- Easy 서브메뉴: 명대사/초성 선택 -->
             <div id="lines-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <div class="sub-menu-header">Light</div>
+              <div class="sub-menu-header">Easy</div>
               <div class="sub-option-btn" onclick="app.showLinesBattleOptions('quote')">
                 <div class="sub-option-info">
                   <span class="material-symbols-outlined sub-option-icon">format_quote</span>
@@ -3027,12 +3380,12 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Light 배틀 선택: 개인전/단체전 -->
+            <!-- Easy 배틀 선택: 개인전/단체전 -->
             <div id="lines-battle-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.showLinesOptions()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <div class="sub-menu-header" id="lines-battle-title">Light — 명대사</div>
+              <div class="sub-menu-header" id="lines-battle-title">Easy — 명대사</div>
               <div class="battle-options-col">
                 <div class="battle-option-btn" id="lines-solo-btn">
                   <div class="battle-option-info">
@@ -3323,6 +3676,61 @@ html, body, .app-container, .view-section, .glass-card {
             <div class="form-group">
               <label for="input-lines-answer">영화 제목을 입력하세요</label>
               <input type="text" id="input-lines-answer" class="form-control text-center text-large" placeholder="정확한 영화명 입력" autofocus autocomplete="off">
+            </div>
+            <button type="submit" class="btn-primary w-100 mt-3">
+              <span>정답 확인하기</span>
+              <span class="material-symbols-outlined">done</span>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- QUIZ MODE 4: CHALLENGE (개봉일 맞추기) -->
+      <div id="quiz-panel-challenge" class="quiz-mode-panel">
+        <div class="movie-presenter-card glass-card">
+          <div class="movie-poster-placeholder" id="challenge-movie-poster">
+            <span class="material-symbols-outlined">movie</span>
+          </div>
+          <div class="movie-meta-details">
+            <div class="movie-label">개봉일 맞추기</div>
+            <h2 id="challenge-movie-title" class="movie-title">—</h2>
+            <div class="movie-tags">
+              <span class="movie-tag-item" id="challenge-movie-director">감독: —</span>
+            </div>
+            <div class="movie-cast-info" id="challenge-movie-cast">출연: —</div>
+          </div>
+        </div>
+
+        <div class="challenge-date-input-wrap">
+          <label>개봉일을 입력하세요 (YYMMDD 형식)</label>
+          <form id="form-challenge-quiz">
+            <input type="text" id="challenge-date-input" class="challenge-date-input"
+              placeholder="YYMMDD" maxlength="6" inputmode="numeric" pattern="[0-9]*"
+              autocomplete="off">
+            <button type="submit" class="btn-primary w-100 mt-3">
+              <span>제출하기</span>
+              <span class="material-symbols-outlined">event</span>
+            </button>
+          </form>
+          <div id="challenge-digit-result" class="challenge-digit-compare" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- QUIZ MODE 5: ORDINARY (포스터 일부분 맞추기) -->
+      <div id="quiz-panel-ordinary" class="quiz-mode-panel">
+        <div style="text-align:center;margin-bottom:8px;">
+          <div style="font-size:0.72rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">포스터 조각으로 영화 제목 맞추기</div>
+          <div class="ordinary-poster-stage" id="ordinary-poster-stage">
+            <div class="poster-crop" id="ordinary-poster-crop"></div>
+          </div>
+          <div style="font-size:0.7rem;color:var(--text-muted);margin-top:8px;">포스터의 1/36 영역</div>
+        </div>
+
+        <div class="ordinary-answer-card">
+          <form id="form-ordinary-quiz" class="w-100">
+            <div class="form-group">
+              <label for="input-ordinary-answer">영화 제목을 입력하세요</label>
+              <input type="text" id="input-ordinary-answer" class="form-control text-center" placeholder="정확한 영화명 입력" autocomplete="off">
             </div>
             <button type="submit" class="btn-primary w-100 mt-3">
               <span>정답 확인하기</span>
@@ -4217,6 +4625,8 @@ class CineMasterApp {
     on('btn-exit-quiz',  'click', () => this.exitQuiz());
     on('btn-next-step',  'click', () => this.submitScoreStepAnswer());
     on('form-lines-quiz','submit', (e) => { e.preventDefault(); this.gradeChoseongQuiz(); });
+    on('form-challenge-quiz', 'submit', (e) => { e.preventDefault(); this.gradeChallengeQuiz(); });
+    on('form-ordinary-quiz',  'submit', (e) => { e.preventDefault(); this.gradeOrdinaryQuiz(); });
     on('btn-back-to-dash','click', () => { this.switchView('dashboard'); this.renderDashboard(); });
     on('btn-next-round', 'click', () => { this.closeAnswerOverlay(); this.nextRound(); });
 
@@ -4351,6 +4761,99 @@ class CineMasterApp {
     }, 800);
   }
 
+  // ── 이메일 OTP 인증 ───────────────────────────────────────────────────────
+  sendOtp() {
+    const emailInput = document.getElementById('otp-email-input');
+    const email = (emailInput?.value || '').trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('유효한 이메일 주소를 입력해 주세요.', 'warn'); return;
+    }
+
+    // 6자리 랜덤 코드 생성
+    const code = String(Math.floor(100000 + Math.random() * 900000));
+    this._otpCode = code;
+    this._otpEmail = email;
+    this._otpExpiry = Date.now() + 5 * 60 * 1000; // 5분
+
+    // Apps Script로 전송
+    const btn = document.getElementById('btn-send-otp');
+    if (btn) { btn.disabled = true; btn.textContent = '전송 중…'; }
+
+    fetch(SCORE_SHEET_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'sendOtp', email, code })
+    })
+    .then(() => {
+      showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
+      document.getElementById('otp-step-email').style.display = 'none';
+      document.getElementById('otp-step-code').style.display = 'block';
+      this._startOtpTimer();
+    })
+    .catch(() => {
+      // no-cors는 항상 opaque response — 전송 성공으로 처리
+      showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
+      document.getElementById('otp-step-email').style.display = 'none';
+      document.getElementById('otp-step-code').style.display = 'block';
+      this._startOtpTimer();
+    })
+    .finally(() => {
+      if (btn) { btn.disabled = false; btn.textContent = '인증코드 받기'; }
+    });
+  }
+
+  _startOtpTimer() {
+    clearInterval(this._otpTimerId);
+    const display = document.getElementById('otp-timer-display');
+    const update = () => {
+      const remaining = Math.max(0, this._otpExpiry - Date.now());
+      const m = Math.floor(remaining / 60000);
+      const s = Math.floor((remaining % 60000) / 1000);
+      if (display) {
+        display.textContent = `유효 시간: ${m}:${String(s).padStart(2,'0')}`;
+        display.classList.toggle('expired', remaining === 0);
+      }
+      if (remaining === 0) clearInterval(this._otpTimerId);
+    };
+    update();
+    this._otpTimerId = setInterval(update, 1000);
+  }
+
+  verifyOtp() {
+    const entered = (document.getElementById('otp-code-input')?.value || '').trim();
+    if (!entered) { showToast('인증 코드를 입력해 주세요.', 'warn'); return; }
+    if (Date.now() > this._otpExpiry) { showToast('인증 코드가 만료되었습니다. 재전송해 주세요.', 'warn'); return; }
+    if (entered !== this._otpCode) { showToast('인증 코드가 일치하지 않습니다.', 'warn'); return; }
+
+    clearInterval(this._otpTimerId);
+    showToast('이메일 인증이 완료되었습니다!', 'success', 2500);
+
+    // 인증 완료 → 가입 화면으로 이동
+    this.currentUser = {
+      email: this._otpEmail,
+      realName: "",
+      nickname: "",
+      age: "",
+      gender: "",
+      xp: 0,
+      level: 1,
+      stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
+    };
+    setTimeout(() => {
+      this.switchView('register');
+      this.generateNickname();
+    }, 800);
+  }
+
+  resendOtp() {
+    document.getElementById('otp-step-email').style.display = 'block';
+    document.getElementById('otp-step-code').style.display = 'none';
+    const codeInput = document.getElementById('otp-code-input');
+    if (codeInput) codeInput.value = '';
+    clearInterval(this._otpTimerId);
+  }
+
   // Random nickname generator - returns just one character word
   generateNickname() {
     const randChar = FAMOUS_CHARACTERS[Math.floor(Math.random() * FAMOUS_CHARACTERS.length)];
@@ -4402,20 +4905,20 @@ class CineMasterApp {
       this.currentUser = null;
       localStorage.removeItem('cinemaster_user');
       
-      // 로그인 버튼 원상 복원
-      const loginBtn = document.getElementById('btn-google-login');
-      if (loginBtn) {
-        loginBtn.disabled = false;
-        loginBtn.innerHTML = `
-          <svg viewBox="0 0 24 24" width="20" height="20" class="login-google-svg">
-            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.62-.63-1.03-1.42-1.03-2.63z"/>
-            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-          </svg>
-          <span id="login-btn-label">Google 계정으로 시작하기</span>
-        `;
-      }
+      // OTP 상태 초기화
+      this._otpCode = null;
+      this._otpEmail = null;
+      this._otpExpiry = 0;
+      clearInterval(this._otpTimerId);
+      const emailStep = document.getElementById('otp-step-email');
+      const codeStep  = document.getElementById('otp-step-code');
+      if (emailStep) emailStep.style.display = 'block';
+      if (codeStep)  codeStep.style.display  = 'none';
+      const emailInput = document.getElementById('otp-email-input');
+      const codeInput  = document.getElementById('otp-code-input');
+      if (emailInput) emailInput.value = '';
+      if (codeInput)  codeInput.value  = '';
+
       document.getElementById('form-register').reset();
       this.switchView('login');
     }
@@ -4427,6 +4930,9 @@ class CineMasterApp {
 
     // 포스터 롤링 배너 초기화
     this.initPosterBanners();
+
+    // ── 개봉예정작 알림 배지 체크 ──────────────────────────────────────
+    this._checkPredictionNotifications();
 
     // Header Profile widgets
     document.getElementById('dash-user-nickname').innerText = this.currentUser.nickname;
@@ -4558,7 +5064,8 @@ class CineMasterApp {
       document.getElementById('released-search-section').style.display = 'none';
       document.getElementById('score-quiz-options').style.display = 'none';
       document.getElementById('main-modes-container').style.display = 'flex';
-      const ids = ['filmo-quiz-options','filmo-battle-options','lines-quiz-options','lines-battle-options','upcoming-list-section'];
+      const ids = ['filmo-quiz-options','filmo-battle-options','lines-quiz-options','lines-battle-options',
+                   'upcoming-list-section','challenge-quiz-options','ordinary-quiz-options'];
       ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
     }
   }
@@ -4578,19 +5085,37 @@ class CineMasterApp {
     document.getElementById('score-quiz-options').style.display = 'none';
     document.getElementById('upcoming-list-section').style.display = 'none';
     document.getElementById('released-search-section').style.display = 'none';
-    const filmoOpts = document.getElementById('filmo-quiz-options');
-    if (filmoOpts) filmoOpts.style.display = 'none';
-    const filmoBattle = document.getElementById('filmo-battle-options');
-    if (filmoBattle) filmoBattle.style.display = 'none';
-    const linesOpts = document.getElementById('lines-quiz-options');
-    if (linesOpts) linesOpts.style.display = 'none';
-    const linesBattle = document.getElementById('lines-battle-options');
-    if (linesBattle) linesBattle.style.display = 'none';
-    
+    const ids = ['filmo-quiz-options','filmo-battle-options','lines-quiz-options','lines-battle-options',
+                 'challenge-quiz-options','ordinary-quiz-options'];
+    ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
     document.getElementById('main-modes-container').style.display = 'flex';
   }
 
-  // ── Mania (필모그래피) 서브메뉴 ────────────────────────────────────────
+  // ── Challenge 서브메뉴 ──────────────────────────────────────────────────
+  showChallengeOptions() {
+    this.playSynthSound('click');
+    document.getElementById('main-modes-container').style.display = 'none';
+    ['score-quiz-options','filmo-quiz-options','filmo-battle-options',
+     'lines-quiz-options','lines-battle-options','ordinary-quiz-options',
+     'upcoming-list-section','released-search-section'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    document.getElementById('challenge-quiz-options').style.display = 'block';
+  }
+
+  // ── Ordinary 서브메뉴 ────────────────────────────────────────────────────
+  showOrdinaryOptions() {
+    this.playSynthSound('click');
+    document.getElementById('main-modes-container').style.display = 'none';
+    ['score-quiz-options','filmo-quiz-options','filmo-battle-options',
+     'lines-quiz-options','lines-battle-options','challenge-quiz-options',
+     'upcoming-list-section','released-search-section'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+    document.getElementById('ordinary-quiz-options').style.display = 'block';
+  }
+
+  // ── Regular (필모그래피) 서브메뉴 ────────────────────────────────────────
   showFilmoOptions() {
     this.playSynthSound('click');
     document.getElementById('main-modes-container').style.display = 'none';
@@ -4603,6 +5128,9 @@ class CineMasterApp {
     if (linesOpts) linesOpts.style.display = 'none';
     const linesBattle = document.getElementById('lines-battle-options');
     if (linesBattle) linesBattle.style.display = 'none';
+    ['challenge-quiz-options','ordinary-quiz-options'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
 
     document.getElementById('filmo-quiz-options').style.display = 'block';
   }
@@ -4613,7 +5141,7 @@ class CineMasterApp {
     document.getElementById('filmo-quiz-options').style.display = 'none';
 
     const titleEl = document.getElementById('filmo-battle-title');
-    if (titleEl) titleEl.innerText = subType === 'director' ? 'Mania — 감독' : 'Mania — 배우';
+    if (titleEl) titleEl.innerText = subType === 'director' ? 'Regular — 감독' : 'Regular — 배우';
 
     const soloBtn = document.getElementById('filmo-solo-btn');
     const groupBtn = document.getElementById('filmo-group-btn');
@@ -4637,6 +5165,9 @@ class CineMasterApp {
     if (filmoOpts) filmoOpts.style.display = 'none';
     const filmoBattle = document.getElementById('filmo-battle-options');
     if (filmoBattle) filmoBattle.style.display = 'none';
+    ['challenge-quiz-options','ordinary-quiz-options'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
 
     if (linesOpts) linesOpts.style.display = 'block';
   }
@@ -4648,7 +5179,7 @@ class CineMasterApp {
     if (linesOpts) linesOpts.style.display = 'none';
 
     const titleEl = document.getElementById('lines-battle-title');
-    if (titleEl) titleEl.innerText = subType === 'quote' ? 'Light — 명대사' : 'Light — 초성';
+    if (titleEl) titleEl.innerText = subType === 'quote' ? 'Easy — 명대사' : 'Easy — 초성';
 
     const soloBtn = document.getElementById('lines-solo-btn');
     const groupBtn = document.getElementById('lines-group-btn');
@@ -5188,9 +5719,7 @@ class CineMasterApp {
       this.currentQuiz.stepAnswers = [];
       this.currentQuiz.correctAnswersCount = 0;
       
-      // Show round indicator for regular 5-round quiz
       document.getElementById('quiz-round-container').style.display = 'block';
-
       this.setupScoreQuizLayout();
     } 
     else if (type === 'filmo') {
@@ -5208,10 +5737,24 @@ class CineMasterApp {
       this.setupFilmoQuizLayout();
     } 
     else if (type === 'lines') {
-      // famousLines가 있는 영화만 필터
       const pool = MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this.setupLinesQuizLayout();
+    }
+    else if (type === 'challenge') {
+      // 개봉작만 (개봉예정 제외), posterUrl 있는 것만
+      const pool = MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate);
+      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      this.setupChallengeQuizLayout();
+    }
+    else if (type === 'ordinary') {
+      // 포스터 있는 영화 전체 (개봉작 + 개봉예정작)
+      const pool = [
+        ...MOVIES_DATABASE.filter(m => m.posterUrl),
+        ...UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl)
+      ];
+      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      this.setupOrdinaryQuizLayout();
     }
 
     this.switchView('quiz');
@@ -5221,7 +5764,8 @@ class CineMasterApp {
 
   activateQuizPanel(type) {
     document.querySelectorAll('.quiz-mode-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById(`quiz-panel-${type}`).classList.add('active');
+    const panel = document.getElementById(`quiz-panel-${type}`);
+    if (panel) panel.classList.add('active');
     
     // Init Scoreboard
     if (this.currentUser) {
@@ -5238,7 +5782,6 @@ class CineMasterApp {
     // Show/hide round labels appropriately
     const roundContainer = document.getElementById('quiz-round-container');
     if (type === 'score') {
-      // Score mode has steps, so we label clearly
       roundContainer.innerHTML = `영화: <b id="quiz-round">${this.currentQuiz.currentIndex + 1}/5</b>`;
     } else {
       roundContainer.innerHTML = `라운드: <b id="quiz-round">${this.currentQuiz.currentIndex + 1}/5</b>`;
@@ -5275,7 +5818,6 @@ class CineMasterApp {
 
     // Automatic wrong answer execution
     if (this.currentQuiz.type === 'score') {
-      // Highlight dot as red (failure)
       const dot = document.querySelector(`#score-quiz-steps-bar .step-dot[data-step="${this.currentQuiz.currentStep}"]`);
       if (dot) {
         dot.classList.add('done');
@@ -5283,11 +5825,7 @@ class CineMasterApp {
         dot.style.borderColor = 'var(--color-danger)';
       }
       this.currentQuiz.stepAnswers.push(false);
-      
-      // Auto advance to next step after a tiny delay
-      setTimeout(() => {
-        this.advanceScoreQuizStep();
-      }, 800);
+      setTimeout(() => { this.advanceScoreQuizStep(); }, 800);
     } 
     else if (this.currentQuiz.type === 'filmo') {
       this.showAnswerOverlay(false, "시간 초과!", "10초 시간이 초과되었습니다.");
@@ -5295,6 +5833,15 @@ class CineMasterApp {
     else if (this.currentQuiz.type === 'lines') {
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
       this.showAnswerOverlay(false, "시간 초과!", `시간 초과되었습니다! 정답은 <b>${movie.title}</b>입니다.`);
+    }
+    else if (this.currentQuiz.type === 'challenge') {
+      const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+      const correctYYMMDD = (movie.releaseDate || '').replace(/-/g, '').slice(2);
+      this.showAnswerOverlay(false, "시간 초과!", `시간 초과! 정답은 <b>${correctYYMMDD}</b> (${movie.releaseDate})입니다.`);
+    }
+    else if (this.currentQuiz.type === 'ordinary') {
+      const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+      this.showAnswerOverlay(false, "시간 초과!", `시간 초과! 정답은 <b>${movie.title}</b>입니다.`);
     }
   }
 
@@ -5481,10 +6028,25 @@ class CineMasterApp {
       this.renderScoreQuizStepUI();
       this.startTimer();
     } else {
-      // Completed Q1-Q6 for this movie card. Roll out combined round statistics.
+      // Completed Q1-Q6 for this movie card.
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+
+      // ── 개봉예정작: 채점 없이 "예측 접수 완료" 표시 ───────────────────
+      if (this.currentQuiz.isUpcoming) {
+        this.playSynthSound('correct');
+        // 예측 저장
+        if (movie && this.currentQuiz.upcomingAnswers) {
+          this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
+        }
+        // prediction-overlay 표시 (기존 HTML 활용)
+        const overlay = document.getElementById('prediction-overlay');
+        if (overlay) overlay.style.display = 'flex';
+        return;
+      }
+
+      // ── 개봉작: 정상 채점 ─────────────────────────────────────────────
       const correctCount = this.currentQuiz.correctAnswersCount;
-      const isRoundSuccess = correctCount >= 4; // Threshold >= 4 questions correct (out of 6)
+      const isRoundSuccess = correctCount >= 4;
       
       if (isRoundSuccess) {
         this.currentQuiz.score++;
@@ -5498,7 +6060,6 @@ class CineMasterApp {
         this.playSynthSound('incorrect');
       }
 
-      // Generate round summary display
       const resultTitle = isRoundSuccess ? "흥행 분석 완료! (성공)" : "흥행 분석 미달 (실패)";
       let desc = `<b>${movie.title}</b>의 6가지 예측 문항 중 <b>${correctCount}개</b>를 적중시켰습니다.<br><br>`;
       desc += `<span style="font-size:0.8rem; color:var(--text-muted);">최종 관객: ${movie.finalScore}</span>`;
@@ -5716,6 +6277,12 @@ class CineMasterApp {
       else if (this.currentQuiz.type === 'lines') {
         this.setupLinesQuizLayout();
       }
+      else if (this.currentQuiz.type === 'challenge') {
+        this.setupChallengeQuizLayout();
+      }
+      else if (this.currentQuiz.type === 'ordinary') {
+        this.setupOrdinaryQuizLayout();
+      }
       this.startTimer();
     } else {
       this.finishQuiz();
@@ -5930,7 +6497,7 @@ class CineMasterApp {
       return;
     }
 
-    const typeLabel = { score: 'Otaku', filmo: 'Mania', lines: 'Light' };
+    const typeLabel = { score: 'Special', filmo: 'Regular', lines: 'Easy', challenge: 'Challenge', ordinary: 'Ordinary' };
     container.innerHTML = history.map((r, idx) => {
       const pct = r.accuracy ?? Math.round((r.score / r.total) * 100);
       const color = pct >= 80 ? 'var(--color-success)' : pct >= 50 ? 'var(--color-primary)' : 'var(--color-danger)';
@@ -6011,7 +6578,197 @@ class CineMasterApp {
       this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
       showToast(`📋 <b>${movie.title}</b> 예측이 저장되었습니다. 개봉 후 정답이 공개됩니다!`, 'info', 4000);
     }
+    // prediction-overlay 닫기
+    const overlay = document.getElementById('prediction-overlay');
+    if (overlay) overlay.style.display = 'none';
     this.switchView('dashboard');
+  }
+
+  // ── 개봉예정작 결과 알림 배지 ──────────────────────────────────────────
+  _checkPredictionNotifications() {
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
+    const stored = JSON.parse(localStorage.getItem('score_predictions') || '{}');
+    const badge = document.getElementById('special-badge');
+    if (!badge) return;
+
+    // 저장된 예측 중 오늘 이후 개봉한 영화가 있으면 알림 도트 표시
+    let hasNotification = false;
+    Object.keys(stored).forEach(title => {
+      const movieFromUpcoming = UPCOMING_MOVIES_DATABASE.find(m => m.title === title);
+      if (!movieFromUpcoming) return;
+      const relDate = new Date(movieFromUpcoming.releaseDate);
+      // 개봉일 다음날(익일) 이후
+      const nextDay = new Date(relDate);
+      nextDay.setDate(relDate.getDate() + 1);
+      if (today >= nextDay) hasNotification = true;
+    });
+
+    // 배지에 알림 도트 추가/제거
+    const existingDot = badge.parentElement?.querySelector('.notify-dot');
+    if (hasNotification && !existingDot) {
+      const dot = document.createElement('span');
+      dot.className = 'notify-dot';
+      badge.parentElement.appendChild(dot);
+      setTimeout(() => {
+        showToast('개봉예정작 예측 결과를 확인할 수 있습니다! Special 섹션을 확인하세요.', 'info', 4500);
+      }, 600);
+    } else if (!hasNotification && existingDot) {
+      existingDot.remove();
+    }
+  }
+
+  // ── Challenge 퀴즈 레이아웃 ──────────────────────────────────────────────
+  setupChallengeQuizLayout() {
+    const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+    if (!movie) return;
+
+    // 포스터
+    const poster = document.getElementById('challenge-movie-poster');
+    if (poster) {
+      poster.style.backgroundImage = movie.posterUrl ? `url('${movie.posterUrl}')` : '';
+      poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
+    }
+
+    document.getElementById('challenge-movie-title').innerText = movie.title;
+    document.getElementById('challenge-movie-director').innerText = `감독: ${movie.director || '—'}`;
+    document.getElementById('challenge-movie-cast').innerText = `출연: ${(movie.cast || []).slice(0, 3).join(', ') || '—'}`;
+
+    // 입력 초기화
+    const input = document.getElementById('challenge-date-input');
+    if (input) input.value = '';
+    const result = document.getElementById('challenge-digit-result');
+    if (result) result.style.display = 'none';
+  }
+
+  gradeChallengeQuiz() {
+    clearInterval(this.currentQuiz.timerId);
+    const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+    const input = document.getElementById('challenge-date-input');
+    const userInput = (input?.value || '').trim();
+
+    if (userInput.length !== 6 || !/^\d{6}$/.test(userInput)) {
+      showToast('6자리 숫자(YYMMDD)를 입력해 주세요.', 'warn');
+      this.startTimer();
+      return;
+    }
+
+    // 정답 날짜를 YYMMDD로 변환
+    const relDate = movie.releaseDate || '';
+    const correctYYMMDD = relDate.replace(/-/g, '').slice(2); // "2026-06-25" → "260625"
+
+    // 앞자리부터 연속 일치 자릿수 계산
+    let matchCount = 0;
+    for (let i = 0; i < 6; i++) {
+      if (userInput[i] === correctYYMMDD[i]) matchCount++;
+      else break;
+    }
+
+    const xpReward = matchCount * 5; // 자릿수당 5XP
+    const isPerfect = matchCount === 6;
+
+    // 자릿수 비교 시각화
+    const resultEl = document.getElementById('challenge-digit-result');
+    if (resultEl) {
+      resultEl.style.display = 'flex';
+      resultEl.innerHTML = correctYYMMDD.split('').map((ch, i) => {
+        const isMatch = i < matchCount;
+        return `<div class="digit-cell ${isMatch ? 'match' : 'miss'}">${ch}</div>`;
+      }).join('');
+    }
+
+    if (xpReward > 0) {
+      this.currentQuiz.totalXpEarned += xpReward;
+      this.addXp(xpReward, `Challenge ${matchCount}자리 적중`);
+    }
+
+    if (isPerfect) {
+      this.currentQuiz.score++;
+      this.currentQuiz.combo++;
+      if (this.currentQuiz.combo > this.currentQuiz.maxComboThisRun) {
+        this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
+      }
+      this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
+      this.showAnswerOverlay(true, "정확합니다!", `<b>${movie.title}</b>의 개봉일 <b>${correctYYMMDD}</b>을 정확히 맞혔습니다! +${xpReward} XP`);
+    } else {
+      this.currentQuiz.combo = 0;
+      this.playSynthSound('incorrect');
+      const desc = matchCount > 0
+        ? `<b>${matchCount}자리</b>가 일치했습니다. 정답은 <b>${correctYYMMDD}</b> (${movie.releaseDate})입니다. +${xpReward} XP`
+        : `정답은 <b>${correctYYMMDD}</b> (${movie.releaseDate})입니다. 입력: ${userInput}`;
+      this.showAnswerOverlay(false, matchCount > 0 ? `${matchCount}자리 적중!` : "불일치", desc);
+    }
+  }
+
+  // ── Ordinary 퀴즈 레이아웃 ──────────────────────────────────────────────
+  setupOrdinaryQuizLayout() {
+    const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+    if (!movie || !movie.posterUrl) return;
+
+    // 6×6 분할 → 랜덤 위치 선택
+    const col = Math.floor(Math.random() * 6); // 0~5
+    const row = Math.floor(Math.random() * 6); // 0~5
+
+    // 포스터를 540×1080(3:6 비율)로 가정, 각 셀: 90×180
+    // clip-path로 원형 마스크는 CSS로 처리(ordinary-poster-stage border-radius:50%)
+    // 실제 포스터 크기: 300px wide(w300), 약 450px high
+    // 셀 크기: 300/6 = 50px wide, 450/6 = 75px high
+    const posterW = 300;
+    const posterH = 450;
+    const cellW = posterW / 6;
+    const cellH = posterH / 6;
+
+    const offsetX = -(col * cellW);
+    const offsetY = -(row * cellH);
+
+    const crop = document.getElementById('ordinary-poster-crop');
+    const stage = document.getElementById('ordinary-poster-stage');
+
+    // stage는 원형(border-radius:50%), 셀 크기만큼 표시
+    if (stage) {
+      stage.style.width  = `${cellW * 2}px`;  // 2배 확대 표시
+      stage.style.height = `${cellH * 2}px`;
+    }
+
+    if (crop) {
+      crop.style.backgroundImage = `url('${movie.posterUrl}')`;
+      crop.style.backgroundSize  = `${posterW * 2}px ${posterH * 2}px`;
+      crop.style.backgroundPosition = `${offsetX * 2}px ${offsetY * 2}px`;
+      crop.style.width  = `${posterW * 2}px`;
+      crop.style.height = `${posterH * 2}px`;
+      crop.style.backgroundRepeat = 'no-repeat';
+    }
+
+    const input = document.getElementById('input-ordinary-answer');
+    if (input) { input.value = ''; setTimeout(() => input.focus(), 100); }
+  }
+
+  gradeOrdinaryQuiz() {
+    clearInterval(this.currentQuiz.timerId);
+    const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+    const userInput = document.getElementById('input-ordinary-answer')?.value.trim();
+
+    if (!userInput) { showToast('영화 제목을 입력해 주세요.', 'warn'); this.startTimer(); return; }
+
+    const normUser = userInput.replace(/\s+/g, '').toLowerCase();
+    const normCorrect = movie.title.replace(/\s+/g, '').toLowerCase();
+    const xpReward = 25;
+
+    if (normUser === normCorrect) {
+      this.currentQuiz.score++;
+      this.currentQuiz.combo++;
+      this.currentQuiz.totalXpEarned += xpReward;
+      if (this.currentQuiz.combo > this.currentQuiz.maxComboThisRun) {
+        this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
+      }
+      this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
+      this.addXp(xpReward, 'Ordinary 포스터 퀴즈 정답');
+      this.showAnswerOverlay(true, "정답입니다!", `포스터 조각으로 <b>${movie.title}</b>을 맞혔습니다! +${xpReward} XP`);
+    } else {
+      this.currentQuiz.combo = 0;
+      this.playSynthSound('incorrect');
+      this.showAnswerOverlay(false, "오답입니다!", `정답은 <b>${movie.title}</b>입니다. 입력: ${userInput}`);
+    }
   }
 
   showGroupQuizLobby() {
@@ -6019,65 +6776,135 @@ class CineMasterApp {
     this.showScoreOptions();
   }
 
-  // ── 포스터 롤링 배너 초기화 ────────────────────────────────────────────
+  // ── 포스터 롤링 배너 초기화 (5개 섹션) ────────────────────────────────────
   initPosterBanners() {
-    // 현재 KST 기준 날짜 계산
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
-    const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
+    const today  = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
 
-    // 기준 날짜 경계 계산 (DB 영화 수가 적으므로 범위를 넉넉하게)
-    const date1MonthAgo  = new Date(today); date1MonthAgo.setMonth(today.getMonth() - 1);
-    const date12MonthsAgo = new Date(today); date12MonthsAgo.setFullYear(today.getFullYear() - 1);
-    const date36MonthsAgo = new Date(today); date36MonthsAgo.setFullYear(today.getFullYear() - 3);
+    const monthsAgo = (n) => { const d = new Date(today); d.setMonth(d.getMonth() - n); return d; };
 
-    // Otaku: 개봉예정작 (posterUrl 있는 것만)
-    const otakuMovies = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined'
+    // 날짜 경계
+    const d1m  = monthsAgo(1);   // 1개월 전
+    const d3m  = monthsAgo(3);   // 3개월 전
+    const d6m  = monthsAgo(6);   // 6개월 전
+    const d12m = monthsAgo(12);  // 12개월 전
+
+    // [S] Special — 개봉예정작 전체
+    const specialMovies = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined'
       ? UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl)
       : []);
-    this._buildPosterTrack(
-      'poster-track-otaku',
-      otakuMovies,
+    this._buildPosterTrack('poster-track-special', specialMovies,
       (movie) => {
-        const safeTitle = movie.title.replace(/'/g, "\\'");
-        return `app.startSpecificQuiz('${safeTitle}', true, 'solo')`;
+        const t = movie.title.replace(/'/g, "\\'");
+        return `app.startSpecificQuiz('${t}', true, 'solo')`;
       }
     );
 
-    // Mania: 현재 기준 1개월~1년 전 개봉작 (posterUrl 있는 것만)
-    // → DB 영화가 충분히 쌓이면 3~6개월로 좁힐 수 있음
-    const maniaMovies = (typeof MOVIES_DATABASE !== 'undefined'
+    // [C] Challenge — 개봉 1개월 미만 (오늘 ~ 1개월 전)
+    const challengeMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= date12MonthsAgo && rel < date1MonthAgo;
+          return rel >= d1m && rel <= today;
         })
       : []);
-    this._buildPosterTrack(
-      'poster-track-mania',
-      maniaMovies,
+    this._buildPosterTrack('poster-track-challenge', challengeMovies,
       (movie) => {
-        const safeTitle = movie.title.replace(/'/g, "\\'");
+        const t = movie.title.replace(/'/g, "\\'");
+        return `app.startSpecificChallengeQuiz('${t}')`;
+      }
+    );
+
+    // [O] Ordinary — 개봉 1~3개월
+    const ordinaryMovies = (typeof MOVIES_DATABASE !== 'undefined'
+      ? MOVIES_DATABASE.filter(m => {
+          if (!m.posterUrl || !m.releaseDate) return false;
+          const rel = new Date(m.releaseDate);
+          return rel >= d3m && rel < d1m;
+        })
+      : []);
+    this._buildPosterTrack('poster-track-ordinary', ordinaryMovies,
+      (movie) => {
+        const t = movie.title.replace(/'/g, "\\'");
+        return `app.startSpecificOrdinaryQuiz('${t}')`;
+      }
+    );
+
+    // [R] Regular — 개봉 4~6개월
+    const regularMovies = (typeof MOVIES_DATABASE !== 'undefined'
+      ? MOVIES_DATABASE.filter(m => {
+          if (!m.posterUrl || !m.releaseDate) return false;
+          const rel = new Date(m.releaseDate);
+          return rel >= d6m && rel < d3m;
+        })
+      : []);
+    this._buildPosterTrack('poster-track-regular', regularMovies,
+      (movie) => {
+        const t = movie.title.replace(/'/g, "\\'");
         return `app._filmoSubType = null; app.startQuiz('filmo', null, 'solo')`;
       }
     );
 
-    // Light: 현재 기준 1~3년 전 개봉작 (posterUrl 있는 것만, famousLines 조건 제거)
-    // → DB 영화가 충분히 쌓이면 6개월~1년으로 좁힐 수 있음
-    const lightMovies = (typeof MOVIES_DATABASE !== 'undefined'
+    // [E] Easy — 개봉 7개월~1년
+    const easyMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= date36MonthsAgo && rel < date12MonthsAgo;
+          return rel >= d12m && rel < d6m;
         })
       : []);
-    this._buildPosterTrack(
-      'poster-track-light',
-      lightMovies,
+    this._buildPosterTrack('poster-track-easy', easyMovies,
       (movie) => {
-        const safeTitle = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-        return `app._startLinesWithMovie('${safeTitle}')`;
+        const t = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        return `app._startLinesWithMovie('${t}')`;
       }
     );
+
+    // 포스터 없는 섹션에 안내 메시지 표시
+    ['challenge','ordinary','regular','easy'].forEach(section => {
+      const track = document.getElementById(`poster-track-${section}`);
+      if (track && track.innerHTML.trim() === '') {
+        track.innerHTML = `<div style="padding:16px 0;font-size:0.75rem;color:var(--text-muted);letter-spacing:0.5px;">해당 기간 개봉 영화가 없습니다.</div>`;
+      }
+    });
+  }
+
+  // ── 배너 포스터 클릭으로 Challenge/Ordinary 1편 퀴즈 시작 ──────────────
+  startSpecificChallengeQuiz(movieTitle) {
+    this.playSynthSound('click');
+    const movie = MOVIES_DATABASE.find(m => m.title === movieTitle);
+    if (!movie) return;
+    this.currentQuiz.type = 'challenge';
+    this.currentQuiz.currentIndex = 0;
+    this.currentQuiz.score = 0;
+    this.currentQuiz.totalXpEarned = 0;
+    this.currentQuiz.combo = 0;
+    this.currentQuiz.maxComboThisRun = 0;
+    this.currentQuiz.movies = [movie];
+    this.switchView('quiz');
+    this.activateQuizPanel('challenge');
+    this.setupChallengeQuizLayout();
+    document.getElementById('quiz-round-container').style.display = 'none';
+    this.startTimer();
+  }
+
+  startSpecificOrdinaryQuiz(movieTitle) {
+    this.playSynthSound('click');
+    const db = [...MOVIES_DATABASE, ...UPCOMING_MOVIES_DATABASE];
+    const movie = db.find(m => m.title === movieTitle);
+    if (!movie) return;
+    this.currentQuiz.type = 'ordinary';
+    this.currentQuiz.currentIndex = 0;
+    this.currentQuiz.score = 0;
+    this.currentQuiz.totalXpEarned = 0;
+    this.currentQuiz.combo = 0;
+    this.currentQuiz.maxComboThisRun = 0;
+    this.currentQuiz.movies = [movie];
+    this.switchView('quiz');
+    this.activateQuizPanel('ordinary');
+    this.setupOrdinaryQuizLayout();
+    document.getElementById('quiz-round-container').style.display = 'none';
+    this.startTimer();
   }
 
   _buildPosterTrack(trackId, movies, getOnclick) {
@@ -6184,10 +7011,6 @@ function showToast(msg, type = 'info', duration = 2800) {
 
 // ── 전역 앱 인스턴스 & 초기화 ────────────────────────────────────────────
 let app;
-
-function doLogin() {
-  if (app) app.simulateGoogleLogin();
-}
 
 window.addEventListener('DOMContentLoaded', () => {
   // 스플래시 자동 제거 (애니메이션 총 4.4초 후)
