@@ -2057,6 +2057,16 @@ button, .btn {
   background: var(--bg-card);
 }
 
+/* ── 퀴즈 서브메뉴 섹션 레이블 ─────────────────────────────────────────── */
+.quiz-section-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
 
 </style>
 </head>
@@ -2222,132 +2232,112 @@ button, .btn {
             
             <!-- Main Modes Container -->
             <div id="main-modes-container" style="display: flex; flex-direction: column; gap: 16px;">
-              <!-- Mode 1: 흥행 스코어 예측 -->
+              <!-- Mode 1: 스코어 & 부가매출 -->
               <div class="mode-card glass-card hover-lift" onclick="app.showScoreOptions()">
                 <div class="mode-icon-container boxoffice-color">
                   <span class="material-symbols-outlined">analytics</span>
                 </div>
-                <h3>흥행 스코어 예측</h3>
-                <p>개봉일, 개봉주, 최종 관객수 등 흥행 스코어를 신속하게 맞춰나가는 고난도 시뮬레이션 리그</p>
+                <h3>스코어 &amp; 부가매출</h3>
                 <div class="mode-action">
                   <span>선택하기</span>
                   <span class="material-symbols-outlined">arrow_forward</span>
                 </div>
               </div>
 
-              <!-- Mode 2: 필모그래피 매칭 -->
+              <!-- Mode 2: 필모그래피 -->
               <div class="mode-card glass-card hover-lift" onclick="app.startQuiz('filmo')">
                 <div class="mode-icon-container filmo-color">
                   <span class="material-symbols-outlined">recent_actors</span>
                 </div>
-                <h3>필모그래피 매칭</h3>
-                <p>제시된 명감독 혹은 명배우의 출연작/연출작을 가려내는 필모그래피 마스터 리그</p>
+                <h3>필모그래피</h3>
                 <div class="mode-action">
-                  <span>매칭 시작하기</span>
+                  <span>시작하기</span>
                   <span class="material-symbols-outlined">arrow_forward</span>
                 </div>
               </div>
 
-              <!-- Mode 3: 명대사 & 초성 게임 -->
+              <!-- Mode 3: 명대사 & 초성 -->
               <div class="mode-card glass-card hover-lift" onclick="app.startQuiz('lines')">
                 <div class="mode-icon-container quote-color">
                   <span class="material-symbols-outlined">campaign</span>
                 </div>
-                <h3>명대사 & 초성 게임</h3>
-                <p>영화 속 명대사 힌트와 첫 자음(초성)을 보고 제목을 정확히 맞추는 주관식 스피드 리그</p>
+                <h3>명대사 &amp; 초성</h3>
                 <div class="mode-action">
-                  <span>초성 퀴즈 시작</span>
+                  <span>시작하기</span>
                   <span class="material-symbols-outlined">arrow_forward</span>
                 </div>
               </div>
             </div>
 
-            <!-- Mode 1: 흥행 스코어 예측 퀴즈 (Sub options: Upcoming / Released) -->
+            <!-- Mode 1: 스코어 & 부가매출 서브메뉴 -->
             <div class="quiz-options-container" id="score-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
-              <h3 style="font-weight: 500; font-size: 1rem; margin-bottom: 12px;">흥행 스코어 예측 모드</h3>
-              
-              <div class="quiz-option-btn hover-lift" onclick="app.showUpcomingList()">
-                <div class="quiz-option-info">
-                  <span class="material-symbols-outlined quiz-option-icon">event_upcoming</span>
-                  <div class="quiz-option-text">
-                    <h4>개봉예정작</h4>
-                    <p>1개월 이내 개봉 예정인 영화들의 스코어를 예측합니다.</p>
+              <h3 style="font-weight: 500; font-size: 1rem; margin-bottom: 12px;">스코어 &amp; 부가매출</h3>
+
+              <!-- 개봉예정작 -->
+              <div style="margin-bottom:12px;">
+                <div class="quiz-section-label">개봉예정작</div>
+                <div style="display:flex;gap:8px;">
+                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showUpcomingList('solo')">
+                    <div class="quiz-option-info">
+                      <span class="material-symbols-outlined quiz-option-icon">person</span>
+                      <div class="quiz-option-text"><h4>개인전</h4></div>
+                    </div>
+                    <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  </div>
+                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showUpcomingList('group')">
+                    <div class="quiz-option-info">
+                      <span class="material-symbols-outlined quiz-option-icon">groups</span>
+                      <div class="quiz-option-text"><h4>단체전</h4></div>
+                    </div>
+                    <span class="material-symbols-outlined text-muted">chevron_right</span>
                   </div>
                 </div>
-                <span class="material-symbols-outlined text-muted">chevron_right</span>
               </div>
 
-              <div class="quiz-option-btn hover-lift" onclick="app.showReleasedSearch()">
-                <div class="quiz-option-info">
-                  <span class="material-symbols-outlined quiz-option-icon">search</span>
-                  <div class="quiz-option-text">
-                    <h4>개봉작</h4>
-                    <p>이미 개봉한 영화를 검색하여 스코어 결과를 예측합니다.</p>
+              <!-- 개봉작 -->
+              <div>
+                <div class="quiz-section-label">개봉작</div>
+                <div style="display:flex;gap:8px;">
+                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showReleasedSearch('solo')">
+                    <div class="quiz-option-info">
+                      <span class="material-symbols-outlined quiz-option-icon">person</span>
+                      <div class="quiz-option-text"><h4>개인전</h4></div>
+                    </div>
+                    <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  </div>
+                  <div class="quiz-option-btn hover-lift" style="flex:1;" onclick="app.showReleasedSearch('group')">
+                    <div class="quiz-option-info">
+                      <span class="material-symbols-outlined quiz-option-icon">groups</span>
+                      <div class="quiz-option-text"><h4>단체전</h4></div>
+                    </div>
+                    <span class="material-symbols-outlined text-muted">chevron_right</span>
                   </div>
                 </div>
-                <span class="material-symbols-outlined text-muted">chevron_right</span>
-              </div>
-
-              <div class="quiz-option-btn hover-lift" onclick="app.showGroupQuizLobby()">
-                <div class="quiz-option-info">
-                  <span class="material-symbols-outlined quiz-option-icon">groups</span>
-                  <div class="quiz-option-text">
-                    <h4>단체 퀴즈 (멀티플레이)</h4>
-                    <p>친구들이나 다른 유저들과 함께 스코어 예측 대결을 펼칩니다.</p>
-                  </div>
-                </div>
-                <span class="material-symbols-outlined text-muted">chevron_right</span>
               </div>
             </div>
 
-            <!-- Upcoming List Section (Hidden by default) -->
+            <!-- Upcoming List Section -->
             <div id="upcoming-list-section" class="movie-list-container">
               <div class="flex-center" style="justify-content: space-between; margin-bottom: 10px;">
-                <h4 style="font-size: 0.9rem;">상영 예정작 목록</h4>
+                <h4 style="font-size: 0.9rem;" id="upcoming-list-title">개봉예정작</h4>
                 <button class="btn-icon-text p-0" onclick="app.showScoreOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
               </div>
-              <div class="movie-list-grid" id="upcoming-movies-grid">
-                <!-- Dynamically injected -->
-              </div>
+              <div class="movie-list-grid" id="upcoming-movies-grid"></div>
             </div>
 
-            <!-- Released Search Section (Hidden by default) -->
+            <!-- Released Search Section -->
             <div id="released-search-section" class="movie-search-container">
               <div class="flex-center" style="justify-content: space-between; margin-bottom: 10px;">
-                <h4 style="font-size: 0.9rem;">개봉작 검색</h4>
+                <h4 style="font-size: 0.9rem;" id="released-search-title">개봉작</h4>
                 <button class="btn-icon-text p-0" onclick="app.showScoreOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
               </div>
               <div class="form-group">
                 <input type="text" id="movie-search-input" class="form-control" placeholder="영화 제목 검색..." autocomplete="off">
               </div>
-              <div class="movie-list-grid" id="search-movies-grid">
-                <!-- Dynamically injected -->
-              </div>
-            </div>
-
-            <!-- Group Quiz Lobby Section (Hidden by default) -->
-            <div id="group-quiz-lobby-section" class="movie-search-container" style="display: none;">
-              <div class="flex-center" style="justify-content: space-between; margin-bottom: 20px;">
-                <h4 style="font-size: 0.9rem;">단체 퀴즈 로비</h4>
-                <button class="btn-icon-text p-0" onclick="app.showScoreOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
-              </div>
-              <div class="glass-card text-center fade-in">
-                <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--color-primary);">diversity_3</span>
-                <h3 style="margin: 16px 0 8px;">멀티플레이 대기실</h3>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
-                  방을 생성하거나 초대 코드를 입력하여 친구들과 함께 퀴즈를 풀어보세요.
-                </p>
-                <button class="btn-primary w-100 mb-2">
-                  <span class="material-symbols-outlined">add_circle</span> 방 만들기
-                </button>
-                <div class="form-group mb-0 flex-center" style="gap: 8px;">
-                  <input type="text" class="form-control" placeholder="초대 코드 입력" style="flex:1;">
-                  <button class="btn-secondary" style="white-space: nowrap; height: 48px;">입장</button>
-                </div>
-              </div>
+              <div class="movie-list-grid" id="search-movies-grid"></div>
             </div>
 
           </div>
@@ -3275,6 +3265,69 @@ const UPCOMING_MOVIES_DATABASE = [
   }
 ];
 
+const FILMO_POSTERS = {
+  "감기": "https://image.tmdb.org/t/p/w300/7fQlPXebfjEqjysW3rv4RyNplih.jpg",
+  "강철비": "https://image.tmdb.org/t/p/w300/pC3Mcz2TPuXIkTrd8bolUgBm9GV.jpg",
+  "검은 사제들": "https://image.tmdb.org/t/p/w300/3zYZ5hZUNHwgObdqbDYlS8l24FE.jpg",
+  "곡성": "https://image.tmdb.org/t/p/w300/k9AKtgRErXjz14lFHL2IJVCgwOT.jpg",
+  "공작": "https://image.tmdb.org/t/p/w300/uTiYfP9ESTHl1tHw2VJzqdxEtvF.jpg",
+  "공조": "https://image.tmdb.org/t/p/w300/9YNlKVqRs2laZl1sEkwqdadNNPs.jpg",
+  "괴물": "https://image.tmdb.org/t/p/w300/tqDQzYGi1EWHgUZY91YRSJLDJVf.jpg",
+  "국제시장": "https://image.tmdb.org/t/p/w300/rmZ4qkpDVdTgjwliJ84aJ43hStt.jpg",
+  "군함도": "https://image.tmdb.org/t/p/w300/t0rdNh51Rdnxr56vdeHuN8eK9Ig.jpg",
+  "극한직업": "https://image.tmdb.org/t/p/w300/lzzb384pgYyr0GQvu3K2ZW62CEE.jpg",
+  "기생충": "https://image.tmdb.org/t/p/w300/jjHccoFjbqlfr4VGLVLT7yek0Xn.jpg",
+  "내부자들": "https://image.tmdb.org/t/p/w300/zlFp1a9HXpbyDBaNoS1euprLbLs.jpg",
+  "다만 악에서 구하소서": "https://image.tmdb.org/t/p/w300/xYnL0kA0V7aDvg8wupmWQbdgb9a.jpg",
+  "더 킹": "https://image.tmdb.org/t/p/w300/mNC4JtrcGxuWoU6yK5d6rCUI1an.jpg",
+  "도둑들": "https://image.tmdb.org/t/p/w300/ujIHEzt2EEboVzjQoWZBMYdAt1v.jpg",
+  "돼지의 왕": "https://image.tmdb.org/t/p/w300/gmQ3Tv2naL7iwvmSLrs9amN1pmx.jpg",
+  "럭키": "https://image.tmdb.org/t/p/w300/32ZO0IREGvASVhb2XPnlYNgkCtX.jpg",
+  "마더": "https://image.tmdb.org/t/p/w300/lhxVHEkaOH51oazowpdCHJNLIBE.jpg",
+  "명량": "https://image.tmdb.org/t/p/w300/fl3G8TprVzt4icbYyQKqdPmUfIO.jpg",
+  "모가디슈": "https://image.tmdb.org/t/p/w300/oeu5TgAd0MrHplBIvCFpt9AIEBm.jpg",
+  "무사": "https://image.tmdb.org/t/p/w300/ufwFltSgo9KuGRquCnbpdNj7Psk.jpg",
+  "밀수": "https://image.tmdb.org/t/p/w300/ayLXqPZCu3uaLLhXiqvw5NBb7Lw.jpg",
+  "밀정": "https://image.tmdb.org/t/p/w300/3OqkOFlXENLeIMLVBclGejpsaWd.jpg",
+  "반도": "https://image.tmdb.org/t/p/w300/ew1lAU8yV66JbivBU1Zh4Wj4pOB.jpg",
+  "범죄도시": "https://image.tmdb.org/t/p/w300/sVwbHA4nhw389PwpDzkJam4WMoB.jpg",
+  "범죄도시2": "https://image.tmdb.org/t/p/w300/9XkAF2pl2uliiuAORaWTgPmr6zG.jpg",
+  "범죄도시3": "https://image.tmdb.org/t/p/w300/kPtNokhBtgwSp3MHaR3X4O0SPbF.jpg",
+  "범죄도시4": "https://image.tmdb.org/t/p/w300/jucHQwnRSma1O9V2bM007e4eSd7.jpg",
+  "베를린": "https://image.tmdb.org/t/p/w300/rz64x2PLYbcvv4rt41HLfjHSyGC.jpg",
+  "베테랑": "https://image.tmdb.org/t/p/w300/8OJ4VtaddbDDwP1ydCitsYxgzCT.jpg",
+  "변산": "https://image.tmdb.org/t/p/w300/odLMoZQy38CiA97tOPJvPx33NB6.jpg",
+  "변호인": "https://image.tmdb.org/t/p/w300/5tm4Rv24NYdGpuWzA6aF5h1qm0E.jpg",
+  "부당거래": "https://image.tmdb.org/t/p/w300/bcnPMgLfZr5d4VvfG1RYGMtBH9M.jpg",
+  "부산행": "https://image.tmdb.org/t/p/w300/6XvEZVBFFjybvb1yQd1qfOC6F2S.jpg",
+  "비트": "https://image.tmdb.org/t/p/w300/lS0xvJEF5m0uikVe07Bs7mNaSwP.jpg",
+  "사바하": "https://image.tmdb.org/t/p/w300/9NvqPjMwjQ2hGwSEXcZ1VZ4mqVS.jpg",
+  "살인의 추억": "https://image.tmdb.org/t/p/w300/3I1Ng4sxDUyPOdVu3lQ20N14PGE.jpg",
+  "서울의 봄": "https://image.tmdb.org/t/p/w300/ukVVnY9ovwl78WE5KndcpA6SnAm.jpg",
+  "설국열차": "https://image.tmdb.org/t/p/w300/jw66dQvYyXkZNA0bJ7nKvua9jDr.jpg",
+  "신과함께": "https://image.tmdb.org/t/p/w300/2ETx0U2Q5gUHtPJZiQ3hakTqyaR.jpg",
+  "신세계": "https://image.tmdb.org/t/p/w300/6odwPYkgvIlKpIYkvQYlWOfspAn.jpg",
+  "써니": "https://image.tmdb.org/t/p/w300/39fhpu9WfpvaEfE6UhuxaS93wOe.jpg",
+  "아가씨": "https://image.tmdb.org/t/p/w300/pDogzUCSBy0m4ybLKUv3OtGMRNm.jpg",
+  "아수라": "https://image.tmdb.org/t/p/w300/hrkpHTjBeuEaxNJetjCPtNsi5bv.jpg",
+  "아이 캔 스피크": "https://image.tmdb.org/t/p/w300/mGrQx2zffkconsCrxeZ1sHkCBjb.jpg",
+  "아저씨": "https://image.tmdb.org/t/p/w300/14QbjXp8m3LN9l1U4SoBWy441kr.jpg",
+  "염력": "https://image.tmdb.org/t/p/w300/5LRL9cvVQl0Mne8CZslb5VNwY6v.jpg",
+  "영웅": "https://image.tmdb.org/t/p/w300/jqxD0H9a1rg5bXftsm6gsNOjt4n.jpg",
+  "옥자": "https://image.tmdb.org/t/p/w300/miHNA5DcheO7ax2qon9CmC7qa9j.jpg",
+  "올드보이": "https://image.tmdb.org/t/p/w300/xpa9ybm6tYGna5LseqSXvKpSSJn.jpg",
+  "완득이": "https://image.tmdb.org/t/p/w300/f9ycej2SvjdAgIrVCi5u4JudnhP.jpg",
+  "은교": "https://image.tmdb.org/t/p/w300/tyT8i7zOfMvge8cOoYin0wLSHeL.jpg",
+  "지옥": "https://image.tmdb.org/t/p/w300/3faOft1rjJrIahaLHof9AwDth2z.jpg",
+  "차이나타운": "https://image.tmdb.org/t/p/w300/9YX1SdRcqLkDEMhvFMaFZ3b24Dv.jpg",
+  "추격자": "https://image.tmdb.org/t/p/w300/3Y5COpcDL8I9u4GdUl0HskNO8zI.jpg",
+  "택시운전사": "https://image.tmdb.org/t/p/w300/pCdx7X5JLaSJZLNVtpryGSdjvvB.jpg",
+  "파묘": "https://image.tmdb.org/t/p/w300/tw0i3kkmOTjDjGFZTLHKhoeXVvA.jpg",
+  "해운대": "https://image.tmdb.org/t/p/w300/AgWRG68qAT63wDybxNAebnbstts.jpg",
+  "헌트": "https://image.tmdb.org/t/p/w300/Dyc3aCm3F4h8dXr4V5fnIopiyE.jpg",
+  "헤어질 결심": "https://image.tmdb.org/t/p/w300/rXEJ28XDQsogIGqwVEgwM2oDdpl.jpg",
+};
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { MOVIES_DATABASE, UPCOMING_MOVIES_DATABASE, FILMOGRAPHIES, GAME_OPTIONS, FAMOUS_CHARACTERS, NICKNAME_MODIFIERS };
 }
@@ -3769,7 +3822,7 @@ class CineMasterApp {
     } else if (tabId === 'dashboard') {
       // Hide sub-sections when returning to dashboard
       document.getElementById('released-search-section').style.display = 'none';
-      document.getElementById('group-quiz-lobby-section').style.display = 'none';
+      
       document.getElementById('score-quiz-options').style.display = 'none';
       document.getElementById('main-modes-container').style.display = 'flex';
     }
@@ -3781,7 +3834,7 @@ class CineMasterApp {
     document.getElementById('main-modes-container').style.display = 'none';
     document.getElementById('upcoming-list-section').style.display = 'none';
     document.getElementById('released-search-section').style.display = 'none';
-    document.getElementById('group-quiz-lobby-section').style.display = 'none';
+    
     document.getElementById('score-quiz-options').style.display = 'block';
   }
 
@@ -3790,17 +3843,21 @@ class CineMasterApp {
     document.getElementById('score-quiz-options').style.display = 'none';
     document.getElementById('upcoming-list-section').style.display = 'none';
     document.getElementById('released-search-section').style.display = 'none';
-    document.getElementById('group-quiz-lobby-section').style.display = 'none';
+    
     document.getElementById('main-modes-container').style.display = 'flex';
   }
 
-  showUpcomingList() {
+  showUpcomingList(mode = 'solo') {
     this.playSynthSound('click');
+    this._quizMode = mode; // 'solo' | 'group'
     document.getElementById('score-quiz-options').style.display = 'none';
     document.getElementById('released-search-section').style.display = 'none';
-    document.getElementById('group-quiz-lobby-section').style.display = 'none';
     const upcomingSection = document.getElementById('upcoming-list-section');
     upcomingSection.style.display = 'block';
+
+    // 헤더 타이틀 업데이트
+    const titleEl = document.getElementById('upcoming-list-title');
+    if (titleEl) titleEl.innerText = mode === 'group' ? '개봉예정작 — 단체전' : '개봉예정작 — 개인전';
 
     const grid = document.getElementById('upcoming-movies-grid');
     if (typeof UPCOMING_MOVIES_DATABASE === 'undefined' || UPCOMING_MOVIES_DATABASE.length === 0) {
@@ -3808,12 +3865,10 @@ class CineMasterApp {
       return;
     }
 
-    // KST 기준 오늘 날짜
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const todayKST = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
     const in30days = new Date(todayKST); in30days.setDate(todayKST.getDate() + 30);
 
-    // KST 기준 오늘 이후 ~ 30일 이내 개봉 영화만 (개봉일 오름차순, 최대 10편)
     const filtered = UPCOMING_MOVIES_DATABASE
       .filter(m => {
         if (!m.releaseDate) return false;
@@ -3834,9 +3889,10 @@ class CineMasterApp {
       const badge = isRevealed
         ? `<span class="movie-badge badge-revealed">정답 공개됨</span>`
         : `<span class="movie-badge badge-upcoming">D-${dDay}일 (${m.releaseDate})</span>`;
+      const safeTitle = m.title.replace(/'/g, "\\'");
       const action = isRevealed
-        ? `onclick="app.showRevealedResult('${m.title.replace(/'/g,"\\'")}')"`
-        : `onclick="app.startSpecificQuiz('${m.title.replace(/'/g,"\\'")}', true)"`;
+        ? `onclick="app.showRevealedResult('${safeTitle}')"`
+        : `onclick="app.startSpecificQuiz('${safeTitle}', true, '${mode}')"`;
       const posterStyle = m.posterUrl
         ? `background-image: url('${m.posterUrl}')`
         : `background: var(--bg-secondary)`;
@@ -3915,14 +3971,17 @@ class CineMasterApp {
     return stored[movieTitle] || null;
   }
 
-  showReleasedSearch() {
+  showReleasedSearch(mode = 'solo') {
     this.playSynthSound('click');
+    this._quizMode = mode;
     document.getElementById('score-quiz-options').style.display = 'none';
     document.getElementById('upcoming-list-section').style.display = 'none';
-    document.getElementById('group-quiz-lobby-section').style.display = 'none';
     const searchSection = document.getElementById('released-search-section');
     searchSection.style.display = 'block';
-    
+
+    const titleEl = document.getElementById('released-search-title');
+    if (titleEl) titleEl.innerText = mode === 'group' ? '개봉작 — 단체전' : '개봉작 — 개인전';
+
     this.renderReleasedMoviesSearch('');
     document.getElementById('movie-search-input').focus();
   }
@@ -3930,10 +3989,14 @@ class CineMasterApp {
   renderReleasedMoviesSearch(query) {
     const grid = document.getElementById('search-movies-grid');
     const lowerQuery = query.toLowerCase().trim();
-    
+    const mode = this._quizMode || 'solo';
+
     let results = MOVIES_DATABASE;
     if (lowerQuery) {
-      results = MOVIES_DATABASE.filter(m => m.title.toLowerCase().includes(lowerQuery) || m.director.toLowerCase().includes(lowerQuery));
+      results = MOVIES_DATABASE.filter(m =>
+        m.title.toLowerCase().includes(lowerQuery) ||
+        (m.director || '').toLowerCase().includes(lowerQuery)
+      );
     }
 
     if (results.length === 0) {
@@ -3946,8 +4009,9 @@ class CineMasterApp {
       const posterStyle = m.posterUrl
         ? `background-image: url('${m.posterUrl}')`
         : `background: var(--bg-secondary)`;
+      const safeTitle = m.title.replace(/'/g, "\\'");
       return `
-        <div class="movie-card" onclick="app.startSpecificQuiz('${m.title.replace(/'/g,"\\'")}', false)">
+        <div class="movie-card" onclick="app.startSpecificQuiz('${safeTitle}', false, '${mode}')">
           <div class="movie-poster" style="${posterStyle}"></div>
           <div class="movie-info">
             <div class="movie-title">${m.title}</div>
@@ -3959,13 +4023,14 @@ class CineMasterApp {
     }).join('');
   }
 
-  startSpecificQuiz(movieTitle, isUpcoming) {
+  startSpecificQuiz(movieTitle, isUpcoming, mode = 'solo') {
     this.playSynthSound('click');
     const db = isUpcoming ? UPCOMING_MOVIES_DATABASE : MOVIES_DATABASE;
     const selectedMovie = db.find(m => m.title === movieTitle);
-    
+
     if (!selectedMovie) return;
 
+    // 단체전: 해당 영화 1편으로 퀴즈 시작 (싱글 플레이와 동일, 완료 후 안내 표시)
     this.currentQuiz.type = 'score';
     this.currentQuiz.currentIndex = 0;
     this.currentQuiz.score = 0;
@@ -3974,19 +4039,17 @@ class CineMasterApp {
     this.currentQuiz.maxComboThisRun = 0;
     this.currentQuiz.isUpcoming = isUpcoming;
     this.currentQuiz.upcomingAnswers = {};
-    
+    this.currentQuiz.groupMode = (mode === 'group');
+
     this.currentQuiz.movies = [selectedMovie];
     this.currentQuiz.currentStep = 0;
     this.currentQuiz.stepAnswers = [];
     this.currentQuiz.correctAnswersCount = 0;
-    
+
     this.setupScoreQuizLayout();
-    
     this.switchView('quiz');
     this.activateQuizPanel('score');
-    
     document.getElementById('quiz-round-container').style.display = 'none';
-    
     this.startTimer();
   }
 
@@ -4559,11 +4622,14 @@ class CineMasterApp {
   renderFilmoChoices(choices, name, isNegativeQuestion, correctAnswerTitle) {
     const container = document.getElementById('filmo-choices');
     container.innerHTML = choices.map(c => {
-      // MOVIES_DATABASE에서 포스터 조회
-      const movieData = typeof MOVIES_DATABASE !== 'undefined'
-        ? MOVIES_DATABASE.find(m => m.title === c.title)
-        : null;
-      const posterUrl = movieData?.posterUrl || '';
+      // 1순위: FILMO_POSTERS 딕셔너리, 2순위: MOVIES_DATABASE
+      let posterUrl = '';
+      if (typeof FILMO_POSTERS !== 'undefined' && FILMO_POSTERS[c.title]) {
+        posterUrl = FILMO_POSTERS[c.title];
+      } else if (typeof MOVIES_DATABASE !== 'undefined') {
+        const movieData = MOVIES_DATABASE.find(m => m.title === c.title);
+        posterUrl = movieData?.posterUrl || '';
+      }
       const posterStyle = posterUrl
         ? `background-image:url('${posterUrl}');background-size:cover;background-position:center;`
         : `background:var(--bg-secondary);`;
@@ -4873,78 +4939,8 @@ class CineMasterApp {
   }
 
   showGroupQuizLobby() {
-    this.playSynthSound('click');
-    document.getElementById('score-quiz-options').style.display = 'none';
-    document.getElementById('upcoming-list-section').style.display = 'none';
-    document.getElementById('released-search-section').style.display = 'none';
-    const lobby = document.getElementById('group-quiz-lobby-section');
-    lobby.style.display = 'block';
-    this.renderGroupLobby();
-  }
-
-  renderGroupLobby() {
-    const roomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-    const lobby = document.getElementById('group-quiz-lobby-section');
-    lobby.innerHTML = `
-      <div class="flex-center" style="justify-content: space-between; margin-bottom: 20px;">
-        <h4 style="font-size: 0.9rem;">단체 퀴즈 로비</h4>
-        <button class="btn-icon-text p-0" onclick="app.showScoreOptions()">
-          <span class="material-symbols-outlined" style="font-size: 1rem;">close</span>
-        </button>
-      </div>
-      <div class="glass-card text-center fade-in" style="padding:24px 16px;">
-        <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--color-primary);">diversity_3</span>
-        <h3 style="margin: 16px 0 8px;">멀티플레이 대기실</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
-          방을 생성하거나 초대 코드를 입력하여 친구들과 함께 퀴즈를 풀어보세요.
-        </p>
-
-        <div class="multiplayer-section" style="margin-bottom:20px;">
-          <h4 style="font-size:0.85rem; text-align:left; margin-bottom:8px; color:var(--text-muted);">방 만들기</h4>
-          <div class="room-code-display glass-card" style="padding:12px; text-align:center; letter-spacing:6px; font-size:1.4rem; font-weight:700; color:var(--color-primary); margin-bottom:8px;">
-            ${roomCode}
-          </div>
-          <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:12px;">위 코드를 친구에게 공유하세요</p>
-          <button class="btn-primary w-100 mb-2" onclick="app.startGroupRoom('${roomCode}')">
-            <span class="material-symbols-outlined">add_circle</span> 이 코드로 방 열기
-          </button>
-        </div>
-
-        <div class="divider-line" style="border-top:1px solid var(--border-color); margin:16px 0;"></div>
-
-        <div class="multiplayer-section">
-          <h4 style="font-size:0.85rem; text-align:left; margin-bottom:8px; color:var(--text-muted);">초대 코드로 입장</h4>
-          <div class="form-group mb-0 flex-center" style="gap: 8px;">
-            <input type="text" id="room-code-input" class="form-control" placeholder="초대 코드 6자리" maxlength="6"
-              style="flex:1; text-transform:uppercase; letter-spacing:4px; text-align:center; font-size:1.1rem;">
-            <button class="btn-secondary" style="white-space: nowrap; height: 48px;"
-              onclick="app.joinGroupRoom()">입장</button>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  startGroupRoom(code) {
-    showToast(`🎮 방 코드 <b>${code}</b> 생성 완료! 친구가 입장하면 자동으로 시작됩니다.`, 'info', 5000);
-    // 실제 멀티플레이는 백엔드 필요 — 현재는 1인 로컬 모드로 바로 진행
-    setTimeout(() => {
-      showToast('현재는 싱글 플레이 모드로 진행합니다.', 'info', 2500);
-      this.startQuiz('score');
-    }, 2000);
-  }
-
-  joinGroupRoom() {
-    const code = (document.getElementById('room-code-input')?.value || '').trim().toUpperCase();
-    if (code.length < 4) {
-      showToast('⚠️ 유효한 초대 코드를 입력해 주세요.', 'warn');
-      return;
-    }
-    showToast(`🚪 방 코드 <b>${code}</b>로 입장 시도 중...`, 'info', 2500);
-    setTimeout(() => {
-      showToast('현재는 싱글 플레이 모드로 진행합니다.', 'info', 2500);
-      this.startQuiz('score');
-    }, 2000);
+    // 더 이상 사용하지 않음 — 개봉작/개봉예정작 목록에서 개인전/단체전 선택
+    this.showScoreOptions();
   }
 
   shuffleArray(array) {
