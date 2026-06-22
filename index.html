@@ -934,10 +934,71 @@ button, .btn {
 }
 
 .movie-list-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* 1열 영화 카드 — 좌측 포스터 + 우측 정보 */
+.movie-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.movie-card:hover, .movie-card:active {
+  border-color: var(--color-primary);
+  background: var(--bg-secondary);
+}
+
+.movie-poster {
+  width: 64px;
+  height: 90px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-secondary);
+  /* 컬러 포스터 */
+}
+
+.movie-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.movie-info .movie-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-info .movie-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-info .movie-cast {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movie-list-item {
@@ -2697,7 +2758,7 @@ button, .btn {
   <!-- Scripts -->
   <script>
 // score - Movies Database
-// 자동 업데이트: 2026-06-22 09:12 KST
+// 자동 업데이트: 2026-06-22 09:19 KST
 // 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
 
 const MOVIES_DATABASE = [
@@ -2806,7 +2867,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-06-22 09:12 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-06-22 09:19 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -3129,29 +3190,9 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "\ucea0\ud551\uce74\ub97c \ud0c0\uace0 \uc720\ub791 \uc0dd\ud65c\uc744 \uc2dc\uc791\ud55c \ucee4\ud50c \u2018\ub9e4\ub514\u2019\uc640 \u2018\ud0c0\uc77c\ub7ec\u2019\ub294 \uc5b4\ub290 \ub2a6\uc740 \ubc24 \ub3c4\ub85c \uc704\uc5d0\uc11c \uc6b4\uc804\uc790\uac00 \uc0ac\ub9dd\ud558\ub294 \ub054\ucc0d\ud55c \uc0ac\uace0\ub97c \ubaa9\uaca9\ud55c\ub2e4. \uadf8 \ud6c4 \ucc28\ub7c9\uc5d0 \uc54c \uc218 \uc5c6\ub294 \ud45c\uc2dd\uc774 \uc0dd\uaca8 \ubd88\uc548\ud55c \ub9e4\ub514\uc758 \ub208\uc5d0\ub9cc \uc815\uccb4\ubd88\uba85\uc758 \ub0a8\uc790\uac00 \ubcf4\uc774\uae30 \uc2dc\uc791\ud558\uace0, \uace7 \uadf8\ub4e4\uc740 \u2018\ud328\uc2e0\uc800\u2019\ub77c\uace0 \ubd88\ub9ac\uc6b0\ub294 \uace0\ub300 \uc545\ub9c8\uc758 \ud45c\uc801\uc774 \ub418\uc5c8\uc74c\uc744 \uc54c\uac8c \ub41c\ub2e4. \ubaa9\uc228\uc744 \ub178\ub9ac\ub294 \u2018\ud328\uc2e0\uc800\u2019\uc758 \uacf5\uaca9\uc744 \ud53c\ud574 \ub450 \uc0ac\ub78c\uc740 \uacc4\uc18d \ub3c4\ub9dd\uce58\ub824 \uc560\uc4f0\uc9c0\ub9cc \uc9d1\uc694\ud55c \ucd94\uaca9\uc740 \uadf8\ub4e4\uc758 \ud131\ubc11\uae4c\uc9c0 \ub2e4\ub2e4\ub974\ub294\ub370\u2026"
   },
   {
-    id: "upcoming_20262943", title: "\ub9ac\ube0c \uc6d0 \ub370\uc774", director: "",
-    cast: [],
-    releaseDate: "2026-06-24", genre: ["멜로/로맨스"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/dirPUOERia6hLqSifJaviA16GKh.jpg",
-    isRevealed: false,
-    overview: "\ud504\ub791\uc2a4 \uc694\ub9ac \uc11c\ubc14\uc774\ubc8c '\ud0d1 \uc170\ud504'\uc5d0\uc11c \uc6b0\uc2b9\uc744 \ucc28\uc9c0\ud55c \ud30c\ub9ac\uc758 \uc2a4\ud0c0 \uc170\ud504 '\uc138\uc2e4'. \uc0c8 \ub808\uc2a4\ud1a0\ub791 \uac1c\uc5c5\uc744 \uc55e\ub450\uace0 \uc788\ub358 \uadf8\ub140\uc5d0\uac8c \uc544\ubc84\uc9c0\uac00 \uc4f0\ub7ec\uc84c\ub2e4\ub294 \uccad\ucc9c\ubcbd\ub825 \uac19\uc740 \uc18c\uc2dd\uc774 \ub0a0\uc544\ub4e0\ub2e4. \uae09\ud788 \ub0b4\ub824\uac04 \uace0\ud5a5\uc5d0\uc11c \uc138\uc2e4\uc744 \ub9de\uc774\ud55c \uac74, \uc2ec\uc7a5\ub9c8\ube44 \ud6c4\uc5d0\ub3c4 \ud734\uac8c\uc18c \uc2dd\ub2f9 \uc77c\uc744 \uace0\uc9d1\ud558\ub294 \uc544\ubc84\uc9c0\uc640 \uccab\uc0ac\ub791 '\ub77c\ud30c\uc5d8'\uacfc \uc5f0\uc778 '\uc18c\ud53c\uc559'\uc758 \ud33d\ud33d\ud55c \uc2e0\uacbd\uc804! \ub73b\ubc16\uc758 \uc18c\ub3d9\uc774 \ub4a4\uc5c9\ud0a8 \uadf8\uacf3, \uc8fc\ubc29\ubcf4\ub2e4 \ub354 \uce58\uc5f4\ud55c \uc778\uc0dd\uc774\ub780 \uc11c\ubc14\uc774\ubc8c \uc18d\uc5d0\uc11c \uacfc\uc5f0 '\uc138\uc2e4'\uc740 \uc78a\uace0 \uc788\ub358 \ud589\ubcf5\uc758 \ub808\uc2dc\ud53c\ub97c \ucc3e\uc744 \uc218 \uc788\uc744\uae4c?"
-  },
-  {
-    id: "upcoming_20264358", title: "\ubc29\uacfc\ud6c4 \ud1f4\ub9c8\ud074\ub7fd: \uc18c\ub140\ub4e4\uc758 \ubc24", director: "",
-    cast: [],
-    releaseDate: "2026-06-25", genre: ["공포(호러)", "코미디"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/yTWusGG0VW6U8RXMo6d6GtzbLMY.jpg",
-    isRevealed: false,
-    overview: "\uc74c\uae30\uac00 \uac00\ub4dd\ud55c \ud314\uc790\uc5ec\uc790\uace0\ub4f1\ud559\uad50. \uc5b4\ub290 \ub0a0 \ud559\uad50\uc5d0 \uae30\ubb18\ud55c \uc77c\ub4e4\uc774 \uc5f0\uc774\uc5b4 \uc0dd\uae30\uc790, \uad50\uc7a5 \uc120\uc0dd\ub2d8\uc740 \uc0ac\uc8fc\ud314\uc790\uac00 \ucc30\ub5a1\uad81\ud569\uc778 \u2018\uc9c4\uc2ec\u2019, \u2018\uc18c\ub77c\u2019, \u2018\uc6b0\uc218\u2019, \u2018\uc870\uc5f0\u2019, \u2018\uc544\uc601\u2019\uc5d0\uac8c \uc9c0\ubc15\ub839\uc744 \ud1f4\uce58\ud558\uace0 \ud559\uad50\ub97c \uc9c0\ud0a4\ub77c\ub294 \ube44\ubc00 \uc784\ubb34\ub97c \ub9e1\uae30\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20259869", title: "\uad6d\uac00\ucd08\uae30\ud654", director: "",
-    cast: [],
-    releaseDate: "2026-06-25", genre: ["다큐멘터리"],
+    id: "upcoming_20264241", title: "\uc815\ub3d9\uc6d0 \ud32c\ucf58\uc11c\ud2b8 \ud544\ub984 : \ub2e4\uc2dc \ub9cc\ub098\ub294 \uae38", director: "\ub098\uc0c1\uc778",
+    cast: ["정동원"],
+    releaseDate: "2026-06-26", genre: ["공연"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "",
@@ -3159,14 +3200,34 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: ""
   },
   {
-    id: "upcoming_20264072", title: "\uae08\ubc1c\uc774 \ub418\uace0 \uc2f6\uc5b4", director: "",
-    cast: ["맥케나 그레이스"],
-    releaseDate: "2026-06-26", genre: ["스릴러"],
+    id: "upcoming_20264569", title: "\ub808\ub514 \uc624\uc5b4 \ub0ab: \uc8fd\uc74c\uc758 \uc228\ubc14\uaf2d\uc9c8", director: "\ub9f7 \ubca0\ud2f0\ub12c\ub9ac-\uc62c\ud540",
+    cast: ["사마라 위빙", "캐서린 뉴튼", "사라 미셸 겔러"],
+    releaseDate: "2026-07-01", genre: ["공포(호러)", "코미디"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/gYiWShxkNTAtedD4xR4uvw8XYvE.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/9XMwsbof7HoOiNxEahreQay3pXs.jpg",
     isRevealed: false,
-    overview: "\ub610\ub798\ub4e4\uc758 \uc2dc\uc120\uacfc \uc790\uc2e0\uc758 \uc815\uccb4\uc131 \uc0ac\uc774\uc5d0\uc11c \ud754\ub4e4\ub9ac\ub294 \uc911\uad6d\uacc4 \ubbf8\uad6d\uc778 \uc18c\ub140\uac00, \ud504\ub86c \ud038\uc758 \uc790\ub9ac\ub97c \uafc8\uafb8\uba70 \ubc31\uc778\ucc98\ub7fc \ubcf4\uc774\uae30 \uc704\ud55c \uc704\ud5d8\ud55c \uc2e4\ud5d8\uc801 \uc218\uc220\uc744 \uc120\ud0dd\ud55c\ub2e4."
+    overview: "\ub974 \ub3c4\ub9c8\uc2a4 \uac00\ubb38\uc758 \uacf5\uaca9\uc5d0\uc11c \uac04\uc2e0\ud788 \uc0b4\uc544\ub0a8\uc740 \uc9c0 \uba87 \ubd84\ub3c4 \ub418\uc9c0 \uc54a\uc544 \uadf8\ub808\uc774\uc2a4\ub294 \uc790\uc2e0\uc774 \uc774 \uc545\ubabd \uac19\uc740 \uac8c\uc784\uc758 \u2018\ub2e4\uc74c \ub808\ubca8\u2019\uc5d0 \ub3c4\ub2ec\ud588\ub2e4\ub294 \uc0ac\uc2e4\uc744 \uae68\ub2eb\ub294\ub2e4. \uc774\ubc88\uc5d0\ub294 \uc624\ub7ab\ub3d9\uc548 \uc655\ub798 \uc5c6\ub358 \uc5ec\ub3d9\uc0dd \ud398\uc774\uc2a4\uae4c\uc9c0 \ud568\uaed8\ub2e4."
+  },
+  {
+    id: "upcoming_20245245", title: "\uadf8\ub9bc\uc790 \uc544\uc774", director: "\uc720\uc740\uc815",
+    cast: ["박소이", "유나", "임수정"],
+    releaseDate: "2026-07-01", genre: ["미스터리", "판타지", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/AakJaXtDkG2WVME26duyaZOZe8g.jpg",
+    isRevealed: false,
+    overview: "\uc5b8\ub2c8\uc640 \ud568\uaed8 \uc625\uc0c1\uc5d0\uc11c \ub5a8\uc5b4\uc9c4 \ud6c4 3\ub144\uac04 \uc758\uc2dd\uc744 \uc783\uc5c8\ub358 \uc218\uc548. \uae68\uc5b4\ub098 \ubcf4\ub2c8 \uc0ac\ub791\ud558\ub294 \uc5b8\ub2c8 \uc218\ub828\uc740 \uc774\uc81c \uc138\uc0c1\uc5d0 \uc5c6\uace0, \ucd94\uc5b5\uc73c\ub85c \uac00\ub4dd\ud588\ub358 \uc9d1 \uc5ed\uc2dc \ub5a0\ub098\uc654\ub2e4. \uac8c\ub2e4\uac00 \ub2e4\uc815\ud558\uace0 \ub530\ub73b\ud588\ub358 \uc5c4\ub9c8 \uae08\uc625\uc740 \uc790\uafb8\ub9cc \ubb34\uc5b8\uac00 \uc228\uae30\ub294 \uac83 \uac19\uace0 \uc5b4\ub518\uac00 \ubaa8\ub974\uac8c \ubd88\uc548\ud574 \ubcf4\uc778\ub2e4. \uc5b8\ub2c8\uc758 \uc8fd\uc74c\uc5d0 \uc790\uc2e0\uc774 \ubaa8\ub974\ub294 \ubb34\uc5b8\uac00\uac00 \uc788\uc74c\uc744 \ub290\ub07c\ub358 \uc5b4\ub290 \ub0a0 \uc218\uc548\uc758 \ub208\uc55e\uc5d0 \uc8fd\uc740 \uc5b8\ub2c8\uc640 \ub611\uac19\uc740 \uc5bc\uad74\uc744 \ud55c \uc7ac\uc778\uc774 \ub098\ud0c0\ub098\uace0, \uc218\uc548\uc740 \uacfc\uac70 \uc5b8\ub2c8\uac00 \ub4e4\ub824\uc8fc\ub358 \u2018\uadf8\ub9bc\uc790 \ub3d9\ud654\u2019\ub97c \ub5a0\uc62c\ub9b0\ub2e4. \u201c\uc678\ub85c\uc6b4 \uadf8\ub9bc\uc790\uac00 \uaf2d \ub2ee\uc740 \ub450 \uc544\uc774\ub97c \ucc3e\uc544\uc654\uc5b4. \ub108\ud76c\ub294 \ubab8\uc774 \ub450 \uac1c\ub2c8\uae4c \ud558\ub098\ub97c \uc918\u201d \uc5b8\ub2c8\uc758 \uc8fd\uc74c, \uc7ac\uc778\uc758 \ub4f1\uc7a5, \ubc84\ub824\uc9c4 \uc61b\uc9d1 \uadf8\ub9ac\uace0 \uadf8\ub9bc\uc790 \ub3d9\ud654. \uc9c0\uae08 \uc218\uc548\uc5d0\uac90 \ubb34\uc2a8 \uc77c\uc774 \ubc8c\uc5b4\uc9c0\uace0 \uc788\ub294 \uac78\uae4c?"
+  },
+  {
+    id: "upcoming_20263530", title: "\ub9c8\ud2f0 \uc288\ud504\ub9bc", director: "\uc870\uc26c \uc0ac\ud504\ub514",
+    cast: ["티모시 샬라메", "기네스 팰트로우", "오데사 아지온"],
+    releaseDate: "2026-07-01", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/hqzCMHTuymM7FOZwpHfW5meiX1m.jpg",
+    isRevealed: false,
+    overview: "\uc5b4\ub5a4 \ub300\uac00\ub97c \uce58\ub974\ub354\ub77c\ub3c4 \ubc18\ub4dc\uc2dc \uac00\uc7a5 \ub192\uc740 \uacf3\uc73c\ub85c! \ud0c1\uad6c\ub85c \uc778\uc0dd \uc5ed\uc804\uc744 \uafc8\uafb8\ub294 \ub9c8\ud2f0 \ub9c8\uc6b0\uc800\ub294 \uad74\uc695\uc801\uc778 \ud328\ubc30 \ud6c4 \ub204\uad6c\ub3c4 \ubb34\uc2dc\ud560 \uc218 \uc5c6\ub294 \uc131\uacf5\uc744 \uc190\uc5d0 \ub123\uae30\ub85c \uacb0\uc2ec\ud55c\ub2e4. \ucd5c\uace0\uac00 \ub418\uae30 \uc704\ud574 \ubaa8\ub4e0 \uac83\uc744 \uac78\uace0 \uc9c0\uc625\uae4c\uc9c0 \uc9c8\uc8fc\ud558\ub294 \ub9c8\ud2f0 \ub9c8\uc6b0\uc800\uc758 \uafc8\uc740 \uc774\ub8e8\uc5b4\uc9c8 \uc218 \uc788\uc744\uae4c?"
   }
 ];
 
@@ -3725,21 +3786,24 @@ class CineMasterApp {
 
     grid.innerHTML = filtered.map(m => {
       const isRevealed = !!m.isRevealed;
+      const dDay = Math.ceil((new Date(m.releaseDate) - todayKST) / 86400000);
       const badge = isRevealed
         ? `<span class="movie-badge badge-revealed">정답 공개됨</span>`
-        : `<span class="movie-badge badge-upcoming">D-${Math.ceil((new Date(m.releaseDate) - todayKST) / 86400000)}일</span>`;
+        : `<span class="movie-badge badge-upcoming">D-${dDay}일 (${m.releaseDate})</span>`;
       const action = isRevealed
-        ? `onclick="app.showRevealedResult('${m.title}')"`
-        : `onclick="app.startSpecificQuiz('${m.title}', true)"`;
+        ? `onclick="app.showRevealedResult('${m.title.replace(/'/g,"\\'")}')"`
+        : `onclick="app.startSpecificQuiz('${m.title.replace(/'/g,"\\'")}', true)"`;
       const posterStyle = m.posterUrl
         ? `background-image: url('${m.posterUrl}')`
         : `background: var(--bg-secondary)`;
+      const castStr = (m.cast || []).slice(0, 3).join(', ');
       return `
-        <div class="movie-card hover-lift" ${action}>
+        <div class="movie-card" ${action}>
           <div class="movie-poster" style="${posterStyle}"></div>
           <div class="movie-info">
             <div class="movie-title">${m.title}</div>
-            <div class="movie-director">${m.director || '감독 미정'} | ${m.releaseDate}</div>
+            <div class="movie-meta">감독: ${m.director || '미정'}</div>
+            ${castStr ? `<div class="movie-cast">${castStr}</div>` : ''}
             ${badge}
           </div>
         </div>
@@ -3833,15 +3897,22 @@ class CineMasterApp {
       return;
     }
 
-    grid.innerHTML = results.slice(0, 10).map(m => `
-      <div class="movie-card hover-lift" onclick="app.startSpecificQuiz('${m.title}', false)">
-        <div class="movie-poster" style="background-image: url('${m.posterUrl}')"></div>
-        <div class="movie-info">
-          <div class="movie-title">${m.title}</div>
-          <div class="movie-director">D: ${m.director}</div>
+    grid.innerHTML = results.slice(0, 15).map(m => {
+      const castStr = (m.cast || []).slice(0, 3).join(', ');
+      const posterStyle = m.posterUrl
+        ? `background-image: url('${m.posterUrl}')`
+        : `background: var(--bg-secondary)`;
+      return `
+        <div class="movie-card" onclick="app.startSpecificQuiz('${m.title.replace(/'/g,"\\'")}', false)">
+          <div class="movie-poster" style="${posterStyle}"></div>
+          <div class="movie-info">
+            <div class="movie-title">${m.title}</div>
+            <div class="movie-meta">감독: ${m.director || '—'} | ${m.releaseDate || ''}</div>
+            ${castStr ? `<div class="movie-cast">${castStr}</div>` : ''}
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   startSpecificQuiz(movieTitle, isUpcoming) {
