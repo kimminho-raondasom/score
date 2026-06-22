@@ -813,6 +813,32 @@ button, .btn {
   border: none;
 }
 
+/* 내비 알파벳 뱃지 */
+.nav-letter {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border-color);
+  letter-spacing: 0;
+  transition: all var(--transition-fast);
+  line-height: 1;
+}
+
+.nav-item.active .nav-letter {
+  border-color: var(--text-main);
+  background: var(--text-main);
+  color: var(--bg-primary);
+}
+
+.nav-item:not(.active) .nav-letter {
+  color: var(--text-muted);
+}
+
 .nav-item .material-symbols-outlined {
   font-size: 1.6rem;
   font-weight: 300;
@@ -822,7 +848,7 @@ button, .btn {
   color: var(--text-main);
 }
 .nav-item.active .material-symbols-outlined {
-  font-weight: 600; /* Bolder icon when active */
+  font-weight: 600;
 }
 
 .tab-pane {
@@ -2254,6 +2280,22 @@ html, body, .app-container, .view-section, .glass-card {
   font-weight: 300;
 }
 
+/* 섹션 알파벳 뱃지 (O / M / L) */
+.mode-letter-badge {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--text-main);
+  color: var(--text-main);
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+
 .mode-card-title {
   font-family: 'Outfit', sans-serif;
   font-size: 1.15rem;
@@ -2479,8 +2521,8 @@ html, body, .app-container, .view-section, .glass-card {
 }
 
 .comment-movie-poster {
-  width: 96px;
-  height: 140px;
+  width: 120px;
+  height: 175px;
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
@@ -2810,9 +2852,7 @@ html, body, .app-container, .view-section, .glass-card {
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
-                    <div class="mode-icon-container boxoffice-color">
-                      <span class="material-symbols-outlined">analytics</span>
-                    </div>
+                    <div class="mode-letter-badge">O</div>
                     <span class="mode-card-title">Otaku</span>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showScoreOptions()">
@@ -2828,9 +2868,7 @@ html, body, .app-container, .view-section, .glass-card {
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
-                    <div class="mode-icon-container filmo-color">
-                      <span class="material-symbols-outlined">recent_actors</span>
-                    </div>
+                    <div class="mode-letter-badge">M</div>
                     <span class="mode-card-title">Mania</span>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showFilmoOptions()">
@@ -2846,9 +2884,7 @@ html, body, .app-container, .view-section, .glass-card {
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
-                    <div class="mode-icon-container quote-color">
-                      <span class="material-symbols-outlined">campaign</span>
-                    </div>
+                    <div class="mode-letter-badge">L</div>
                     <span class="mode-card-title">Light</span>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showLinesOptions()">
@@ -3053,9 +3089,9 @@ html, body, .app-container, .view-section, .glass-card {
         <!-- JS로 동적 렌더링 -->
       </div>
 
-      <!-- 예전 영화 검색창 -->
+      <!-- 영화 검색창 -->
       <div id="comment-search-section" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-color);">
-        <div style="font-size:0.78rem;color:var(--text-muted);letter-spacing:1px;margin-bottom:12px;text-transform:uppercase;">예전 영화 검색</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);letter-spacing:1px;margin-bottom:12px;text-transform:uppercase;">영화 검색</div>
         <div style="display:flex;gap:10px;align-items:center;">
           <input type="text" id="comment-search-input" class="form-control" placeholder="영화 제목을 입력하세요" style="flex:1;padding:12px 14px;font-size:0.9rem;" oninput="app.searchCommentMovies(this.value)">
         </div>
@@ -3066,7 +3102,7 @@ html, body, .app-container, .view-section, .glass-card {
     <!-- 3.6. MY ROOM (PROFILE/STATS) TAB SECTION -->
     <section id="view-myroom" class="view-section">
       <header class="app-header" style="margin-top:0;padding-top:0;">
-        <h2 class="section-title" style="margin-bottom:0;">내 정보 (MY)</h2>
+        <h2 class="section-title" style="margin-bottom:0;">내 정보 (MY LOG)</h2>
       </header>
       <!-- Stats Grid -->
       <div class="stats-container fade-in">
@@ -3460,22 +3496,22 @@ html, body, .app-container, .view-section, .glass-card {
     -->
     
     <!-- BOTTOM NAVIGATION BAR -->
-    <nav class="bottom-nav" id="bottom-nav-bar" style="display: none;">
-      <div class="bottom-nav-inner">
-        <button class="nav-item active" onclick="app.switchTab('dashboard')">
-          <span class="material-symbols-outlined">quiz</span>
-          <span>플레이</span>
-        </button>
-        <button class="nav-item" onclick="app.switchTab('forum')">
-          <span class="material-symbols-outlined">forum</span>
-          <span>코멘트</span>
-        </button>
-        <button class="nav-item" onclick="app.switchTab('myroom')">
-          <span class="material-symbols-outlined">person</span>
-          <span>마이록</span>
-        </button>
-      </div>
-    </nav>
+     <nav class="bottom-nav" id="bottom-nav-bar" style="display: none;">
+       <div class="bottom-nav-inner">
+         <button class="nav-item active" onclick="app.switchTab('dashboard')">
+           <span class="nav-letter">P</span>
+           <span>플레이</span>
+         </button>
+         <button class="nav-item" onclick="app.switchTab('forum')">
+           <span class="nav-letter">C</span>
+           <span>코멘트</span>
+         </button>
+         <button class="nav-item" onclick="app.switchTab('myroom')">
+           <span class="nav-letter">M</span>
+           <span>마이록</span>
+         </button>
+       </div>
+     </nav>
 
   </div>
 
@@ -5086,8 +5122,8 @@ class CineMasterApp {
           </div>
           <span class="comment-week-badge ${badgeClass}">${badgeText}</span>
         </div>
-        ${inputArea}
         ${reviewsHtml}
+        ${inputArea}
       </div>`;
   }
 
