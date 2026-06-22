@@ -58,6 +58,83 @@
   padding: 0;
 }
 
+/* ── 스플래시 스크린 ──────────────────────────────────────────────────── */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+#splash-screen.hidden {
+  animation: splashFadeOut 0.6s ease forwards;
+}
+
+@keyframes splashFadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.splash-inner {
+  text-align: center;
+  position: relative;
+}
+
+/* 카피: "당신의 영화를 score하세요" */
+.splash-copy {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.05em;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: -52px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: splashCopyIn 0.7s 0.3s ease forwards,
+             splashCopyOut 0.5s 2.0s ease forwards;
+}
+
+@keyframes splashCopyIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes splashCopyOut {
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
+/* 로고: "score." */
+.splash-logo {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(3rem, 12vw, 5rem);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 4px;
+  opacity: 0;
+  transform: scale(0.92);
+  animation: splashLogoIn 0.8s 0.2s cubic-bezier(0.2,0,0,1) forwards,
+             splashLogoSettle 0.4s 2.5s ease forwards;
+}
+
+.splash-dot {
+  color: #e6b87a;
+}
+
+@keyframes splashLogoIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 로고만 남기고 크게 + 중앙 유지 후 페이드아웃 */
+@keyframes splashLogoSettle {
+  0%   { opacity: 1; transform: scale(1); }
+  50%  { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0; transform: scale(1.08); }
+}
+
 html {
   width: 100%;
   max-width: 100%;
@@ -1883,23 +1960,83 @@ button, .btn {
 /* Responsive adjustments */
 @media (max-width: 480px) {
   .app-container {
-    padding: 16px;
+    padding: 14px;
     padding-bottom: 90px;
   }
   .glass-card {
-    padding: 24px 16px;
+    padding: 20px 14px;
   }
   .form-row {
     flex-direction: column;
     gap: 0;
   }
   .stats-container {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   .g-options-grid, .g-options-list {
     grid-template-columns: 1fr;
   }
+  /* 퀴즈 헤더 — 텍스트 축소 */
+  .quiz-header-bar {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .quiz-score-indicator {
+    font-size: 0.72rem;
+  }
+  .scoreboard-minimal {
+    font-size: 0.78rem;
+  }
+  /* 모드 카드 */
+  .mode-card {
+    padding: 16px 14px;
+  }
+  .mode-card h3 {
+    font-size: 1rem;
+  }
+  /* 영화 카드 */
+  .movie-poster {
+    width: 56px;
+    height: 80px;
+  }
+  .movie-info .movie-title {
+    font-size: 0.85rem;
+  }
+  /* 필모그래피 카드 */
+  .filmo-choices-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .filmo-choice-label {
+    font-size: 0.72rem;
+    padding: 6px 6px;
+  }
+  /* 퀴즈 옵션 */
+  .quiz-option-btn {
+    padding: 12px;
+  }
+  /* 스텝 인디케이터 */
+  .step-dot {
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+  }
+  /* 버튼 */
+  .btn-primary, .btn-secondary {
+    padding: 13px 16px;
+    font-size: 0.88rem;
+  }
+  /* 토론방 */
+  .forum-post-card {
+    padding: 14px;
+  }
+}
+
+/* 가로 스크롤 완전 차단 — 모든 자식 요소 */
+html, body, .app-container, .view-section, .glass-card {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* ==========================================================================
@@ -2072,7 +2209,15 @@ button, .btn {
 </head>
 <body>
 
-  <!-- Background Minimal Ambient Glow (very subtle dark gray) -->
+  <!-- ── SPLASH SCREEN (로딩 애니메이션) ── -->
+  <div id="splash-screen" aria-hidden="true">
+    <div class="splash-inner">
+      <div class="splash-copy">당신의 영화를 score하세요</div>
+      <div class="splash-logo">score<span class="splash-dot">.</span></div>
+    </div>
+  </div>
+
+  <!-- Background Minimal Ambient Glow -->
   <div class="glow-bg">
     <div class="glow-circle glow-circle-1"></div>
   </div>
@@ -2642,6 +2787,9 @@ button, .btn {
         <div class="finale-feedback-card" id="finale-feedback">
           영화 흥행 요소를 바라보는 통찰력이 대단하십니다! 조금만 더 세밀하게 스코어를 예측한다면 천만 영화 배급사 대표 등급도 노려볼 수 있습니다.
         </div>
+
+        <!-- 단체전 결과 (동적으로 채워짐) -->
+        <div id="group-results-section" style="display:none;"></div>
 
         <button id="btn-back-to-dash" class="btn-primary w-100 mt-4">
           <span>대시보드로 복귀</span>
@@ -4040,6 +4188,15 @@ class CineMasterApp {
     this.currentQuiz.isUpcoming = isUpcoming;
     this.currentQuiz.upcomingAnswers = {};
     this.currentQuiz.groupMode = (mode === 'group');
+    // 단체전: 세션 ID (영화명 기반, 같은 기기에서 공유)
+    if (mode === 'group') {
+      const existingSession = localStorage.getItem('score_group_current_session');
+      this.currentQuiz.groupSessionId = existingSession || `${selectedMovie.title}_${Date.now()}`;
+      localStorage.setItem('score_group_current_session', this.currentQuiz.groupSessionId);
+    } else {
+      this.currentQuiz.groupSessionId = null;
+      localStorage.removeItem('score_group_current_session');
+    }
 
     this.currentQuiz.movies = [selectedMovie];
     this.currentQuiz.currentStep = 0;
@@ -4791,7 +4948,7 @@ class CineMasterApp {
     }
 
     // ── 퀴즈 기록 저장 ──────────────────────────────────────────────────
-    this.saveQuizHistory({
+    const historyRecord = {
       type:     this.currentQuiz.type,
       movies:   this.currentQuiz.movies.map(m => m.title),
       score:    this.currentQuiz.score,
@@ -4800,7 +4957,26 @@ class CineMasterApp {
       combo:    this.currentQuiz.maxComboThisRun,
       accuracy: quizAccuracy,
       date:     new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
-    });
+      nickname: this.currentUser.nickname,
+    };
+    this.saveQuizHistory(historyRecord);
+
+    // ── 단체전: 공유 세션에 답안 저장 (수정 불가) ───────────────────────
+    if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+      this.saveGroupAnswer(this.currentQuiz.groupSessionId, {
+        nickname: this.currentUser.nickname,
+        score:    this.currentQuiz.score,
+        total:    totalRounds,
+        accuracy: quizAccuracy,
+        xp:       this.currentQuiz.totalXpEarned,
+        combo:    this.currentQuiz.maxComboThisRun,
+        answers:  this.currentQuiz.upcomingAnswers || {},
+        stepAnswers: this.currentQuiz.stepAnswers || [],
+        movie:    this.currentQuiz.movies[0]?.title || '',
+        locked:   true,   // 수정 불가 플래그
+        date:     new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+      });
+    }
 
     this.saveProfile();
     this.checkAndUnlockAchievements();
@@ -4821,7 +4997,100 @@ class CineMasterApp {
     }
     document.getElementById('finale-feedback').innerText = feedback;
 
+    // 단체전이면 결과 화면에 다른 참가자 답안 표시
+    if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+      this.renderGroupResults(this.currentQuiz.groupSessionId);
+    } else {
+      const groupSection = document.getElementById('group-results-section');
+      if (groupSection) groupSection.style.display = 'none';
+    }
+
     this.switchView('finale');
+  }
+
+  // ── 단체전 답안 저장/조회 (localStorage, 수정 불가) ────────────────────
+  saveGroupAnswer(sessionId, answer) {
+    const key = `score_group_${sessionId}`;
+    const existing = this.getGroupAnswers(sessionId);
+    // 이미 같은 닉네임으로 저장된 경우 덮어쓰기 금지 (수정 불가)
+    const alreadySaved = existing.find(a => a.nickname === answer.nickname);
+    if (alreadySaved) return;
+    existing.push(answer);
+    localStorage.setItem(key, JSON.stringify(existing));
+  }
+
+  getGroupAnswers(sessionId) {
+    try {
+      return JSON.parse(localStorage.getItem(`score_group_${sessionId}`) || '[]');
+    } catch { return []; }
+  }
+
+  clearGroupSession(sessionId) {
+    localStorage.removeItem(`score_group_${sessionId}`);
+  }
+
+  renderGroupResults(sessionId) {
+    const section = document.getElementById('group-results-section');
+    if (!section) return;
+    const answers = this.getGroupAnswers(sessionId);
+    if (answers.length === 0) { section.style.display = 'none'; return; }
+
+    section.style.display = 'block';
+    const rows = answers
+      .sort((a, b) => b.score - a.score)
+      .map((a, i) => {
+        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}.`;
+        return `
+          <div class="group-result-row" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-color);">
+            <div>
+              <span style="font-weight:600;margin-right:6px;">${medal}</span>
+              <span>${a.nickname}</span>
+              <span style="font-size:0.72rem;color:var(--text-muted);margin-left:6px;">${a.date || ''}</span>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-weight:700;color:var(--color-primary);">${a.score}/${a.total}</span>
+              <span style="font-size:0.72rem;color:var(--text-muted);margin-left:6px;">정확도 ${a.accuracy}%</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+    section.innerHTML = `
+      <div style="margin-top:20px;padding-top:16px;border-top:2px solid var(--border-color);">
+        <h4 style="font-size:0.9rem;margin-bottom:12px;">🏆 단체전 결과</h4>
+        ${rows}
+        <div style="display:flex;gap:8px;margin-top:14px;">
+          <button class="btn-secondary" style="flex:1;font-size:0.82rem;"
+            onclick="app.addNextGroupPlayer()">다음 참가자 추가</button>
+          <button class="btn-primary" style="flex:1;font-size:0.82rem;"
+            onclick="app.endGroupSession()">단체전 종료</button>
+        </div>
+      </div>
+    `;
+  }
+
+  addNextGroupPlayer() {
+    // 같은 세션 ID 유지, 로그인 화면으로 이동 → 새 닉네임으로 다시 퀴즈
+    showToast('다음 참가자가 이어서 플레이합니다.', 'info', 2500);
+    // 로그아웃 없이 닉네임만 초기화
+    if (this.currentUser) {
+      this.currentUser.nickname = '';
+      this.currentUser.realName = '';
+    }
+    document.getElementById('form-register')?.reset();
+    this.generateNickname();
+    this.switchView('register');
+  }
+
+  endGroupSession() {
+    if (this.currentQuiz.groupSessionId) {
+      this.clearGroupSession(this.currentQuiz.groupSessionId);
+    }
+    this.currentQuiz.groupMode = false;
+    this.currentQuiz.groupSessionId = null;
+    this.switchView('dashboard');
+    this.renderDashboard();
+    showToast('단체전이 종료되었습니다.', 'info', 2500);
   }
 
   // ── 퀴즈 기록 저장/조회/삭제 ──────────────────────────────────────────
@@ -4973,12 +5242,20 @@ function showToast(msg, type = 'info', duration = 2800) {
 // ── 전역 앱 인스턴스 & 초기화 ────────────────────────────────────────────
 let app;
 
-// 로그인 버튼 onclick에서 직접 호출되는 전역 함수
 function doLogin() {
   if (app) app.simulateGoogleLogin();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  // 스플래시 자동 제거 (애니메이션 총 3.2초 후)
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    setTimeout(() => {
+      splash.classList.add('hidden');
+      setTimeout(() => splash.remove(), 700);
+    }, 3100);
+  }
+
   app = new CineMasterApp();
   app.init();
 });
