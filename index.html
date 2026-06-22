@@ -6084,17 +6084,30 @@ class CineMasterApp {
     const track = document.getElementById(trackId);
     if (!track || !movies || movies.length === 0) return;
 
-    // 포스터 아이템 생성 (수동 스크롤 — 복제 없음)
+    // posterUrl 있는 영화만 렌더링 후, 실제 이미지 로드 실패 시 해당 아이템 제거
     track.innerHTML = movies.map(m => {
       const style = m.posterUrl
         ? `background-image:url('${m.posterUrl}')`
         : `background:var(--bg-secondary)`;
       const onclick = getOnclick(m);
+      const safeId = (m.id || m.title).replace(/[^a-zA-Z0-9가-힣_-]/g, '_');
       return `
-        <div class="poster-item" style="${style}" onclick="${onclick}">
+        <div class="poster-item" id="pitem-${trackId}-${safeId}" style="${style}" onclick="${onclick}">
           <div class="poster-item-title">${m.title}</div>
         </div>`;
     }).join('');
+
+    // 실제 이미지 로드 확인 — 404 등 실패 시 DOM에서 제거
+    movies.forEach(m => {
+      if (!m.posterUrl) return;
+      const safeId = (m.id || m.title).replace(/[^a-zA-Z0-9가-힣_-]/g, '_');
+      const el = document.getElementById(`pitem-${trackId}-${safeId}`);
+      if (!el) return;
+      const img = new Image();
+      img.onload = () => { /* 정상 — 그대로 유지 */ };
+      img.onerror = () => { el.remove(); };
+      img.src = m.posterUrl;
+    });
 
     // 터치 드래그 스크롤 지원
     this._enableDragScroll(track.parentElement);
