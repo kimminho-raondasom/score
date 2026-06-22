@@ -2283,54 +2283,33 @@ html, body, .app-container, .view-section, .glass-card {
   font-size: 0.9rem;
 }
 
-/* ── 포스터 롤링 배너 ────────────────────────────────────────────────────── */
+/* ── 포스터 배너 (수동 스크롤, 자동 롤링 없음) ──────────────────────────── */
 .poster-banner-wrap {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding-bottom: 16px;
+  padding-left: 16px;
   position: relative;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
 }
-
-.poster-banner-wrap::before,
-.poster-banner-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 32px;
-  z-index: 2;
-  pointer-events: none;
-}
-.poster-banner-wrap::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-card), transparent);
-}
-.poster-banner-wrap::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-card), transparent);
+.poster-banner-wrap::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 .poster-track {
   display: flex;
-  gap: 8px;
-  padding: 0 16px;
-  animation: posterScroll 28s linear infinite;
+  gap: 10px;
   width: max-content;
-}
-
-.poster-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes posterScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  padding-right: 16px;
+  /* 자동 롤링 없음 — 수동 터치/드래그만 */
 }
 
 .poster-item {
   flex-shrink: 0;
-  width: 72px;
-  height: 108px;
+  width: 144px;
+  height: 216px;
   background-size: cover;
   background-position: center;
   background-color: var(--bg-secondary);
@@ -2340,29 +2319,24 @@ html, body, .app-container, .view-section, .glass-card {
   position: relative;
 }
 
-.poster-item:hover {
+.poster-item:active {
   opacity: 0.82;
-  transform: scale(1.04);
+  transform: scale(0.97);
 }
 
 .poster-item-title {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  background: rgba(0,0,0,0.72);
+  background: linear-gradient(transparent, rgba(0,0,0,0.82));
   color: #fff;
-  font-size: 0.6rem;
-  padding: 3px 4px;
+  font-size: 0.65rem;
+  padding: 18px 6px 6px;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  opacity: 0;
-  transition: opacity 0.2s;
 }
 
-.poster-item:hover .poster-item-title {
-  opacity: 1;
-}
 
 /* ── 로그인 후 헤더 score 로고 스타일 ──────────────────────────────────── */
 .logo-title-hero {
@@ -2483,6 +2457,176 @@ html, body, .app-container, .view-section, .glass-card {
 #view-myroom > .app-header {
   margin-top: 0;
   padding-top: 0;
+}
+
+/* ── 코멘트 섹션 ─────────────────────────────────────────────────────────── */
+.comment-movie-block {
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+}
+
+.comment-movie-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comment-movie-poster {
+  width: 48px;
+  height: 70px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.comment-movie-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-movie-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.comment-movie-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.comment-week-badge {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.comment-week-badge.open-now {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* 한줄평 입력폼 */
+.comment-input-area {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comment-char-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.comment-text-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  font-size: 0.88rem;
+  font-family: var(--font-family-sans);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.comment-text-input:focus {
+  border-color: var(--text-main);
+}
+
+.comment-char-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  min-width: 36px;
+  text-align: right;
+}
+
+.comment-char-count.over {
+  color: var(--color-danger);
+}
+
+.comment-submit-btn {
+  background: var(--text-main);
+  color: var(--bg-primary);
+  border: none;
+  padding: 10px 14px;
+  font-size: 0.8rem;
+  font-family: var(--font-family-sans);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.comment-submit-btn:hover { opacity: 0.8; }
+.comment-submit-btn:disabled { opacity: 0.35; cursor: default; }
+
+/* 한줄평 목록 */
+.comment-reviews-list {
+  padding: 0 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.comment-review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.84rem;
+}
+
+.comment-review-item:last-child { border-bottom: none; }
+
+.review-author {
+  font-weight: 600;
+  color: var(--text-main);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+}
+
+.review-text {
+  flex: 1;
+  color: var(--text-main);
+  letter-spacing: 0.3px;
+}
+
+.review-date {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.comment-locked-msg {
+  padding: 10px 16px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.comment-empty-msg {
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
 }
 
 
@@ -2894,30 +3038,15 @@ html, body, .app-container, .view-section, .glass-card {
 
     </section>
 
-    <!-- 3.5. FORUM (COMMUNITY) TAB SECTION -->
+    <!-- 3.5. COMMENT (한줄평) TAB SECTION -->
     <section id="view-forum" class="view-section">
       <header class="app-header" style="margin-top:0;padding-top:0;">
-        <h2 class="section-title" style="margin-bottom:0;">영화 토론방</h2>
+        <h2 class="section-title" style="margin-bottom:0;">코멘트</h2>
       </header>
-      <div class="glass-card forum-composer fade-in">
-        <h4>토론 및 예측 글 작성</h4>
-        <p class="forum-reward-info">새 글 작성 시 <span class="text-gold">+10 XP</span> | 댓글 작성 시 <span class="text-gold">+5 XP</span> 획득!</p>
-        <form id="form-forum-post" class="mt-2">
-          <div class="form-group mb-2">
-            <input type="text" id="forum-post-title" class="form-control" placeholder="토론방 글 제목" required>
-          </div>
-          <div class="form-group mb-2">
-            <textarea id="forum-post-content" class="form-control" placeholder="영화 예측 분석 의견이나 감상을 나누어 주세요" rows="3" required></textarea>
-          </div>
-          <button type="submit" class="btn-primary w-100 py-2">
-            <span class="material-symbols-outlined">send</span>
-            <span>작성 완료</span>
-          </button>
-        </form>
-      </div>
 
-      <div class="forum-posts-list" id="forum-posts-feed">
-        <!-- Dynamically populated posts -->
+      <!-- 이번 주 개봉작 한줄평 목록 -->
+      <div id="comment-movies-list">
+        <!-- JS로 동적 렌더링 -->
       </div>
     </section>
 
@@ -4043,8 +4172,8 @@ class CineMasterApp {
       searchInput.addEventListener('input', (e) => this.renderReleasedMoviesSearch(e.target.value));
     }
 
-    // Forum
-    on('form-forum-post', 'submit', (e) => { e.preventDefault(); this.createForumPost(); });
+    // Forum (코멘트 섹션은 inline onclick 사용, 별도 리스너 불필요)
+    // on('form-forum-post', 'submit', ...)  — 제거됨
   }
 
   // Synthesizer Audio Synth (Web Audio API)
@@ -4763,134 +4892,195 @@ class CineMasterApp {
   }
 
   // Community Forum Logics
-  renderForumFeed() {
-    const feed = document.getElementById('forum-posts-feed');
-    if (!feed) return;
+  // ── 코멘트 섹션 ──────────────────────────────────────────────────────────
 
-    const myNick = this.currentUser?.nickname ?? '';
+  // 이번 주 개봉작 목록 반환 (수요일~다음 화요일 기준 KST)
+  getThisWeekMovies() {
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const day = nowKST.getDay(); // 0=일 1=월 2=화 3=수 4=목 5=금 6=토
 
-    feed.innerHTML = this.forumPosts.map(post => {
-      const authorXp  = post.author === myNick ? this.currentUser.xp : this.getMockXpForTier(post.tier);
-      const tierLabel = post.author === myNick ? this.calculateRankLabel(this.currentUser.xp) : post.tier;
+    // 이번 주 수요일 00:00 KST
+    const diffToWed = (day >= 3) ? (day - 3) : (day + 4);
+    const thisWed = new Date(nowKST);
+    thisWed.setDate(nowKST.getDate() - diffToWed);
+    thisWed.setHours(0, 0, 0, 0);
 
-      return `
-        <div class="forum-post-card glass-card fade-in">
-          <div class="post-header">
-            <div class="post-author-info">
-              <span class="post-avatar">🎬</span>
-              <span class="post-author-name">${post.author}</span>
-              <span class="post-author-tier">${tierLabel}</span>
-            </div>
-            <span class="post-date">${post.date}</span>
-          </div>
-          <h4 class="post-title">${post.title}</h4>
-          <p class="post-body">${post.content}</p>
+    // 다음 화요일 23:59 KST
+    const nextTue = new Date(thisWed);
+    nextTue.setDate(thisWed.getDate() + 6);
+    nextTue.setHours(23, 59, 59, 999);
 
-          <!-- Comments Feed -->
-          <div class="post-comments-container">
-            <div class="comments-count-row" onclick="app.toggleCommentsSection('${post.id}')">
-              <span class="material-symbols-outlined" style="font-size:1.1rem;">chat_bubble</span>
-              <span>댓글 <b>${post.comments.length}</b>개</span>
-            </div>
-            
-            <div id="comments-section-${post.id}" class="comments-section-wrapper" style="display: block;">
-              <div class="comments-list-wrapper">
-                ${post.comments.length === 0 
-                  ? `<p class="text-muted text-center" style="font-size:0.75rem; padding:8px;">등록된 댓글이 없습니다. 첫 댓글을 남겨보세요!</p>`
-                  : post.comments.map(c => `
-                      <div class="comment-item">
-                        <div class="comment-meta">
-                          <span class="comment-author" style="font-weight:700;">${c.author}</span>
-                          <span class="comment-date" style="font-size:0.65rem;">${c.date}</span>
-                        </div>
-                        <p class="comment-text">${c.text}</p>
-                      </div>
-                    `).join('')
-                }
-              </div>
-
-              <!-- Comment Input Form -->
-              <form class="comment-input-form" onsubmit="event.preventDefault(); app.submitComment('${post.id}', this);">
-                <input type="text" class="form-control" placeholder="토론 댓글을 입력하세요" required>
-                <button type="submit" class="btn-primary comment-submit-btn">등록</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  getMockXpForTier(tier) {
-    if (tier === "씨네키드") return 10;
-    if (tier === "오프닝 스태프") return 150;
-    if (tier === "메인 배급원") return 450;
-    if (tier === "수석 분석가") return 800;
-    if (tier === "제작 총괄 프로듀서") return 1200;
-    return 2000;
-  }
-
-  toggleCommentsSection(postId) {
-    this.playSynthSound('click');
-    const el = document.getElementById(`comments-section-${postId}`);
-    if (el) {
-      el.style.display = el.style.display === 'none' ? 'block' : 'none';
-    }
-  }
-
-  createForumPost() {
-    this.playSynthSound('click');
-    const title = document.getElementById('forum-post-title').value.trim();
-    const content = document.getElementById('forum-post-content').value.trim();
-
-    if (!title || !content) return;
-
-    const newPost = {
-      id: `post_${Date.now()}`,
-      author: this.currentUser.nickname,
-      tier: this.calculateRankLabel(this.currentUser.xp),
-      title: title,
-      content: content,
-      date: "방금 전",
-      comments: []
-    };
-
-    // Add to top of list
-    this.forumPosts.unshift(newPost);
-    
-    // Reward player +10 XP
-    this.addXp(10, "토론방 새 글 작성");
-    
-    // Unlock badge for writing post
-    this.checkAndUnlockAchievements();
-
-    // Reset forms & update
-    document.getElementById('form-forum-post').reset();
-    this.renderForumFeed();
-  }
-
-  submitComment(postId, formEl) {
-    this.playSynthSound('click');
-    const input = formEl.querySelector('input');
-    const text = input.value.trim();
-
-    if (!text) return;
-
-    const targetPost = this.forumPosts.find(p => p.id === postId);
-    if (targetPost) {
-      targetPost.comments.push({
-        author: this.currentUser.nickname,
-        text: text,
-        date: "방금 전"
+    // 개봉작 DB에서 해당 주에 개봉한 영화
+    const released = (typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : [])
+      .filter(m => {
+        if (!m.releaseDate) return false;
+        const d = new Date(m.releaseDate);
+        return d >= thisWed && d <= nextTue;
       });
 
-      // Reward +5 XP
-      this.addXp(5, "토론방 댓글 작성");
-      
-      input.value = '';
-      this.renderForumFeed();
+    // 개봉예정작 DB에서도 확인 (이미 지났거나 이번 주 개봉)
+    const upcoming = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : [])
+      .filter(m => {
+        if (!m.releaseDate) return false;
+        const d = new Date(m.releaseDate);
+        return d >= thisWed && d <= nextTue;
+      });
+
+    return [...released, ...upcoming];
+  }
+
+  // 코멘트 섹션 렌더링 (수요일부터 해금)
+  renderForumFeed() {
+    const container = document.getElementById('comment-movies-list');
+    if (!container) return;
+
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const todayDay = nowKST.getDay(); // 3=수요일
+    const isWedOrLater = todayDay >= 3; // 수~토
+    // 일(0), 월(1), 화(2)는 아직 잠금
+
+    // 이번 주 수요일 기준
+    const diffToWed = (todayDay >= 3) ? (todayDay - 3) : (todayDay + 4);
+    const thisWed = new Date(nowKST);
+    thisWed.setDate(nowKST.getDate() - diffToWed);
+    thisWed.setHours(0, 0, 0, 0);
+    const weekLabel = `${thisWed.getMonth()+1}/${thisWed.getDate()} 주`;
+
+    // 이번 주 영화 + 최근 3주 영화도 표시 (과거 코멘트 볼 수 있게)
+    const movies = this._getCommentMovies();
+
+    if (movies.length === 0) {
+      container.innerHTML = `
+        <div style="padding:32px 16px;text-align:center;color:var(--text-muted);font-size:0.85rem;">
+          이번 주 등록된 개봉작이 없습니다.<br>
+          <span style="font-size:0.75rem;">매주 수요일부터 그 주 개봉작에 한줄평을 남길 수 있어요.</span>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = movies.map(m => this._renderCommentBlock(m, isWedOrLater, weekLabel)).join('');
+  }
+
+  // 코멘트용 영화 목록 (이번 주 + 최근 개봉작 상위 10편)
+  _getCommentMovies() {
+    const all = [
+      ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : []),
+      ...(typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : [])
+    ];
+    // releaseDate 최신순 정렬, 상위 10편
+    return all
+      .filter(m => m.releaseDate)
+      .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+      .slice(0, 10);
+  }
+
+  _renderCommentBlock(movie, isWedOrLater, weekLabel) {
+    const key = `comment_reviews_${movie.id || movie.title}`;
+    const reviews = this._getCommentReviews(key);
+    const myNick = this.currentUser?.nickname ?? '';
+    const alreadyWrote = reviews.some(r => r.author === myNick);
+
+    const posterStyle = movie.posterUrl
+      ? `background-image:url('${movie.posterUrl}')`
+      : `background:var(--bg-secondary)`;
+
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const relDate = new Date(movie.releaseDate);
+    const isFuture = relDate > nowKST;
+    const badgeText = isFuture ? `개봉 D-${Math.ceil((relDate - nowKST) / 86400000)}` : `${movie.releaseDate} 개봉`;
+    const badgeClass = isFuture ? '' : 'open-now';
+
+    // 입력폼 or 잠금 메시지
+    let inputArea = '';
+    if (!isWedOrLater) {
+      inputArea = `<div class="comment-locked-msg">수요일부터 한줄평을 작성할 수 있어요.</div>`;
+    } else if (alreadyWrote) {
+      inputArea = `<div class="comment-locked-msg">이미 한줄평을 남기셨습니다.</div>`;
+    } else {
+      const safeKey = key.replace(/'/g, "\\'");
+      inputArea = `
+        <div class="comment-input-area">
+          <div class="comment-char-row">
+            <input type="text" class="comment-text-input" id="cinput-${movie.id || movie.title}"
+              placeholder="10자 이내 한줄평" maxlength="10"
+              oninput="app._onCommentInput(this)">
+            <span class="comment-char-count" id="ccount-${movie.id || movie.title}">0/10</span>
+            <button class="comment-submit-btn" onclick="app._submitCommentReview('${safeKey}', '${(movie.id || movie.title).replace(/'/g, "\\'")}')">등록</button>
+          </div>
+        </div>`;
+    }
+
+    // 리뷰 목록
+    let reviewsHtml = '';
+    if (reviews.length === 0) {
+      reviewsHtml = `<div class="comment-empty-msg">아직 한줄평이 없습니다. 첫 번째로 남겨보세요!</div>`;
+    } else {
+      reviewsHtml = `<div class="comment-reviews-list">${
+        reviews.map(r => `
+          <div class="comment-review-item">
+            <span class="review-author">${r.author}</span>
+            <span class="review-text">${r.text}</span>
+            <span class="review-date">${r.date}</span>
+          </div>`).join('')
+      }</div>`;
+    }
+
+    return `
+      <div class="comment-movie-block">
+        <div class="comment-movie-header">
+          <div class="comment-movie-poster" style="${posterStyle}"></div>
+          <div class="comment-movie-info">
+            <div class="comment-movie-title">${movie.title}</div>
+            <div class="comment-movie-meta">감독: ${movie.director || '미정'}</div>
+          </div>
+          <span class="comment-week-badge ${badgeClass}">${badgeText}</span>
+        </div>
+        ${inputArea}
+        ${reviewsHtml}
+      </div>`;
+  }
+
+  _onCommentInput(el) {
+    const len = el.value.length;
+    const countEl = document.getElementById(el.id.replace('cinput-', 'ccount-'));
+    if (countEl) {
+      countEl.textContent = `${len}/10`;
+      countEl.className = 'comment-char-count' + (len >= 10 ? ' over' : '');
     }
   }
+
+  _submitCommentReview(storageKey, movieId) {
+    const inputEl = document.getElementById(`cinput-${movieId}`);
+    if (!inputEl) return;
+    const text = inputEl.value.trim();
+    if (!text) { showToast('한줄평을 입력해주세요.', 'warn'); return; }
+    if (text.length > 10) { showToast('10자 이내로 입력해주세요.', 'warn'); return; }
+
+    const reviews = this._getCommentReviews(storageKey);
+    const myNick = this.currentUser?.nickname ?? '익명';
+    if (reviews.some(r => r.author === myNick)) {
+      showToast('이미 한줄평을 남기셨습니다.', 'warn'); return;
+    }
+
+    const nowStr = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit' });
+    reviews.push({ author: myNick, text, date: nowStr });
+    localStorage.setItem(storageKey, JSON.stringify(reviews));
+
+    this.addXp(5, '코멘트 한줄평 작성');
+    this.renderForumFeed();
+    showToast('한줄평이 등록되었습니다! +5 XP', 'xp');
+  }
+
+  _getCommentReviews(storageKey) {
+    try { return JSON.parse(localStorage.getItem(storageKey) || '[]'); }
+    catch { return []; }
+  }
+
+  // ── (구) 포럼 메서드 — 호환성 유지용 stub ────────────────────────────────
+  getMockXpForTier(tier) { return 0; }
+  toggleCommentsSection() {}
+  createForumPost() {}
+  submitComment() {}
 
   // Quiz Control Center
   startQuiz(type, subType = null, battleMode = 'solo') {
@@ -5750,16 +5940,20 @@ class CineMasterApp {
       }
     );
 
-    // Light: 명대사 있는 개봉작
+    // Light: 명대사 있는 개봉작 (posterUrl 있는 것 우선)
     const lightMovies = (typeof MOVIES_DATABASE !== 'undefined'
+      ? MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0 && m.posterUrl)
+      : []);
+    // posterUrl 없는 것도 뒤에 추가
+    const lightMoviesAll = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0)
       : []);
     this._buildPosterTrack(
       'poster-track-light',
-      lightMovies,
+      lightMoviesAll,
       (movie) => {
-        // 포스터 클릭 → 해당 영화 명대사/초성 퀴즈 (기본: 둘 다 보이는 모드)
-        return `app._startLinesWithMovie('${movie.title.replace(/'/g, "\\'")}')`;
+        const safeTitle = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        return `app._startLinesWithMovie('${safeTitle}')`;
       }
     );
   }
@@ -5768,20 +5962,40 @@ class CineMasterApp {
     const track = document.getElementById(trackId);
     if (!track || !movies || movies.length === 0) return;
 
-    // 포스터 아이템 생성
-    const items = movies.map(m => {
+    // 포스터 아이템 생성 (수동 스크롤 — 복제 없음)
+    track.innerHTML = movies.map(m => {
       const style = m.posterUrl
         ? `background-image:url('${m.posterUrl}')`
         : `background:var(--bg-secondary)`;
       const onclick = getOnclick(m);
       return `
-        <div class="poster-item" style="${style}" onclick="${onclick}" title="${m.title}">
+        <div class="poster-item" style="${style}" onclick="${onclick}">
           <div class="poster-item-title">${m.title}</div>
         </div>`;
     }).join('');
 
-    // 2배 복제로 무한 루프
-    track.innerHTML = items + items;
+    // 터치 드래그 스크롤 지원
+    this._enableDragScroll(track.parentElement);
+  }
+
+  _enableDragScroll(el) {
+    if (!el || el._dragBound) return;
+    el._dragBound = true;
+    let isDown = false, startX, scrollLeft;
+    el.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - el.offsetLeft;
+      scrollLeft = el.scrollLeft;
+      el.style.cursor = 'grabbing';
+    });
+    el.addEventListener('mouseleave', () => { isDown = false; el.style.cursor = ''; });
+    el.addEventListener('mouseup',    () => { isDown = false; el.style.cursor = ''; });
+    el.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      el.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    });
   }
 
   // Light 배너 포스터 클릭 → 해당 영화 1편으로 Lines 퀴즈
