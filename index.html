@@ -2357,6 +2357,17 @@ button, .btn {
           <span>획득 업적</span>
         </button>
       </div>
+
+      <!-- 퀴즈 기록 -->
+      <div class="glass-card fade-in" style="margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+          <h4 style="font-size:0.95rem;font-weight:500;">📋 나의 퀴즈 기록</h4>
+          <button id="btn-clear-history" style="font-size:0.72rem;color:var(--text-muted);background:none;border:1px solid var(--border-color);padding:4px 10px;cursor:pointer;">전체 삭제</button>
+        </div>
+        <div id="quiz-history-list">
+          <p class="text-muted text-center" style="font-size:0.82rem;padding:12px 0;">아직 퀴즈 기록이 없습니다.</p>
+        </div>
+      </div>
     </section>
 
     <!-- 4. QUIZ CONTAINER (DYNAMIC ACCORDING TO MODE) -->
@@ -2686,7 +2697,7 @@ button, .btn {
   <!-- Scripts -->
   <script>
 // score - Movies Database
-// 자동 업데이트: 2026-06-22 09:06 KST
+// 자동 업데이트: 2026-06-22 09:12 KST
 // 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
 
 const MOVIES_DATABASE = [
@@ -2795,210 +2806,12 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-06-22 09:06 KST) ─────────────────────────────────────────
-  {
-    id: "kobis_20259781", title: "\ud1a0\uc774 \uc2a4\ud1a0\ub9ac 5", director: "\uc564\ub4dc\ub958 \uc2a4\ud0e0\ud2bc",
-    cast: ["톰 행크스", "팀 알렌", "조앤 쿠삭", "그레타 리"],
-    releaseDate: "2026-06-17", genre: ["애니메이션", "어드벤처", "코미디"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "75~100\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u314c\u3147 \u3145\u314c\u3139",
-    posterUrl: "https://image.tmdb.org/t/p/w300/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg"
-  },
-  {
-    id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
-    cast: ["전지현", "구교환", "지창욱", "신현빈", "김신록"],
-    releaseDate: "2026-05-21", genre: ["액션", "스릴러"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "6~7\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3131\u314a",
-    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
-  },
-  {
-    id: "kobis_20248252", title: "\uc640\uc77c\ub4dc \uc53d", director: "\uc190\uc7ac\uace4",
-    cast: ["강동원", "엄태구", "박지현", "오정세"],
-    releaseDate: "2026-06-03", genre: ["코미디"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "4~5\ub9cc\uba85",
-    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "100~150\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3147\u3137 \u3146",
-    posterUrl: "https://image.tmdb.org/t/p/w300/s4IUDzLZJb4CosgEXcmouY32Jfg.jpg"
-  },
-  {
-    id: "kobis_20263030", title: "\ubc31\ub8f8", director: "\ucf00\uc778 \ud30c\uc2a8\uc2a4",
-    cast: ["치웨텔 에지오포", "레나테 레인스베"],
-    releaseDate: "2026-05-27", genre: ["공포(호러)", "스릴러"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "2~3\ub9cc\uba85",
-    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "100~150\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3142\u3139",
-    posterUrl: "https://image.tmdb.org/t/p/w300/c3Cb7h4ecFsGfUM02KF638kbbtC.jpg"
-  },
-  {
-    id: "kobis_20250655", title: "\ub514\uc2a4\ud074\ub85c\uc800 \ub370\uc774", director: "\uc2a4\ud2f0\ube10 \uc2a4\ud544\ubc84\uadf8",
-    cast: ["에밀리 블런트", "조쉬 오코너", "콜린 퍼스", "이브 휴슨", "콜먼 도밍고"],
-    releaseDate: "2026-06-10", genre: ["SF", "미스터리"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
-    openingWeekScore: "15~30\ub9cc\uba85", finalScore: "21~30\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3137\u3145\u314b\u3139\u3148 \u3137\u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/86EdVHOEFjFNPeE0sWjpCqcUORj.jpg"
-  },
-  {
-    id: "kobis_20259626", title: "\ub9c8\uc774\ud074", director: "\uc548\ud1a4 \ud6c4\ucfe0\uc544",
-    cast: ["자파 잭슨", "니아 롱", "로라 해리어", "줄리아노 크루 발디", "마일즈 텔러"],
-    releaseDate: "2026-05-13", genre: ["드라마"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.4~0.5\ub9cc\uba85",
-    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "151~200\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3141\u3147\u314b",
-    posterUrl: "https://image.tmdb.org/t/p/w300/piMZqtd0gGS7OgkhDwiQ7vVViBQ.jpg"
-  },
-  {
-    id: "kobis_20149629", title: "\ube44\uae34 \uc5b4\uac8c\uc778", director: "\uc874 \uce74\ub2c8",
-    cast: ["키이라 나이틀리", "마크 러팔로", "애덤 리바인", "헤일리 스테인펠드", "제임스 코든"],
-    releaseDate: "2014-08-13", genre: ["멜로/로맨스"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.4~0.5\ub9cc\uba85",
-    openingWeekScore: "11~15\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3142\u3131 \u3147\u3131\u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/xVXC1mDkjJ1pK9tTFgO2DGPavJj.jpg"
-  },
-  {
-    id: "kobis_20261766", title: "\uc0c1\uc790 \uc18d\uc758 \uc591", director: "\uace0\ub808\uc5d0\ub2e4 \ud788\ub85c\uce74\uc988",
-    cast: ["아야세 하루카", "다이고"],
-    releaseDate: "2026-06-10", genre: ["드라마", "SF"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "4~5\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u3148 \u3145\u3147 \u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/s6rXbKa97PTO2zVJyuAtccJKv1z.jpg"
-  },
-  {
-    id: "kobis_20258236", title: "\ub9cc\ub2ec\ub85c\ub9ac\uc548\uacfc \uadf8\ub85c\uad6c", director: "\uc874 \ud30c\ube0c\ub85c",
-    cast: ["페드로 파스칼", "시고니 위버"],
-    releaseDate: "2026-05-27", genre: ["액션", "어드벤처"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "11~15\ub9cc\uba85", finalScore: "21~30\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3141\u3137\u3139\u3139\u3147\u3131 \u3131\u3139\u3131",
-    posterUrl: "https://image.tmdb.org/t/p/w300/tMP99wq45GQMoeZwITgjAS8Wihm.jpg"
-  },
-  {
-    id: "kobis_19960126", title: "\ube44\ud3ec \uc120\ub77c\uc774\uc988", director: "\ub9ac\ucc28\ub4dc \ub9c1\ud074\ub808\uc774\ud130",
-    cast: ["에단 호크", "줄리 델피"],
-    releaseDate: "1996-03-30", genre: ["멜로/로맨스", "드라마"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "5~10\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3142\u314d \u3145\u3139\u3147\u3148",
-    posterUrl: "https://image.tmdb.org/t/p/w300/o7mLGNdzY1z6w2bQv0NJNOoVKks.jpg"
-  },
-  {
-    id: "kobis_20163018", title: "\uc2f1 \uc2a4\ud2b8\ub9ac\ud2b8", director: "\uc874 \uce74\ub2c8",
-    cast: ["퍼디아 월시-필로", "루시 보인턴", "잭 레이너"],
-    releaseDate: "2016-05-19", genre: ["드라마", "멜로/로맨스"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "15~30\ub9cc\uba85", finalScore: "51~75\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145 \u3145\u314c\u3139\u314c",
-    posterUrl: "https://image.tmdb.org/t/p/w300/kUYfLv9V5mKPb2lJadzgOI67AFt.jpg"
-  },
-  {
-    id: "kobis_20263512", title: "\uc774\uc0c1\ud55c \uacfc\uc790 \uac00\uac8c \uc804\ucc9c\ub2f9", director: "\ubc15\ubd09\uc12d",
-    cast: ["라미란", "이레"],
-    releaseDate: "2026-05-29", genre: ["판타지", "드라마"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
-    openingWeekScore: "5~10\ub9cc\uba85", finalScore: "11~20\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3145\u314e \u3131\u3148 \u3131\u3131 \u3148\u314a\u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/xHnw4j8F0xMFB1P7mxD4rJsp87J.jpg"
-  },
-  {
-    id: "kobis_20040734", title: "\ub178\ud2b8\ubd81", director: "\ub2c9 \uce74\uc0ac\ubca0\uce20",
-    cast: ["레이첼 맥아담스", "라이언 고슬링"],
-    releaseDate: "2004-11-26", genre: ["멜로/로맨스"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "11~15\ub9cc\uba85", finalScore: "75~100\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3134\u314c\u3142",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ntdgcdsmMuHd9s4oEKTvWDiUyU7.jpg"
-  },
-  {
-    id: "kobis_20263344", title: "\ub108\ubc14\ub098 \ub354 \ubc34\ub4dc : \uc804\uc124\uc801 \ubc34\ub4dc \u2018\ub108\ubc14\ub098\u2019\uc640\ub294 \ubcc4 \uad00\ub828 \uc5c6\ub294 \u2018\ub108\ubc14\ub098 \ub354 \ubc34\ub4dc\u2019\uc758 \ucf64\ube44 \ub9f7\uacfc \uc81c\uc774. \uc5b4\ub290 \ub0a0 \uacf5\uc5f0\uc744 \uc704\ud574 \ud0c0\uc784\uba38\uc2e0\uc744 \ub9cc\ub4dc\ub294 \ud669\ub2f9\ud55c \uc791\uc804\uc744 \uc138\uc6b0\uace0 \ucc98\uc74c \ub9cc\ub0ac\ub358 17\ub144 \uc804\uc73c\ub85c \ub3cc", director: "\ub9f7 \uc874\uc2a8",
-    cast: ["맷 존슨"],
-    releaseDate: "2026-05-20", genre: ["코미디", "어드벤처", "SF"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "2~3\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3134\u3142\u3134 \u3137 \u3142\u3137  \u3148\u3145\u3148 \u3142\u3137 \u3134\u3142\u3134\u3147\u3134 \u3142 \u3131\u3139 \u3147\u3134 \u3134\u3142\u3134 \u3137 \u3142\u3137\u3147 \u314b\u3142 \u3141\u3131 \u3148\u3147 \u3147\u3134 \u3134 \u3131\u3147\u3147 \u3147\u314e \u314c\u3147\u3141\u3145\u3147 \u3141\u3137\u3134 \u314e\u3137\u314e \u3148\u3148\u3147 \u3145\u3147\u3131 \u314a\u3147 \u3141\u3134\u3137 \u3134 \u3148\u3147\u3139 \u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/tfYsOt4sIeN4iIcuMqwLLGm0VJx.jpg"
-  },
-  {
-    id: "kobis_20259773", title: "\uc288\ud37c \ub9c8\ub9ac\uc624 \uac24\ub7ed\uc2dc", director: "\uc544\ub860 \ud638\ubc14\uc2a4",
-    cast: ["크리스 프랫", "안야 테일러 조이", "잭 블랙", "찰리 데이", "브리 라슨"],
-    releaseDate: "2026-04-29", genre: ["애니메이션"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
-    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "151~200\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u314d \u3141\u3139\u3147 \u3131\u3139\u3145",
-    posterUrl: "https://image.tmdb.org/t/p/w300/knaXOBDBecVBWZVup3zXaOoy23v.jpg"
-  },
-  {
-    id: "kobis_20259791", title: "\uc545\ub9c8\ub294 \ud504\ub77c\ub2e4\ub97c \uc785\ub294\ub2e4 2", director: "\ub370\uc774\ube57 \ud504\ub7ad\ud074",
-    cast: ["메릴 스트립", "앤 해서웨이", "에밀리 블런트", "스탠리 투치"],
-    releaseDate: "2026-04-29", genre: ["드라마"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.2~0.3\ub9cc\uba85",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "151~200\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3141\u3134 \u314d\u3139\u3137\u3139 \u3147\u3134\u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/28A1VUDML1RzENYNtIU1WkBLT9V.jpg"
-  },
-  {
-    id: "kobis_20262975", title: "\uc2e0\uadf9\uc7a5\ud310 \uc740\ud63c: \uc694\uc2dc\uc640\ub77c \ub300\uc5fc\uc0c1", director: "",
-    cast: ["스기타 토모카즈", "사카구치 다이스케", "쿠기미야 리에"],
-    releaseDate: "2026-05-20", genre: ["애니메이션"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.1\ub9cc\uba85 \uc774\ud558",
-    openingWeekScore: "4~5\ub9cc\uba85", finalScore: "6~10\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u3131\u3148\u314d \u3147\u314e \u3147\u3145\u3147\u3139 \u3137\u3147\u3145",
-    posterUrl: "https://image.tmdb.org/t/p/w300/mVtUatYLMj30v8Gpv5dYfE2p2XT.jpg"
-  },
-  {
-    id: "kobis_20261782", title: "\ud504\ub85c\uc81d\ud2b8 \ud5e4\uc77c\uba54\ub9ac", director: "\ud544 \ub85c\ub4dc",
-    cast: ["라이언 고슬링", "산드라 휠러"],
-    releaseDate: "2026-03-18", genre: ["SF"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.1\ub9cc\uba85 \uc774\ud558",
-    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u314d\u3139\u3148\u314c \u314e\u3147\u3141\u3139",
-    posterUrl: "https://image.tmdb.org/t/p/w300/qqGpVVZk2KD1lAvccgTU4Z6nh1H.jpg"
-  },
+  // ── KOBIS 자동 수집 (2026-06-22 09:12 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
     releaseDate: "2026-02-04", genre: ["사극", "드라마"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.1\ub9cc\uba85 \uc774\ud558",
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
     openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
     vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
     similarRefs: [], famousLines: [],
@@ -3006,15 +2819,213 @@ const MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/kkJB3SeUJp7Y0IXXLkv5QZHJGkH.jpg"
   },
   {
+    id: "kobis_20252432", title: "\uc8fc\ud1a0\ud53c\uc544 2", director: "\uc7ac\ub7ec\ub4dc \ubd80\uc2dc",
+    cast: ["지니퍼 굿윈", "제이슨 베이트먼", "키 호이 콴"],
+    releaseDate: "2025-11-26", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3148\u314c\u314d\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ib6v6qUXzez1x2qIOLN7C0yJNPQ.jpg"
+  },
+  {
+    id: "kobis_20239670", title: "\ubca0\ud14c\ub7912", director: "\ub958\uc2b9\uc644",
+    cast: ["황정민", "정해인", "장윤주", "정만식", "신승환"],
+    releaseDate: "2024-09-13", genre: ["액션", "범죄"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3142\u314c\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/akqfhtM1Wa1klFi7ijmyNm7Sm1j.jpg"
+  },
+  {
+    id: "kobis_20256396", title: "\uc544\ubc14\ud0c0: \ubd88\uacfc \uc7ac", director: "\uc81c\uc784\uc2a4 \uce74\uba54\ub860",
+    cast: ["샘 워싱턴", "조 샐다나", "시고니 위버", "스티븐 랭", "케이트 윈슬렛"],
+    releaseDate: "2025-12-17", genre: ["SF", "액션", "어드벤처"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3142\u314c \u3142\u3131 \u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/l18o0AK18KS118tWeROOKYkF0ng.jpg"
+  },
+  {
+    id: "kobis_20253289", title: "\uadf9\uc7a5\ud310 \uadc0\uba78\uc758 \uce7c\ub0a0: \ubb34\ud55c\uc131\ud3b8", director: "\uc18c\ud1a0\uc790\ud0a4 \ud558\ub8e8\uc624",
+    cast: ["하나에 나츠키", "키토 아카리", "시모노 히로", "마츠오카 요시츠구", "오카모토 노부히코"],
+    releaseDate: "2025-08-22", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u3148\u314d \u3131\u3141\u3147 \u314b\u3134 \u3141\u314e\u3145\u314d",
+    posterUrl: "https://image.tmdb.org/t/p/w300/m6Dho6hDCcL5KI8mOQNemZAedFI.jpg"
+  },
+  {
+    id: "kobis_20241941", title: "\uc880\ube44\ub538", director: "\ud544\uac10\uc131",
+    cast: ["조정석", "이정은", "조여정", "윤경호", "최유리"],
+    releaseDate: "2025-07-30", genre: ["코미디", "드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3148\u3142\u3138",
+    posterUrl: "https://image.tmdb.org/t/p/w300/aASLRiO8p9xLIvG9EHXSyZ71sPl.jpg"
+  },
+  {
+    id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
+    cast: ["전지현", "구교환", "지창욱", "신현빈", "김신록"],
+    releaseDate: "2026-05-21", genre: ["액션", "스릴러"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u314a",
+    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
+  },
+  {
+    id: "kobis_20254501", title: "F1 \ub354 \ubb34\ube44", director: "\uc870\uc149 \ucf54\uc2e0\uc2a4\ud0a4",
+    cast: ["브래드 피트", "하비에르 바르뎀", "케리 콘든"],
+    releaseDate: "2025-06-25", genre: ["드라마", "액션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3137 \u3141\u3142",
+    posterUrl: "https://image.tmdb.org/t/p/w300/bvVoP1t2gNvmE9ccSrqR1zcGHGM.jpg"
+  },
+  {
+    id: "kobis_20228796", title: "\ud558\uc5bc\ube48", director: "\uc6b0\ubbfc\ud638",
+    cast: ["현빈", "박정민", "조우진", "전여빈", "박훈"],
+    releaseDate: "2024-12-24", genre: ["드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314e\u3147\u3142",
+    posterUrl: "https://image.tmdb.org/t/p/w300/xrqAcOddbmWfxDxuGHChR4QmscA.jpg"
+  },
+  {
+    id: "kobis_20224666", title: "\ud30c\uc77c\ub7ff", director: "\uae40\ud55c\uacb0",
+    cast: ["조정석", "이주명", "한선화", "신승호", "오민애"],
+    releaseDate: "2024-07-31", genre: ["코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314d\u3147\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/i0QIYEuY8BabwAHEFL0LkUsXCrZ.jpg"
+  },
+  {
+    id: "kobis_20200142", title: "\uc18c\ubc29\uad00", director: "\uacfd\uacbd\ud0dd",
+    cast: ["주원", "곽도원", "유재명", "이유영", "김민재"],
+    releaseDate: "2024-12-04", genre: ["드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u3142\u3131",
+    posterUrl: "https://image.tmdb.org/t/p/w300/rizG7S7y1JkXmbYwOYSFIjyydPF.jpg"
+  },
+  {
+    id: "kobis_20240737", title: "\ubaa8\uc544\ub098 2", director: "\ub370\uc774\ube0c \ub370\ub9ad \uc8fc\ub2c8\uc5b4",
+    cast: ["아우이 크라발호", "드웨인 존슨"],
+    releaseDate: "2024-11-27", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3147\u3134",
+    posterUrl: "https://image.tmdb.org/t/p/w300/hwmwTFtMbzxAWbIOp1RyyiOCyx0.jpg"
+  },
+  {
+    id: "kobis_20256757", title: "\uadf9\uc7a5\ud310 \uccb4\uc778\uc18c \ub9e8: \ub808\uc81c\ud3b8", director: "-",
+    cast: ["-"],
+    releaseDate: "2025-09-24", genre: ["애니메이션", "액션", "어드벤처"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u3148\u314d \u314a\u3147\u3145 \u3141 \u3139\u3148\u314d",
+    posterUrl: "https://image.tmdb.org/t/p/w300/oTn0PoR8gSMpMqJaT2pUtkkN0Ia.jpg"
+  },
+  {
+    id: "kobis_20246489", title: "\ubbf8\uc158 \uc784\ud30c\uc11c\ube14: \ud30c\uc774\ub110 \ub808\ucf54\ub2dd", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub9e5\ucffc\ub9ac",
+    cast: ["톰 크루즈", "헤일리 앳웰", "빙 라메스", "사이먼 페그", "바네사 커비"],
+    releaseDate: "2025-05-17", genre: ["액션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3145 \u3147\u314d\u3145\u3142 \u314d\u3147\u3134 \u3139\u314b\u3134",
+    posterUrl: "https://image.tmdb.org/t/p/w300/c5pDU8SW0ZbmO5jHfw7fX6keyyR.jpg"
+  },
+  {
+    id: "kobis_20232394", title: "\uc57c\ub2f9", director: "\ud669\ubcd1\uad6d",
+    cast: ["강하늘", "유해진", "박해준", "류경수", "채원빈"],
+    releaseDate: "2025-04-16", genre: ["범죄", "액션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/k4yTwFqvQDApqaoFdgubsbYcuno.jpg"
+  },
+  {
     id: "kobis_20254121", title: "\uc0b4\ubaa9\uc9c0", director: "\uc774\uc0c1\ubbfc",
     cast: ["김혜윤", "이종원", "김준한", "김영성", "오동민"],
     releaseDate: "2026-04-08", genre: ["공포(호러)", "스릴러"],
-    openingSeats: "5\ub9cc\uc11d \uc774\ud558", openingDayScore: "0.6~1\ub9cc\uba85",
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
     openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
     vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
     similarRefs: [], famousLines: [],
     choseong: "\u3145\u3141\u3148",
     posterUrl: "https://image.tmdb.org/t/p/w300/uVJyWlSPCWftRUXRM6lxTqOzPY6.jpg"
+  },
+  {
+    id: "kobis_20244821", title: "\ubbf8\ud0a4 17", director: "\ubd09\uc900\ud638",
+    cast: ["로버트 패틴슨", "나오미 애키", "스티븐 연", "토니 콜렛", "마크 러팔로"],
+    releaseDate: "2025-02-28", genre: ["어드벤처", "SF", "드라마", "코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u314b",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mH7QnJDxQibVZw0M66IBZbsw2O6.jpg"
+  },
+  {
+    id: "kobis_20243561", title: "\uc5b4\uca54\uc218\uac00\uc5c6\ub2e4", director: "\ubc15\ucc2c\uc6b1",
+    cast: ["이병헌", "손예진", "박희순", "이성민", "염혜란"],
+    releaseDate: "2025-09-24", genre: ["스릴러", "코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3149\u3145\u3131\u3147\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/9w7WGjQes0Cs0s4U3Qr09Tg1Sra.jpg"
+  },
+  {
+    id: "kobis_20261782", title: "\ud504\ub85c\uc81d\ud2b8 \ud5e4\uc77c\uba54\ub9ac", director: "\ud544 \ub85c\ub4dc",
+    cast: ["라이언 고슬링", "산드라 휠러"],
+    releaseDate: "2026-03-18", genre: ["SF"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314d\u3139\u3148\u314c \u314e\u3147\u3141\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/qqGpVVZk2KD1lAvccgTU4Z6nh1H.jpg"
+  },
+  {
+    id: "kobis_20249255", title: "\ub9cc\uc57d\uc5d0 \uc6b0\ub9ac", director: "\uae40\ub3c4\uc601",
+    cast: ["구교환", "문가영", "신정근", "이상엽", "임재혁"],
+    releaseDate: "2025-12-31", genre: ["멜로/로맨스"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3147\u3147 \u3147\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/3ajXIRwoTGvnlLWVPgZPrHgXIW.jpg"
   }
 ];
 
@@ -3311,6 +3322,7 @@ class CineMasterApp {
     on('btn-open-achievements', 'click', () => this.openModal('achievements'));
     on('btn-show-tiers',        'click', () => this.openModal('tiers'));
     on('btn-toggle-sound',      'click', () => this.toggleSound());
+    on('btn-clear-history',     'click', () => this.clearQuizHistory());
 
     // Quiz
     on('btn-exit-quiz',  'click', () => this.exitQuiz());
@@ -3646,6 +3658,7 @@ class CineMasterApp {
     // Additional rendering
     if (tabId === 'myroom') {
       this.renderDashboard();
+      this.renderQuizHistory();
     } else if (tabId === 'forum') {
       this.renderForumFeed();
     } else if (tabId === 'dashboard') {
@@ -4571,23 +4584,32 @@ class CineMasterApp {
     this.playSynthSound('fanfare');
 
     this.currentUser.stats.games++;
-    
-    // Calculate accuracy percentage based on total rounds played
+
     const totalRounds = this.currentQuiz.movies.length;
     const quizAccuracy = Math.round((this.currentQuiz.score / totalRounds) * 100);
     this.currentUser.stats.accuracy = Math.round(
       ((this.currentUser.stats.accuracy * (this.currentUser.stats.games - 1)) + quizAccuracy) / this.currentUser.stats.games
     );
 
-    // Update Max Combos
     if (this.currentQuiz.maxComboThisRun > this.currentUser.stats.maxCombo) {
       this.currentUser.stats.maxCombo = this.currentQuiz.maxComboThisRun;
     }
 
+    // ── 퀴즈 기록 저장 ──────────────────────────────────────────────────
+    this.saveQuizHistory({
+      type:     this.currentQuiz.type,
+      movies:   this.currentQuiz.movies.map(m => m.title),
+      score:    this.currentQuiz.score,
+      total:    totalRounds,
+      xp:       this.currentQuiz.totalXpEarned,
+      combo:    this.currentQuiz.maxComboThisRun,
+      accuracy: quizAccuracy,
+      date:     new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+    });
+
     this.saveProfile();
     this.checkAndUnlockAchievements();
 
-    // Render finale summary details
     document.getElementById('finale-player-name').innerText = `${this.currentUser.nickname}님의 시네마 리그 성적표`;
     document.getElementById('finale-xp').innerText = `+${this.currentQuiz.totalXpEarned} XP (실시간 적립 완료)`;
     document.getElementById('finale-correct-count').innerText = `${this.currentQuiz.score} / 5 라운드 성공`;
@@ -4605,6 +4627,61 @@ class CineMasterApp {
     document.getElementById('finale-feedback').innerText = feedback;
 
     this.switchView('finale');
+  }
+
+  // ── 퀴즈 기록 저장/조회/삭제 ──────────────────────────────────────────
+  saveQuizHistory(record) {
+    const history = this.getQuizHistory();
+    history.unshift(record);           // 최신 순 앞에 추가
+    const trimmed = history.slice(0, 50); // 최대 50개 보관
+    localStorage.setItem('score_quiz_history', JSON.stringify(trimmed));
+  }
+
+  getQuizHistory() {
+    try {
+      return JSON.parse(localStorage.getItem('score_quiz_history') || '[]');
+    } catch { return []; }
+  }
+
+  clearQuizHistory() {
+    if (!confirm('퀴즈 기록을 전부 삭제할까요?')) return;
+    localStorage.removeItem('score_quiz_history');
+    this.renderQuizHistory();
+    showToast('퀴즈 기록이 삭제되었습니다.', 'info');
+  }
+
+  renderQuizHistory() {
+    const container = document.getElementById('quiz-history-list');
+    if (!container) return;
+    const history = this.getQuizHistory();
+    if (history.length === 0) {
+      container.innerHTML = `<p class="text-muted text-center" style="font-size:0.82rem;padding:12px 0;">아직 퀴즈 기록이 없습니다.</p>`;
+      return;
+    }
+
+    const typeLabel = { score: '흥행 예측', filmo: '필모그래피', lines: '명대사 초성' };
+    container.innerHTML = history.map((r, idx) => {
+      const pct = r.accuracy ?? Math.round((r.score / r.total) * 100);
+      const color = pct >= 80 ? 'var(--color-success)' : pct >= 50 ? 'var(--color-primary)' : 'var(--color-danger)';
+      const moviesStr = (r.movies || []).slice(0, 3).join(', ') + (r.movies?.length > 3 ? ' 외' : '');
+      return `
+        <div class="quiz-history-item" style="padding:10px 0;border-bottom:1px solid var(--border-color);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:0.78rem;font-weight:600;color:var(--text-muted);">${typeLabel[r.type] || r.type}</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);">${r.date || ''}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:0.82rem;flex:1;margin-right:8px;color:var(--text-main);">${moviesStr || '—'}</span>
+            <span style="font-size:0.88rem;font-weight:700;color:${color};">${r.score}/${r.total}</span>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:4px;font-size:0.72rem;color:var(--text-muted);">
+            <span>정확도 ${pct}%</span>
+            <span>+${r.xp} XP</span>
+            <span>콤보 ${r.combo}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   exitQuiz() {
