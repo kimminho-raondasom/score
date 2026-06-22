@@ -129,7 +129,7 @@
   opacity: 0;
   transform: scale(0.92);
   animation: splashLogoIn 0.7s 1.1s cubic-bezier(0.2,0,0,1) forwards,
-             splashLogoSettle 0.55s 2.6s ease forwards;
+             splashLogoSettle 0.55s 3.6s ease forwards;
 }
 
 .splash-dot {
@@ -2221,6 +2221,10 @@ html, body, .app-container, .view-section, .glass-card {
   padding: 0;
   overflow: hidden;
   cursor: default;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  margin-bottom: 12px;
 }
 
 .mode-card-header {
@@ -2308,8 +2312,8 @@ html, body, .app-container, .view-section, .glass-card {
 
 .poster-item {
   flex-shrink: 0;
-  width: 144px;
-  height: 216px;
+  width: 173px;
+  height: 259px;
   background-size: cover;
   background-position: center;
   background-color: var(--bg-secondary);
@@ -2468,15 +2472,15 @@ html, body, .app-container, .view-section, .glass-card {
 
 .comment-movie-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 14px;
   padding: 14px 16px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .comment-movie-poster {
-  width: 48px;
-  height: 70px;
+  width: 96px;
+  height: 140px;
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
@@ -2812,7 +2816,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <span class="mode-card-title">Otaku</span>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showScoreOptions()">
-                    입장하기 <span class="material-symbols-outlined">arrow_forward</span>
+                    더 보기 <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
                 <div class="poster-banner-wrap">
@@ -2830,7 +2834,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <span class="mode-card-title">Mania</span>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showFilmoOptions()">
-                    입장하기 <span class="material-symbols-outlined">arrow_forward</span>
+                    더 보기 <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
                 <div class="poster-banner-wrap">
@@ -2848,7 +2852,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <span class="mode-card-title">Light</span>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showLinesOptions()">
-                    입장하기 <span class="material-symbols-outlined">arrow_forward</span>
+                    더 보기 <span class="material-symbols-outlined">arrow_forward</span>
                   </button>
                 </div>
                 <div class="poster-banner-wrap">
@@ -3044,9 +3048,18 @@ html, body, .app-container, .view-section, .glass-card {
         <h2 class="section-title" style="margin-bottom:0;">코멘트</h2>
       </header>
 
-      <!-- 이번 주 개봉작 한줄평 목록 -->
+      <!-- 이번 주 개봉작 한줄평 목록 (개봉 2주 이내) -->
       <div id="comment-movies-list">
         <!-- JS로 동적 렌더링 -->
+      </div>
+
+      <!-- 예전 영화 검색창 -->
+      <div id="comment-search-section" style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border-color);">
+        <div style="font-size:0.78rem;color:var(--text-muted);letter-spacing:1px;margin-bottom:12px;text-transform:uppercase;">예전 영화 검색</div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <input type="text" id="comment-search-input" class="form-control" placeholder="영화 제목을 입력하세요" style="flex:1;padding:12px 14px;font-size:0.9rem;" oninput="app.searchCommentMovies(this.value)">
+        </div>
+        <div id="comment-search-results" style="margin-top:12px;"></div>
       </div>
     </section>
 
@@ -4016,6 +4029,11 @@ if (typeof module !== 'undefined' && module.exports) {
  * Implements step-by-step quizzes with 10s timer, community board with XP, and activity-based tiers
  */
 
+// ── Google Sheets 연동 설정 ──────────────────────────────────────────────────
+// Apps Script 웹앱 배포 URL을 아래에 입력하세요.
+// 비워두면 기록이 로컬에만 저장됩니다.
+const SCORE_SHEET_WEBHOOK_URL = '';  // 예: 'https://script.google.com/macros/s/XXXX/exec'
+
 class CineMasterApp {
   constructor() {
     this.currentUser = null;
@@ -4952,8 +4970,8 @@ class CineMasterApp {
     if (movies.length === 0) {
       container.innerHTML = `
         <div style="padding:32px 16px;text-align:center;color:var(--text-muted);font-size:0.85rem;">
-          이번 주 등록된 개봉작이 없습니다.<br>
-          <span style="font-size:0.75rem;">매주 수요일부터 그 주 개봉작에 한줄평을 남길 수 있어요.</span>
+          개봉 2주 이내 등록된 영화가 없습니다.<br>
+          <span style="font-size:0.75rem;">아래 검색창에서 예전 영화도 코멘트할 수 있어요.</span>
         </div>`;
       return;
     }
@@ -4961,17 +4979,50 @@ class CineMasterApp {
     container.innerHTML = movies.map(m => this._renderCommentBlock(m, isWedOrLater, weekLabel)).join('');
   }
 
-  // 코멘트용 영화 목록 (이번 주 + 최근 개봉작 상위 10편)
+  // 코멘트용 영화 목록 (현재 기준 개봉 2주 이내)
   _getCommentMovies() {
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
+    const twoWeeksAgo = new Date(today);
+    twoWeeksAgo.setDate(today.getDate() - 14);
+    const twoWeeksAhead = new Date(today);
+    twoWeeksAhead.setDate(today.getDate() + 14);
+
     const all = [
       ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : []),
       ...(typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : [])
     ];
-    // releaseDate 최신순 정렬, 상위 10편
+    // 개봉일이 2주 전 ~ 2주 후 이내 영화
     return all
-      .filter(m => m.releaseDate)
-      .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
-      .slice(0, 10);
+      .filter(m => {
+        if (!m.releaseDate) return false;
+        const rel = new Date(m.releaseDate);
+        return rel >= twoWeeksAgo && rel <= twoWeeksAhead;
+      })
+      .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+  }
+
+  // 코멘트 영화 검색 (예전 영화 포함)
+  searchCommentMovies(query) {
+    const resultsEl = document.getElementById('comment-search-results');
+    if (!resultsEl) return;
+    const q = (query || '').trim();
+    if (!q) { resultsEl.innerHTML = ''; return; }
+
+    const all = [
+      ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : []),
+      ...(typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : [])
+    ];
+    const found = all.filter(m => m.title && m.title.includes(q)).slice(0, 8);
+    if (found.length === 0) {
+      resultsEl.innerHTML = `<div style="padding:12px;font-size:0.82rem;color:var(--text-muted);">검색 결과가 없습니다.</div>`;
+      return;
+    }
+    // 이미 상단에 보이는 영화는 제외하지 않음 (검색으로 다시 코멘트 가능)
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const todayDay = nowKST.getDay();
+    const isWedOrLater = todayDay >= 3;
+    resultsEl.innerHTML = found.map(m => this._renderCommentBlock(m, isWedOrLater, '')).join('');
   }
 
   _renderCommentBlock(movie, isWedOrLater, weekLabel) {
@@ -5803,6 +5854,22 @@ class CineMasterApp {
     history.unshift(record);           // 최신 순 앞에 추가
     const trimmed = history.slice(0, 50); // 최대 50개 보관
     localStorage.setItem('score_quiz_history', JSON.stringify(trimmed));
+
+    // ── Google Sheets 전송 ──────────────────────────────────────────────
+    if (SCORE_SHEET_WEBHOOK_URL) {
+      const payload = {
+        ...record,
+        userEmail: this.currentUser?.email || '',
+        userId: this.currentUser?.uid || '',
+        timestamp: new Date().toISOString(),
+      };
+      fetch(SCORE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      }).catch(() => {}); // 실패 시 무시 (로컬에는 저장됨)
+    }
   }
 
   getQuizHistory() {
@@ -5918,39 +5985,57 @@ class CineMasterApp {
 
   // ── 포스터 롤링 배너 초기화 ────────────────────────────────────────────
   initPosterBanners() {
-    // Otaku: 개봉예정작
+    // 현재 KST 기준 날짜 계산
+    const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
+    const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
+
+    // 기준 날짜 경계 계산
+    const date3MonthsAgo = new Date(today); date3MonthsAgo.setMonth(today.getMonth() - 3);
+    const date6MonthsAgo = new Date(today); date6MonthsAgo.setMonth(today.getMonth() - 6);
+    const date12MonthsAgo = new Date(today); date12MonthsAgo.setFullYear(today.getFullYear() - 1);
+
+    // Otaku: 개봉예정작 (posterUrl 있는 것만)
+    const otakuMovies = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined'
+      ? UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl)
+      : []);
     this._buildPosterTrack(
       'poster-track-otaku',
-      (typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : []),
+      otakuMovies,
       (movie) => {
-        // 포스터 클릭 → 개봉예정작 퀴즈 직접 진입
         const safeTitle = movie.title.replace(/'/g, "\\'");
         return `app.startSpecificQuiz('${safeTitle}', true, 'solo')`;
       }
     );
 
-    // Mania: 개봉작
+    // Mania: 현재 기준 3~6개월 전 개봉작 (posterUrl 있는 것만)
+    const maniaMovies = (typeof MOVIES_DATABASE !== 'undefined'
+      ? MOVIES_DATABASE.filter(m => {
+          if (!m.posterUrl || !m.releaseDate) return false;
+          const rel = new Date(m.releaseDate);
+          return rel >= date6MonthsAgo && rel < date3MonthsAgo;
+        })
+      : []);
     this._buildPosterTrack(
       'poster-track-mania',
-      (typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : []),
+      maniaMovies,
       (movie) => {
-        // 포스터 클릭 → Mania 서브타입 없이 바로 퀴즈 (감독+배우 혼합)
         const safeTitle = movie.title.replace(/'/g, "\\'");
         return `app._filmoSubType = null; app.startQuiz('filmo', null, 'solo')`;
       }
     );
 
-    // Light: 명대사 있는 개봉작 (posterUrl 있는 것 우선)
+    // Light: 현재 기준 6개월~1년 전 개봉작 중 명대사 있는 것 (posterUrl 있는 것만)
     const lightMovies = (typeof MOVIES_DATABASE !== 'undefined'
-      ? MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0 && m.posterUrl)
-      : []);
-    // posterUrl 없는 것도 뒤에 추가
-    const lightMoviesAll = (typeof MOVIES_DATABASE !== 'undefined'
-      ? MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0)
+      ? MOVIES_DATABASE.filter(m => {
+          if (!m.posterUrl || !m.releaseDate) return false;
+          if (!m.famousLines || m.famousLines.length === 0) return false;
+          const rel = new Date(m.releaseDate);
+          return rel >= date12MonthsAgo && rel < date6MonthsAgo;
+        })
       : []);
     this._buildPosterTrack(
       'poster-track-light',
-      lightMoviesAll,
+      lightMovies,
       (movie) => {
         const safeTitle = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         return `app._startLinesWithMovie('${safeTitle}')`;
@@ -6055,13 +6140,13 @@ function doLogin() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // 스플래시 자동 제거 (애니메이션 총 3.4초 후)
+  // 스플래시 자동 제거 (애니메이션 총 4.4초 후)
   const splash = document.getElementById('splash-screen');
   if (splash) {
     setTimeout(() => {
       splash.classList.add('hidden');
       setTimeout(() => splash.remove(), 700);
-    }, 3400);
+    }, 4400);
   }
 
   app = new CineMasterApp();
