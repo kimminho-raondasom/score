@@ -5989,10 +5989,10 @@ class CineMasterApp {
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
 
-    // 기준 날짜 경계 계산
-    const date3MonthsAgo = new Date(today); date3MonthsAgo.setMonth(today.getMonth() - 3);
-    const date6MonthsAgo = new Date(today); date6MonthsAgo.setMonth(today.getMonth() - 6);
+    // 기준 날짜 경계 계산 (DB 영화 수가 적으므로 범위를 넉넉하게)
+    const date1MonthAgo  = new Date(today); date1MonthAgo.setMonth(today.getMonth() - 1);
     const date12MonthsAgo = new Date(today); date12MonthsAgo.setFullYear(today.getFullYear() - 1);
+    const date36MonthsAgo = new Date(today); date36MonthsAgo.setFullYear(today.getFullYear() - 3);
 
     // Otaku: 개봉예정작 (posterUrl 있는 것만)
     const otakuMovies = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined'
@@ -6007,12 +6007,13 @@ class CineMasterApp {
       }
     );
 
-    // Mania: 현재 기준 3~6개월 전 개봉작 (posterUrl 있는 것만)
+    // Mania: 현재 기준 1개월~1년 전 개봉작 (posterUrl 있는 것만)
+    // → DB 영화가 충분히 쌓이면 3~6개월로 좁힐 수 있음
     const maniaMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= date6MonthsAgo && rel < date3MonthsAgo;
+          return rel >= date12MonthsAgo && rel < date1MonthAgo;
         })
       : []);
     this._buildPosterTrack(
@@ -6024,13 +6025,13 @@ class CineMasterApp {
       }
     );
 
-    // Light: 현재 기준 6개월~1년 전 개봉작 중 명대사 있는 것 (posterUrl 있는 것만)
+    // Light: 현재 기준 1~3년 전 개봉작 (posterUrl 있는 것만, famousLines 조건 제거)
+    // → DB 영화가 충분히 쌓이면 6개월~1년으로 좁힐 수 있음
     const lightMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
-          if (!m.famousLines || m.famousLines.length === 0) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= date12MonthsAgo && rel < date6MonthsAgo;
+          return rel >= date36MonthsAgo && rel < date12MonthsAgo;
         })
       : []);
     this._buildPosterTrack(
