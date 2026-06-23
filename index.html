@@ -2026,6 +2026,19 @@ button, .btn {
   .scoreboard-minimal {
     font-size: 0.78rem;
   }
+  /* 타이머 모바일 고정 */
+  .quiz-timer-wrapper {
+    position: fixed;
+    top: 14px;
+    right: 16px;
+    z-index: 9999;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
   /* 모드 카드 */
   .mode-card {
     padding: 16px 14px;
@@ -2474,47 +2487,116 @@ html, body, .app-container, .view-section, .glass-card {
   color: var(--text-muted);
 }
 
-/* ── 개인전/단체전 상하 배치 ────────────────────────────────────────────── */
+/* ── 개인전/단체전 풀스크린 카드 ────────────────────────────────────────── */
 .battle-options-col {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* S(스코어) 메뉴: 4개 박스가 한 화면에 가득 차도록 */
+#score-quiz-options .battle-options-col {
   gap: 10px;
   margin-top: 8px;
 }
 
+#score-quiz-options .battle-option-btn {
+  min-height: calc((100dvh - 240px) / 2);
+}
+
 .battle-option-btn {
+  position: relative;
   width: 100%;
-  background: transparent;
+  min-height: 140px;
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 16px 18px;
+  padding: 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.25s ease;
+  overflow: hidden;
   text-align: left;
 }
 
 .battle-option-btn:hover {
   border-color: var(--text-main);
-  background: var(--bg-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+}
+
+.battle-option-btn:active {
+  transform: translateY(0);
 }
 
 .battle-option-info {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 10px;
+  padding: 28px 16px 20px;
 }
 
 .battle-option-icon {
-  font-size: 1.5rem;
+  font-size: 2.4rem;
   font-weight: 100;
   color: var(--text-main);
+  opacity: 0.85;
 }
 
 .battle-option-text h4 {
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.battle-option-text p {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+  line-height: 1.5;
+}
+
+.battle-option-footer {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* 개인전 강조색 */
+.battle-option-btn.solo-btn .battle-option-icon { color: var(--color-primary, #1a1a1a); }
+/* 단체전 강조색 */
+.battle-option-btn.group-btn {
+  background: var(--text-main);
+}
+.battle-option-btn.group-btn .battle-option-icon,
+.battle-option-btn.group-btn .battle-option-text h4,
+.battle-option-btn.group-btn .battle-option-footer {
+  color: var(--bg-main);
+}
+.battle-option-btn.group-btn .battle-option-text p {
+  color: rgba(255,255,255,0.6);
+}
+.battle-option-btn.group-btn .battle-option-footer {
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+.battle-option-btn.group-btn:hover {
+  background: #111;
+  border-color: #111;
 }
 
 /* ── 토론/MY 섹션 상단 여백 수정 ────────────────────────────────────────── */
@@ -3167,22 +3249,22 @@ html, body, .app-container, .view-section, .glass-card {
               <div class="sub-menu-header">Special</div>
 
               <!-- 개봉예정작 -->
-              <div style="margin-bottom:16px;">
+              <div style="margin-bottom:20px;">
                 <div class="quiz-section-label">개봉예정작</div>
                 <div class="battle-options-col">
-                  <div class="battle-option-btn" onclick="app.showUpcomingList('solo')">
+                  <div class="battle-option-btn solo-btn" onclick="app.showUpcomingList('solo')">
                     <div class="battle-option-info">
                       <span class="material-symbols-outlined battle-option-icon">person</span>
                       <div class="battle-option-text"><h4>개인전</h4></div>
                     </div>
-                    <span class="material-symbols-outlined text-muted">chevron_right</span>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                   </div>
-                  <div class="battle-option-btn" onclick="app.showUpcomingList('group')">
+                  <div class="battle-option-btn group-btn" onclick="app.showUpcomingList('group')">
                     <div class="battle-option-info">
                       <span class="material-symbols-outlined battle-option-icon">groups</span>
                       <div class="battle-option-text"><h4>단체전</h4></div>
                     </div>
-                    <span class="material-symbols-outlined text-muted">chevron_right</span>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                   </div>
                 </div>
               </div>
@@ -3191,19 +3273,19 @@ html, body, .app-container, .view-section, .glass-card {
               <div>
                 <div class="quiz-section-label">개봉작</div>
                 <div class="battle-options-col">
-                  <div class="battle-option-btn" onclick="app.showReleasedSearch('solo')">
+                  <div class="battle-option-btn solo-btn" onclick="app.showReleasedSearch('solo')">
                     <div class="battle-option-info">
                       <span class="material-symbols-outlined battle-option-icon">person</span>
                       <div class="battle-option-text"><h4>개인전</h4></div>
                     </div>
-                    <span class="material-symbols-outlined text-muted">chevron_right</span>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                   </div>
-                  <div class="battle-option-btn" onclick="app.showReleasedSearch('group')">
+                  <div class="battle-option-btn group-btn" onclick="app.showReleasedSearch('group')">
                     <div class="battle-option-info">
                       <span class="material-symbols-outlined battle-option-icon">groups</span>
                       <div class="battle-option-text"><h4>단체전</h4></div>
                     </div>
-                    <span class="material-symbols-outlined text-muted">chevron_right</span>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                   </div>
                 </div>
               </div>
@@ -3216,7 +3298,7 @@ html, body, .app-container, .view-section, .glass-card {
               </button>
               <div class="sub-menu-header">Challenge</div>
               <div class="battle-options-col">
-                <div class="battle-option-btn" onclick="app.startQuiz('challenge', null, 'solo')">
+                <div class="battle-option-btn solo-btn" onclick="app.startQuiz('challenge', null, 'solo')">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">person</span>
                     <div class="battle-option-text">
@@ -3224,9 +3306,9 @@ html, body, .app-container, .view-section, .glass-card {
                       <p>개봉일 6자리 맞추기 5라운드</p>
                     </div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
-                <div class="battle-option-btn" onclick="app.startQuiz('challenge', null, 'group')">
+                <div class="battle-option-btn group-btn" onclick="app.startQuiz('challenge', null, 'group')">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">groups</span>
                     <div class="battle-option-text">
@@ -3234,7 +3316,7 @@ html, body, .app-container, .view-section, .glass-card {
                       <p>여러 명이 번갈아 플레이</p>
                     </div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
               </div>
             </div>
@@ -3246,17 +3328,17 @@ html, body, .app-container, .view-section, .glass-card {
               </button>
               <div class="sub-menu-header">Ordinary</div>
               <div class="battle-options-col">
-                <div class="battle-option-btn" onclick="app.startQuiz('ordinary', null, 'solo')">
+                <div class="battle-option-btn solo-btn" onclick="app.startQuiz('ordinary', null, 'solo')">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">person</span>
                     <div class="battle-option-text">
                       <h4>개인전</h4>
-                      <p>포스터 1/36 조각으로 영화 맞추기</p>
+                      <p>포스터 조각으로 영화 맞추기</p>
                     </div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
-                <div class="battle-option-btn" onclick="app.startQuiz('ordinary', null, 'group')">
+                <div class="battle-option-btn group-btn" onclick="app.startQuiz('ordinary', null, 'group')">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">groups</span>
                     <div class="battle-option-text">
@@ -3264,7 +3346,7 @@ html, body, .app-container, .view-section, .glass-card {
                       <p>여러 명이 번갈아 플레이</p>
                     </div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
               </div>
             </div>
@@ -3304,19 +3386,19 @@ html, body, .app-container, .view-section, .glass-card {
               </button>
               <div class="sub-menu-header" id="filmo-battle-title">Regular — 감독</div>
               <div class="battle-options-col">
-                <div class="battle-option-btn" id="filmo-solo-btn">
+                <div class="battle-option-btn solo-btn" id="filmo-solo-btn">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">person</span>
                     <div class="battle-option-text"><h4>개인전</h4></div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
-                <div class="battle-option-btn" id="filmo-group-btn">
+                <div class="battle-option-btn group-btn" id="filmo-group-btn">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">groups</span>
                     <div class="battle-option-text"><h4>단체전</h4></div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
               </div>
             </div>
@@ -3356,19 +3438,19 @@ html, body, .app-container, .view-section, .glass-card {
               </button>
               <div class="sub-menu-header" id="lines-battle-title">Easy — 명대사</div>
               <div class="battle-options-col">
-                <div class="battle-option-btn" id="lines-solo-btn">
+                <div class="battle-option-btn solo-btn" id="lines-solo-btn">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">person</span>
                     <div class="battle-option-text"><h4>개인전</h4></div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
-                <div class="battle-option-btn" id="lines-group-btn">
+                <div class="battle-option-btn group-btn" id="lines-group-btn">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">groups</span>
                     <div class="battle-option-text"><h4>단체전</h4></div>
                   </div>
-                  <span class="material-symbols-outlined text-muted">chevron_right</span>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
               </div>
             </div>
@@ -3604,7 +3686,7 @@ html, body, .app-container, .view-section, .glass-card {
             </div>
           </div>
 
-          <button id="btn-next-step" class="btn-primary w-100 mt-3">
+          <button id="btn-next-step" class="btn-primary w-100" style="margin-top:28px;">
             <span>답안 제출 & 다음 질문</span>
             <span class="material-symbols-outlined">navigate_next</span>
           </button>
@@ -3692,7 +3774,7 @@ html, body, .app-container, .view-section, .glass-card {
           <div class="ordinary-poster-stage" id="ordinary-poster-stage">
             <div class="poster-crop" id="ordinary-poster-crop"></div>
           </div>
-          <div style="font-size:0.7rem;color:var(--text-muted);margin-top:8px;">포스터의 1/36 영역</div>
+          <div style="font-size:0.7rem;color:var(--text-muted);margin-top:8px;"></div>
         </div>
 
         <div class="ordinary-answer-card">
@@ -4863,6 +4945,18 @@ class CineMasterApp {
     this.currentUser.level = 1;
     
     this.saveProfile();
+
+    // ── 단체전 다음 참가자: 등록 완료 후 같은 퀴즈 자동 재시작 ──────────
+    if (this._pendingGroupRestart) {
+      const { type, subType, mode, sessionId } = this._pendingGroupRestart;
+      this._pendingGroupRestart = null;
+      // 세션 ID 복원
+      this.currentQuiz.groupSessionId = sessionId;
+      localStorage.setItem('score_group_current_session', sessionId);
+      this.startQuiz(type, subType, mode);
+      return;
+    }
+
     this.renderDashboard();
     this.switchView('dashboard');
     this.switchTab('dashboard');
@@ -4991,6 +5085,12 @@ class CineMasterApp {
     const target = document.getElementById(`view-${viewId}`);
     if (target) {
       target.classList.add('active');
+    }
+
+    // ── 히스토리 스택에 현재 화면 상태 push (뒤로가기 지원) ──────────────
+    const currentState = history.state;
+    if (!currentState || currentState.viewId !== viewId) {
+      history.pushState({ viewId }, '', '#' + viewId);
     }
 
     // 바텀 내비 표시/숨김
@@ -5580,16 +5680,17 @@ class CineMasterApp {
     // 입력폼 or 잠금 메시지
     let inputArea = '';
     if (!isWedOrLater) {
-      inputArea = `<div class="comment-locked-msg">수요일부터 한줄평을 작성할 수 있어요.</div>`;
+      inputArea = `<div class="comment-locked-msg">개봉일부터 한줄평을 작성할 수 있어요.</div>`;
     } else if (alreadyWrote) {
       inputArea = `<div class="comment-locked-msg">이미 한줄평을 남기셨습니다.</div>`;
     } else {
       const safeKey = key.replace(/'/g, "\\'");
       inputArea = `
         <div class="comment-input-area">
+          <div style="font-size:0.68rem;color:var(--text-muted);margin-bottom:5px;letter-spacing:0.5px;">10자 이내 작성 가능</div>
           <div class="comment-char-row">
             <input type="text" class="comment-text-input" id="cinput-${movie.id || movie.title}"
-              placeholder="10자 이내 한줄평" maxlength="10"
+              placeholder="한줄평 입력" maxlength="10"
               oninput="app._onCommentInput(this)">
             <span class="comment-char-count" id="ccount-${movie.id || movie.title}">0/10</span>
             <button class="comment-submit-btn" onclick="app._submitCommentReview('${safeKey}', '${(movie.id || movie.title).replace(/'/g, "\\'")}')">등록</button>
@@ -5680,6 +5781,16 @@ class CineMasterApp {
     this.currentQuiz.totalXpEarned = 0;
     this.currentQuiz.combo = 0;
     this.currentQuiz.maxComboThisRun = 0;
+
+    // ── 단체전 세션 처리 ──────────────────────────────────────────────────
+    this.currentQuiz.groupMode = (battleMode === 'group');
+    if (battleMode === 'group') {
+      const existingSession = localStorage.getItem('score_group_current_session');
+      this.currentQuiz.groupSessionId = existingSession || `${type}_${Date.now()}`;
+      localStorage.setItem('score_group_current_session', this.currentQuiz.groupSessionId);
+    } else {
+      this.currentQuiz.groupSessionId = null;
+    }
 
     // Load questions based on type
     if (type === 'score') {
@@ -6397,9 +6508,14 @@ class CineMasterApp {
   }
 
   addNextGroupPlayer() {
-    // 같은 세션 ID 유지, 로그인 화면으로 이동 → 새 닉네임으로 다시 퀴즈
+    // 현재 퀴즈 타입/서브타입/battleMode 저장 (등록 후 재사용)
+    this._pendingGroupRestart = {
+      type:    this.currentQuiz.type,
+      subType: this.currentQuiz.subType,
+      mode:    'group',
+      sessionId: this.currentQuiz.groupSessionId,
+    };
     showToast('다음 참가자가 이어서 플레이합니다.', 'info', 2500);
-    // 로그아웃 없이 닉네임만 초기화
     if (this.currentUser) {
       this.currentUser.nickname = '';
       this.currentUser.realName = '';
@@ -6674,18 +6790,14 @@ class CineMasterApp {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     if (!movie || !movie.posterUrl) return;
 
-    // 6×6 분할 → 랜덤 위치 선택
-    const col = Math.floor(Math.random() * 6); // 0~5
-    const row = Math.floor(Math.random() * 6); // 0~5
+    // 5×5 분할 → 랜덤 위치 선택 (1/25)
+    const col = Math.floor(Math.random() * 5); // 0~4
+    const row = Math.floor(Math.random() * 5); // 0~4
 
-    // 포스터를 540×1080(3:6 비율)로 가정, 각 셀: 90×180
-    // clip-path로 원형 마스크는 CSS로 처리(ordinary-poster-stage border-radius:50%)
-    // 실제 포스터 크기: 300px wide(w300), 약 450px high
-    // 셀 크기: 300/6 = 50px wide, 450/6 = 75px high
     const posterW = 300;
     const posterH = 450;
-    const cellW = posterW / 6;
-    const cellH = posterH / 6;
+    const cellW = posterW / 5;  // 60px
+    const cellH = posterH / 5;  // 90px
 
     const offsetX = -(col * cellW);
     const offsetY = -(row * cellH);
@@ -6693,7 +6805,6 @@ class CineMasterApp {
     const crop = document.getElementById('ordinary-poster-crop');
     const stage = document.getElementById('ordinary-poster-stage');
 
-    // stage는 원형(border-radius:50%), 셀 크기만큼 표시
     if (stage) {
       stage.style.width  = `${cellW * 2}px`;  // 2배 확대 표시
       stage.style.height = `${cellH * 2}px`;
@@ -6769,14 +6880,21 @@ class CineMasterApp {
       }
     );
 
-    // [C] Challenge — 개봉 3개월 미만 (오늘 ~ 3개월 전)
-    const challengeMovies = (typeof MOVIES_DATABASE !== 'undefined'
+    // [C] Challenge — 기본 6개월 미만, 부족하면 12개월로 확대
+    let challengeMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= d3m && rel <= today;
+          return rel >= monthsAgo(6) && rel <= today;
         })
       : []);
+    if (challengeMovies.length < 5) {
+      challengeMovies = (typeof MOVIES_DATABASE !== 'undefined'
+        ? MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate && new Date(m.releaseDate) <= today)
+            .sort((a,b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+            .slice(0, 20)
+        : []);
+    }
     this._buildPosterTrack('poster-track-challenge', challengeMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "\\'");
@@ -6784,14 +6902,21 @@ class CineMasterApp {
       }
     );
 
-    // [O] Ordinary — 개봉 3~7개월
-    const ordinaryMovies = (typeof MOVIES_DATABASE !== 'undefined'
+    // [O] Ordinary — 기본 3~12개월, 부족하면 전체 DB에서 최근 20개
+    let ordinaryMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= d7m && rel < d3m;
+          return rel >= d12m && rel < monthsAgo(3);
         })
       : []);
+    if (ordinaryMovies.length < 5) {
+      ordinaryMovies = (typeof MOVIES_DATABASE !== 'undefined'
+        ? MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate && new Date(m.releaseDate) <= today)
+            .sort((a,b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+            .slice(0, 20)
+        : []);
+    }
     this._buildPosterTrack('poster-track-ordinary', ordinaryMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "\\'");
@@ -6799,14 +6924,21 @@ class CineMasterApp {
       }
     );
 
-    // [R] Regular — 개봉 7~12개월
-    const regularMovies = (typeof MOVIES_DATABASE !== 'undefined'
+    // [R] Regular — 기본 7~18개월, 부족하면 전체 DB에서 최근 20개
+    let regularMovies = (typeof MOVIES_DATABASE !== 'undefined'
       ? MOVIES_DATABASE.filter(m => {
           if (!m.posterUrl || !m.releaseDate) return false;
           const rel = new Date(m.releaseDate);
-          return rel >= d12m && rel < d7m;
+          return rel >= monthsAgo(18) && rel < d7m;
         })
       : []);
+    if (regularMovies.length < 5) {
+      regularMovies = (typeof MOVIES_DATABASE !== 'undefined'
+        ? MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate && new Date(m.releaseDate) <= today)
+            .sort((a,b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+            .slice(0, 20)
+        : []);
+    }
     this._buildPosterTrack('poster-track-regular', regularMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "\\'");
@@ -6993,6 +7125,57 @@ window.addEventListener('DOMContentLoaded', () => {
 
   app = new CineMasterApp();
   app.init();
+
+  // ── 핸드폰 뒤로가기 버튼 처리 ────────────────────────────────────────
+  window.addEventListener('popstate', (e) => {
+    const state = e.state;
+    const viewId = state?.viewId;
+
+    if (!viewId || !app) return;
+
+    // 퀴즈 진행 중 뒤로가기 → 종료 확인
+    if (viewId !== 'quiz' && app.currentQuiz && app.currentQuiz.timerId) {
+      const currentViewEl = document.querySelector('.view-section.active');
+      const currentViewId = currentViewEl?.id?.replace('view-', '');
+      if (currentViewId === 'quiz') {
+        // 히스토리 재push (뒤로가기 취소 효과)
+        history.pushState({ viewId: 'quiz' }, '', '#quiz');
+        if (confirm('퀴즈를 종료하시겠습니까?')) {
+          clearInterval(app.currentQuiz.timerId);
+          app.switchView('dashboard');
+          app.renderDashboard();
+        }
+        return;
+      }
+    }
+
+    // finale → dashboard
+    if (viewId === 'finale') {
+      app.switchView('dashboard');
+      app.renderDashboard();
+      return;
+    }
+
+    // register → login
+    if (viewId === 'register') {
+      app.switchView('login');
+      return;
+    }
+
+    // 그 외: 해당 뷰로 전환
+    const validViews = ['dashboard', 'login', 'register', 'quiz', 'finale', 'forum', 'myroom'];
+    if (validViews.includes(viewId)) {
+      const el = document.getElementById(`view-${viewId}`);
+      if (el) {
+        document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+        el.classList.add('active');
+        const bottomNav = document.getElementById('bottom-nav-bar');
+        if (bottomNav) {
+          bottomNav.style.display = ['dashboard', 'forum', 'myroom'].includes(viewId) ? 'block' : 'none';
+        }
+      }
+    }
+  });
 });
 
 </script>
