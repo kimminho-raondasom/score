@@ -1167,6 +1167,96 @@ button, .btn {
   position: relative;
 }
 
+/* ── 단체전 참가자 현황 배지 ─────────────────────────────────────────────── */
+.group-status-bar {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--text-main);
+  color: var(--bg-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+.group-status-bar.visible { display: flex; }
+.group-status-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.group-status-list {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+.group-status-list.open { display: block; }
+.group-status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.82rem;
+}
+.group-status-row:last-child { border-bottom: none; }
+.group-status-medal { font-size: 1rem; margin-right: 6px; }
+
+/* ── 단체전 결과 순위표 ───────────────────────────────────────────────────── */
+.group-result-card {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px solid var(--text-main);
+}
+.group-result-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.group-result-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.group-result-meta {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+.group-rank-table { width: 100%; border-collapse: collapse; }
+.group-rank-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  gap: 8px;
+}
+.group-rank-row:last-child { border-bottom: none; }
+.group-rank-medal { font-size: 1.3rem; text-align: center; }
+.group-rank-name { font-size: 0.9rem; font-weight: 500; }
+.group-rank-date { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+.group-rank-score {
+  text-align: right;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.group-rank-acc { font-size: 0.68rem; color: var(--text-muted); margin-top: 2px; }
+.group-result-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
 .btn-back {
   background: transparent;
   border: none;
@@ -3174,9 +3264,9 @@ html, body, .app-container, .view-section, .glass-card {
 
         <div class="menu-section fade-in">
           <!-- 메인 히어로 타이틀 -->
-          <div style="text-align:center; padding: 20px 0 24px; border-bottom: 1px solid var(--border-color); margin-bottom: 20px;">
-            <div style="font-family:'Outfit',sans-serif; font-size:0.7rem; letter-spacing:4px; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">당신의 영화를</div>
-            <div style="font-family:'Outfit',sans-serif; font-size:clamp(2rem,8vw,3rem); font-weight:600; letter-spacing:-0.02em; color:var(--text-main); line-height:1;">score<span style="color:var(--color-primary);">.</span></div>
+          <div style="text-align:center; padding: 28px 20px 28px; border-bottom: 1px solid var(--border-color); margin: 0 -20px 24px; width: calc(100% + 40px); box-sizing: border-box;">
+            <div style="font-family:'Outfit',sans-serif; font-size:0.68rem; letter-spacing:5px; color:var(--text-muted); text-transform:uppercase; margin-bottom:10px;">당신의 영화를</div>
+            <div style="font-family:'Outfit',sans-serif; font-size:clamp(2.4rem,10vw,3.6rem); font-weight:600; letter-spacing:-0.02em; color:var(--text-main); line-height:1;">score<span style="color:var(--color-primary);">.</span></div>
           </div>
           <div class="mode-grid">
             
@@ -3632,6 +3722,16 @@ html, body, .app-container, .view-section, .glass-card {
 
     <!-- 4. QUIZ CONTAINER (DYNAMIC ACCORDING TO MODE) -->
     <section id="view-quiz" class="view-section">
+      <!-- 단체전 참가자 현황 배지 (단체전일 때만 표시) -->
+      <div class="group-status-bar" id="group-status-bar" onclick="app.toggleGroupStatusList()">
+        <span class="material-symbols-outlined" style="font-size:1.1rem;">groups</span>
+        <span>단체전</span>
+        <span class="group-status-count" id="group-status-count">0</span>
+        <span>명 완료</span>
+        <span class="material-symbols-outlined" style="font-size:0.9rem;margin-left:auto;" id="group-status-chevron">expand_more</span>
+      </div>
+      <div class="group-status-list" id="group-status-list"></div>
+
       <!-- Quiz Header -->
       <div class="quiz-header-bar">
         <button id="btn-exit-quiz" class="btn-back">
@@ -4019,6 +4119,334 @@ html, body, .app-container, .view-section, .glass-card {
 // 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
 
 const MOVIES_DATABASE = [
+  // ── 수동 입력 핵심 데이터 (명대사/초성/정답 포함) ──────────────────────────
+{
+    id: "seoul_spring", title: "서울의 봄", director: "김성수",
+    cast: ["황정민", "정우성", "이성민", "박해준", "김성균"],
+    releaseDate: "2023-11-22", genre: ["드라마", "스릴러"],
+    openingSeats: "71만석 이상", openingDayScore: "11~20만명",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "41억~50억", svodOtt: "디즈니플러스",
+    similarRefs: ["남산의 부장들", "헌트", "변호인"],
+    famousLines: [
+      { line: "실패하면 반역, 성공하면 혁명 아닙니까!", character: "전두광 (황정민)" },
+      { line: "대한민국 육군은 다 같은 편입니다!", character: "이태신 (정우성)" }
+    ],
+    choseong: "ㅅㅇㅇ ㅂ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/wjpRNDRqI0KAg95F7HFG0LjdFQX.jpg"
+  },
+  {
+    id: "exhuma", title: "파묘", director: "장재현",
+    cast: ["최민식", "김고은", "유해진", "이도현"],
+    releaseDate: "2024-02-22", genre: ["스릴러", "공포"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "41억~50억", svodOtt: "넷플릭스",
+    similarRefs: ["곡성", "사바하", "검은 사제들"],
+    famousLines: [
+      { line: "여우가 범의 허리를 끊었다.", character: "상덕 (최민식)" },
+      { line: "얘들아, 굿하자!", character: "화림 (김고은)" }
+    ],
+    choseong: "ㅍㅁ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/sGaKrQpmHmMWyGbBjM9RFD6x9ij.jpg"
+  },
+  {
+    id: "parasite", title: "기생충", director: "봉준호",
+    cast: ["송강호", "이선균", "조여정", "최우식", "박소담"],
+    releaseDate: "2019-05-30", genre: ["드라마", "스릴러"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["설국열차", "마더", "괴물"],
+    famousLines: [
+      { line: "아들아, 너는 계획이 다 있구나.", character: "기택 (송강호)" },
+      { line: "가장 완벽한 계획이 뭔지 아냐? 무계획이야.", character: "기택 (송강호)" }
+    ],
+    choseong: "ㄱㅅㅊ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+  },
+  {
+    id: "extreme_job", title: "극한직업", director: "이병헌",
+    cast: ["류승룡", "이하늬", "진선규", "이동휘", "공명"],
+    releaseDate: "2019-01-23", genre: ["코미디", "액션"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["베테랑", "공조", "엑시트"],
+    famousLines: [
+      { line: "지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.", character: "고반장 (류승룡)" },
+      { line: "왜 자꾸 장사가 잘 되는 건데!", character: "마형사 (진선규)" }
+    ],
+    choseong: "ㄱㅎㅈㅇ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/aGPHBpBPDlqRIZHHfzE4aXnpZmL.jpg"
+  },
+  {
+    id: "crime_city_4", title: "범죄도시4", director: "허명행",
+    cast: ["마동석", "김무열", "박지환", "이동휘"],
+    releaseDate: "2024-04-24", genre: ["액션", "코미디"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["범죄도시3", "베테랑", "신세계"],
+    famousLines: [
+      { line: "약속하지. 내가 꼭 잡는다.", character: "마석도 (마동석)" },
+      { line: "이유가 어딨어, 나쁜 놈은 그냥 잡는 거지.", character: "마석도 (마동석)" }
+    ],
+    choseong: "ㅂㅈㄷㅅ4",
+    posterUrl: "https://image.tmdb.org/t/p/w300/vUiUXkDeXAuMCCJLvvhRNTFNxjT.jpg"
+  },
+  {
+    id: "smugglers", title: "밀수", director: "류승완",
+    cast: ["김혜수", "염정아", "조인성", "박정민", "고민시"],
+    releaseDate: "2023-07-26", genre: ["액션", "드라마"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
+    vodSales: "21~30억", svodOtt: "넷플릭스",
+    similarRefs: ["도둑들", "베테랑", "공작"],
+    famousLines: [
+      { line: "바다 밑에는 건지는 사람이 임자야.", character: "춘자 (김혜수)" },
+      { line: "이 판에 의리가 어딨어, 돈만 있으면 그만이지.", character: "권필삼 (조인성)" }
+    ],
+    choseong: "ㅁㅅ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/8bKQICnBHPo6eCIcjxRkJfFrAeT.jpg"
+  },
+  {
+    id: "concrete_utopia", title: "콘크리트 유토피아", director: "엄태화",
+    cast: ["이병헌", "박서준", "박보영", "김선영"],
+    releaseDate: "2023-08-09", genre: ["드라마", "스릴러"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "301~400만명",
+    vodSales: "16~20억", svodOtt: "넷플릭스",
+    similarRefs: ["터널", "부산행", "설국열차"],
+    famousLines: [
+      { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" }
+    ],
+    choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
+  },
+  // ── KOBIS 자동 수집 (2026-06-22 09:25 KST) ─────────────────────────────────────────
+  {
+    id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
+    cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
+    releaseDate: "2026-02-04", genre: ["사극", "드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3131 \u3145\u3134 \u3134\u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/kkJB3SeUJp7Y0IXXLkv5QZHJGkH.jpg"
+  },
+  {
+    id: "kobis_20252432", title: "\uc8fc\ud1a0\ud53c\uc544 2", director: "\uc7ac\ub7ec\ub4dc \ubd80\uc2dc",
+    cast: ["지니퍼 굿윈", "제이슨 베이트먼", "키 호이 콴"],
+    releaseDate: "2025-11-26", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3148\u314c\u314d\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ib6v6qUXzez1x2qIOLN7C0yJNPQ.jpg"
+  },
+  {
+    id: "kobis_20239670", title: "\ubca0\ud14c\ub7912", director: "\ub958\uc2b9\uc644",
+    cast: ["황정민", "정해인", "장윤주", "정만식", "신승환"],
+    releaseDate: "2024-09-13", genre: ["액션", "범죄"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3142\u314c\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/akqfhtM1Wa1klFi7ijmyNm7Sm1j.jpg"
+  },
+  {
+    id: "kobis_20256396", title: "\uc544\ubc14\ud0c0: \ubd88\uacfc \uc7ac", director: "\uc81c\uc784\uc2a4 \uce74\uba54\ub860",
+    cast: ["샘 워싱턴", "조 샐다나", "시고니 위버", "스티븐 랭", "케이트 윈슬렛"],
+    releaseDate: "2025-12-17", genre: ["SF", "액션", "어드벤처"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3142\u314c \u3142\u3131 \u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/l18o0AK18KS118tWeROOKYkF0ng.jpg"
+  },
+  {
+    id: "kobis_20253289", title: "\uadf9\uc7a5\ud310 \uadc0\uba78\uc758 \uce7c\ub0a0: \ubb34\ud55c\uc131\ud3b8", director: "\uc18c\ud1a0\uc790\ud0a4 \ud558\ub8e8\uc624",
+    cast: ["하나에 나츠키", "키토 아카리", "시모노 히로", "마츠오카 요시츠구", "오카모토 노부히코"],
+    releaseDate: "2025-08-22", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u3148\u314d \u3131\u3141\u3147 \u314b\u3134 \u3141\u314e\u3145\u314d",
+    posterUrl: "https://image.tmdb.org/t/p/w300/m6Dho6hDCcL5KI8mOQNemZAedFI.jpg"
+  },
+  {
+    id: "kobis_20241941", title: "\uc880\ube44\ub538", director: "\ud544\uac10\uc131",
+    cast: ["조정석", "이정은", "조여정", "윤경호", "최유리"],
+    releaseDate: "2025-07-30", genre: ["코미디", "드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3148\u3142\u3138",
+    posterUrl: "https://image.tmdb.org/t/p/w300/aASLRiO8p9xLIvG9EHXSyZ71sPl.jpg"
+  },
+  {
+    id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
+    cast: ["전지현", "구교환", "지창욱", "신현빈", "김신록"],
+    releaseDate: "2026-05-21", genre: ["액션", "스릴러"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u314a",
+    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
+  },
+  {
+    id: "kobis_20254501", title: "F1 \ub354 \ubb34\ube44", director: "\uc870\uc149 \ucf54\uc2e0\uc2a4\ud0a4",
+    cast: ["브래드 피트", "하비에르 바르뎀", "케리 콘든"],
+    releaseDate: "2025-06-25", genre: ["드라마", "액션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3137 \u3141\u3142",
+    posterUrl: "https://image.tmdb.org/t/p/w300/bvVoP1t2gNvmE9ccSrqR1zcGHGM.jpg"
+  },
+  {
+    id: "kobis_20228796", title: "\ud558\uc5bc\ube48", director: "\uc6b0\ubbfc\ud638",
+    cast: ["현빈", "박정민", "조우진", "전여빈", "박훈"],
+    releaseDate: "2024-12-24", genre: ["드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314e\u3147\u3142",
+    posterUrl: "https://image.tmdb.org/t/p/w300/xrqAcOddbmWfxDxuGHChR4QmscA.jpg"
+  },
+  {
+    id: "kobis_20224666", title: "\ud30c\uc77c\ub7ff", director: "\uae40\ud55c\uacb0",
+    cast: ["조정석", "이주명", "한선화", "신승호", "오민애"],
+    releaseDate: "2024-07-31", genre: ["코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314d\u3147\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/i0QIYEuY8BabwAHEFL0LkUsXCrZ.jpg"
+  },
+  {
+    id: "kobis_20200142", title: "\uc18c\ubc29\uad00", director: "\uacfd\uacbd\ud0dd",
+    cast: ["주원", "곽도원", "유재명", "이유영", "김민재"],
+    releaseDate: "2024-12-04", genre: ["드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u3142\u3131",
+    posterUrl: "https://image.tmdb.org/t/p/w300/rizG7S7y1JkXmbYwOYSFIjyydPF.jpg"
+  },
+  {
+    id: "kobis_20240737", title: "\ubaa8\uc544\ub098 2", director: "\ub370\uc774\ube0c \ub370\ub9ad \uc8fc\ub2c8\uc5b4",
+    cast: ["아우이 크라발호", "드웨인 존슨"],
+    releaseDate: "2024-11-27", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3147\u3134",
+    posterUrl: "https://image.tmdb.org/t/p/w300/hwmwTFtMbzxAWbIOp1RyyiOCyx0.jpg"
+  },
+  {
+    id: "kobis_20256757", title: "\uadf9\uc7a5\ud310 \uccb4\uc778\uc18c \ub9e8: \ub808\uc81c\ud3b8", director: "-",
+    cast: ["-"],
+    releaseDate: "2025-09-24", genre: ["애니메이션", "액션", "어드벤처"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3131\u3148\u314d \u314a\u3147\u3145 \u3141 \u3139\u3148\u314d",
+    posterUrl: "https://image.tmdb.org/t/p/w300/oTn0PoR8gSMpMqJaT2pUtkkN0Ia.jpg"
+  },
+  {
+    id: "kobis_20246489", title: "\ubbf8\uc158 \uc784\ud30c\uc11c\ube14: \ud30c\uc774\ub110 \ub808\ucf54\ub2dd", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub9e5\ucffc\ub9ac",
+    cast: ["톰 크루즈", "헤일리 앳웰", "빙 라메스", "사이먼 페그", "바네사 커비"],
+    releaseDate: "2025-05-17", genre: ["액션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3145 \u3147\u314d\u3145\u3142 \u314d\u3147\u3134 \u3139\u314b\u3134",
+    posterUrl: "https://image.tmdb.org/t/p/w300/c5pDU8SW0ZbmO5jHfw7fX6keyyR.jpg"
+  },
+  {
+    id: "kobis_20232394", title: "\uc57c\ub2f9", director: "\ud669\ubcd1\uad6d",
+    cast: ["강하늘", "유해진", "박해준", "류경수", "채원빈"],
+    releaseDate: "2025-04-16", genre: ["범죄", "액션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/k4yTwFqvQDApqaoFdgubsbYcuno.jpg"
+  },
+  {
+    id: "kobis_20254121", title: "\uc0b4\ubaa9\uc9c0", director: "\uc774\uc0c1\ubbfc",
+    cast: ["김혜윤", "이종원", "김준한", "김영성", "오동민"],
+    releaseDate: "2026-04-08", genre: ["공포(호러)", "스릴러"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u3141\u3148",
+    posterUrl: "https://image.tmdb.org/t/p/w300/uVJyWlSPCWftRUXRM6lxTqOzPY6.jpg"
+  },
+  {
+    id: "kobis_20244821", title: "\ubbf8\ud0a4 17", director: "\ubd09\uc900\ud638",
+    cast: ["로버트 패틴슨", "나오미 애키", "스티븐 연", "토니 콜렛", "마크 러팔로"],
+    releaseDate: "2025-02-28", genre: ["어드벤처", "SF", "드라마", "코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u314b",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mH7QnJDxQibVZw0M66IBZbsw2O6.jpg"
+  },
+  {
+    id: "kobis_20243561", title: "\uc5b4\uca54\uc218\uac00\uc5c6\ub2e4", director: "\ubc15\ucc2c\uc6b1",
+    cast: ["이병헌", "손예진", "박희순", "이성민", "염혜란"],
+    releaseDate: "2025-09-24", genre: ["스릴러", "코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3149\u3145\u3131\u3147\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/9w7WGjQes0Cs0s4U3Qr09Tg1Sra.jpg"
+  },
+  {
+    id: "kobis_20261782", title: "\ud504\ub85c\uc81d\ud2b8 \ud5e4\uc77c\uba54\ub9ac", director: "\ud544 \ub85c\ub4dc",
+    cast: ["라이언 고슬링", "산드라 휠러"],
+    releaseDate: "2026-03-18", genre: ["SF"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314d\u3139\u3148\u314c \u314e\u3147\u3141\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/qqGpVVZk2KD1lAvccgTU4Z6nh1H.jpg"
+  },
+  {
+    id: "kobis_20249255", title: "\ub9cc\uc57d\uc5d0 \uc6b0\ub9ac", director: "\uae40\ub3c4\uc601",
+    cast: ["구교환", "문가영", "신정근", "이상엽", "임재혁"],
+    releaseDate: "2025-12-31", genre: ["멜로/로맨스"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3141\u3147\u3147 \u3147\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/3ajXIRwoTGvnlLWVPgZPrHgXIW.jpg"
+  },
+
+  // ── KOBIS 자동 수집 데이터 ──────────────────────────────────────────────
   {
     id: "kobis_20259781", title: "토이 스토리 5", director: "앤드류 스탠튼",
     cast: ["톰 행크스", "팀 알렌", "조앤 쿠삭", "그레타 리"],
@@ -19973,6 +20401,44 @@ const FILMO_POSTERS = {
   "헤어질 결심": "https://image.tmdb.org/t/p/w300/rXEJ28XDQsogIGqwVEgwM2oDdpl.jpg",
 };
 
+const FILMOGRAPHIES = {
+  directors: [
+    { name: "봉준호", movies: ["기생충", "설국열차", "괴물", "마더", "살인의 추억", "옥자"], fake: ["올드보이", "아가씨", "헤어질 결심", "곡성", "부산행"] },
+    { name: "류승완", movies: ["밀수", "모가디슈", "베테랑", "베를린", "부당거래", "군함도"], fake: ["해운대", "도둑들", "아저씨", "범죄도시"] },
+    { name: "장재현", movies: ["파묘", "사바하", "검은 사제들"], fake: ["곡성", "추격자", "신과함께", "부산행"] },
+    { name: "김성수", movies: ["서울의 봄", "아수라", "감기", "무사", "비트"], fake: ["신세계", "내부자들", "범죄도시", "명량"] },
+    { name: "연상호", movies: ["부산행", "반도", "지옥", "염력", "돼지의 왕"], fake: ["파묘", "공조", "베테랑", "밀수"] }
+  ],
+  actors: [
+    { name: "송강호", movies: ["기생충", "택시운전사", "변호인", "설국열차", "괴물", "살인의 추억", "밀정"], fake: ["명량", "범죄도시", "올드보이", "베테랑", "부산행"] },
+    { name: "황정민", movies: ["서울의 봄", "베테랑", "국제시장", "신세계", "곡성", "공작", "다만 악에서 구하소서"], fake: ["기생충", "명량", "도둑들", "공조"] },
+    { name: "정우성", movies: ["서울의 봄", "헌트", "강철비", "아수라", "더 킹", "비트"], fake: ["택시운전사", "신세계", "범죄도시", "괴물"] },
+    { name: "김고은", movies: ["파묘", "영웅", "은교", "차이나타운", "변산"], fake: ["기생충", "아가씨", "밀수", "써니"] },
+    { name: "마동석", movies: ["범죄도시4", "범죄도시3", "범죄도시2", "범죄도시", "부산행", "아이 캔 스피크"], fake: ["베테랑", "서울의 봄", "기생충", "공조"] },
+    { name: "유해진", movies: ["파묘", "택시운전사", "럭키", "베테랑", "완득이", "국제시장"], fake: ["기생충", "서울의 봄", "극한직업", "밀수"] }
+  ]
+};
+
+const GAME_OPTIONS = {
+  openingSeats: ["5만석 이하","6~10만석","11~20만석","21~30만석","31~40만석","41~50만석","51~70만석","71만석 이상"],
+  openingDayScore: ["0.1만명 이하","0.2~0.3만명","0.4~0.5만명","0.6~1만명","2~3만명","4~5만명","6~7만명","8~10만명","11~20만명","21만명 이상"],
+  openingWeekScore: ["1만명 이하","2~3만명","4~5만명","5~10만명","11~15만명","15~30만명","31~50만명","51~70만명","71~100만명","101만명 이상"],
+  finalScore: ["2만명 이하","3~5만명","6~10만명","11~20만명","21~30만명","31~50만명","51~75만명","75~100만명","100~150만명","151~200만명","201~250만명","251~300만명","301~400만명","401~500만명","501만명 이상"],
+  vodSales: ["0.5억 이하","0.5~1억","1.1~1.5억","1.6~2억","2.1~2.5억","2.6~3억","3.1~4억","4.1~5억","5.1~7.5억","7.6~10억","11~15억","16~20억","21~30억","31~40억","41억~50억","51억 이상"],
+  svodOtt: ["넷플릭스","디즈니플러스","쿠팡플레이","티빙","웨이브","기타","판매 불가"]
+};
+
+const FAMOUS_CHARACTERS = [
+  "아이언맨","해리포터","엘사","타노스","존윅","잭스패로우","할리퀸","조커","도민준","천송이",
+  "마석도","장첸","전두광","이태신","덤블도어","간달프","레골라스","피터팬","슈퍼맨","배트맨",
+  "스파이더맨","괴물","기택","상덕","화림","고반장","춘자","영탁","네오","모피어스"
+];
+
+const NICKNAME_MODIFIERS = [
+  "시네필","천만감독","박스오피스","황금종려상","칸영화제","영화비평가","스포일러","티켓마스터",
+  "무비매니아","엔딩크레딧","영화배급사","시네마키드","오스카","레드카펫","필름메이커","팝콘귀신"
+];
+
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { MOVIES_DATABASE, UPCOMING_MOVIES_DATABASE, FILMOGRAPHIES, GAME_OPTIONS, FAMOUS_CHARACTERS, NICKNAME_MODIFIERS };
 }
@@ -20853,12 +21319,18 @@ class CineMasterApp {
     const lowerQuery = query.toLowerCase().trim();
     const mode = this._quizMode || 'solo';
 
-    let results = MOVIES_DATABASE;
+    let results;
     if (lowerQuery) {
       results = MOVIES_DATABASE.filter(m =>
         m.title.toLowerCase().includes(lowerQuery) ||
-        (m.director || '').toLowerCase().includes(lowerQuery)
+        (m.director || '').toLowerCase().includes(lowerQuery) ||
+        (m.cast || []).some(a => a.toLowerCase().includes(lowerQuery))
       );
+    } else {
+      // 초기: 최신 개봉순 상위 30개
+      results = [...MOVIES_DATABASE]
+        .sort((a, b) => (b.releaseDate || '').localeCompare(a.releaseDate || ''))
+        .slice(0, 30);
     }
 
     if (results.length === 0) {
@@ -20866,7 +21338,12 @@ class CineMasterApp {
       return;
     }
 
-    grid.innerHTML = results.slice(0, 15).map(m => {
+    // 검색 시 최대 50개, 최신 개봉순 정렬
+    const display = lowerQuery
+      ? results.sort((a,b) => (b.releaseDate||'').localeCompare(a.releaseDate||'')).slice(0, 50)
+      : results;
+
+    grid.innerHTML = display.map(m => {
       const castStr = (m.cast || []).slice(0, 3).join(', ');
       const posterStyle = m.posterUrl
         ? `background-image: url('${m.posterUrl}')`
@@ -21324,6 +21801,56 @@ class CineMasterApp {
       roundContainer.innerHTML = `영화: <b id="quiz-round">${this.currentQuiz.currentIndex + 1}/5</b>`;
     } else {
       roundContainer.innerHTML = `라운드: <b id="quiz-round">${this.currentQuiz.currentIndex + 1}/5</b>`;
+    }
+
+    // ── 단체전 참가자 현황 배지 업데이트 ──────────────────────────────────
+    this._updateGroupStatusBar();
+  }
+
+  // 단체전 현황 배지 업데이트
+  _updateGroupStatusBar() {
+    const bar   = document.getElementById('group-status-bar');
+    const count = document.getElementById('group-status-count');
+    if (!bar) return;
+    if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+      const answers = this.getGroupAnswers(this.currentQuiz.groupSessionId);
+      bar.classList.add('visible');
+      if (count) count.innerText = answers.length;
+    } else {
+      bar.classList.remove('visible');
+      // 목록도 닫기
+      const list = document.getElementById('group-status-list');
+      if (list) list.classList.remove('open');
+    }
+  }
+
+  // 단체전 현황 목록 토글
+  toggleGroupStatusList() {
+    const list     = document.getElementById('group-status-list');
+    const chevron  = document.getElementById('group-status-chevron');
+    if (!list) return;
+    const isOpen = list.classList.toggle('open');
+    if (chevron) chevron.innerText = isOpen ? 'expand_less' : 'expand_more';
+    if (isOpen) {
+      const answers = this.getGroupAnswers(this.currentQuiz.groupSessionId || '');
+      if (answers.length === 0) {
+        list.innerHTML = `<div style="font-size:0.8rem;color:var(--text-muted);padding:8px 0;">아직 완료한 참가자가 없습니다.</div>`;
+        return;
+      }
+      const sorted = [...answers].sort((a, b) => b.score - a.score);
+      const medals = ['🥇','🥈','🥉'];
+      list.innerHTML = sorted.map((a, i) => `
+        <div class="group-status-row">
+          <div>
+            <span class="group-status-medal">${medals[i] || (i+1) + '.'}</span>
+            <span style="font-weight:500;">${a.nickname}</span>
+          </div>
+          <div style="text-align:right;">
+            <span style="font-weight:700;">${a.score}/${a.total}</span>
+            <span style="font-size:0.68rem;color:var(--text-muted);margin-left:6px;">${a.accuracy}%</span>
+          </div>
+        </div>
+      `).join('');
     }
   }
 
@@ -21897,6 +22424,9 @@ class CineMasterApp {
     // 단체전이면 결과 화면에 다른 참가자 답안 표시
     if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
       this.renderGroupResults(this.currentQuiz.groupSessionId);
+      // 상태바도 finale에서 숨김 (결과 화면에 full 표시되므로)
+      const bar = document.getElementById('group-status-bar');
+      if (bar) bar.classList.remove('visible');
     } else {
       const groupSection = document.getElementById('group-results-section');
       if (groupSection) groupSection.style.display = 'none';
@@ -21933,34 +22463,44 @@ class CineMasterApp {
     if (answers.length === 0) { section.style.display = 'none'; return; }
 
     section.style.display = 'block';
-    const rows = answers
-      .sort((a, b) => b.score - a.score)
-      .map((a, i) => {
-        const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}.`;
-        return `
-          <div class="group-result-row" style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-color);">
-            <div>
-              <span style="font-weight:600;margin-right:6px;">${medal}</span>
-              <span>${a.nickname}</span>
-              <span style="font-size:0.72rem;color:var(--text-muted);margin-left:6px;">${a.date || ''}</span>
-            </div>
-            <div style="text-align:right;">
-              <span style="font-weight:700;color:var(--color-primary);">${a.score}/${a.total}</span>
-              <span style="font-size:0.72rem;color:var(--text-muted);margin-left:6px;">정확도 ${a.accuracy}%</span>
-            </div>
-          </div>
-        `;
-      }).join('');
+
+    const sorted = [...answers].sort((a, b) => b.score - a.score);
+    const medals = ['🥇','🥈','🥉'];
+    const quizTypeLabel = {
+      score:'스코어퀴즈', challenge:'개봉일맞추기',
+      ordinary:'포스터조각', filmo:'필모그래피', lines:'명대사/초성'
+    }[this.currentQuiz.type] || '퀴즈';
+
+    const rows = sorted.map((a, i) => `
+      <div class="group-rank-row">
+        <div class="group-rank-medal">${medals[i] || `${i+1}`}</div>
+        <div>
+          <div class="group-rank-name">${a.nickname}</div>
+          <div class="group-rank-date">${a.date || ''}</div>
+        </div>
+        <div>
+          <div class="group-rank-score">${a.score}<span style="font-size:0.7rem;font-weight:400;color:var(--text-muted);">/${a.total}</span></div>
+          <div class="group-rank-acc">정확도 ${a.accuracy}%</div>
+        </div>
+      </div>
+    `).join('');
 
     section.innerHTML = `
-      <div style="margin-top:20px;padding-top:16px;border-top:2px solid var(--border-color);">
-        <h4 style="font-size:0.9rem;margin-bottom:12px;">🏆 단체전 결과</h4>
-        ${rows}
-        <div style="display:flex;gap:8px;margin-top:14px;">
-          <button class="btn-secondary" style="flex:1;font-size:0.82rem;"
-            onclick="app.addNextGroupPlayer()">다음 참가자 추가</button>
-          <button class="btn-primary" style="flex:1;font-size:0.82rem;"
-            onclick="app.endGroupSession()">단체전 종료</button>
+      <div class="group-result-card">
+        <div class="group-result-header">
+          <span class="group-result-title">🏆 단체전 결과</span>
+          <span class="group-result-meta">${quizTypeLabel} · ${sorted.length}명 참여</span>
+        </div>
+        <div>${rows}</div>
+        <div class="group-result-btns">
+          <button class="btn-secondary" onclick="app.addNextGroupPlayer()">
+            <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">person_add</span>
+            다음 참가자
+          </button>
+          <button class="btn-primary" onclick="app.endGroupSession()">
+            <span class="material-symbols-outlined" style="font-size:1rem;vertical-align:middle;">flag</span>
+            단체전 종료
+          </button>
         </div>
       </div>
     `;
@@ -22341,21 +22881,22 @@ class CineMasterApp {
     const offsetX = -(col * cellW);
     const offsetY = -(row * cellH);
 
-    const crop = document.getElementById('ordinary-poster-crop');
+    const crop  = document.getElementById('ordinary-poster-crop');
     const stage = document.getElementById('ordinary-poster-stage');
+    const SIZE  = cellW * 2; // 120px — 정사각형으로 고정 → border-radius:50%로 완전한 원
 
     if (stage) {
-      stage.style.width  = `${cellW * 2}px`;  // 2배 확대 표시
-      stage.style.height = `${cellH * 2}px`;
+      stage.style.width  = `${SIZE}px`;
+      stage.style.height = `${SIZE}px`;
     }
 
     if (crop) {
-      crop.style.backgroundImage = `url('${movie.posterUrl}')`;
-      crop.style.backgroundSize  = `${posterW * 2}px ${posterH * 2}px`;
+      crop.style.backgroundImage    = `url('${movie.posterUrl}')`;
+      crop.style.backgroundSize     = `${posterW * 2}px ${posterH * 2}px`;
       crop.style.backgroundPosition = `${offsetX * 2}px ${offsetY * 2}px`;
-      crop.style.width  = `${posterW * 2}px`;
-      crop.style.height = `${posterH * 2}px`;
-      crop.style.backgroundRepeat = 'no-repeat';
+      crop.style.width              = `${posterW * 2}px`;
+      crop.style.height             = `${posterH * 2}px`;
+      crop.style.backgroundRepeat   = 'no-repeat';
     }
 
     const input = document.getElementById('input-ordinary-answer');
