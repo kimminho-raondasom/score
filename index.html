@@ -3577,31 +3577,36 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Upcoming List Section -->
-            <div id="upcoming-list-section" class="movie-list-container">
-              <div class="flex-center" style="justify-content: space-between; margin-bottom: 10px;">
-                <h4 style="font-size: 0.9rem;" id="upcoming-list-title">개봉예정작</h4>
-                <button class="btn-icon-text p-0" onclick="app.showChallengeOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
-              </div>
-              <div class="movie-list-grid" id="upcoming-movies-grid"></div>
-            </div>
 
-            <!-- Released Search Section -->
-            <div id="released-search-section" class="movie-search-container">
-              <div class="flex-center" style="justify-content: space-between; margin-bottom: 10px;">
-                <h4 style="font-size: 0.9rem;" id="released-search-title">개봉작</h4>
-                <button class="btn-icon-text p-0" onclick="app.showChallengeOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
-              </div>
-              <div class="form-group">
-                <input type="text" id="movie-search-input" class="form-control" placeholder="영화 제목 검색..." autocomplete="off">
-              </div>
-              <div class="movie-list-grid" id="search-movies-grid"></div>
-            </div>
 
           </div>
         </div>
       <!-- Tab Content ends here -->
 
+    </section>
+
+    <!-- 3.45. MOVIE SELECT VIEW -->
+    <section id="view-movie-select" class="view-section">
+      <header class="app-header" style="margin-top:0;padding-top:0;">
+        <button class="btn-back" id="movie-select-back-btn" onclick="app._movieSelectBack()">
+          <span class="material-symbols-outlined" style="font-size:1.1rem;">arrow_back</span>
+          뒤로 가기
+        </button>
+        <h2 class="section-title" style="margin-bottom:0;" id="movie-select-view-title">영화 선택</h2>
+      </header>
+
+      <!-- Upcoming List Section -->
+      <div id="upcoming-list-section" class="movie-list-container active">
+        <div class="movie-list-grid" id="upcoming-movies-grid"></div>
+      </div>
+
+      <!-- Released Search Section -->
+      <div id="released-search-section" class="movie-search-container">
+        <div class="form-group" style="margin-bottom:14px;">
+          <input type="text" id="movie-search-input" class="form-control" placeholder="영화 제목 검색..." autocomplete="off">
+        </div>
+        <div class="movie-list-grid" id="search-movies-grid"></div>
+      </div>
     </section>
 
     <!-- 3.5. COMMENT (한줄평) TAB SECTION -->
@@ -4090,15 +4095,12 @@ html, body, .app-container, .view-section, .glass-card {
        <div class="bottom-nav-inner">
          <button class="nav-item active" onclick="app.switchTab('dashboard')">
            <span class="nav-letter">P</span>
-           <span>플레이</span>
          </button>
          <button class="nav-item" onclick="app.switchTab('forum')">
            <span class="nav-letter">C</span>
-           <span>코멘트</span>
          </button>
          <button class="nav-item" onclick="app.switchTab('myroom')">
            <span class="nav-letter">M</span>
-           <span>마이록</span>
          </button>
        </div>
      </nav>
@@ -21043,11 +21045,10 @@ class CineMasterApp {
       this.renderForumFeed();
     } else if (tabId === 'dashboard') {
       // Hide sub-sections when returning to dashboard
-      document.getElementById('released-search-section').style.display = 'none';
       document.getElementById('score-quiz-options').style.display = 'none';
       document.getElementById('main-modes-container').style.display = 'flex';
       const ids = ['filmo-quiz-options','filmo-battle-options','lines-quiz-options','lines-battle-options',
-                   'upcoming-list-section','challenge-quiz-options','ordinary-quiz-options'];
+                   'challenge-quiz-options','ordinary-quiz-options'];
       ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
     }
   }
@@ -21065,12 +21066,22 @@ class CineMasterApp {
   backToMainModes() {
     this.playSynthSound('click');
     document.getElementById('score-quiz-options').style.display = 'none';
-    document.getElementById('upcoming-list-section').style.display = 'none';
-    document.getElementById('released-search-section').style.display = 'none';
     const ids = ['filmo-quiz-options','filmo-battle-options','lines-quiz-options','lines-battle-options',
                  'challenge-quiz-options','ordinary-quiz-options'];
     ids.forEach(id => { const el = document.getElementById(id); if (el) el.style.display = 'none'; });
     document.getElementById('main-modes-container').style.display = 'flex';
+  }
+
+  // 영화 선택 뷰에서 뒤로가기
+  _movieSelectBack() {
+    this.playSynthSound('click');
+    const from = this._movieSelectFrom || 'challenge';
+    if (from === 'challenge') {
+      this.switchView('dashboard');
+      this.showChallengeOptions();
+    } else {
+      this.switchView('dashboard');
+    }
   }
 
   // ── Challenge 서브메뉴 ──────────────────────────────────────────────────
@@ -21078,8 +21089,7 @@ class CineMasterApp {
     this.playSynthSound('click');
     document.getElementById('main-modes-container').style.display = 'none';
     ['score-quiz-options','filmo-quiz-options','filmo-battle-options',
-     'lines-quiz-options','lines-battle-options','ordinary-quiz-options',
-     'upcoming-list-section','released-search-section'].forEach(id => {
+     'lines-quiz-options','lines-battle-options','ordinary-quiz-options'].forEach(id => {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     document.getElementById('challenge-quiz-options').style.display = 'block';
@@ -21090,8 +21100,7 @@ class CineMasterApp {
     this.playSynthSound('click');
     document.getElementById('main-modes-container').style.display = 'none';
     ['score-quiz-options','filmo-quiz-options','filmo-battle-options',
-     'lines-quiz-options','lines-battle-options','challenge-quiz-options',
-     'upcoming-list-section','released-search-section'].forEach(id => {
+     'lines-quiz-options','lines-battle-options','challenge-quiz-options'].forEach(id => {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
     document.getElementById('ordinary-quiz-options').style.display = 'block';
@@ -21175,14 +21184,18 @@ class CineMasterApp {
   showUpcomingList(mode = 'solo') {
     this.playSynthSound('click');
     this._quizMode = mode; // 'solo' | 'group'
-    document.getElementById('score-quiz-options').style.display = 'none';
-    document.getElementById('released-search-section').style.display = 'none';
-    const upcomingSection = document.getElementById('upcoming-list-section');
-    upcomingSection.style.display = 'block';
+    this._movieSelectFrom = 'challenge'; // 뒤로가기 시 돌아올 곳
 
-    // 헤더 타이틀 업데이트
-    const titleEl = document.getElementById('upcoming-list-title');
+    // 별도 뷰로 이동
+    this.switchView('movie-select');
+    const titleEl = document.getElementById('movie-select-view-title');
     if (titleEl) titleEl.innerText = mode === 'group' ? '개봉예정작 — 단체전' : '개봉예정작 — 개인전';
+
+    // upcoming 섹션 표시, released 섹션 숨김
+    const upcomingSection = document.getElementById('upcoming-list-section');
+    const releasedSection = document.getElementById('released-search-section');
+    if (upcomingSection) { upcomingSection.style.display = 'block'; upcomingSection.classList.add('active'); }
+    if (releasedSection) { releasedSection.style.display = 'none'; releasedSection.classList.remove('active'); }
 
     const grid = document.getElementById('upcoming-movies-grid');
     if (typeof UPCOMING_MOVIES_DATABASE === 'undefined' || UPCOMING_MOVIES_DATABASE.length === 0) {
@@ -21299,16 +21312,24 @@ class CineMasterApp {
   showReleasedSearch(mode = 'solo') {
     this.playSynthSound('click');
     this._quizMode = mode;
-    document.getElementById('score-quiz-options').style.display = 'none';
-    document.getElementById('upcoming-list-section').style.display = 'none';
-    const searchSection = document.getElementById('released-search-section');
-    searchSection.style.display = 'block';
+    this._movieSelectFrom = 'challenge'; // 뒤로가기 시 돌아올 곳
 
-    const titleEl = document.getElementById('released-search-title');
+    // 별도 뷰로 이동
+    this.switchView('movie-select');
+    const titleEl = document.getElementById('movie-select-view-title');
     if (titleEl) titleEl.innerText = mode === 'group' ? '개봉작 — 단체전' : '개봉작 — 개인전';
 
+    // released 섹션 표시, upcoming 섹션 숨김
+    const upcomingSection = document.getElementById('upcoming-list-section');
+    const releasedSection = document.getElementById('released-search-section');
+    if (upcomingSection) { upcomingSection.style.display = 'none'; upcomingSection.classList.remove('active'); }
+    if (releasedSection) { releasedSection.style.display = 'block'; releasedSection.classList.add('active'); }
+
     this.renderReleasedMoviesSearch('');
-    document.getElementById('movie-search-input').focus();
+    setTimeout(() => {
+      const inp = document.getElementById('movie-search-input');
+      if (inp) inp.focus();
+    }, 100);
   }
 
   renderReleasedMoviesSearch(query) {
@@ -21776,10 +21797,8 @@ class CineMasterApp {
   }
 
   activateQuizPanel(type) {
-    // score 예측 퀴즈는 이제 challenge 패널에서 렌더링
-    const panelType = (type === 'score') ? 'challenge' : type;
     document.querySelectorAll('.quiz-mode-panel').forEach(p => p.classList.remove('active'));
-    const panel = document.getElementById(`quiz-panel-${panelType}`);
+    const panel = document.getElementById(`quiz-panel-${type}`);
     if (panel) panel.classList.add('active');
     
     // Init Scoreboard
