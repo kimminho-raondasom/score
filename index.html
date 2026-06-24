@@ -3280,7 +3280,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <div class="mode-letter-badge" id="special-badge">S</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Special</span>
-                      <span class="mode-card-desc">시트 데이터 기반 AI가 생성하는 4지선다 퀴즈</span>
+                      <span class="mode-card-desc">종합 퀴즈</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showScoreOptions()">
@@ -3299,7 +3299,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <div class="mode-letter-badge">C</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Challenge</span>
-                      <span class="mode-card-desc">영화의 흥행 지표를 예측하는 스코어 퀴즈</span>
+                      <span class="mode-card-desc">스코어</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showChallengeOptions()">
@@ -3318,7 +3318,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <div class="mode-letter-badge">O</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Ordinary</span>
-                      <span class="mode-card-desc">포스터 일부만 보고 영화 제목을 맞히는 퀴즈</span>
+                      <span class="mode-card-desc">포스터</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showOrdinaryOptions()">
@@ -3337,7 +3337,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <div class="mode-letter-badge">R</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Regular</span>
-                      <span class="mode-card-desc">감독·배우의 필모그래피를 매칭하는 퀴즈</span>
+                      <span class="mode-card-desc">필모그래피</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showFilmoOptions()">
@@ -3356,7 +3356,7 @@ html, body, .app-container, .view-section, .glass-card {
                     <div class="mode-letter-badge">E</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Easy</span>
-                      <span class="mode-card-desc">명대사와 초성으로 영화를 맞히는 퀴즈</span>
+                      <span class="mode-card-desc">명대사</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showLinesOptions()">
@@ -3375,42 +3375,20 @@ html, body, .app-container, .view-section, .glass-card {
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
               <div class="sub-menu-header">Special</div>
-              <div style="margin-bottom:20px;">
-                <div class="quiz-section-label">국내 영화 데이터</div>
-                <div class="battle-options-col">
-                  <div class="battle-option-btn solo-btn" onclick="app.startSpecialAiQuiz('movie', 'solo')">
-                    <div class="battle-option-info">
-                      <span class="material-symbols-outlined battle-option-icon">person</span>
-                      <div class="battle-option-text"><h4>개인전</h4></div>
-                    </div>
-                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
+              <div class="battle-options-col">
+                <div class="battle-option-btn solo-btn" onclick="app.startSpecialAiQuiz('solo')">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">person</span>
+                    <div class="battle-option-text"><h4>개인전</h4><p>AI 생성 10문제</p></div>
                   </div>
-                  <div class="battle-option-btn group-btn" onclick="app.startSpecialAiQuiz('movie', 'group')">
-                    <div class="battle-option-info">
-                      <span class="material-symbols-outlined battle-option-icon">groups</span>
-                      <div class="battle-option-text"><h4>단체전</h4></div>
-                    </div>
-                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
-                  </div>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
-              </div>
-              <div>
-                <div class="quiz-section-label">북미 박스오피스 데이터</div>
-                <div class="battle-options-col">
-                  <div class="battle-option-btn solo-btn" onclick="app.startSpecialAiQuiz('nabox', 'solo')">
-                    <div class="battle-option-info">
-                      <span class="material-symbols-outlined battle-option-icon">person</span>
-                      <div class="battle-option-text"><h4>개인전</h4></div>
-                    </div>
-                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
+                <div class="battle-option-btn group-btn" onclick="app.startSpecialAiQuiz('group')">
+                  <div class="battle-option-info">
+                    <span class="material-symbols-outlined battle-option-icon">groups</span>
+                    <div class="battle-option-text"><h4>단체전</h4><p>여러 명이 번갈아 플레이</p></div>
                   </div>
-                  <div class="battle-option-btn group-btn" onclick="app.startSpecialAiQuiz('nabox', 'group')">
-                    <div class="battle-option-info">
-                      <span class="material-symbols-outlined battle-option-icon">groups</span>
-                      <div class="battle-option-text"><h4>단체전</h4></div>
-                    </div>
-                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
-                  </div>
+                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
               </div>
             </div>
@@ -3776,21 +3754,33 @@ html, body, .app-container, .view-section, .glass-card {
       <!-- QUIZ MODE 1: SPECIAL AI QUIZ (시트 데이터 기반 Gemini 4지선다) -->
       <div id="quiz-panel-score" class="quiz-mode-panel">
         <!-- 로딩 상태 -->
-        <div id="special-ai-loading" style="text-align:center;padding:40px 0;">
+        <div id="special-ai-loading" style="text-align:center;padding:60px 0;display:block;">
           <span class="material-symbols-outlined" style="font-size:2.5rem;color:var(--accent);animation:spin 1s linear infinite;">autorenew</span>
           <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">AI가 문제를 생성하고 있습니다...</p>
         </div>
         <!-- 퀴즈 본문 (로딩 후 표시) -->
         <div id="special-ai-quiz-body" style="display:none;">
-          <div class="glass-card" style="margin-bottom:16px;padding:16px;">
-            <div style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;" id="special-ai-source-label">국내 영화 데이터</div>
-            <div id="special-ai-question" style="font-size:1rem;font-weight:600;line-height:1.5;color:var(--text-primary);"></div>
+          <!-- 포스터 + 진행 정보 -->
+          <div class="movie-presenter-card glass-card" style="margin-bottom:14px;">
+            <div class="movie-poster-placeholder" id="special-ai-poster" style="background-size:cover;background-position:center;min-width:72px;height:100px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+              <span class="material-symbols-outlined">quiz</span>
+            </div>
+            <div class="movie-meta-details" style="flex:1;min-width:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+                <span style="font-size:0.68rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Special AI Quiz</span>
+                <span style="font-size:0.75rem;color:var(--accent);font-weight:700;" id="special-ai-score-label">정답 0</span>
+              </div>
+              <div id="special-ai-question" style="font-size:0.92rem;font-weight:600;line-height:1.5;color:var(--text-primary);word-break:keep-all;"></div>
+              <div style="margin-top:8px;">
+                <div style="height:4px;background:var(--border-color);border-radius:2px;overflow:hidden;">
+                  <div id="special-ai-progress-bar" style="height:100%;background:var(--accent);border-radius:2px;transition:width 0.3s;width:10%;"></div>
+                </div>
+                <span style="font-size:0.68rem;color:var(--text-muted);margin-top:3px;display:block;" id="special-ai-progress">1 / 10</span>
+              </div>
+            </div>
           </div>
-          <div class="g-options-list radio-group" id="special-ai-options" style="margin-bottom:20px;"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-            <span style="font-size:0.75rem;color:var(--text-muted);" id="special-ai-progress">1 / 5</span>
-            <span style="font-size:0.75rem;color:var(--accent);" id="special-ai-score-label">정답 0</span>
-          </div>
+          <!-- 4지선다 옵션 -->
+          <div id="special-ai-options" style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;"></div>
           <button id="btn-special-ai-submit" class="btn-primary w-100">
             <span>답안 제출</span>
             <span class="material-symbols-outlined">check_circle</span>
@@ -22988,10 +22978,9 @@ class CineMasterApp {
 
   // ── S모드: AI 퀴즈 ──────────────────────────────────────────────────────
 
-  async startSpecialAiQuiz(dataSource, mode = 'solo') {
+  async startSpecialAiQuiz(mode = 'solo') {
     this.playSynthSound('click');
     this.currentQuiz.type = 'special_ai';
-    this.currentQuiz.dataSource = dataSource; // 'movie' or 'nabox'
     this.currentQuiz.currentIndex = 0;
     this.currentQuiz.score = 0;
     this.currentQuiz.totalXpEarned = 0;
@@ -23006,14 +22995,13 @@ class CineMasterApp {
     this.activateQuizPanel('score');
     document.getElementById('quiz-round-container').style.display = 'none';
 
-    // 로딩 표시
     const loading = document.getElementById('special-ai-loading');
     const body = document.getElementById('special-ai-quiz-body');
     if (loading) loading.style.display = 'block';
     if (body) body.style.display = 'none';
 
     try {
-      // 1. GAS에서 시트 데이터 fetch
+      // 1. GAS에서 양쪽 시트 데이터 fetch
       const sheetData = await this._fetchSpecialSheetData();
       if (!sheetData) {
         showToast('시트 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'error');
@@ -23021,8 +23009,8 @@ class CineMasterApp {
         return;
       }
 
-      // 2. Gemini로 5문제 생성
-      const questions = await this._generateAiQuestions(dataSource, sheetData);
+      // 2. Gemini로 10문제 생성 (국내+북미 합산)
+      const questions = await this._generateAiQuestions(sheetData);
       if (!questions || questions.length === 0) {
         showToast('문제 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
         this.switchView('dashboard');
@@ -23057,37 +23045,37 @@ class CineMasterApp {
     }
   }
 
-  async _generateAiQuestions(dataSource, sheetData) {
-    // 데이터 준비: 빈 값이 너무 많은 행 제외, 최대 50행 샘플링
-    let rows = [];
-    if (dataSource === 'movie') {
-      rows = (sheetData.movieDetail || [])
-        .filter(r => r['콘텐츠명'] && (r['배급사'] || r['감독'] || r['개봉일스코어'] || r['최종스코어']))
-        .slice(0, 80);
-    } else {
-      rows = (sheetData.naBoxOffice || [])
-        .filter(r => r['콘텐츠'] && r['수익'])
-        .slice(0, 80);
-    }
+  async _generateAiQuestions(sheetData) {
+    // 국내 영화 데이터 (데이터 있는 행)
+    const movieRows = (sheetData.movieDetail || [])
+      .filter(r => r['콘텐츠명'] && (r['배급사'] || r['감독'] || r['장르'] || r['개봉일스코어'] || r['최종스코어']))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 20);
 
-    if (rows.length < 5) return null;
+    // 북미 박스오피스 데이터
+    const naRows = (sheetData.naBoxOffice || [])
+      .filter(r => r['콘텐츠'] && r['수익'])
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 20);
 
-    // 랜덤 30행만 샘플로 전달 (토큰 절약)
-    const shuffled = rows.sort(() => Math.random() - 0.5).slice(0, 30);
-    const dataJson = JSON.stringify(shuffled, null, 0);
+    const combined = {
+      국내영화: movieRows,
+      북미박스오피스: naRows
+    };
 
-    const sourceLabel = dataSource === 'movie' ? '국내 영화 상세 데이터' : '북미 박스오피스 데이터';
-    const prompt = `당신은 영화 업계 전문가입니다. 아래 ${sourceLabel}를 기반으로 4지선다 퀴즈 5문제를 만드세요.
+    const prompt = `당신은 영화 업계 전문가입니다. 아래 데이터를 기반으로 4지선다 퀴즈 10문제를 만드세요.
+국내 영화 데이터와 북미 박스오피스 데이터를 골고루 활용해 다양한 문제를 출제하세요.
 
 [데이터]
-${dataJson}
+${JSON.stringify(combined, null, 0)}
 
 [규칙]
 - 반드시 데이터에 실제로 존재하는 값만 사용하세요.
 - 각 문제의 정답은 데이터에서 확인 가능한 사실이어야 합니다.
 - 오답 3개는 그럴듯하지만 틀린 값이어야 합니다.
-- 문제 유형 예시: 특정 영화의 배급사, 감독, 장르, 개봉일, 수익 순위, 배급사별 작품 등
-- 한국어로 작성하세요.
+- 문제 유형 예시: 특정 영화의 배급사/감독/장르/개봉일/수익/순위, 배급사별 작품, 특정 주차 1위 작품 등
+- 국내 영화 5문제 + 북미 박스오피스 5문제로 구성하세요.
+- 한국어로 작성하세요 (북미 작품명은 원어 그대로 사용 가능).
 - 응답은 반드시 아래 JSON 배열 형식만 출력하세요. 다른 텍스트 없이.
 
 [출력 형식]
@@ -23096,7 +23084,8 @@ ${dataJson}
     "question": "문제 텍스트",
     "options": ["선택지1", "선택지2", "선택지3", "선택지4"],
     "answer": "정답 텍스트 (options 중 하나와 정확히 일치)",
-    "explanation": "정답 근거 한 줄"
+    "explanation": "정답 근거 한 줄",
+    "posterKeyword": "관련 영화 제목 (MOVIES_DATABASE에서 포스터를 찾을 키워드, 없으면 빈 문자열)"
   }
 ]`;
 
@@ -23112,18 +23101,16 @@ ${dataJson}
       const data = await res.json();
       let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
       // 코드블록 제거
-      text = text.replace(/```json[\s\S]*?```/g, m => m.slice(7, -3).trim())
-                 .replace(/```[\s\S]*?```/g, m => m.slice(3, -3).trim())
-                 .trim();
-      // JSON 추출
+      text = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+      // JSON 배열 추출
       const match = text.match(/\[[\s\S]*\]/);
       if (!match) return null;
       const questions = JSON.parse(match[0]);
       // 유효성 검증
       return questions.filter(q =>
-        q.question && Array.isArray(q.options) && q.options.length === 4 && q.answer &&
-        q.options.includes(q.answer)
-      ).slice(0, 5);
+        q.question && Array.isArray(q.options) && q.options.length === 4 &&
+        q.answer && q.options.includes(q.answer)
+      ).slice(0, 10);
     } catch (e) {
       console.error('Gemini error:', e);
       return null;
@@ -23138,33 +23125,60 @@ ${dataJson}
       return;
     }
     const q = questions[idx];
-    const sourceLabel = this.currentQuiz.dataSource === 'movie' ? '국내 영화 데이터' : '북미 박스오피스';
-    const sourceEl = document.getElementById('special-ai-source-label');
+    const total = questions.length;
+
+    // 진행 표시
+    const progressEl = document.getElementById('special-ai-progress');
+    const progressBar = document.getElementById('special-ai-progress-bar');
+    const scoreEl = document.getElementById('special-ai-score-label');
     const questionEl = document.getElementById('special-ai-question');
     const optionsEl = document.getElementById('special-ai-options');
-    const progressEl = document.getElementById('special-ai-progress');
-    const scoreEl = document.getElementById('special-ai-score-label');
+    const posterEl = document.getElementById('special-ai-poster');
 
-    if (sourceEl) sourceEl.textContent = sourceLabel;
-    if (questionEl) questionEl.textContent = q.question;
-    if (progressEl) progressEl.textContent = `${idx + 1} / ${questions.length}`;
+    if (progressEl) progressEl.textContent = `${idx + 1} / ${total}`;
+    if (progressBar) progressBar.style.width = `${((idx + 1) / total) * 100}%`;
     if (scoreEl) scoreEl.textContent = `정답 ${this.currentQuiz.aiCorrect}`;
+    if (questionEl) questionEl.textContent = q.question;
 
-    // 선택지 렌더링
-    if (optionsEl) {
-      const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-      optionsEl.innerHTML = shuffledOptions.map(opt => `
-        <label class="option-item">
-          <input type="radio" name="special-ai-opt" value="${opt.replace(/"/g, '&quot;')}">
-          <span class="option-box">${opt}</span>
-        </label>
-      `).join('');
+    // 포스터: posterKeyword로 MOVIES_DATABASE에서 검색
+    if (posterEl) {
+      let posterUrl = '';
+      const keyword = (q.posterKeyword || '').trim();
+      if (keyword && typeof MOVIES_DATABASE !== 'undefined') {
+        const found = MOVIES_DATABASE.find(m =>
+          m.title && m.title.includes(keyword) && m.posterUrl
+        ) || MOVIES_DATABASE.find(m =>
+          keyword && m.title && keyword.includes(m.title.slice(0, 3)) && m.posterUrl
+        );
+        if (found) posterUrl = found.posterUrl;
+      }
+      if (posterUrl) {
+        posterEl.style.backgroundImage = `url('${posterUrl}')`;
+        posterEl.innerHTML = '';
+      } else {
+        posterEl.style.backgroundImage = '';
+        posterEl.innerHTML = '<span class="material-symbols-outlined">quiz</span>';
+      }
     }
 
-    // 제출 버튼 이벤트 (매 문제마다 재등록)
+    // 4지선다 옵션 렌더링
+    if (optionsEl) {
+      const shuffled = [...q.options].sort(() => Math.random() - 0.5);
+      optionsEl.innerHTML = shuffled.map((opt, i) => {
+        const escaped = opt.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        return `<label class="option-item" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;cursor:pointer;">
+          <input type="radio" name="special-ai-opt" value="${escaped}" style="accent-color:var(--accent);width:16px;height:16px;flex-shrink:0;">
+          <span style="font-size:0.88rem;line-height:1.4;color:var(--text-primary);">${opt}</span>
+        </label>`;
+      }).join('');
+    }
+
+    // 제출 버튼 이벤트 재등록
     const btn = document.getElementById('btn-special-ai-submit');
     if (btn) {
-      btn.onclick = () => this._submitSpecialAiAnswer();
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      newBtn.addEventListener('click', () => this._submitSpecialAiAnswer());
     }
   }
 
