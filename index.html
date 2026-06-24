@@ -20591,8 +20591,8 @@ if (typeof module !== 'undefined' && module.exports) {
 const SCORE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyVl_9H-axF2BPzAjH28T92tD_bLzvmfbpYTvd4Nq_0ObhesNDnsWn1_E6Mnp3g4F5n6g/exec';
 
 // ── S모드 AI 퀴즈 설정 ──────────────────────────────────────────────────────
-// Gemini API는 GAS 프록시를 통해 호출 — 키가 클라이언트에 노출되지 않음
-// SCORE_SHEET_WEBHOOK_URL의 action=geminiGenerate 엔드포인트 사용
+const SPECIAL_GEMINI_API_KEY = 'AIzaSyBrs35Gz-FRc9Cuj9MMpjusJcd7wyx8Yb4';
+const SPECIAL_GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${SPECIAL_GEMINI_API_KEY}`;
 
 class CineMasterApp {
   constructor() {
@@ -23329,64 +23329,19 @@ ${JSON.stringify(combined, null, 0)}
 ]`;
 
     try {
-      // GAS 프록시를 통해 Gemini 호출 — API 키가 클라이언트에 노출되지 않음
-      const res = await fetch(SCORE_SHEET_WEBHOOK_URL, {
+      // Gemini API 직접 호출
+      const res = await fetch(SPECIAL_GEMINI_URL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          action: 'geminiGenerate',
-          prompt: prompt,
-          temperature: 0.3
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.3 }
         })
       });
-      // no-cors는 opaque response이므로 JSONP 방식으로 재시도
-      throw new Error('use_jsonp');
-    } catch (e) {
-      if (e.message !== 'use_jsonp') {
-        console.error('Gemini proxy error:', e);
-        return null;
-      }
-    }
-
-    // JSONP 방식으로 GAS 프록시 호출
-    try {
-      const text = await new Promise((resolve, reject) => {
-        const cbName = `_geminiCb_${Date.now()}`;
-        const script = document.createElement('script');
-        let done = false;
-
-        const timer = setTimeout(() => {
-          if (!done) { done = true; cleanup(); reject(new Error('Gemini timeout')); }
-        }, 30000);
-
-        const cleanup = () => {
-          delete window[cbName];
-          if (script.parentNode) script.parentNode.removeChild(script);
-        };
-
-        window[cbName] = (data) => {
-          clearTimeout(timer);
-          done = true;
-          cleanup();
-          if (data && data.status === 'ok') resolve(data.text || '');
-          else reject(new Error(data?.message || 'Gemini proxy error'));
-        };
-
-        const encodedPrompt = encodeURIComponent(prompt);
-        script.src = `${SCORE_SHEET_WEBHOOK_URL}?action=geminiGenerate&temperature=0.3&callback=${cbName}&prompt=${encodedPrompt}`;
-        script.onerror = () => {
-          clearTimeout(timer);
-          done = true;
-          cleanup();
-          reject(new Error('Script load error'));
-        };
-        document.head.appendChild(script);
-      });
-
-      // 코드블록 제거 후 JSON 파싱
-      const cleaned = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
-      const match = cleaned.match(/\[[\s\S]*\]/);
+      const data = await res.json();
+      let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      text = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+      const match = text.match(/\[[\s\S]*\]/);
       if (!match) return null;
       const questions = JSON.parse(match[0]);
       return questions.filter(q =>
