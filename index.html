@@ -3603,7 +3603,7 @@ html, body, .app-container, .view-section, .glass-card {
             <div id="upcoming-list-section" class="movie-list-container">
               <div class="flex-center" style="justify-content: space-between; margin-bottom: 10px;">
                 <h4 style="font-size: 0.9rem;" id="upcoming-list-title">개봉예정작</h4>
-                <button class="btn-icon-text p-0" onclick="app.showScoreOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
+                <button class="btn-icon-text p-0" onclick="app.showChallengeOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
               </div>
               <div class="movie-list-grid" id="upcoming-movies-grid"></div>
             </div>
@@ -3612,7 +3612,7 @@ html, body, .app-container, .view-section, .glass-card {
             <div id="released-search-section" class="movie-search-container">
               <div class="flex-center" style="justify-content: space-between; margin-bottom: 10px;">
                 <h4 style="font-size: 0.9rem;" id="released-search-title">개봉작</h4>
-                <button class="btn-icon-text p-0" onclick="app.showScoreOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
+                <button class="btn-icon-text p-0" onclick="app.showChallengeOptions()"><span class="material-symbols-outlined" style="font-size: 1rem;">close</span></button>
               </div>
               <div class="form-group">
                 <input type="text" id="movie-search-input" class="form-control" placeholder="영화 제목 검색..." autocomplete="off">
@@ -20489,6 +20489,10 @@ if (typeof module !== 'undefined' && module.exports) {
 // 비워두면 기록이 로컬에만 저장됩니다.
 const SCORE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyVl_9H-axF2BPzAjH28T92tD_bLzvmfbpYTvd4Nq_0ObhesNDnsWn1_E6Mnp3g4F5n6g/exec';
 
+// ── S모드 AI 퀴즈 설정 ──────────────────────────────────────────────────────
+const SPECIAL_GEMINI_API_KEY = 'AIzaSyCH9YfN992Zv_y3qv0vx3opbFeeZL_AN4Y';
+const SPECIAL_GEMINI_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${SPECIAL_GEMINI_API_KEY}`;
+
 class CineMasterApp {
   constructor() {
     this.currentUser = null;
@@ -21441,7 +21445,7 @@ class CineMasterApp {
 
     this.setupScoreQuizLayout();
     this.switchView('quiz');
-    this.activateQuizPanel('score');
+    this.activateQuizPanel('challenge');
     document.getElementById('quiz-round-container').style.display = 'none';
     this.startTimer();
   }
@@ -21813,8 +21817,10 @@ class CineMasterApp {
   }
 
   activateQuizPanel(type) {
+    // score 예측 퀴즈는 이제 challenge 패널에서 렌더링
+    const panelType = (type === 'score') ? 'challenge' : type;
     document.querySelectorAll('.quiz-mode-panel').forEach(p => p.classList.remove('active'));
-    const panel = document.getElementById(`quiz-panel-${type}`);
+    const panel = document.getElementById(`quiz-panel-${panelType}`);
     if (panel) panel.classList.add('active');
     
     // Init Scoreboard
@@ -22362,6 +22368,16 @@ class CineMasterApp {
   }
 
   nextRound() {
+    // special_ai 타입은 별도 흐름 처리
+    if (this.currentQuiz.type === 'special_ai') {
+      if (this.currentQuiz.aiCurrentQ < this.currentQuiz.aiQuestions.length) {
+        this._renderSpecialAiQuestion();
+      } else {
+        this._finishSpecialAiQuiz();
+      }
+      return;
+    }
+
     this.currentQuiz.currentIndex++;
     
     // Check if we reached the end of movies array for this quiz
@@ -22967,7 +22983,242 @@ class CineMasterApp {
 
   showGroupQuizLobby() {
     // 더 이상 사용하지 않음 — 개봉작/개봉예정작 목록에서 개인전/단체전 선택
-    this.showScoreOptions();
+    this.showChallengeOptions();
+  }
+
+  // ── S모드: AI 퀴즈 ──────────────────────────────────────────────────────
+
+  async startSpecialAiQuiz(dataSource, mode = 'solo') {
+    this.playSynthSound('click');
+    this.currentQuiz.type = 'special_ai';
+    this.currentQuiz.dataSource = dataSource; // 'movie' or 'nabox'
+    this.currentQuiz.currentIndex = 0;
+    this.currentQuiz.score = 0;
+    this.currentQuiz.totalXpEarned = 0;
+    this.currentQuiz.combo = 0;
+    this.currentQuiz.maxComboThisRun = 0;
+    this.currentQuiz.aiQuestions = [];
+    this.currentQuiz.aiCurrentQ = 0;
+    this.currentQuiz.aiCorrect = 0;
+    this.currentQuiz.groupMode = (mode === 'group');
+
+    this.switchView('quiz');
+    this.activateQuizPanel('score');
+    document.getElementById('quiz-round-container').style.display = 'none';
+
+    // 로딩 표시
+    const loading = document.getElementById('special-ai-loading');
+    const body = document.getElementById('special-ai-quiz-body');
+    if (loading) loading.style.display = 'block';
+    if (body) body.style.display = 'none';
+
+    try {
+      // 1. GAS에서 시트 데이터 fetch
+      const sheetData = await this._fetchSpecialSheetData();
+      if (!sheetData) {
+        showToast('시트 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+        this.switchView('dashboard');
+        return;
+      }
+
+      // 2. Gemini로 5문제 생성
+      const questions = await this._generateAiQuestions(dataSource, sheetData);
+      if (!questions || questions.length === 0) {
+        showToast('문제 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
+        this.switchView('dashboard');
+        return;
+      }
+
+      this.currentQuiz.aiQuestions = questions;
+      this.currentQuiz.aiCurrentQ = 0;
+      this.currentQuiz.aiCorrect = 0;
+
+      if (loading) loading.style.display = 'none';
+      if (body) body.style.display = 'block';
+
+      this._renderSpecialAiQuestion();
+    } catch (err) {
+      console.error('Special AI Quiz error:', err);
+      showToast('오류가 발생했습니다: ' + err.message, 'error');
+      this.switchView('dashboard');
+    }
+  }
+
+  async _fetchSpecialSheetData() {
+    try {
+      const url = `${SCORE_SHEET_WEBHOOK_URL}?action=getSheetData`;
+      const res = await fetch(url, { mode: 'cors' });
+      const json = await res.json();
+      if (json.status === 'ok') return json;
+      return null;
+    } catch (e) {
+      console.error('Sheet fetch error:', e);
+      return null;
+    }
+  }
+
+  async _generateAiQuestions(dataSource, sheetData) {
+    // 데이터 준비: 빈 값이 너무 많은 행 제외, 최대 50행 샘플링
+    let rows = [];
+    if (dataSource === 'movie') {
+      rows = (sheetData.movieDetail || [])
+        .filter(r => r['콘텐츠명'] && (r['배급사'] || r['감독'] || r['개봉일스코어'] || r['최종스코어']))
+        .slice(0, 80);
+    } else {
+      rows = (sheetData.naBoxOffice || [])
+        .filter(r => r['콘텐츠'] && r['수익'])
+        .slice(0, 80);
+    }
+
+    if (rows.length < 5) return null;
+
+    // 랜덤 30행만 샘플로 전달 (토큰 절약)
+    const shuffled = rows.sort(() => Math.random() - 0.5).slice(0, 30);
+    const dataJson = JSON.stringify(shuffled, null, 0);
+
+    const sourceLabel = dataSource === 'movie' ? '국내 영화 상세 데이터' : '북미 박스오피스 데이터';
+    const prompt = `당신은 영화 업계 전문가입니다. 아래 ${sourceLabel}를 기반으로 4지선다 퀴즈 5문제를 만드세요.
+
+[데이터]
+${dataJson}
+
+[규칙]
+- 반드시 데이터에 실제로 존재하는 값만 사용하세요.
+- 각 문제의 정답은 데이터에서 확인 가능한 사실이어야 합니다.
+- 오답 3개는 그럴듯하지만 틀린 값이어야 합니다.
+- 문제 유형 예시: 특정 영화의 배급사, 감독, 장르, 개봉일, 수익 순위, 배급사별 작품 등
+- 한국어로 작성하세요.
+- 응답은 반드시 아래 JSON 배열 형식만 출력하세요. 다른 텍스트 없이.
+
+[출력 형식]
+[
+  {
+    "question": "문제 텍스트",
+    "options": ["선택지1", "선택지2", "선택지3", "선택지4"],
+    "answer": "정답 텍스트 (options 중 하나와 정확히 일치)",
+    "explanation": "정답 근거 한 줄"
+  }
+]`;
+
+    try {
+      const res = await fetch(SPECIAL_GEMINI_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { temperature: 0.3 }
+        })
+      });
+      const data = await res.json();
+      let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      // 코드블록 제거
+      text = text.replace(/```json[\s\S]*?```/g, m => m.slice(7, -3).trim())
+                 .replace(/```[\s\S]*?```/g, m => m.slice(3, -3).trim())
+                 .trim();
+      // JSON 추출
+      const match = text.match(/\[[\s\S]*\]/);
+      if (!match) return null;
+      const questions = JSON.parse(match[0]);
+      // 유효성 검증
+      return questions.filter(q =>
+        q.question && Array.isArray(q.options) && q.options.length === 4 && q.answer &&
+        q.options.includes(q.answer)
+      ).slice(0, 5);
+    } catch (e) {
+      console.error('Gemini error:', e);
+      return null;
+    }
+  }
+
+  _renderSpecialAiQuestion() {
+    const questions = this.currentQuiz.aiQuestions;
+    const idx = this.currentQuiz.aiCurrentQ;
+    if (idx >= questions.length) {
+      this._finishSpecialAiQuiz();
+      return;
+    }
+    const q = questions[idx];
+    const sourceLabel = this.currentQuiz.dataSource === 'movie' ? '국내 영화 데이터' : '북미 박스오피스';
+    const sourceEl = document.getElementById('special-ai-source-label');
+    const questionEl = document.getElementById('special-ai-question');
+    const optionsEl = document.getElementById('special-ai-options');
+    const progressEl = document.getElementById('special-ai-progress');
+    const scoreEl = document.getElementById('special-ai-score-label');
+
+    if (sourceEl) sourceEl.textContent = sourceLabel;
+    if (questionEl) questionEl.textContent = q.question;
+    if (progressEl) progressEl.textContent = `${idx + 1} / ${questions.length}`;
+    if (scoreEl) scoreEl.textContent = `정답 ${this.currentQuiz.aiCorrect}`;
+
+    // 선택지 렌더링
+    if (optionsEl) {
+      const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+      optionsEl.innerHTML = shuffledOptions.map(opt => `
+        <label class="option-item">
+          <input type="radio" name="special-ai-opt" value="${opt.replace(/"/g, '&quot;')}">
+          <span class="option-box">${opt}</span>
+        </label>
+      `).join('');
+    }
+
+    // 제출 버튼 이벤트 (매 문제마다 재등록)
+    const btn = document.getElementById('btn-special-ai-submit');
+    if (btn) {
+      btn.onclick = () => this._submitSpecialAiAnswer();
+    }
+  }
+
+  _submitSpecialAiAnswer() {
+    const selected = document.querySelector('input[name="special-ai-opt"]:checked');
+    if (!selected) {
+      showToast('선택지를 선택해 주세요.', 'warn');
+      return;
+    }
+    const questions = this.currentQuiz.aiQuestions;
+    const idx = this.currentQuiz.aiCurrentQ;
+    const q = questions[idx];
+    const userAnswer = selected.value;
+    const isCorrect = userAnswer === q.answer;
+    const xp = 20;
+
+    if (isCorrect) {
+      this.currentQuiz.aiCorrect++;
+      this.currentQuiz.score++;
+      this.currentQuiz.combo++;
+      if (this.currentQuiz.combo > this.currentQuiz.maxComboThisRun) {
+        this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
+      }
+      this.currentQuiz.totalXpEarned += xp;
+      this.addXp(xp, 'Special AI 퀴즈 정답');
+      this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
+      this.showAnswerOverlay(true, '정답입니다!',
+        `<b>${q.answer}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${q.explanation || ''}</span>`);
+    } else {
+      this.currentQuiz.combo = 0;
+      this.playSynthSound('incorrect');
+      this.showAnswerOverlay(false, '오답입니다!',
+        `정답: <b>${q.answer}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${q.explanation || ''}</span>`);
+    }
+
+    this.currentQuiz.aiCurrentQ++;
+
+    // 다음 문제 또는 종료는 showAnswerOverlay의 nextRound 흐름에서 처리
+    // nextRound 오버라이드: special_ai 타입 처리
+  }
+
+  _finishSpecialAiQuiz() {
+    const total = this.currentQuiz.aiQuestions.length;
+    const correct = this.currentQuiz.aiCorrect;
+    const xp = this.currentQuiz.totalXpEarned;
+    this.saveQuizHistory('special_ai', correct, total, xp);
+    this.switchView('finale');
+    // 피날레 화면 업데이트
+    const nameEl = document.getElementById('finale-player-name');
+    if (nameEl && this.currentUser) nameEl.textContent = `${this.currentUser.nickname}님의 Special AI 퀴즈 결과`;
+    const scoreEl = document.getElementById('finale-score');
+    if (scoreEl) scoreEl.textContent = `${correct} / ${total}`;
+    const xpEl = document.getElementById('finale-xp');
+    if (xpEl) xpEl.textContent = `+${xp} XP`;
   }
 
   // ── 포스터 롤링 배너 초기화 (5개 섹션) ────────────────────────────────────
@@ -22983,31 +23234,27 @@ class CineMasterApp {
     const d12m = monthsAgo(12);  // 12개월 전 → R 하한
     const d24m = monthsAgo(24);  // 24개월 전 → E 하한
 
-    // [S] Special — 개봉예정작 전체
-    const specialMovies = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined'
-      ? UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl)
+    // [S] Special — AI 퀴즈 (시트 데이터 기반) → 최근 개봉작 포스터로 배너 표시
+    const specialMovies = (typeof MOVIES_DATABASE !== 'undefined'
+      ? MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate)
+          .sort((a,b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+          .slice(0, 20)
       : []);
     this._buildPosterTrack('poster-track-special', specialMovies,
-      (movie) => {
-        const t = movie.title.replace(/'/g, "\\'");
-        return `app.startSpecificQuiz('${t}', true, 'solo')`;
-      }
+      () => `app.showScoreOptions()`
     );
 
-    // [C] Challenge — 기본 6개월 미만, 부족하면 12개월로 확대
-    let challengeMovies = (typeof MOVIES_DATABASE !== 'undefined'
-      ? MOVIES_DATABASE.filter(m => {
-          if (!m.posterUrl || !m.releaseDate) return false;
-          const rel = new Date(m.releaseDate);
-          return rel >= monthsAgo(6) && rel <= today;
-        })
+    // [C] Challenge (스코어 예측) — 개봉예정작 + 최근 개봉작
+    let challengeMovies = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined'
+      ? UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl)
       : []);
     if (challengeMovies.length < 5) {
-      challengeMovies = (typeof MOVIES_DATABASE !== 'undefined'
-        ? MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate && new Date(m.releaseDate) <= today)
+      const extra = (typeof MOVIES_DATABASE !== 'undefined'
+        ? MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate)
             .sort((a,b) => new Date(b.releaseDate) - new Date(a.releaseDate))
-            .slice(0, 20)
+            .slice(0, 10)
         : []);
+      challengeMovies = [...challengeMovies, ...extra];
     }
     this._buildPosterTrack('poster-track-challenge', challengeMovies,
       (movie) => {
@@ -23084,23 +23331,15 @@ class CineMasterApp {
     });
   }
 
-  // ── 배너 포스터 클릭으로 Challenge/Ordinary 1편 퀴즈 시작 ──────────────
+  // ── 배너 포스터 클릭으로 Challenge(스코어예측)/Ordinary 1편 퀴즈 시작 ──────────────
   startSpecificChallengeQuiz(movieTitle) {
+    // C 모드 배너 클릭 → 스코어 예측 퀴즈 시작
     this.playSynthSound('click');
-    const movie = MOVIES_DATABASE.find(m => m.title === movieTitle);
+    const db = [...MOVIES_DATABASE, ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : [])];
+    const movie = db.find(m => m.title === movieTitle);
     if (!movie) return;
-    this.currentQuiz.type = 'challenge';
-    this.currentQuiz.currentIndex = 0;
-    this.currentQuiz.score = 0;
-    this.currentQuiz.totalXpEarned = 0;
-    this.currentQuiz.combo = 0;
-    this.currentQuiz.maxComboThisRun = 0;
-    this.currentQuiz.movies = [movie];
-    this.switchView('quiz');
-    this.activateQuizPanel('challenge');
-    this.setupChallengeQuizLayout();
-    document.getElementById('quiz-round-container').style.display = 'none';
-    this.startTimer();
+    const isUpcoming = typeof UPCOMING_MOVIES_DATABASE !== 'undefined' && UPCOMING_MOVIES_DATABASE.some(m => m.title === movieTitle);
+    this.startSpecificQuiz(movieTitle, isUpcoming, 'solo');
   }
 
   startSpecificOrdinaryQuiz(movieTitle) {
