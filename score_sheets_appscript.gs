@@ -22,6 +22,30 @@ const SHEET_NAME = 'quiz_records';
 const GEMINI_API_KEY = 'AIzaSyBrs35Gz-FRc9Cuj9MMpjusJcd7wyx8Yb4';
 const GEMINI_URL     = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + GEMINI_API_KEY;
 
+// ── 권한 승인용 테스트 함수 ──────────────────────────────────────────────
+// Apps Script 편집기에서 이 함수를 선택 후 ▶ 실행하면
+// UrlFetchApp 권한 팝업이 뜹니다 → 허용 클릭
+function testGeminiProxy() {
+  try {
+    const res = UrlFetchApp.fetch(GEMINI_URL, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({
+        contents: [{ parts: [{ text: '안녕' }] }],
+        generationConfig: { temperature: 0.1, maxOutputTokens: 10 }
+      }),
+      muteHttpExceptions: true
+    });
+    const result = JSON.parse(res.getContentText());
+    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || '(응답 없음)';
+    Logger.log('✅ Gemini 프록시 정상: ' + text);
+    return '✅ 정상: ' + text;
+  } catch (e) {
+    Logger.log('❌ 오류: ' + e.message);
+    return '❌ 오류: ' + e.message;
+  }
+}
+
 // ── JSONP / JSON 응답 헬퍼 ───────────────────────────────────────────────
 function _respond(data, callback) {
   const json = JSON.stringify(data);
