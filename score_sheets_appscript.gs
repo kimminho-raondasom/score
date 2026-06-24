@@ -26,8 +26,10 @@ const GEMINI_URL     = 'https://generativelanguage.googleapis.com/v1beta/models/
 // Apps Script 편집기에서 이 함수를 선택 후 ▶ 실행하면
 // UrlFetchApp 권한 팝업이 뜹니다 → 허용 클릭
 function testGeminiProxy() {
+  // UrlFetchApp을 명시적으로 참조해서 권한 팝업 강제 트리거
+  var service = UrlFetchApp;
   try {
-    const res = UrlFetchApp.fetch(GEMINI_URL, {
+    var res = service.fetch(GEMINI_URL, {
       method: 'post',
       contentType: 'application/json',
       payload: JSON.stringify({
@@ -36,13 +38,16 @@ function testGeminiProxy() {
       }),
       muteHttpExceptions: true
     });
-    const result = JSON.parse(res.getContentText());
-    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || '(응답 없음)';
+    var result = JSON.parse(res.getContentText());
+    var text = result && result.candidates && result.candidates[0] &&
+               result.candidates[0].content && result.candidates[0].content.parts &&
+               result.candidates[0].content.parts[0] &&
+               result.candidates[0].content.parts[0].text || '(응답 없음)';
     Logger.log('✅ Gemini 프록시 정상: ' + text);
-    return '✅ 정상: ' + text;
+    Browser.msgBox('✅ 성공! Gemini 프록시 작동 중\n응답: ' + text);
   } catch (e) {
     Logger.log('❌ 오류: ' + e.message);
-    return '❌ 오류: ' + e.message;
+    Browser.msgBox('❌ 오류: ' + e.message);
   }
 }
 
