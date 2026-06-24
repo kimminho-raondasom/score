@@ -109,8 +109,83 @@ function doPost(e) {
   }
 }
 
-// GET 요청 테스트용 (브라우저에서 URL 직접 열었을 때 확인)
+// GET 요청: action=getSheetData → S모드 AI 퀴즈용 시트 데이터 반환
 function doGet(e) {
+  const params = e && e.parameter ? e.parameter : {};
+
+  // ── S모드 AI 퀴즈용 시트 데이터 ─────────────────────────────────────
+  if (params.action === 'getSheetData') {
+    try {
+      // 외부 스프레드시트 열기
+      const DATA_SS_ID = '1iL4Vpu1YFaV4bTHlP-O-JnRiHdBvnSnQ7cCODzlrM60';
+      const dataSS = SpreadsheetApp.openById(DATA_SS_ID);
+
+      // ── 영화 상세 시트 (B4:AN) ─────────────────────────────────────
+      // 사용 컬럼: B(0)=콘텐츠명, C(1)=배급사, D(2)=제작사, F(4)=개봉일,
+      //           H(6)=장르, I(7)=감독, J(8)=캐스팅,
+      //           K~P(9~14)=여성~50대, T(18)=개봉일좌석수,
+      //           U(19)=개봉일스코어, V(20)=개봉주스코어,
+      //           W(21)=최종스코어, AN(38)=극장/매출비율
+      const MOVIE_COLS = {
+        0:'콘텐츠명', 1:'배급사', 2:'제작사', 4:'개봉일', 6:'장르',
+        7:'감독', 8:'캐스팅', 9:'여성', 10:'10대', 11:'20대',
+        12:'30대', 13:'40대', 14:'50대', 18:'개봉일좌석수',
+        19:'개봉일스코어', 20:'개봉주스코어', 21:'최종스코어', 38:'극장매출비율'
+      };
+      const BAD_VALUES = ['o', 'value', '#value!', '#ref!', '#n/a', '#div/0!', ''];
+
+      const movieSheet = dataSS.getSheetByName('영화 상세');
+      const movieRaw = movieSheet.getRange('B4:AN200').getValues();
+      const movieRows = [];
+      for (var i = 1; i < movieRaw.length; i++) {  // i=0은 헤더
+        var row = movieRaw[i];
+        var title = String(row[0] || '').trim();
+        if (!title || BAD_VALUES.indexOf(title.toLowerCase()) !== -1) continue;
+        var obj = {};
+        var hasData = false;
+        for (var colIdx in MOVIE_COLS) {
+          var key = MOVIE_COLS[colIdx];
+          var val = colIdx < row.length ? String(row[colIdx] || '').trim() : '';
+          if (BAD_VALUES.indexOf(val.toLowerCase()) !== -1) val = '';
+          obj[key] = val;
+          if (val && key !== '콘텐츠명') hasData = true;
+        }
+        movieRows.push(obj);
+      }
+
+      // ── 북미극장 시트 (B3:N) ──────────────────────────────────────
+      // 컬럼: 연도, 금요일, 순위, 전주순위, 콘텐츠, 수익, 전주대비, 극장수, 극장수전주대비, 평균수익, 누적수익, 개봉주차, 배급사
+      const NABOX_KEYS = ['연도','금요일','순위','전주순위','콘텐츠','수익','전주대비','극장수','극장수전주대비','평균수익','누적수익','개봉주차','배급사'];
+      const naSheet = dataSS.getSheetByName('북미극장');
+      const naRaw = naSheet.getRange('B3:N500').getValues();
+      const naRows = [];
+      for (var j = 1; j < naRaw.length; j++) {  // j=0은 헤더
+        var nrow = naRaw[j];
+        var content = String(nrow[4] || '').trim();
+        if (!content || BAD_VALUES.indexOf(content.toLowerCase()) !== -1) continue;
+        var nobj = {};
+        for (var k = 0; k < NABOX_KEYS.length; k++) {
+          var nval = k < nrow.length ? String(nrow[k] || '').trim() : '';
+          if (BAD_VALUES.indexOf(nval.toLowerCase()) !== -1) nval = '';
+          nobj[NABOX_KEYS[k]] = nval;
+        }
+        naRows.push(nobj);
+      }
+
+      var result = ContentService.createTextOutput(
+        JSON.stringify({ status: 'ok', movieDetail: movieRows, naBoxOffice: naRows })
+      ).setMimeType(ContentService.MimeType.JSON);
+      result.setHeader = function() { return this; };  // CORS 헤더 GAS 방식
+      return result;
+
+    } catch (err) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'error', message: err.message }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
+  // ── 기본 GET: 레코드 수 확인 ────────────────────────────────────────
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME);
   const rows = sheet ? sheet.getLastRow() - 1 : 0;

@@ -3273,14 +3273,14 @@ html, body, .app-container, .view-section, .glass-card {
             <!-- Main Modes Container -->
             <div id="main-modes-container" style="display: flex; flex-direction: column; gap: 16px;">
 
-              <!-- Mode S: Special (흥행 스코어 예측) -->
+              <!-- Mode S: Special (AI 퀴즈) -->
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
                     <div class="mode-letter-badge" id="special-badge">S</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Special</span>
-                      <span class="mode-card-desc">영화의 흥행 지표를 예측하는 스코어 퀴즈</span>
+                      <span class="mode-card-desc">시트 데이터 기반 AI가 생성하는 4지선다 퀴즈</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showScoreOptions()">
@@ -3292,14 +3292,14 @@ html, body, .app-container, .view-section, .glass-card {
                 </div>
               </div>
 
-              <!-- Mode C: Challenge (개봉일 맞추기) -->
+              <!-- Mode C: Challenge (흥행 스코어 예측) -->
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
                     <div class="mode-letter-badge">C</div>
                     <div class="mode-card-title-col">
                       <span class="mode-card-title">Challenge</span>
-                      <span class="mode-card-desc">영화의 개봉일을 6자리로 맞히는 날짜 퀴즈</span>
+                      <span class="mode-card-desc">영화의 흥행 지표를 예측하는 스코어 퀴즈</span>
                     </div>
                   </div>
                   <button class="mode-enter-btn" onclick="app.showChallengeOptions()">
@@ -3369,12 +3369,58 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Special 서브메뉴: 개봉예정/개봉작 선택 -->
+            <!-- Special 서브메뉴: AI 퀴즈 (시트 데이터 기반) -->
             <div class="quiz-options-container" id="score-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
               </button>
               <div class="sub-menu-header">Special</div>
+              <div style="margin-bottom:20px;">
+                <div class="quiz-section-label">국내 영화 데이터</div>
+                <div class="battle-options-col">
+                  <div class="battle-option-btn solo-btn" onclick="app.startSpecialAiQuiz('movie', 'solo')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">person</span>
+                      <div class="battle-option-text"><h4>개인전</h4></div>
+                    </div>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
+                  </div>
+                  <div class="battle-option-btn group-btn" onclick="app.startSpecialAiQuiz('movie', 'group')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">groups</span>
+                      <div class="battle-option-text"><h4>단체전</h4></div>
+                    </div>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="quiz-section-label">북미 박스오피스 데이터</div>
+                <div class="battle-options-col">
+                  <div class="battle-option-btn solo-btn" onclick="app.startSpecialAiQuiz('nabox', 'solo')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">person</span>
+                      <div class="battle-option-text"><h4>개인전</h4></div>
+                    </div>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
+                  </div>
+                  <div class="battle-option-btn group-btn" onclick="app.startSpecialAiQuiz('nabox', 'group')">
+                    <div class="battle-option-info">
+                      <span class="material-symbols-outlined battle-option-icon">groups</span>
+                      <div class="battle-option-text"><h4>단체전</h4></div>
+                    </div>
+                    <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Challenge 서브메뉴: 흥행 스코어 예측 -->
+            <div id="challenge-quiz-options" style="display: none;">
+              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
+                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
+              </button>
+              <div class="sub-menu-header">Challenge</div>
 
               <!-- 개봉예정작 -->
               <div style="margin-bottom:20px;">
@@ -3415,36 +3461,6 @@ html, body, .app-container, .view-section, .glass-card {
                     </div>
                     <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Challenge 서브메뉴: 개봉작만 (개봉예정 제외) -->
-            <div id="challenge-quiz-options" style="display: none;">
-              <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
-                <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
-              </button>
-              <div class="sub-menu-header">Challenge</div>
-              <div class="battle-options-col">
-                <div class="battle-option-btn solo-btn" onclick="app.startQuiz('challenge', null, 'solo')">
-                  <div class="battle-option-info">
-                    <span class="material-symbols-outlined battle-option-icon">person</span>
-                    <div class="battle-option-text">
-                      <h4>개인전</h4>
-                      <p>개봉일 6자리 맞추기 5라운드</p>
-                    </div>
-                  </div>
-                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
-                </div>
-                <div class="battle-option-btn group-btn" onclick="app.startQuiz('challenge', null, 'group')">
-                  <div class="battle-option-info">
-                    <span class="material-symbols-outlined battle-option-icon">groups</span>
-                    <div class="battle-option-text">
-                      <h4>단체전</h4>
-                      <p>여러 명이 번갈아 플레이</p>
-                    </div>
-                  </div>
-                  <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
               </div>
             </div>
@@ -3757,8 +3773,33 @@ html, body, .app-container, .view-section, .glass-card {
         </div>
       </div>
 
-      <!-- QUIZ MODE 1: BOX OFFICE SCORE PREDICTION (Step-by-Step Question UI) -->
+      <!-- QUIZ MODE 1: SPECIAL AI QUIZ (시트 데이터 기반 Gemini 4지선다) -->
       <div id="quiz-panel-score" class="quiz-mode-panel">
+        <!-- 로딩 상태 -->
+        <div id="special-ai-loading" style="text-align:center;padding:40px 0;">
+          <span class="material-symbols-outlined" style="font-size:2.5rem;color:var(--accent);animation:spin 1s linear infinite;">autorenew</span>
+          <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">AI가 문제를 생성하고 있습니다...</p>
+        </div>
+        <!-- 퀴즈 본문 (로딩 후 표시) -->
+        <div id="special-ai-quiz-body" style="display:none;">
+          <div class="glass-card" style="margin-bottom:16px;padding:16px;">
+            <div style="font-size:0.7rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;" id="special-ai-source-label">국내 영화 데이터</div>
+            <div id="special-ai-question" style="font-size:1rem;font-weight:600;line-height:1.5;color:var(--text-primary);"></div>
+          </div>
+          <div class="g-options-list radio-group" id="special-ai-options" style="margin-bottom:20px;"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <span style="font-size:0.75rem;color:var(--text-muted);" id="special-ai-progress">1 / 5</span>
+            <span style="font-size:0.75rem;color:var(--accent);" id="special-ai-score-label">정답 0</span>
+          </div>
+          <button id="btn-special-ai-submit" class="btn-primary w-100">
+            <span>답안 제출</span>
+            <span class="material-symbols-outlined">check_circle</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- QUIZ MODE 2: CHALLENGE — BOX OFFICE SCORE PREDICTION (Step-by-Step) -->
+      <div id="quiz-panel-challenge" class="quiz-mode-panel">
         <div class="movie-presenter-card glass-card">
           <div class="movie-poster-placeholder" id="score-movie-poster">
             <span class="material-symbols-outlined">movie</span>
@@ -3785,38 +3826,33 @@ html, body, .app-container, .view-section, .glass-card {
             <span class="step-dot" data-step="4">5</span>
             <span class="step-dot" data-step="5">6</span>
           </div>
-          
+
           <div class="quiz-step-wrapper">
             <!-- Step 1: Opening Seats -->
             <div class="step-card active" id="score-step-0">
               <div class="g-question-title">개봉일 좌석수</div>
               <div class="g-options-list radio-group" id="q-score-seats"></div>
             </div>
-
             <!-- Step 2: Opening Day Score -->
             <div class="step-card" id="score-step-1">
               <div class="g-question-title">개봉일 관객수</div>
               <div class="g-options-list radio-group" id="q-score-opening-day"></div>
             </div>
-
             <!-- Step 3: Opening Week Score -->
             <div class="step-card" id="score-step-2">
               <div class="g-question-title">개봉 첫 주 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-opening-week"></div>
             </div>
-
             <!-- Step 4: Final Score -->
             <div class="step-card" id="score-step-3">
               <div class="g-question-title">최종 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-final"></div>
             </div>
-
             <!-- Step 5: VOD Sales -->
             <div class="step-card" id="score-step-4">
               <div class="g-question-title">VOD 누적 매출액</div>
               <div class="g-options-list radio-group" id="q-score-vod"></div>
             </div>
-
             <!-- Step 6: SVOD OTT -->
             <div class="step-card" id="score-step-5">
               <div class="g-question-title">SVOD OTT 플랫폼</div>
@@ -3830,8 +3866,6 @@ html, body, .app-container, .view-section, .glass-card {
           </button>
         </div>
       </div>
-
-      <!-- QUIZ MODE 2: FILMOGRAPHY MATCHING -->
       <div id="quiz-panel-filmo" class="quiz-mode-panel">
         <div class="filmo-question-card glass-card text-center fade-in">
           <div class="filmo-avatar">🎬</div>
