@@ -1,5 +1,5 @@
 /**
- * score 앱 — 퀴즈 기록 수신 & Google Sheets 저장 + 이메일 OTP 인증
+ * score 앱 — 퀴즈 기록 수신 & Google Sheets 저장 + 이메일 OTP 인증 + Gemini 프록시
  *
  * [설치 방법]
  * 1. Google Sheets에서 새 시트를 만듭니다.
@@ -10,16 +10,17 @@
  *    - 액세스 권한: 모든 사용자 (익명 포함)
  * 5. 배포 URL을 복사해서 index.html의 SCORE_SHEET_WEBHOOK_URL 에 붙여넣습니다.
  *
- * [OTP 인증 엔드포인트]
- * POST { action: 'sendOtp', email: '...', code: '123456' }
- * → 해당 이메일로 6자리 인증 코드 발송
- *
- * [시트 데이터 엔드포인트]
- * GET ?action=getSheetData&callback=fnName  → JSONP 응답
- * GET ?action=getSheetData                  → JSON 응답 (CORS 가능 환경)
+ * [엔드포인트]
+ * POST { action: 'sendOtp', email, code }        → OTP 이메일 발송
+ * POST { action: 'geminiGenerate', prompt, ... }  → Gemini AI 프록시 (키 서버사이드 보관)
+ * GET  ?action=getSheetData&callback=fn           → 시트 데이터 JSONP 반환
  */
 
 const SHEET_NAME = 'quiz_records';
+
+// ── Gemini API 키 (서버사이드에만 존재 — 클라이언트에 절대 노출되지 않음) ──
+const GEMINI_API_KEY = 'AIzaSyBrs35Gz-FRc9Cuj9MMpjusJcd7wyx8Yb4';
+const GEMINI_URL     = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + GEMINI_API_KEY;
 
 // ── JSONP / JSON 응답 헬퍼 ───────────────────────────────────────────────
 function _respond(data, callback) {
@@ -38,6 +39,42 @@ function _respond(data, callback) {
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
+
+    // ── Gemini AI 프록시 ───────────────────────────────────────────────
+    // 클라이언트는 이 엔드포인트만 호출 — API 키는 이 파일 안에만 존재
+    if (data.action === 'geminiGenerate') {
+      const prompt = data.prompt || '';
+      if (!prompt) {
+        return ContentService
+          .createTextOutput(JSON.stringify({ status: 'error', message: 'prompt is required' }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+
+      const payload = {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: data.temperature || 0.3 }
+      };
+
+      const response = UrlFetchApp.fetch(GEMINI_URL, {
+        method: 'post',
+        contentType: 'application/json',
+        payload: JSON.stringify(payload),
+        muteHttpExceptions: true
+      });
+
+      const result = JSON.parse(response.getContentText());
+
+      if (result.error) {
+        return ContentService
+          .createTextOutput(JSON.stringify({ status: 'error', message: result.error.message }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+
+      const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', text: text }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
 
     // ── OTP 이메일 발송 ────────────────────────────────────────────────
     if (data.action === 'sendOtp') {
@@ -128,10 +165,46 @@ function doPost(e) {
 }
 
 // GET 요청: action=getSheetData → S모드 AI 퀴즈용 시트 데이터 반환
+// GET 요청: action=geminiGenerate → Gemini 프록시 (JSONP)
 // JSONP 지원: &callback=함수명 파라미터 추가 시 JSONP 형식으로 응답
 function doGet(e) {
   const params   = e && e.parameter ? e.parameter : {};
-  const callback = params.callback || '';  // JSONP 콜백 함수명
+  const callback = params.callback || '';
+
+  // ── Gemini AI 프록시 (GET/JSONP) ─────────────────────────────────────
+  if (params.action === 'geminiGenerate') {
+    try {
+      const prompt = params.prompt || '';
+      if (!prompt) {
+        return _respond({ status: 'error', message: 'prompt is required' }, callback);
+      }
+
+      const temperature = parseFloat(params.temperature || '0.3');
+      const payload = {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: temperature }
+      };
+
+      const response = UrlFetchApp.fetch(GEMINI_URL, {
+        method: 'post',
+        contentType: 'application/json',
+        payload: JSON.stringify(payload),
+        muteHttpExceptions: true
+      });
+
+      const result = JSON.parse(response.getContentText());
+
+      if (result.error) {
+        return _respond({ status: 'error', message: result.error.message }, callback);
+      }
+
+      const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      return _respond({ status: 'ok', text: text }, callback);
+
+    } catch (err) {
+      return _respond({ status: 'error', message: err.message }, callback);
+    }
+  }
 
   // ── S모드 AI 퀴즈용 시트 데이터 ─────────────────────────────────────
   if (params.action === 'getSheetData') {
