@@ -3898,37 +3898,6 @@ html, body, .app-container, .view-section, .glass-card {
         </div>
       </div>
 
-      <!-- QUIZ MODE 4: CHALLENGE (개봉일 맞추기) -->
-      <div id="quiz-panel-challenge" class="quiz-mode-panel">
-        <div class="movie-presenter-card glass-card">
-          <div class="movie-poster-placeholder" id="challenge-movie-poster">
-            <span class="material-symbols-outlined">movie</span>
-          </div>
-          <div class="movie-meta-details">
-            <div class="movie-label">개봉일 맞추기</div>
-            <h2 id="challenge-movie-title" class="movie-title">—</h2>
-            <div class="movie-tags">
-              <span class="movie-tag-item" id="challenge-movie-director">감독: —</span>
-            </div>
-            <div class="movie-cast-info" id="challenge-movie-cast">출연: —</div>
-          </div>
-        </div>
-
-        <div class="challenge-date-input-wrap">
-          <label>개봉일을 입력하세요 (YYMMDD 형식)</label>
-          <form id="form-challenge-quiz">
-            <input type="text" id="challenge-date-input" class="challenge-date-input"
-              placeholder="YYMMDD" maxlength="6" inputmode="numeric" pattern="[0-9]*"
-              autocomplete="off">
-            <button type="submit" class="btn-primary w-100 mt-3">
-              <span>제출하기</span>
-              <span class="material-symbols-outlined">event</span>
-            </button>
-          </form>
-          <div id="challenge-digit-result" class="challenge-digit-compare" style="display:none;"></div>
-        </div>
-      </div>
-
       <!-- QUIZ MODE 5: ORDINARY (포스터 일부분 맞추기) -->
       <div id="quiz-panel-ordinary" class="quiz-mode-panel">
         <div style="text-align:center;margin-bottom:8px;">
@@ -23127,7 +23096,6 @@ ${JSON.stringify(combined, null, 0)}
     const q = questions[idx];
     const total = questions.length;
 
-    // 진행 표시
     const progressEl = document.getElementById('special-ai-progress');
     const progressBar = document.getElementById('special-ai-progress-bar');
     const scoreEl = document.getElementById('special-ai-score-label');
@@ -23142,38 +23110,41 @@ ${JSON.stringify(combined, null, 0)}
 
     // 포스터: posterKeyword로 MOVIES_DATABASE에서 검색
     if (posterEl) {
-      let posterUrl = '';
       const keyword = (q.posterKeyword || '').trim();
+      let posterUrl = '';
       if (keyword && typeof MOVIES_DATABASE !== 'undefined') {
-        const found = MOVIES_DATABASE.find(m =>
-          m.title && m.title.includes(keyword) && m.posterUrl
-        ) || MOVIES_DATABASE.find(m =>
-          keyword && m.title && keyword.includes(m.title.slice(0, 3)) && m.posterUrl
-        );
+        const found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && m.title.includes(keyword))
+          || MOVIES_DATABASE.find(m => m.title && m.posterUrl && keyword.includes(m.title.slice(0, 4)));
         if (found) posterUrl = found.posterUrl;
       }
       if (posterUrl) {
         posterEl.style.backgroundImage = `url('${posterUrl}')`;
-        posterEl.innerHTML = '';
+        posterEl.style.backgroundSize = 'cover';
+        posterEl.style.backgroundPosition = 'center';
+        posterEl.innerHTML = ''; // 아이콘 제거
       } else {
-        posterEl.style.backgroundImage = '';
-        posterEl.innerHTML = '<span class="material-symbols-outlined">quiz</span>';
+        posterEl.style.backgroundImage = 'none';
+        posterEl.innerHTML = '<span class="material-symbols-outlined" style="font-size:2rem;color:var(--text-muted)">quiz</span>';
       }
     }
 
-    // 4지선다 옵션 렌더링
+    // 4지선다: 기존 .option-item / .option-box CSS 구조 사용
+    // (CSS에서 input[type=radio]는 display:none, option-box가 클릭 영역)
     if (optionsEl) {
       const shuffled = [...q.options].sort(() => Math.random() - 0.5);
-      optionsEl.innerHTML = shuffled.map((opt, i) => {
+      const groupName = `special-ai-opt-${idx}`; // 문제마다 name 갱신해 이전 체크 초기화
+      optionsEl.innerHTML = shuffled.map(opt => {
         const escaped = opt.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        return `<label class="option-item" style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--card-bg);border:1px solid var(--border-color);border-radius:10px;cursor:pointer;">
-          <input type="radio" name="special-ai-opt" value="${escaped}" style="accent-color:var(--accent);width:16px;height:16px;flex-shrink:0;">
-          <span style="font-size:0.88rem;line-height:1.4;color:var(--text-primary);">${opt}</span>
+        return `<label class="option-item">
+          <input type="radio" name="${groupName}" value="${escaped}">
+          <span class="option-box">${opt}</span>
         </label>`;
       }).join('');
+      // 현재 문제의 radio name을 저장해 제출 시 참조
+      this.currentQuiz._aiOptName = groupName;
     }
 
-    // 제출 버튼 이벤트 재등록
+    // 제출 버튼 이벤트 재등록 (cloneNode로 이전 리스너 완전 제거)
     const btn = document.getElementById('btn-special-ai-submit');
     if (btn) {
       const newBtn = btn.cloneNode(true);
@@ -23183,7 +23154,8 @@ ${JSON.stringify(combined, null, 0)}
   }
 
   _submitSpecialAiAnswer() {
-    const selected = document.querySelector('input[name="special-ai-opt"]:checked');
+    const optName = this.currentQuiz._aiOptName || 'special-ai-opt';
+    const selected = document.querySelector(`input[name="${optName}"]:checked`);
     if (!selected) {
       showToast('선택지를 선택해 주세요.', 'warn');
       return;
