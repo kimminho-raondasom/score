@@ -38,6 +38,9 @@
   
   --text-main: #2c2a27;
   --text-muted: rgba(44, 42, 39, 0.6);
+  /* Aliases for inline styles & AI quiz panel */
+  --text-primary: #2c2a27;
+  --accent: #8c7355;
   
   --font-family-sans: 'Noto Sans KR', sans-serif;
   --font-family-display: 'Outfit', sans-serif;
@@ -2525,15 +2528,7 @@ html, body, .app-container, .view-section, .glass-card {
   color: #e6b87a;
 }
 
-/* ── 서브메뉴 공통 (Otaku/Mania/Light) ──────────────────────────────────── */
-.sub-menu-header {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  letter-spacing: 1px;
-  margin-bottom: 16px;
-  color: var(--text-main);
-}
+/* ── 서브메뉴 공통 ──────────────────────────────────────────────────────── */
 
 .sub-option-btn {
   width: 100%;
@@ -3034,6 +3029,134 @@ html, body, .app-container, .view-section, .glass-card {
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
 }
+/* ── 유틸리티 클래스 ─────────────────────────────────────────────────────── */
+.w-100  { width: 100%; }
+.mt-1   { margin-top: 8px; }
+.mt-2   { margin-top: 12px; }
+.mt-3   { margin-top: 16px; }
+.mt-4   { margin-top: 24px; }
+.mb-1   { margin-bottom: 8px; }
+.mb-2   { margin-bottom: 12px; }
+.mb-3   { margin-bottom: 16px; }
+.mb-4   { margin-bottom: 24px; }
+.p-0    { padding: 0 !important; }
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+.text-large  { font-size: 1.4rem; }
+.text-small  { font-size: 0.8rem; }
+.text-gold   { color: #c9a84c; }
+.text-danger { color: var(--color-danger); }
+.text-blue   { color: #4a7fa5; }
+.text-muted  { color: var(--text-muted) !important; }
+.fade-in     { animation: fadeIn 0.4s ease; }
+.animated-bounce { animation: bouncePulse 1s ease infinite alternate; }
+@keyframes fadeIn      { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes bouncePulse { from { transform: scale(1); } to { transform: scale(1.08); } }
+
+/* ── 통계 카드 색상 ──────────────────────────────────────────────────────── */
+.score-color   { color: var(--color-primary); }
+.success-color { color: var(--color-success); }
+.combo-color   { color: #c9a84c; }
+.xp-color      { color: #4a7fa5; }
+
+/* ── 티어 배지 색상 ──────────────────────────────────────────────────────── */
+.tier-1 .tier-icon { color: #a0a0a0; }
+.tier-2 .tier-icon { color: #cd7f32; }
+.tier-3 .tier-icon { color: #c0c0c0; }
+.tier-4 .tier-icon { color: #ffd700; }
+.tier-5 .tier-icon { color: #e5c9f5; }
+.tier-6 .tier-icon { color: #ff6b9d; }
+
+/* ── 영화 배지 ───────────────────────────────────────────────────────────── */
+.movie-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-top: 4px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.badge-upcoming { background: rgba(140,115,85,0.12); color: var(--color-primary); border: 1px solid rgba(140,115,85,0.3); }
+.badge-revealed { background: rgba(107,112,92,0.12); color: var(--color-success); border: 1px solid rgba(107,112,92,0.3); }
+
+/* ── 알림 닷 ─────────────────────────────────────────────────────────────── */
+.notify-dot {
+  position: absolute;
+  top: -3px; right: -3px;
+  width: 8px; height: 8px;
+  background: #e57373;
+  border-radius: 50%;
+}
+
+/* ── Challenge digit 결과 ────────────────────────────────────────────────── */
+.digit-cell {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-family-display);
+  font-size: 1.1rem; font-weight: 600;
+  margin: 2px;
+}
+.digit-cell.match { background: var(--text-main); color: var(--bg-primary); border-color: var(--text-main); }
+.digit-cell.miss  { background: transparent; color: var(--text-muted); }
+
+/* ── 등록·로그인 카드 ────────────────────────────────────────────────────── */
+.register-card  { width:100%; max-width:480px; margin:0 auto; }
+.register-form  { display:flex; flex-direction:column; gap:0; }
+.consent-group  { margin-bottom:20px; }
+.nickname-group { position:relative; }
+.glow-circle    { position:absolute; border-radius:50%; pointer-events:none; opacity:0.15; }
+.glow-circle-1  { width:320px; height:320px; background:radial-gradient(circle, var(--color-primary), transparent 70%); top:-80px; right:-60px; }
+
+/* ── 피날레 피드백 카드 ──────────────────────────────────────────────────── */
+.finale-feedback-card {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+  margin-bottom: 24px;
+  font-weight: 300;
+  text-align: left;
+}
+
+/* ── score-row (피날레 통계 행) ──────────────────────────────────────────── */
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.88rem;
+}
+.score-row:last-child { border-bottom: none; }
+.score-value { font-family: var(--font-family-display); font-size: 1rem; font-weight: 600; }
+
+/* ── 필모 퀴즈 ───────────────────────────────────────────────────────────── */
+.filmo-question-card { text-align:center; padding:28px 20px; }
+.filmo-avatar        { font-size:2.5rem; margin-bottom:8px; }
+.filmo-target-label  { font-size:0.72rem; color:var(--text-muted); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:4px; }
+.filmo-target-name   { font-size:1.5rem; font-weight:600; margin-bottom:12px; }
+.filmo-question-text { font-size:0.9rem; color:var(--text-muted); line-height:1.6; }
+
+/* ── 명대사·초성 퀴즈 ────────────────────────────────────────────────────── */
+.quote-card      { padding:24px; text-align:left; }
+.quote-icon      { font-size:2rem; color:var(--text-muted); margin-bottom:12px; }
+.quote-text      { font-size:1rem; font-style:italic; line-height:1.7; color:var(--text-main); margin-bottom:16px; }
+.quote-hint-row  { display:flex; align-items:center; gap:8px; padding-top:12px; border-top:1px solid var(--border-color); }
+.quote-character { font-size:0.8rem; color:var(--text-muted); }
+.choseong-card   { padding:24px; text-align:center; }
+.choseong-label  { font-size:0.75rem; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:12px; }
+.choseong-letters { font-family:var(--font-family-display); font-size:2.5rem; font-weight:700; letter-spacing:0.3em; color:var(--text-main); }
+.answer-card     { width:100%; }
+.radio-group     { display:flex; flex-direction:column; gap:10px; }
+.flex-center-col { display:flex; flex-direction:column; align-items:center; gap:16px; }
+
+/* ── 앱 광고 배너 자리 ───────────────────────────────────────────────────── */
+.app-ad-banner   { display:none; }
 
 </style>
 </head>
@@ -3796,17 +3919,17 @@ html, body, .app-container, .view-section, .glass-card {
       <!-- QUIZ MODE 2: CHALLENGE — BOX OFFICE SCORE PREDICTION (Step-by-Step) -->
       <div id="quiz-panel-challenge" class="quiz-mode-panel">
         <div class="movie-presenter-card glass-card">
-          <div class="movie-poster-placeholder" id="score-movie-poster">
+          <div class="movie-poster-placeholder" id="challenge-movie-poster">
             <span class="material-symbols-outlined">movie</span>
           </div>
           <div class="movie-meta-details">
             <div class="movie-label">흥행 분석 대상 콘텐츠</div>
-            <h2 id="score-movie-title" class="movie-title">서울의 봄</h2>
+            <h2 id="challenge-movie-title" class="movie-title">서울의 봄</h2>
             <div class="movie-tags">
               <span class="movie-tag-item" id="score-movie-year">2023년</span>
-              <span class="movie-tag-item" id="score-movie-director">감독: 김성수</span>
+              <span class="movie-tag-item" id="challenge-movie-director">감독: 김성수</span>
             </div>
-            <div class="movie-cast-info" id="score-movie-cast">출연: 황정민, 정우성</div>
+            <div class="movie-cast-info" id="challenge-movie-cast">출연: 황정민, 정우성</div>
           </div>
         </div>
 
@@ -3855,8 +3978,21 @@ html, body, .app-container, .view-section, .glass-card {
             </div>
           </div>
 
+          <!-- Challenge 날짜 입력 (개봉일 YYMMDD) — setupChallengeQuizLayout이 토글 -->
+          <div class="challenge-date-input-wrap" id="challenge-date-wrap" style="display:none;margin-top:20px;">
+            <label>개봉일을 YYMMDD 형식으로 입력하세요</label>
+            <input type="text" id="challenge-date-input" class="challenge-date-input"
+              maxlength="6" inputmode="numeric" pattern="\d{6}"
+              placeholder="예: 260625">
+            <div id="challenge-digit-result" style="display:none;flex-direction:row;gap:4px;margin-top:10px;justify-content:center;"></div>
+            <button id="btn-challenge-submit" class="btn-primary w-100 mt-3" onclick="app.gradeChallengeQuiz()">
+              <span>제출</span>
+              <span class="material-symbols-outlined">check_circle</span>
+            </button>
+          </div>
+
           <button id="btn-next-step" class="btn-primary w-100" style="margin-top:28px;">
-            <span>답안 제출 & 다음 질문</span>
+            <span>답안 제출 &amp; 다음 질문</span>
             <span class="material-symbols-outlined">navigate_next</span>
           </button>
         </div>
@@ -3946,6 +4082,10 @@ html, body, .app-container, .view-section, .glass-card {
           <div class="score-row">
             <span>정답 수:</span>
             <span class="score-value" id="finale-correct-count">0 / 5</span>
+          </div>
+          <div class="score-row" id="finale-score-row">
+            <span>AI 퀴즈 점수:</span>
+            <span class="score-value" id="finale-score">—</span>
           </div>
           <div class="score-row">
             <span>최대 연속 콤보:</span>
@@ -20451,8 +20591,12 @@ if (typeof module !== 'undefined' && module.exports) {
 const SCORE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyVl_9H-axF2BPzAjH28T92tD_bLzvmfbpYTvd4Nq_0ObhesNDnsWn1_E6Mnp3g4F5n6g/exec';
 
 // ── S모드 AI 퀴즈 설정 ──────────────────────────────────────────────────────
+// ⚠️  보안 주의: API 키는 Google Cloud Console에서 HTTP Referer 제한을 설정하세요.
+//    https://console.cloud.google.com/apis/credentials
+//    허용 도메인: 배포된 도메인(예: yourdomain.github.io)만 등록
 const SPECIAL_GEMINI_API_KEY = 'AIzaSyCH9YfN992Zv_y3qv0vx3opbFeeZL_AN4Y';
-const SPECIAL_GEMINI_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${SPECIAL_GEMINI_API_KEY}`;
+// v1beta: Gemini 2.5 Flash 정식 지원 엔드포인트
+const SPECIAL_GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${SPECIAL_GEMINI_API_KEY}`;
 
 class CineMasterApp {
   constructor() {
@@ -20461,20 +20605,39 @@ class CineMasterApp {
     
     // Quiz State
     this.currentQuiz = {
-      type: '',        // 'score', 'filmo', 'lines'
-      movies: [],      // Movie objects list for the 5 rounds
-      currentIndex: 0, // Current round index (0 to 4)
-      score: 0,        // Count of successfully completed rounds
-      totalXpEarned: 0,// Cumulative XP gained this run
+      type: '',
+      movies: [],
+      currentIndex: 0,
+      score: 0,
+      totalXpEarned: 0,
       combo: 0,
       maxComboThisRun: 0,
       timerId: null,
-      
-      // Step-by-Step score quiz variables (Specific to 'score' type)
-      currentStep: 0,   // Q1 to Q8 (0 to 7)
-      stepAnswers: [],  // Recorded correct/incorrect boolean for the current movie
-      correctAnswersCount: 0 // Correct answers in the current movie
+      currentStep: 0,
+      stepAnswers: [],
+      correctAnswersCount: 0,
+      // AI 퀴즈 필드 (특정 타입에서만 사용)
+      aiQuestions: [],
+      aiCurrentQ: 0,
+      aiCorrect: 0,
+      _aiOptName: '',
+      // 단체전 필드
+      groupMode: false,
+      groupSessionId: null,
+      // 기타
+      subType: null,
+      battleMode: null,
+      isUpcoming: false,
+      upcomingAnswers: {},
     };
+
+    // OTP 보안 상태 (constructor에서 초기화 — 미초기화로 인한 undefined 버그 방지)
+    this._otpCode     = null;
+    this._otpEmail    = '';
+    this._otpExpiry   = 0;
+    this._otpTimerId  = null;
+    this._otpAttempts = 0;   // 브루트포스 방지용 시도 횟수 카운터
+    this._otpMaxAttempts = 5; // 최대 5회 시도
 
     // System Settings
     this.soundEnabled = true;
@@ -20748,9 +20911,10 @@ class CineMasterApp {
 
     // 6자리 랜덤 코드 생성
     const code = String(Math.floor(100000 + Math.random() * 900000));
-    this._otpCode = code;
-    this._otpEmail = email;
-    this._otpExpiry = Date.now() + 5 * 60 * 1000; // 5분
+    this._otpCode      = code;
+    this._otpEmail     = email;
+    this._otpExpiry    = Date.now() + 5 * 60 * 1000; // 5분
+    this._otpAttempts  = 0;  // 새 코드 발송 시 시도 횟수 리셋
 
     // Apps Script로 전송
     const btn = document.getElementById('btn-send-otp');
@@ -20800,10 +20964,34 @@ class CineMasterApp {
   verifyOtp() {
     const entered = (document.getElementById('otp-code-input')?.value || '').trim();
     if (!entered) { showToast('인증 코드를 입력해 주세요.', 'warn'); return; }
-    if (Date.now() > this._otpExpiry) { showToast('인증 코드가 만료되었습니다. 재전송해 주세요.', 'warn'); return; }
-    if (entered !== this._otpCode) { showToast('인증 코드가 일치하지 않습니다.', 'warn'); return; }
+
+    // 브루트포스 방지: 최대 시도 횟수 초과 시 차단
+    if (this._otpAttempts >= this._otpMaxAttempts) {
+      showToast('시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.', 'error');
+      return;
+    }
+
+    // 만료 검사 (초기화 전 호출 방지: _otpExpiry = 0이면 항상 만료)
+    if (!this._otpCode || Date.now() > this._otpExpiry) {
+      showToast('인증 코드가 만료되었습니다. 재전송해 주세요.', 'warn'); return;
+    }
+
+    this._otpAttempts++;
+
+    if (entered !== this._otpCode) {
+      const remaining = this._otpMaxAttempts - this._otpAttempts;
+      if (remaining > 0) {
+        showToast(`인증 코드가 일치하지 않습니다. (남은 시도: ${remaining}회)`, 'warn');
+      } else {
+        showToast('시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.', 'error');
+      }
+      return;
+    }
 
     clearInterval(this._otpTimerId);
+    this._otpCode    = null;   // 인증 완료 후 즉시 코드 폐기
+    this._otpExpiry  = 0;
+    this._otpAttempts = 0;
     showToast('이메일 인증이 완료되었습니다!', 'success', 2500);
 
     // 인증 완료 → 가입 화면으로 이동
@@ -22290,7 +22478,7 @@ class CineMasterApp {
     const userInput = document.getElementById('input-lines-answer').value.trim();
 
     if (!userInput) {
-      alert("영화 제목을 입력해 주세요.");
+      showToast("영화 제목을 입력해 주세요.", 'warn');
       this.startTimer();
       return;
     }
@@ -22387,15 +22575,21 @@ class CineMasterApp {
     clearInterval(this.currentQuiz.timerId);
     this.playSynthSound('fanfare');
 
-    this.currentUser.stats.games++;
+    // null 가드: currentUser 없으면 로그인 화면으로
+    if (!this.currentUser) {
+      this.switchView('login');
+      return;
+    }
 
-    const totalRounds = this.currentQuiz.movies.length;
+    this.currentUser.stats.games = (this.currentUser.stats.games || 0) + 1;
+
+    const totalRounds  = this.currentQuiz.movies.length || 1;
     const quizAccuracy = Math.round((this.currentQuiz.score / totalRounds) * 100);
     this.currentUser.stats.accuracy = Math.round(
       ((this.currentUser.stats.accuracy * (this.currentUser.stats.games - 1)) + quizAccuracy) / this.currentUser.stats.games
     );
 
-    if (this.currentQuiz.maxComboThisRun > this.currentUser.stats.maxCombo) {
+    if (this.currentQuiz.maxComboThisRun > (this.currentUser.stats.maxCombo || 0)) {
       this.currentUser.stats.maxCombo = this.currentQuiz.maxComboThisRun;
     }
 
@@ -22425,7 +22619,7 @@ class CineMasterApp {
         answers:  this.currentQuiz.upcomingAnswers || {},
         stepAnswers: this.currentQuiz.stepAnswers || [],
         movie:    this.currentQuiz.movies[0]?.title || '',
-        locked:   true,   // 수정 불가 플래그
+        locked:   true,
         date:     new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
       });
     }
@@ -22433,9 +22627,13 @@ class CineMasterApp {
     this.saveProfile();
     this.checkAndUnlockAchievements();
 
+    // AI 퀴즈 전용 행 숨김 (일반 퀴즈에서는 불필요)
+    const scoreRowEl = document.getElementById('finale-score-row');
+    if (scoreRowEl) scoreRowEl.style.display = 'none';
+
     document.getElementById('finale-player-name').innerText = `${this.currentUser.nickname}님의 시네마 리그 성적표`;
     document.getElementById('finale-xp').innerText = `+${this.currentQuiz.totalXpEarned} XP (실시간 적립 완료)`;
-    document.getElementById('finale-correct-count').innerText = `${this.currentQuiz.score} / 5 라운드 성공`;
+    document.getElementById('finale-correct-count').innerText = `${this.currentQuiz.score} / ${totalRounds} 라운드 성공`;
     document.getElementById('finale-combo').innerText = `${this.currentQuiz.maxComboThisRun} 연승 콤보`;
     document.getElementById('finale-rating').innerText = this.calculateRankLabel(this.currentUser.xp);
 
@@ -22612,6 +22810,10 @@ class CineMasterApp {
       this.setupFilmoQuizLayout();
     } else if (type === 'lines') {
       this.setupLinesQuizLayout();
+    } else if (type === 'special_ai') {
+      // AI 퀴즈 단체전: 비동기 문제 생성
+      this._startSpecialAiQuizCore('group', sessionId);
+      return; // _startSpecialAiQuizCore 내부에서 switchView 처리
     }
 
     this.switchView('quiz');
@@ -22718,6 +22920,15 @@ class CineMasterApp {
     this.playSynthSound('click');
     if (confirm("정말 퀴즈를 종료하시겠습니까?")) {
       clearInterval(this.currentQuiz.timerId);
+      // 상태 완전 리셋 — 이전 세션의 groupMode 등이 다음 퀴즈에 오염되는 것 방지
+      this.currentQuiz = {
+        type: '', movies: [], currentIndex: 0, score: 0,
+        totalXpEarned: 0, combo: 0, maxComboThisRun: 0, timerId: null,
+        currentStep: 0, stepAnswers: [], correctAnswersCount: 0,
+        aiQuestions: [], aiCurrentQ: 0, aiCorrect: 0, _aiOptName: '',
+        groupMode: false, groupSessionId: null,
+        subType: null, battleMode: null, isUpcoming: false, upcomingAnswers: {},
+      };
       this.switchView('dashboard');
       this.renderDashboard();
     }
@@ -22968,28 +23179,47 @@ class CineMasterApp {
 
   async startSpecialAiQuiz(mode = 'solo') {
     this.playSynthSound('click');
-    this.currentQuiz.type = 'special_ai';
-    this.currentQuiz.currentIndex = 0;
-    this.currentQuiz.score = 0;
+
+    // 단체전이면 그룹 등록 화면을 먼저 표시
+    if (mode === 'group') {
+      const sessionId = 'ai_group_' + Date.now();
+      this._pendingGroupRestart = {
+        type: 'special_ai', subType: null, mode: 'group',
+        sessionId, movies: [], isUpcoming: false,
+      };
+      this._showGroupRegister(1);
+      return;
+    }
+
+    // 개인전 진행
+    this._startSpecialAiQuizCore('solo', null);
+  }
+
+  // 실제 AI 퀴즈 시작 (그룹 등록 완료 후 혹은 개인전에서 직접 호출)
+  async _startSpecialAiQuizCore(mode, sessionId) {
+    this.currentQuiz.type          = 'special_ai';
+    this.currentQuiz.currentIndex  = 0;
+    this.currentQuiz.score         = 0;
     this.currentQuiz.totalXpEarned = 0;
-    this.currentQuiz.combo = 0;
+    this.currentQuiz.combo         = 0;
     this.currentQuiz.maxComboThisRun = 0;
-    this.currentQuiz.aiQuestions = [];
-    this.currentQuiz.aiCurrentQ = 0;
-    this.currentQuiz.aiCorrect = 0;
-    this.currentQuiz.groupMode = (mode === 'group');
+    this.currentQuiz.aiQuestions   = [];
+    this.currentQuiz.aiCurrentQ    = 0;
+    this.currentQuiz.aiCorrect     = 0;
+    this.currentQuiz.groupMode     = (mode === 'group');
+    this.currentQuiz.groupSessionId = sessionId || null;
 
     this.switchView('quiz');
     this.activateQuizPanel('score');
     document.getElementById('quiz-round-container').style.display = 'none';
 
     const loading = document.getElementById('special-ai-loading');
-    const body = document.getElementById('special-ai-quiz-body');
+    const body    = document.getElementById('special-ai-quiz-body');
     if (loading) loading.style.display = 'block';
-    if (body) body.style.display = 'none';
+    if (body)    body.style.display    = 'none';
 
     try {
-      // 1. GAS에서 양쪽 시트 데이터 fetch
+      // 1. GAS에서 양쪽 시트 데이터 fetch (JSONP)
       const sheetData = await this._fetchSpecialSheetData();
       if (!sheetData) {
         showToast('시트 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'error');
@@ -23006,11 +23236,11 @@ class CineMasterApp {
       }
 
       this.currentQuiz.aiQuestions = questions;
-      this.currentQuiz.aiCurrentQ = 0;
-      this.currentQuiz.aiCorrect = 0;
+      this.currentQuiz.aiCurrentQ  = 0;
+      this.currentQuiz.aiCorrect   = 0;
 
       if (loading) loading.style.display = 'none';
-      if (body) body.style.display = 'block';
+      if (body)    body.style.display    = 'block';
 
       this._renderSpecialAiQuestion();
     } catch (err) {
@@ -23019,18 +23249,46 @@ class CineMasterApp {
       this.switchView('dashboard');
     }
   }
+      this.switchView('dashboard');
+    }
+  }
 
   async _fetchSpecialSheetData() {
-    try {
-      const url = `${SCORE_SHEET_WEBHOOK_URL}?action=getSheetData`;
-      const res = await fetch(url, { mode: 'cors' });
-      const json = await res.json();
-      if (json.status === 'ok') return json;
-      return null;
-    } catch (e) {
-      console.error('Sheet fetch error:', e);
-      return null;
-    }
+    // GAS는 CORS 헤더를 직접 설정할 수 없으므로 JSONP 방식 사용
+    return new Promise((resolve) => {
+      const cbName = `_gasCallback_${Date.now()}`;
+      const script  = document.createElement('script');
+      let settled   = false;
+
+      const cleanup = () => {
+        if (!settled) { settled = true; }
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      };
+
+      // 8초 타임아웃
+      const timer = setTimeout(() => {
+        cleanup();
+        console.error('Sheet fetch timeout');
+        resolve(null);
+      }, 8000);
+
+      window[cbName] = (data) => {
+        clearTimeout(timer);
+        cleanup();
+        if (data && data.status === 'ok') resolve(data);
+        else resolve(null);
+      };
+
+      script.src = `${SCORE_SHEET_WEBHOOK_URL}?action=getSheetData&callback=${cbName}`;
+      script.onerror = () => {
+        clearTimeout(timer);
+        cleanup();
+        console.error('Sheet fetch script error');
+        resolve(null);
+      };
+      document.head.appendChild(script);
+    });
   }
 
   async _generateAiQuestions(sheetData) {
@@ -23212,18 +23470,67 @@ ${JSON.stringify(combined, null, 0)}
   }
 
   _finishSpecialAiQuiz() {
-    const total = this.currentQuiz.aiQuestions.length;
-    const correct = this.currentQuiz.aiCorrect;
-    const xp = this.currentQuiz.totalXpEarned;
-    this.saveQuizHistory('special_ai', correct, total, xp);
+    const total   = this.currentQuiz.aiQuestions.length || 10;
+    const correct = this.currentQuiz.aiCorrect || 0;
+    const xp      = this.currentQuiz.totalXpEarned || 0;
+    const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+    // 퀴즈 기록 올바른 객체 형식으로 저장
+    this.saveQuizHistory({
+      type:     'special_ai',
+      movies:   [],
+      score:    correct,
+      total:    total,
+      xp:       xp,
+      combo:    this.currentQuiz.maxComboThisRun || 0,
+      accuracy: accuracy,
+      date:     new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+      nickname: this.currentUser?.nickname || '',
+    });
+
+    if (this.currentUser) {
+      this.currentUser.stats.games = (this.currentUser.stats.games || 0) + 1;
+      const prev = this.currentUser.stats.accuracy || 0;
+      const games = this.currentUser.stats.games;
+      this.currentUser.stats.accuracy = Math.round(((prev * (games - 1)) + accuracy) / games);
+      this.saveProfile();
+      this.checkAndUnlockAchievements();
+    }
+
     this.switchView('finale');
+
     // 피날레 화면 업데이트
     const nameEl = document.getElementById('finale-player-name');
-    if (nameEl && this.currentUser) nameEl.textContent = `${this.currentUser.nickname}님의 Special AI 퀴즈 결과`;
-    const scoreEl = document.getElementById('finale-score');
-    if (scoreEl) scoreEl.textContent = `${correct} / ${total}`;
-    const xpEl = document.getElementById('finale-xp');
-    if (xpEl) xpEl.textContent = `+${xp} XP`;
+    if (nameEl) nameEl.textContent = this.currentUser
+      ? `${this.currentUser.nickname}님의 Special AI 퀴즈 결과`
+      : 'Special AI 퀴즈 결과';
+
+    const scoreRowEl = document.getElementById('finale-score-row');
+    const scoreEl    = document.getElementById('finale-score');
+    const correctEl  = document.getElementById('finale-correct-count');
+    const xpEl       = document.getElementById('finale-xp');
+    const comboEl    = document.getElementById('finale-combo');
+    const ratingEl   = document.getElementById('finale-rating');
+    const feedbackEl = document.getElementById('finale-feedback');
+
+    if (scoreRowEl) scoreRowEl.style.display = 'flex';
+    if (scoreEl)    scoreEl.textContent   = `${correct} / ${total}`;
+    if (correctEl)  correctEl.textContent = `${correct} / ${total} 정답`;
+    if (xpEl)       xpEl.textContent      = `+${xp} XP`;
+    if (comboEl)    comboEl.textContent   = `${this.currentQuiz.maxComboThisRun || 0} 연승 콤보`;
+    if (ratingEl)   ratingEl.textContent  = this.currentUser
+      ? this.calculateRankLabel(this.currentUser.xp)
+      : '—';
+
+    if (feedbackEl) {
+      if (correct === total && total > 0) {
+        feedbackEl.textContent = '⭐ 완벽합니다! AI가 생성한 모든 문제를 맞혔습니다. 진정한 영화 전문가입니다!';
+      } else if (correct >= Math.ceil(total * 0.7)) {
+        feedbackEl.textContent = `👍 훌륭합니다! ${total}문제 중 ${correct}개를 맞혔습니다. 영화 흥행 트렌드를 꿰뚫고 있군요.`;
+      } else {
+        feedbackEl.textContent = `🎬 ${total}문제 중 ${correct}개 정답. 꾸준한 학습으로 영화 흥행 분석 능력을 키워보세요!`;
+      }
+    }
   }
 
   // ── 포스터 롤링 배너 초기화 (5개 섹션) ────────────────────────────────────
@@ -23349,7 +23656,10 @@ ${JSON.stringify(combined, null, 0)}
 
   startSpecificOrdinaryQuiz(movieTitle) {
     this.playSynthSound('click');
-    const db = [...MOVIES_DATABASE, ...UPCOMING_MOVIES_DATABASE];
+    const db = [
+      ...MOVIES_DATABASE,
+      ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : [])
+    ];
     const movie = db.find(m => m.title === movieTitle);
     if (!movie) return;
     this.currentQuiz.type = 'ordinary';
