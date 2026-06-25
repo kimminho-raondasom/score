@@ -20296,6 +20296,47 @@ const MOVIES_DATABASE = [
 ];
 
 const UPCOMING_MOVIES_DATABASE = [
+  // ── 2026-07-01 개봉 ──────────────────────────────────────────────────────
+  {
+    id: "upcoming_26070101", title: "레디 오어 낫: 죽음의 숨바꼭질", director: "맷 베티넬리-올핀",
+    cast: ["사마라 위빙", "캐서린 뉴튼", "사라 미셸 겔러"],
+    releaseDate: "2026-07-01", genre: ["공포", "코미디"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/9XMwsbof7HoOiNxEahreQay3pXs.jpg",
+    isRevealed: false,
+    overview: "르 도마스 가문의 공격에서 간신히 살아남은 지 몇 분도 되지 않아 그레이스는 자신이 이 악몽 같은 게임의 '다음 레벨'에 도달했다는 사실을 깨닫는다."
+  },
+  {
+    id: "upcoming_26070102", title: "그림자 아이", director: "유은정",
+    cast: ["박소이", "유나", "임수정"],
+    releaseDate: "2026-07-01", genre: ["미스터리", "판타지", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/AakJaXtDkG2WVME26duyaZOZe8g.jpg",
+    isRevealed: false,
+    overview: "언니와 함께 옥상에서 떨어진 후 3년간 의식을 잃었던 수안. 깨어나 보니 사랑하는 언니 수련은 이제 세상에 없고, 죽은 언니와 똑같은 얼굴을 한 재인이 나타난다."
+  },
+  {
+    id: "upcoming_26070103", title: "마티 슈프림", director: "조쉬 사프디",
+    cast: ["티모시 샬라메", "기네스 팰트로우", "오데사 아지온"],
+    releaseDate: "2026-07-01", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/hqzCMHTuymM7FOZwpHfW5meiX1m.jpg",
+    isRevealed: false,
+    overview: "어떤 대가를 치르더라도 반드시 가장 높은 곳으로! 탁구로 인생 역전을 꿈꾸는 마티 마우저의 이야기."
+  },
+  {
+    id: "upcoming_26070104", title: "그린란드 2: 마이그레이션", director: "릭 로만 워",
+    cast: ["제라드 버틀러", "모레나 바카린", "로만 그리핀 데이비스"],
+    releaseDate: "2026-07-01", genre: ["액션", "SF"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/63MYZJKDgg1jg1ISo9QUiE33lrT.jpg",
+    isRevealed: false,
+    overview: "혜성 충돌로 문명이 붕괴된 지 5년 후, 방사능 폭풍을 피해 지하 벙커에서 살아남은 인류가 폐허가 된 유럽 대륙을 향한 위험한 여정을 시작한다."
+  },
   // ── 2026-07-09 개봉 ──────────────────────────────────────────────────────
   {
     id: "upcoming_26070901", title: "F1", director: "조셉 코신스키",
@@ -21262,23 +21303,23 @@ class CineMasterApp {
       return;
     }
 
+    // KST(한국 시간) 기준 오늘 이후 ~ 60일 이내 개봉 예정작 표시
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const todayKST = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
-    // 실행 시점 기준 +14일 이후 개봉 예정작만 표시 (60일 이내)
-    const from14days = new Date(todayKST); from14days.setDate(todayKST.getDate() + 14);
-    const in60days   = new Date(todayKST); in60days.setDate(todayKST.getDate() + 60);
+    const in60days = new Date(todayKST); in60days.setDate(todayKST.getDate() + 60);
 
     const filtered = UPCOMING_MOVIES_DATABASE
       .filter(m => {
         if (!m.releaseDate) return false;
         const relDate = new Date(m.releaseDate);
-        return relDate >= from14days && relDate <= in60days;
+        // KST 오늘 이후(당일 포함) ~ 60일 이내
+        return relDate >= todayKST && relDate <= in60days;
       })
       .sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate))
       .slice(0, 10);
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<p class="text-muted text-center py-4">현재 기준 14~60일 내 개봉예정작이 없습니다.</p>`;
+      grid.innerHTML = `<p class="text-muted text-center py-4">현재 기준 60일 내 개봉예정작이 없습니다.</p>`;
       return;
     }
 
