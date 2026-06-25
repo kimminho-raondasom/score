@@ -4254,112 +4254,7 @@ html, body, .app-container, .view-section, .glass-card {
 // 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
 
 const MOVIES_DATABASE = [
-  // ── 수동 입력 핵심 데이터 (명대사/초성/정답 포함) ──────────────────────────
-{
-    id: "seoul_spring", title: "서울의 봄", director: "김성수",
-    cast: ["황정민", "정우성", "이성민", "박해준", "김성균"],
-    releaseDate: "2023-11-22", genre: ["드라마", "스릴러"],
-    openingSeats: "71만석 이상", openingDayScore: "11~20만명",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "41억~50억", svodOtt: "디즈니플러스",
-    similarRefs: ["남산의 부장들", "헌트", "변호인"],
-    famousLines: [
-      { line: "실패하면 반역, 성공하면 혁명 아닙니까!", character: "전두광 (황정민)" },
-      { line: "대한민국 육군은 다 같은 편입니다!", character: "이태신 (정우성)" }
-    ],
-    choseong: "ㅅㅇㅇ ㅂ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wjpRNDRqI0KAg95F7HFG0LjdFQX.jpg"
-  },
-  {
-    id: "exhuma", title: "파묘", director: "장재현",
-    cast: ["최민식", "김고은", "유해진", "이도현"],
-    releaseDate: "2024-02-22", genre: ["스릴러", "공포"],
-    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "41억~50억", svodOtt: "넷플릭스",
-    similarRefs: ["곡성", "사바하", "검은 사제들"],
-    famousLines: [
-      { line: "여우가 범의 허리를 끊었다.", character: "상덕 (최민식)" },
-      { line: "얘들아, 굿하자!", character: "화림 (김고은)" }
-    ],
-    choseong: "ㅍㅁ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/sGaKrQpmHmMWyGbBjM9RFD6x9ij.jpg"
-  },
-  {
-    id: "parasite", title: "기생충", director: "봉준호",
-    cast: ["송강호", "이선균", "조여정", "최우식", "박소담"],
-    releaseDate: "2019-05-30", genre: ["드라마", "스릴러"],
-    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "51억 이상", svodOtt: "넷플릭스",
-    similarRefs: ["설국열차", "마더", "괴물"],
-    famousLines: [
-      { line: "아들아, 너는 계획이 다 있구나.", character: "기택 (송강호)" },
-      { line: "가장 완벽한 계획이 뭔지 아냐? 무계획이야.", character: "기택 (송강호)" }
-    ],
-    choseong: "ㄱㅅㅊ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
-  },
-  {
-    id: "extreme_job", title: "극한직업", director: "이병헌",
-    cast: ["류승룡", "이하늬", "진선규", "이동휘", "공명"],
-    releaseDate: "2019-01-23", genre: ["코미디", "액션"],
-    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "51억 이상", svodOtt: "넷플릭스",
-    similarRefs: ["베테랑", "공조", "엑시트"],
-    famousLines: [
-      { line: "지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.", character: "고반장 (류승룡)" },
-      { line: "왜 자꾸 장사가 잘 되는 건데!", character: "마형사 (진선규)" }
-    ],
-    choseong: "ㄱㅎㅈㅇ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aGPHBpBPDlqRIZHHfzE4aXnpZmL.jpg"
-  },
-  {
-    id: "crime_city_4", title: "범죄도시4", director: "허명행",
-    cast: ["마동석", "김무열", "박지환", "이동휘"],
-    releaseDate: "2024-04-24", genre: ["액션", "코미디"],
-    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "51억 이상", svodOtt: "넷플릭스",
-    similarRefs: ["범죄도시3", "베테랑", "신세계"],
-    famousLines: [
-      { line: "약속하지. 내가 꼭 잡는다.", character: "마석도 (마동석)" },
-      { line: "이유가 어딨어, 나쁜 놈은 그냥 잡는 거지.", character: "마석도 (마동석)" }
-    ],
-    choseong: "ㅂㅈㄷㅅ4",
-    posterUrl: "https://image.tmdb.org/t/p/w300/vUiUXkDeXAuMCCJLvvhRNTFNxjT.jpg"
-  },
-  {
-    id: "smugglers", title: "밀수", director: "류승완",
-    cast: ["김혜수", "염정아", "조인성", "박정민", "고민시"],
-    releaseDate: "2023-07-26", genre: ["액션", "드라마"],
-    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "21~30억", svodOtt: "넷플릭스",
-    similarRefs: ["도둑들", "베테랑", "공작"],
-    famousLines: [
-      { line: "바다 밑에는 건지는 사람이 임자야.", character: "춘자 (김혜수)" },
-      { line: "이 판에 의리가 어딨어, 돈만 있으면 그만이지.", character: "권필삼 (조인성)" }
-    ],
-    choseong: "ㅁㅅ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8bKQICnBHPo6eCIcjxRkJfFrAeT.jpg"
-  },
-  {
-    id: "concrete_utopia", title: "콘크리트 유토피아", director: "엄태화",
-    cast: ["이병헌", "박서준", "박보영", "김선영"],
-    releaseDate: "2023-08-09", genre: ["드라마", "스릴러"],
-    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "301~400만명",
-    vodSales: "16~20억", svodOtt: "넷플릭스",
-    similarRefs: ["터널", "부산행", "설국열차"],
-    famousLines: [
-      { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" }
-    ],
-    choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
-  },
-  // ── KOBIS 자동 수집 (2026-06-22 09:25 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 데이터 (명대사/초성 데이터 포함) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -4425,17 +4320,6 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u3148\u3142\u3138",
     posterUrl: "https://image.tmdb.org/t/p/w300/aASLRiO8p9xLIvG9EHXSyZ71sPl.jpg"
-  },
-  {
-    id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
-    cast: ["전지현", "구교환", "지창욱", "신현빈", "김신록"],
-    releaseDate: "2026-05-21", genre: ["액션", "스릴러"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3131\u314a",
-    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
   },
   {
     id: "kobis_20254501", title: "F1 \ub354 \ubb34\ube44", director: "\uc870\uc149 \ucf54\uc2e0\uc2a4\ud0a4",
@@ -5628,12 +5512,18 @@ const MOVIES_DATABASE = [
   },
   {
     id: "kobis_20228797", title: "범죄도시4", director: "허명행",
-    cast: ["김무열", "박지환", "이동휘", "마동석", "곽자형"],
-    releaseDate: "2024-04-24", genre: ["액션", "범죄"],
-    openingSeats: "", openingDayScore: "11~20만명",
+    cast: ["마동석", "김무열", "박지환", "이동휘", "곽자형"],
+    releaseDate: "2024-04-24", genre: ["액션", "코미디", "범죄"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
     openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/jucHQwnRSma1O9V2bM007e4eSd7.jpg"
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["범죄도시3", "베테랑", "신세계"],
+    famousLines: [
+      { line: "약속하지. 내가 꼭 잡는다.", character: "마석도 (마동석)" },
+      { line: "이유가 어딨어, 나쁜 놈은 그냥 잡는 거지.", character: "마석도 (마동석)" }
+    ],
+    choseong: "ㅂㅈㄷㅅ4",
+    posterUrl: "https://image.tmdb.org/t/p/w300/vUiUXkDeXAuMCCJLvvhRNTFNxjT.jpg"
   },
   {
     id: "kobis_20236614", title: "쿵푸팬더4", director: "스테파니 스티네, 마이크 미첼",
@@ -5674,11 +5564,17 @@ const MOVIES_DATABASE = [
   {
     id: "kobis_20234675", title: "파묘", director: "장재현",
     cast: ["최민식", "김고은", "유해진", "이도현", "김재철"],
-    releaseDate: "2024-02-22", genre: ["미스터리", "공포(호러)"],
-    openingSeats: "", openingDayScore: "11~20만명",
+    releaseDate: "2024-02-22", genre: ["스릴러", "공포", "미스터리"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
     openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/tw0i3kkmOTjDjGFZTLHKhoeXVvA.jpg"
+    vodSales: "41억~50억", svodOtt: "넷플릭스",
+    similarRefs: ["곡성", "사바하", "검은 사제들"],
+    famousLines: [
+      { line: "여우가 범의 허리를 끊었다.", character: "상덕 (최민식)" },
+      { line: "얘들아, 굿하자!", character: "화림 (김고은)" }
+    ],
+    choseong: "ㅍㅁ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/sGaKrQpmHmMWyGbBjM9RFD6x9ij.jpg"
   },
   {
     id: "kobis_20247076", title: "귀멸의 칼날: 인연의 기적, 그리고 합동 강화 훈련으로", director: "소토자키 하루오",
@@ -5836,11 +5732,17 @@ const MOVIES_DATABASE = [
   {
     id: "kobis_20212866", title: "서울의 봄", director: "김성수",
     cast: ["황정민", "정우성", "이성민", "박해준", "김성균"],
-    releaseDate: "2023-11-22", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "11~20만명",
+    releaseDate: "2023-11-22", genre: ["드라마", "스릴러"],
+    openingSeats: "71만석 이상", openingDayScore: "11~20만명",
     openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ukVVnY9ovwl78WE5KndcpA6SnAm.jpg"
+    vodSales: "41억~50억", svodOtt: "디즈니플러스",
+    similarRefs: ["남산의 부장들", "헌트", "변호인"],
+    famousLines: [
+      { line: "실패하면 반역, 성공하면 혁명 아닙니까!", character: "전두광 (황정민)" },
+      { line: "대한민국 육군은 다 같은 편입니다!", character: "이태신 (정우성)" }
+    ],
+    choseong: "ㅅㅇㅇ ㅂ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/wjpRNDRqI0KAg95F7HFG0LjdFQX.jpg"
   },
   {
     id: "kobis_20235030", title: "프레디의 피자가게", director: "엠마 타미",
@@ -5961,12 +5863,17 @@ const MOVIES_DATABASE = [
   },
   {
     id: "kobis_20204264", title: "콘크리트 유토피아", director: "엄태화",
-    cast: ["이병헌", "박서준", "박보영", "김선영", "김도윤"],
-    releaseDate: "2023-08-09", genre: ["드라마", "기타"],
-    openingSeats: "", openingDayScore: "11~20만명",
-    openingWeekScore: "101만명 이상", finalScore: "301~500만명",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aKApVX9hc5otPxa3Jbf27sW6tsi.jpg"
+    cast: ["이병헌", "박서준", "박보영", "김선영"],
+    releaseDate: "2023-08-09", genre: ["드라마", "스릴러"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
+    openingWeekScore: "101만명 이상", finalScore: "301~400만명",
+    vodSales: "16~20억", svodOtt: "넷플릭스",
+    similarRefs: ["터널", "부산행", "설국열차"],
+    famousLines: [
+      { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" }
+    ],
+    choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
   {
     id: "kobis_20193879", title: "비공식작전", director: "김성훈",
@@ -5988,12 +5895,18 @@ const MOVIES_DATABASE = [
   },
   {
     id: "kobis_20218541", title: "밀수", director: "류승완",
-    cast: ["김혜수", "염정아", "조인성", "박정민", "김종수"],
-    releaseDate: "2023-07-26", genre: ["액션"],
-    openingSeats: "", openingDayScore: "11~20만명",
+    cast: ["김혜수", "염정아", "조인성", "박정민", "고민시"],
+    releaseDate: "2023-07-26", genre: ["액션", "드라마"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
     openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ayLXqPZCu3uaLLhXiqvw5NBb7Lw.jpg"
+    vodSales: "21~30억", svodOtt: "넷플릭스",
+    similarRefs: ["도둑들", "베테랑", "공작"],
+    famousLines: [
+      { line: "바다 밑에는 건지는 사람이 임자야.", character: "춘자 (김혜수)" },
+      { line: "이 판에 의리가 어딨어, 돈만 있으면 그만이지.", character: "권필삼 (조인성)" }
+    ],
+    choseong: "ㅁㅅ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/8bKQICnBHPo6eCIcjxRkJfFrAeT.jpg"
   },
   {
     id: "kobis_20232536", title: "명탐정코난: 흑철의 어영", director: "타치카와 유즈루",
@@ -7906,11 +7819,17 @@ const MOVIES_DATABASE = [
   {
     id: "kobis_20183782", title: "기생충", director: "봉준호",
     cast: ["송강호", "이선균", "조여정", "최우식", "박소담"],
-    releaseDate: "2019-05-30", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "11~20만명",
+    releaseDate: "2019-05-30", genre: ["드라마", "스릴러"],
+    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
     openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/jjHccoFjbqlfr4VGLVLT7yek0Xn.jpg"
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["설국열차", "마더", "괴물"],
+    famousLines: [
+      { line: "아들아, 너는 계획이 다 있구나.", character: "기택 (송강호)" },
+      { line: "가장 완벽한 계획이 뭔지 아냐? 무계획이야.", character: "기택 (송강호)" }
+    ],
+    choseong: "ㄱㅅㅊ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
   },
   {
     id: "kobis_20184865", title: "고질라: 킹 오브 몬스터", director: "마이클 도허티",
@@ -8149,11 +8068,17 @@ const MOVIES_DATABASE = [
   {
     id: "kobis_20182530", title: "극한직업", director: "이병헌",
     cast: ["류승룡", "이하늬", "진선규", "이동휘", "공명"],
-    releaseDate: "2019-01-23", genre: ["코미디"],
-    openingSeats: "", openingDayScore: "11~20만명",
+    releaseDate: "2019-01-23", genre: ["코미디", "액션"],
+    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
     openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/lzzb384pgYyr0GQvu3K2ZW62CEE.jpg"
+    vodSales: "51억 이상", svodOtt: "넷플릭스",
+    similarRefs: ["베테랑", "공조", "엑시트"],
+    famousLines: [
+      { line: "지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.", character: "고반장 (류승룡)" },
+      { line: "왜 자꾸 장사가 잘 되는 건데!", character: "마형사 (진선규)" }
+    ],
+    choseong: "ㄱㅎㅈㅇ",
+    posterUrl: "https://image.tmdb.org/t/p/w300/aGPHBpBPDlqRIZHHfzE4aXnpZmL.jpg"
   },
   {
     id: "kobis_20182544", title: "글래스", director: "M. 나이트 샤말란",
@@ -20591,8 +20516,8 @@ if (typeof module !== 'undefined' && module.exports) {
 const SCORE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyVl_9H-axF2BPzAjH28T92tD_bLzvmfbpYTvd4Nq_0ObhesNDnsWn1_E6Mnp3g4F5n6g/exec';
 
 // ── S모드 AI 퀴즈 설정 ──────────────────────────────────────────────────────
-const SPECIAL_GEMINI_API_KEY = 'AIzaSyBrs35Gz-FRc9Cuj9MMpjusJcd7wyx8Yb4';
-const SPECIAL_GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${SPECIAL_GEMINI_API_KEY}`;
+// Gemini API 키는 GAS 서버사이드에만 존재 — 클라이언트에서는 GAS 프록시를 통해 호출
+// (SPECIAL_GEMINI_API_KEY 는 score_sheets_appscript.gs 의 GEMINI_API_KEY 참고)
 
 class CineMasterApp {
   constructor() {
@@ -20742,8 +20667,7 @@ class CineMasterApp {
       if (el) el.addEventListener(event, fn);
     };
 
-    // Google Login
-    on('btn-google-login', 'click', () => this.simulateGoogleLogin());
+    // Google Login 버튼은 현재 OTP 방식으로 대체되어 사용하지 않음
 
     // Registration Form
     on('form-register', 'submit', (e) => { e.preventDefault(); this.submitRegistration(); });
@@ -20867,34 +20791,6 @@ class CineMasterApp {
     } catch (e) {
       console.warn("Web Audio API warning:", e);
     }
-  }
-
-  // Google Login flow simulation
-  simulateGoogleLogin() {
-    const loginBtn = document.getElementById('btn-google-login');
-    if (!loginBtn) return;
-
-    loginBtn.disabled = true;
-    loginBtn.innerHTML = `
-      <span class="login-spinner"></span>
-      <span>계정 인증 중...</span>
-    `;
-
-    setTimeout(() => {
-      this.currentUser = {
-        email: "critic.master@gmail.com",
-        googleId: "google_99887766",
-        realName: "",
-        nickname: "",
-        age: "",
-        gender: "",
-        xp: 0,
-        level: 1,
-        stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
-      };
-      this.switchView('register');
-      this.generateNickname();
-    }, 800);
   }
 
   // ── 이메일 OTP 인증 ───────────────────────────────────────────────────────
@@ -21112,21 +21008,24 @@ class CineMasterApp {
     document.getElementById('stat-max-combo').innerText = this.currentUser.stats.maxCombo;
     document.getElementById('stat-total-xp').innerText = `${this.currentUser.xp} XP`;
 
-    // Tier Levels threshold logic (150 XP per level)
-    const xpPerLevel = 150;
-    const level = Math.floor(this.currentUser.xp / xpPerLevel) + 1;
-    this.currentUser.level = level;
-    
-    const xpInCurrentLevel = this.currentUser.xp % xpPerLevel;
-    const progressPercent = Math.min(100, Math.floor((xpInCurrentLevel / xpPerLevel) * 100));
+    // Tier Levels threshold logic — tiersSpecs 기준으로 통일
+    const currentTierSpec = this.getTierSpecByXp(this.currentUser.xp);
+    const nextTierSpec = this.tiersSpecs.find(t => t.level === currentTierSpec.level + 1) || currentTierSpec;
+
+    // 현재 티어 내 진행도 계산
+    const tierXpStart  = currentTierSpec.minXp;
+    const tierXpEnd    = currentTierSpec.level === 6 ? this.currentUser.xp : nextTierSpec.minXp;
+    const tierXpRange  = tierXpEnd - tierXpStart || 1;
+    const xpInTier     = this.currentUser.xp - tierXpStart;
+    const progressPercent = currentTierSpec.level === 6
+      ? 100
+      : Math.min(100, Math.floor((xpInTier / tierXpRange) * 100));
+
+    this.currentUser.level = currentTierSpec.level;
 
     document.getElementById('level-percentage').innerText = `${progressPercent}%`;
     document.getElementById('level-progress-fill').style.width = `${progressPercent}%`;
-    document.getElementById('current-rank-label').innerText = `${this.calculateRankLabel(this.currentUser.xp)} (Lv.${level})`;
-    
-    // Tiers specifications details lookup
-    const currentTierSpec = this.getTierSpecByXp(this.currentUser.xp);
-    const nextTierSpec = this.tiersSpecs.find(t => t.level === currentTierSpec.level + 1) || currentTierSpec;
+    document.getElementById('current-rank-label').innerText = `${currentTierSpec.name} (Lv.${currentTierSpec.level})`;
 
     if (currentTierSpec.level === 6) {
       document.getElementById('next-rank-label').innerText = "최고 등급에 도달하셨습니다! 당신이 시네마스터입니다.";
@@ -21882,6 +21781,14 @@ class CineMasterApp {
     localStorage.setItem(storageKey, JSON.stringify(reviews));
 
     this.addXp(5, '코멘트 한줄평 작성');
+
+    // 첫 코멘트 작성 업적 즉시 unlock
+    if (!this.achievements.includes('forum_active')) {
+      this.achievements.push('forum_active');
+      this.saveAchievements();
+      setTimeout(() => showToast('🏆 업적 달성! <b>백만 유튜버</b>', 'success', 4000), 400);
+    }
+
     this.renderForumFeed();
     showToast('한줄평이 등록되었습니다! +5 XP', 'xp');
   }
@@ -21921,7 +21828,10 @@ class CineMasterApp {
 
     // Load questions based on type
     if (type === 'score') {
-      this.currentQuiz.movies = this.shuffleArray([...MOVIES_DATABASE]).slice(0, 5);
+      const rawPool = MOVIES_DATABASE;
+      const pool = this._deduplicatePool(rawPool);
+      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      this._recordShownMovies(this.currentQuiz.movies);
       this.currentQuiz.currentStep = 0;
       this.currentQuiz.stepAnswers = [];
       this.currentQuiz.correctAnswersCount = 0;
@@ -21944,23 +21854,32 @@ class CineMasterApp {
       this.setupFilmoQuizLayout();
     } 
     else if (type === 'lines') {
-      const pool = MOVIES_DATABASE.filter(m => m.famousLines && m.famousLines.length > 0);
+      const rawPool = MOVIES_DATABASE.filter(m =>
+        (Array.isArray(m.famousLines) && m.famousLines.length > 0) ||
+        (m.choseong && m.choseong.trim().length > 0)
+      );
+      const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      this._recordShownMovies(this.currentQuiz.movies);
       this.setupLinesQuizLayout();
     }
     else if (type === 'challenge') {
       // 개봉작만 (개봉예정 제외), posterUrl 있는 것만
-      const pool = MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate);
+      const rawPool = MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate);
+      const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      this._recordShownMovies(this.currentQuiz.movies);
       this.setupChallengeQuizLayout();
     }
     else if (type === 'ordinary') {
       // 포스터 있는 영화 전체 (개봉작 + 개봉예정작)
-      const pool = [
+      const rawPool = [
         ...MOVIES_DATABASE.filter(m => m.posterUrl),
-        ...UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl)
+        ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl) : [])
       ];
+      const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      this._recordShownMovies(this.currentQuiz.movies);
       this.setupOrdinaryQuizLayout();
     }
 
@@ -22111,6 +22030,15 @@ class CineMasterApp {
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
       this.showAnswerOverlay(false, "시간 초과!", `시간 초과! 정답은 <b>${movie.title}</b>입니다.`);
     }
+    else if (this.currentQuiz.type === 'special_ai') {
+      // AI 퀴즈: 시간 초과 시 오답 처리 후 다음 문제로 이동
+      this.currentQuiz.aiCurrentQ++;
+      if (this.currentQuiz.aiCurrentQ < (this.currentQuiz.aiQuestions || []).length) {
+        this.showAnswerOverlay(false, "시간 초과!", "시간이 초과되었습니다. 다음 문제로 이동합니다.");
+      } else {
+        this._finishSpecialAiQuiz();
+      }
+    }
   }
 
   // MODE 1: Score quiz layout init
@@ -22118,13 +22046,18 @@ class CineMasterApp {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     
     // Movie meta presenter card setup
-    document.getElementById('score-movie-title').innerText = movie.title;
+    document.getElementById('challenge-movie-title').innerText = movie.title;
     document.getElementById('score-movie-year').innerText = `${movie.releaseDate.split('-')[0]}년 개봉`;
-    document.getElementById('score-movie-director').innerText = `감독: ${movie.director}`;
-    document.getElementById('score-movie-cast').innerText = `주연: ${movie.cast.slice(0, 2).join(', ')}`;
+    document.getElementById('challenge-movie-director').innerText = `감독: ${movie.director}`;
+    document.getElementById('challenge-movie-cast').innerText = `주연: ${movie.cast.slice(0, 2).join(', ')}`;
     
-    const poster = document.getElementById('score-movie-poster');
-    poster.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.85)), url('${movie.posterUrl}')`;
+    const poster = document.getElementById('challenge-movie-poster');
+    if (poster) {
+      poster.style.backgroundImage = movie.posterUrl
+        ? `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.85)), url('${movie.posterUrl}')`
+        : '';
+      poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
+    }
 
     // Populate Option items lists
     // Q1 Seats
@@ -22274,6 +22207,7 @@ class CineMasterApp {
       this.playSynthSound('click');
       // Add XP immediately
       this.addXp(xpGain, `퀴즈 Q${step+1} 정답 적중`);
+      this.currentQuiz.totalXpEarned += xpGain;
     } else {
       if (dot) {
         dot.classList.add('done');
@@ -22436,23 +22370,41 @@ class CineMasterApp {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     const subType = this.currentQuiz.subType; // 'quote' | 'choseong' | null
 
+    // famousLines 없는 영화 진입 방지 — 초성 전용으로 fallback
+    const hasLines = Array.isArray(movie.famousLines) && movie.famousLines.length > 0;
+    const hasChoseong = movie.choseong && movie.choseong.trim().length > 0;
+
+    // famousLines도 choseong도 없으면 퀴즈 진행 불가 → 스킵
+    if (!hasLines && !hasChoseong) {
+      // 다음 영화로 넘어가거나 퀴즈 종료
+      if (this.currentQuiz.currentIndex + 1 < this.currentQuiz.movies.length) {
+        this.currentQuiz.currentIndex++;
+        this.setupLinesQuizLayout();
+      } else {
+        this.finishQuiz();
+      }
+      return;
+    }
+
     const quoteCard = document.querySelector('.quote-card');
     const choseongCard = document.querySelector('.choseong-card');
 
-    if (subType === 'quote') {
-      // 명대사 모드: 명대사만 표시, 초성 숨김
+    if (subType === 'quote' || (!hasChoseong && hasLines)) {
+      // 명대사 모드
       if (quoteCard) quoteCard.style.display = '';
       if (choseongCard) choseongCard.style.display = 'none';
-      const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
-      document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
-      document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
-    } else if (subType === 'choseong') {
-      // 초성 모드: 초성만 표시, 명대사 숨김
+      if (hasLines) {
+        const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
+        document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
+        document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
+      }
+    } else if (subType === 'choseong' || (!hasLines && hasChoseong)) {
+      // 초성 모드
       if (quoteCard) quoteCard.style.display = 'none';
       if (choseongCard) choseongCard.style.display = '';
       document.getElementById('choseong-display').innerText = movie.choseong;
     } else {
-      // 기본: 둘 다 표시
+      // 기본: 둘 다 표시 (hasLines && hasChoseong 보장됨)
       if (quoteCard) quoteCard.style.display = '';
       if (choseongCard) choseongCard.style.display = '';
       const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
@@ -22945,8 +22897,12 @@ class CineMasterApp {
     if (this.currentUser.stats.games >= 1) unlock("first_step");
     if (this.currentUser.stats.maxCombo >= 5) unlock("combo_5");
     if (this.currentUser.level >= 5) unlock("level_5");
-    if (this.currentQuiz.score === 5) unlock("perfect_score");
-    if (this.forumPosts.some(p => p.author === this.currentUser.nickname)) unlock("forum_active");
+    // 만점 조건: 현재 퀴즈 라운드 수와 동일 (하드코딩 5 제거)
+    const perfectTarget = this.currentQuiz.type === 'special_ai'
+      ? (this.currentQuiz.aiQuestions || []).length
+      : (this.currentQuiz.movies || []).length;
+    if (perfectTarget > 0 && this.currentQuiz.score === perfectTarget) unlock("perfect_score");
+    // forum_active 업적은 _submitCommentReview()에서 직접 처리
 
     if (newlyUnlocked.length > 0) {
       this.saveAchievements();
@@ -23038,6 +22994,14 @@ class CineMasterApp {
     if (input) input.value = '';
     const result = document.getElementById('challenge-digit-result');
     if (result) result.style.display = 'none';
+
+    // 날짜 입력 영역 표시 (기본값 display:none 이므로 명시적으로 열어야 함)
+    const dateWrap = document.getElementById('challenge-date-wrap');
+    if (dateWrap) dateWrap.style.display = 'block';
+
+    // Score 퀴즈 전용 step 버튼은 숨김 (Challenge 모드에서는 날짜 제출 버튼 사용)
+    const nextStepBtn = document.getElementById('btn-next-step');
+    if (nextStepBtn) nextStepBtn.style.display = 'none';
   }
 
   gradeChallengeQuiz() {
@@ -23329,17 +23293,22 @@ ${JSON.stringify(combined, null, 0)}
 ]`;
 
     try {
-      // Gemini API 직접 호출
-      const res = await fetch(SPECIAL_GEMINI_URL, {
+      // GAS 프록시를 통해 Gemini 호출 (API 키는 서버사이드에만 존재)
+      const gasRes = await fetch(SCORE_SHEET_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.3 }
+          action: 'geminiGenerate',
+          prompt: prompt,
+          temperature: 0.3
         })
       });
-      const data = await res.json();
-      let text = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      const gasData = await gasRes.json();
+      if (gasData.status !== 'ok' || !gasData.text) {
+        console.error('GAS Gemini proxy error:', gasData.message);
+        return null;
+      }
+      let text = gasData.text;
       text = text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
       const match = text.match(/\[[\s\S]*\]/);
       if (!match) return null;
@@ -23349,7 +23318,7 @@ ${JSON.stringify(combined, null, 0)}
         q.answer && q.options.includes(q.answer)
       ).slice(0, 10);
     } catch (e) {
-      console.error('Gemini error:', e);
+      console.error('Gemini proxy error:', e);
       return null;
     }
   }
@@ -23726,6 +23695,14 @@ ${JSON.stringify(combined, null, 0)}
     const movie = MOVIES_DATABASE.find(m => m.title === movieTitle);
     if (!movie) return;
 
+    // famousLines도 choseong도 없으면 퀴즈 진행 불가 → 안내 후 종료
+    const hasLines = Array.isArray(movie.famousLines) && movie.famousLines.length > 0;
+    const hasChoseong = movie.choseong && movie.choseong.trim().length > 0;
+    if (!hasLines && !hasChoseong) {
+      showToast('이 영화는 아직 퀴즈 데이터가 준비되지 않았습니다.', 'warn');
+      return;
+    }
+
     this.currentQuiz.type = 'lines';
     this.currentQuiz.subType = null; // 명대사+초성 둘 다 표시
     this.currentQuiz.currentIndex = 0;
@@ -23748,6 +23725,29 @@ ${JSON.stringify(combined, null, 0)}
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  // ── 최근 출제 영화 ID 관리 (세션 간 중복 방지) ────────────────────────────
+  _getRecentlyShownIds() {
+    try {
+      return JSON.parse(localStorage.getItem('score_recent_shown') || '[]');
+    } catch { return []; }
+  }
+
+  _recordShownMovies(movies) {
+    const MAX = 30;
+    const recent = this._getRecentlyShownIds();
+    const newIds = movies.map(m => m.id || m.title).filter(Boolean);
+    const merged = [...new Set([...newIds, ...recent])].slice(0, MAX);
+    try { localStorage.setItem('score_recent_shown', JSON.stringify(merged)); } catch {}
+  }
+
+  _deduplicatePool(pool) {
+    const recent = this._getRecentlyShownIds();
+    if (recent.length === 0) return pool;
+    // 최근 출제 제외한 풀이 5개 이상이면 그것만 사용, 아니면 전체 사용
+    const fresh = pool.filter(m => !recent.includes(m.id || m.title));
+    return fresh.length >= 5 ? fresh : pool;
   }
 }
 
