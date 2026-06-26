@@ -144,3 +144,69 @@ index.html 내 AI_QUIZ_MOVIES (350편 실측 데이터)
 - **Gemini API 키**: GAS 스크립트 내 `GEMINI_API_KEY` 상수 (클라이언트 비노출)
 - **사용 시트**: 별도 Google Spreadsheet (`DATA_SS_ID`), 영화 상세 + 북미극장 탭
 - **재배포 필요 조건**: GAS 코드 변경 시 항상 새 버전으로 재배포 (URL은 동일하게 유지)
+
+---
+
+## 2026-06-26 2차 수정 (포스터 / AI 퀴즈 / 개봉예정 / 검색 / 퀴즈 전환)
+
+### 버그 분석 결과 (전문 에이전트 검토)
+
+| 버그 | 원인 | 수정 |
+|---|---|---|
+| S모드 포스터 미표시 | `q.posterKeyword` 필드 없음 (GAS 출력은 `movieTitle`) | `q.movieTitle \|\| q.posterKeyword` 로 변경, 다단계 매칭 |
+| C모드 포스터 어두움 | `linear-gradient(rgba(0,0,0,0.85))` 85% 검정 오버레이 | 오버레이 제거, `url(...)` 직접 설정 |
+| O모드 포스터 404 | placeholder.jpg가 HTTP 404 반환 | UPCOMING_MOVIES_DATABASE 전면 교체 + `img.onerror` fallback |
+| R모드 포스터 일부 없음 | fake 영화들이 FILMO_POSTERS/DB에 없음 | 포함매칭(slice 4글자) 추가 |
+| E모드 포스터 없음 | setupLinesQuizLayout에 포스터 DOM 접근 없음 | `#lines-movie-poster` HTML 추가 + JS 설정 코드 추가 |
+| AI 퀴즈 생성 실패 | 30편 × 한국어 → URL 37KB (GAS 한도 초과) | 8편 + 필드 최소화 → URL ~4KB |
+| 개봉예정작 없음 | DB에 2026-07-01 이후 데이터만 있었음 | kobis_movies_cache.json으로 교체 (15편, 2026-06-24~08-13) |
+| 60일→21일 필터 | 60일 이내로 설정되어 있었음 | 21일로 변경 + 'YYYY-MM-DD' UTC 파싱 보정 |
+| 검색 붙여쓰기 미동작 | `includes()` 공백 미정규화 | `replace(/\s+/g,'')` 정규화 후 비교 |
+| O/R/E 클릭 후 미전환 | `setup*()` 함수가 `switchView()` 이전에 실행됨 | `switchView → activateQuizPanel → setup*()` 순서로 변경 |
+
+### UPCOMING_MOVIES_DATABASE 관리 방법
+
+서버의 `kobis_movies_cache.json`이 업데이트되면 index.html의 `UPCOMING_MOVIES_DATABASE`를 재생성해야 합니다.
+
+```bash
+# 서버에서 실행 (kobis_movies_updater.py 등으로 캐시 갱신 후)
+python3 /home/kimminho/scripts/update_upcoming_db.py  # 향후 자동화 스크립트
+```
+
+현재는 수동으로 kobis_movies_cache.json의 upcoming 배열을 index.html에 반영합니다.
+
+### AI 퀴즈 URL 크기 제한
+
+GAS GET 파라미터 실용 한도: **4KB 이하**
+
+- 현재 설정: 8편 샘플, 7개 필드만 직렬화 → ~3.8KB
+- 한국어 1글자 = `encodeURIComponent` 후 9bytes (`%EB%A0%A0`)
+- 영화 1편당 평균 ~480bytes 인코딩 후
+
+**절대 하지 말 것**: `src.slice(0, 30)` + 전체 필드 JSON → URL 37KB 초과
+
+### 포스터 표시 아키텍처
+
+```
+MOVIES_DATABASE[i].posterUrl  → TMDB URL (https://image.tmdb.org/t/p/w300/{hash}.jpg)
+AI_QUIZ_MOVIES[i]             → posterUrl 없음 (movieTitle로 MOVIES_DATABASE 검색)
+UPCOMING_MOVIES_DATABASE[i]   → posterUrl 있음 (kobis_cache에서 가져옴)
+```
+
+- TMDB URL은 실제 해시값이 있으면 정상 로드됨
+- `placeholder.jpg`, `placeholder2.jpg`, `placeholder3.jpg` → 404, 절대 사용 금지
+- 포스터 없는 경우 `var(--bg-secondary)` 배경 + material icon으로 대체
+
+### 퀴즈 실행 흐름 (수정 후 올바른 순서)
+
+```
+startQuiz(type, subType, battleMode)
+  1. 데이터 풀 생성 (movies 배열 구성)
+  2. if(group) → _showGroupRegister → return
+  3. switchView('quiz')           ← DOM 가시화 먼저
+  4. activateQuizPanel(type)      ← 해당 패널 .active
+  5. setup*QuizLayout()           ← DOM 가시화 후 초기화
+  6. startTimer()
+```
+
+이전 버전은 5번이 1번 직후에 실행되어 DOM이 숨겨진 상태에서 backgroundImage 설정 → 브라우저 렌더링 지연으로 포스터 미표시 가능성.

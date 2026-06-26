@@ -4012,6 +4012,8 @@ html, body, .app-container, .view-section, .glass-card {
 
       <!-- QUIZ MODE 3: FAMOUS LINES & CHOSEONG -->
       <div id="quiz-panel-lines" class="quiz-mode-panel flex-center-col">
+        <!-- E모드 포스터 -->
+        <div id="lines-movie-poster" style="width:72px;height:100px;background-size:cover;background-position:center;background-color:var(--bg-secondary);border-radius:4px;margin-bottom:12px;flex-shrink:0;"></div>
         <div class="quote-card glass-card text-center fade-in">
           <span class="material-symbols-outlined quote-icon">format_quote</span>
           <div class="quote-text" id="quote-display">“지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.”</div>
@@ -20296,51 +20298,109 @@ const MOVIES_DATABASE = [
 ];
 
 const UPCOMING_MOVIES_DATABASE = [
-  // ── 2026-07-01 개봉 ──────────────────────────────────────────────────────
   {
-    id: "upcoming_26070101", title: "레디 오어 낫: 죽음의 숨바꼭질", director: "맷 베티넬리-올핀",
+    id: "upcoming_20261524", title: "짝사랑 세계", director: "도이 노부히로", 
+    cast: ["히로세 스즈", "스기사키 하나", "키요하라 카야"],
+    releaseDate: "2026-06-24", genre: ["드라마", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ynFwJHuZ9qorpNt5GfCRBwgJqRp.jpg",
+    isRevealed: false,
+    overview: "세상을 알기 전 어린 나이에 세상과 이별한 미사키, 유카, 사쿠라는 12년째 남들과 다름없는 보통의 하루를 보내고 있다. 하지만 사람들과 닿을 수 없기에 전하지 못한 마음과 묻지 못한 말이 자꾸만 쌓여간다. 어느 날, 라디오에서 흘러나온 메시지. 보고 싶은 이에게 마음을 전하면 다시 세상으로 돌아갈 수 있다? 사랑하지만 닿을 수 없는 세계. 전하고 싶지만 말할 수 없는 마음. 어쩌면 짝사랑일까?"
+  },
+  {
+    id: "upcoming_20242402", title: "눈동자", director: "염지호", 
+    cast: ["신민아", "김남희", "이승룡"],
+    releaseDate: "2026-06-24", genre: ["스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/bPTi6XfB30kjm06WwA1Nclms4iJ.jpg",
+    isRevealed: false,
+    overview: "유전병으로 점차 시력을 잃어가는 사진작가 서진. 어느 날, 자신보다 먼저 시력을 잃었지만 도예가로 성공한 쌍둥이 동생 서인이 죽어있는 것을 발견한다. 모두가 자살이라 하지만, 서진은 무언가 잘못됐음을 직감한다. 동생의 작업실 속 의미를 알 수 없는 작품들, 그리고 그날 그 자리에 있었던 누군가. 아무도 자살이 아니라는 자신의 말을 믿어주지 않자, 직접 진실을 좇기 시작한 서진은 점점 꺼져가는 시야 속 범인의 또 다른 표적이 되어간다. 담당 형사 도혁은 서진의 눈이 되어 함께 사건을 추적하고, 서서히 드러나는 실체는 두 사람을 더욱 깊은 혼란 속으로 몰아넣는데…"
+  },
+  {
+    id: "upcoming_20244889", title: "여름의 카메라", director: "성스러운", 
+    cast: ["김시아", "곽민규"],
+    releaseDate: "2026-06-24", genre: ["가족", "드라마", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/pIunkj2nB9nuJDfBVi0pt3koO4n.jpg",
+    isRevealed: false,
+    overview: "아빠와 함께 사진을 찍는 걸 좋아했던 여름. 하지만 아빠가 세상을 떠난 후, 카메라를 놓게 된다. 어느 날 학교 운동장에서 축구부 에이스 연우를 보고 첫눈에 반한 여름은 홀린 듯 아빠의 카메라로 사진을 찍게 된다. 여름은 연우에게 사진을 주기 위해 필름을 현상하고, 그 속에 아빠가 고등학교 때 찍은 사진을 통해 숨겨왔던 비밀을 보게 되는데…"
+  },
+  {
+    id: "upcoming_20263845", title: "정뱅이", director: "오정훈", 
+    cast: [],
+    releaseDate: "2026-06-24", genre: ["다큐멘터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/AgfungPCNwj79phWyrHo3hO6rxZ.jpg",
+    isRevealed: false,
+    overview: "2024년 7월, 기록적인 폭우로 제방이 붕괴되며 순식간에 수몰된 정뱅이 마을. 폐허가 된 터전과 행정의 냉대 속에서 주민들은 서로 의지하며 고난을 견딘다. 진흙더미 위에서 함께 밥을 지어먹으며 시작된 회복의 여정. 과연 재난 속에서 피어난 공동체의 힘은 휩쓸려간 삶을 다시 일으켜 세울 수 있을까?"
+  },
+  {
+    id: "upcoming_20250489", title: "슈퍼걸", director: "크레이그 질레스피", 
+    cast: ["밀리 알콕", "마티아스 쇼에나에츠", "제이슨 모모아"],
+    releaseDate: "2026-06-24", genre: ["액션", "어드벤처"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2LSzCgS4StdD2hizIzwgLLCNVnN.jpg",
+    isRevealed: false,
+    overview: "무자비한 적의 등장으로 인해 뜻밖의 동반자와 힘을 합치는 '슈퍼걸'의 이야기를 그린 액션 블록버스터"
+  },
+  {
+    id: "upcoming_20263598", title: "패신저", director: "안드레 외브레달", 
+    cast: ["루 로벨", "제이콥 시피오", "멜리사 레오"],
+    releaseDate: "2026-06-24", genre: ["공포(호러)", "스릴러", "미스터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/igMwSTVF3Hm5pjouUmmwO4fABOo.jpg",
+    isRevealed: false,
+    overview: "캠핑카를 타고 유랑 생활을 시작한 커플 ‘매디’와 ‘타일러’는 어느 늦은 밤 도로 위에서 운전자가 사망하는 끔찍한 사고를 목격한다. 그 후 차량에 알 수 없는 표식이 생겨 불안한 매디의 눈에만 정체불명의 남자가 보이기 시작하고, 곧 그들은 ‘패신저’라고 불리우는 고대 악마의 표적이 되었음을 알게 된다. 목숨을 노리는 ‘패신저’의 공격을 피해 두 사람은 계속 도망치려 애쓰지만 집요한 추격은 그들의 턱밑까지 다다르는데…"
+  },
+  {
+    id: "upcoming_20264569", title: "레디 오어 낫: 죽음의 숨바꼭질", director: "맷 베티넬리-올핀", 
     cast: ["사마라 위빙", "캐서린 뉴튼", "사라 미셸 겔러"],
-    releaseDate: "2026-07-01", genre: ["공포", "코미디"],
+    releaseDate: "2026-07-01", genre: ["공포(호러)", "코미디"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/9XMwsbof7HoOiNxEahreQay3pXs.jpg",
     isRevealed: false,
-    overview: "르 도마스 가문의 공격에서 간신히 살아남은 지 몇 분도 되지 않아 그레이스는 자신이 이 악몽 같은 게임의 '다음 레벨'에 도달했다는 사실을 깨닫는다."
+    overview: "르 도마스 가문의 공격에서 간신히 살아남은 지 몇 분도 되지 않아 그레이스는 자신이 이 악몽 같은 게임의 ‘다음 레벨’에 도달했다는 사실을 깨닫는다. 이번에는 오랫동안 왕래 없던 여동생 페이스까지 함께다."
   },
   {
-    id: "upcoming_26070102", title: "그림자 아이", director: "유은정",
+    id: "upcoming_20245245", title: "그림자 아이", director: "유은정", 
     cast: ["박소이", "유나", "임수정"],
     releaseDate: "2026-07-01", genre: ["미스터리", "판타지", "스릴러"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/AakJaXtDkG2WVME26duyaZOZe8g.jpg",
     isRevealed: false,
-    overview: "언니와 함께 옥상에서 떨어진 후 3년간 의식을 잃었던 수안. 깨어나 보니 사랑하는 언니 수련은 이제 세상에 없고, 죽은 언니와 똑같은 얼굴을 한 재인이 나타난다."
+    overview: "언니와 함께 옥상에서 떨어진 후 3년간 의식을 잃었던 수안. 깨어나 보니 사랑하는 언니 수련은 이제 세상에 없고, 추억으로 가득했던 집 역시 떠나왔다. 게다가 다정하고 따뜻했던 엄마 금옥은 자꾸만 무언가 숨기는 것 같고 어딘가 모르게 불안해 보인다. 언니의 죽음에 자신이 모르는 무언가가 있음을 느끼던 어느 날 수안의 눈앞에 죽은 언니와 똑같은 얼굴을 한 재인이 나타나고, 수안은 과거 언니가 들려주던 ‘그림자 동화’를 떠올린다. “외로운 그림자가 꼭 닮은 두 아이를 찾아왔어. 너희는 몸이 두 개니까 하나를 줘” 언니의 죽음, 재인의 등장, 버려진 옛집 그리고 그림자 동화. 지금 수안에겐 무슨 일이 벌어지고 있는 걸까?"
   },
   {
-    id: "upcoming_26070103", title: "마티 슈프림", director: "조쉬 사프디",
+    id: "upcoming_20263530", title: "마티 슈프림", director: "조쉬 사프디", 
     cast: ["티모시 샬라메", "기네스 팰트로우", "오데사 아지온"],
     releaseDate: "2026-07-01", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/hqzCMHTuymM7FOZwpHfW5meiX1m.jpg",
     isRevealed: false,
-    overview: "어떤 대가를 치르더라도 반드시 가장 높은 곳으로! 탁구로 인생 역전을 꿈꾸는 마티 마우저의 이야기."
+    overview: "어떤 대가를 치르더라도 반드시 가장 높은 곳으로! 탁구로 인생 역전을 꿈꾸는 마티 마우저는 굴욕적인 패배 후 누구도 무시할 수 없는 성공을 손에 넣기로 결심한다. 최고가 되기 위해 모든 것을 걸고 지옥까지 질주하는 마티 마우저의 꿈은 이루어질 수 있을까?"
   },
   {
-    id: "upcoming_26070104", title: "그린란드 2: 마이그레이션", director: "릭 로만 워",
+    id: "upcoming_20264056", title: "그린랜드 2: 마이그레이션", director: "릭 로먼 워", 
     cast: ["제라드 버틀러", "모레나 바카린", "로만 그리핀 데이비스"],
     releaseDate: "2026-07-01", genre: ["액션", "SF"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/63MYZJKDgg1jg1ISo9QUiE33lrT.jpg",
     isRevealed: false,
-    overview: "혜성 충돌로 문명이 붕괴된 지 5년 후, 방사능 폭풍을 피해 지하 벙커에서 살아남은 인류가 폐허가 된 유럽 대륙을 향한 위험한 여정을 시작한다."
+    overview: "혜성 충돌로 문명이 붕괴된 지 5년 후, 방사능 폭풍을 피해 지하 벙커에서 살아남은 인류는 끝이 보이지 않는 지하 생활을 이어가고 있다. 점점 심해지는 지진과 고갈되어 가는 보급품으로 벙커는 붕괴 위기에 처하고, 존과 그의 가족들은 가까스로 탈출해 폐허가 된 유럽 대륙으로 향한다. 무너진 도시, 극한의 환경, 그리고 예측할 수 없는 생존자들의 위협 속에서 인류 최후의 희망의 땅이라 불리는 ‘크레이터’를 향한 위험한 여정이 시작되는데...!"
   },
-  // ── 2026-07-09 개봉 ──────────────────────────────────────────────────────
   {
-    id: "upcoming_26070901", title: "F1", director: "조셉 코신스키",
-    cast: ["브래드 피트", "데미안 비쉬르", "케리 콘던", "자비에 마리스-리처드슨"],
+    id: "upcoming_26070901", title: "F1", director: "조셉 코신스키", 
+    cast: ["브래드 피트", "데미안 비쉬르", "케리 콘던"],
     releaseDate: "2026-07-09", genre: ["액션", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
@@ -20348,9 +20408,8 @@ const UPCOMING_MOVIES_DATABASE = [
     isRevealed: false,
     overview: "F1 드라이버 출신의 노장 소니 헤이즈가 신인 드라이버와 함께 팀을 살리기 위해 레이스에 복귀하는 이야기."
   },
-  // ── 2026-07-16 개봉 ──────────────────────────────────────────────────────
   {
-    id: "upcoming_26071601", title: "슈퍼맨", director: "제임스 건",
+    id: "upcoming_26071601", title: "슈퍼맨", director: "제임스 건", 
     cast: ["데이비드 코렌스웻", "레이첼 브로스나한", "니콜라스 호울트"],
     releaseDate: "2026-07-16", genre: ["액션", "SF", "어드벤처"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
@@ -20360,60 +20419,37 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "DC 유니버스 리부트. 클라크 켄트가 슈퍼맨으로서의 정체성을 찾아가는 오리진 스토리."
   },
   {
-    id: "upcoming_26071602", title: "미션 임파서블: 파이널 레코닝", director: "크리스토퍼 맥쿼리",
-    cast: ["톰 크루즈", "헤일리 앳웰", "사이먼 페그", "빙 레임스"],
+    id: "upcoming_26071602", title: "미션 임파서블: 파이널 레코닝", director: "크리스토퍼 맥쿼리", 
+    cast: ["톰 크루즈", "헤일리 앳웰", "사이먼 페그"],
     releaseDate: "2026-07-23", genre: ["액션", "스릴러"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/z53D0WGjSBuMRXxb5t1QnsTf7jJ.jpg",
     isRevealed: false,
-    overview: "에단 헌트의 최후 임무. 전 세계를 위협하는 AI를 막기 위한 불가능한 작전이 시작된다."
+    overview: "에단 헌트의 최후 임무. 전 세계를 위협하는 AI를 막기 위한 불가능한 작전."
   },
-  // ── 2026-07-30 개봉 ──────────────────────────────────────────────────────
   {
-    id: "upcoming_26073001", title: "쥬라기 월드 리버스", director: "가렛 에드워즈",
-    cast: ["스칼렛 요한슨", "조나단 베일리", "마헤르샬라 알리"],
+    id: "upcoming_26073001", title: "쥬라기 월드 리버스", director: "가렛 에드워즈", 
+    cast: ["스칼렛 요한슨", "조나단 베일리"],
     releaseDate: "2026-07-30", genre: ["액션", "어드벤처", "SF"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/oLxWocqkORm7RkTAFQnIZh7VGKR.jpg",
     isRevealed: false,
-    overview: "공룡과 인간이 공존하는 세계, 새로운 팀이 위험한 임무를 위해 유전적으로 조작된 공룡들의 섬에 뛰어든다."
-  },
-  // ── 2026-08-06 개봉 ──────────────────────────────────────────────────────
-  {
-    id: "upcoming_26080601", title: "더 피어리스트", director: "브래드 앤더슨",
-    cast: ["조쉬 오코너", "아모아 스튜어트"],
-    releaseDate: "2026-08-06", genre: ["스릴러", "드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/placeholder.jpg",
-    isRevealed: false,
-    overview: "극한의 공포 속에서 생존을 위해 싸우는 두 사람의 이야기."
+    overview: "공룡과 인간이 공존하는 세계의 새로운 팀이 위험한 임무를 위해 떠나는 이야기."
   },
   {
-    id: "upcoming_26080602", title: "범죄도시5", director: "허명행",
+    id: "upcoming_26080601", title: "범죄도시5", director: "허명행", 
     cast: ["마동석", "이준혁"],
     releaseDate: "2026-08-13", genre: ["액션", "범죄"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/placeholder2.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/piMZqtd0gGS7OgkhDwiQ7vVViBQ.jpg",
     isRevealed: false,
-    overview: "마석도 형사의 다섯 번째 활약. 새로운 악당과의 대결이 펼쳐진다."
-  },
-  // ── 2026-08-20 개봉 ──────────────────────────────────────────────────────
-  {
-    id: "upcoming_26082001", title: "에이리언: 어스", director: "노아 호킹",
-    cast: ["케일리 스패니"],
-    releaseDate: "2026-08-20", genre: ["공포", "SF", "액션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/placeholder3.jpg",
-    isRevealed: false,
-    overview: "에이리언 프랜차이즈 신작. 지구를 배경으로 펼쳐지는 공포."
-  },
+    overview: "마석도 형사의 다섯 번째 활약."
   }
 ];
+
 
 const FILMO_POSTERS = {
   "감기": "https://image.tmdb.org/t/p/w300/7fQlPXebfjEqjysW3rv4RyNplih.jpg",
@@ -21669,23 +21705,24 @@ class CineMasterApp {
       return;
     }
 
-    // KST(한국 시간) 기준 오늘 이후 ~ 60일 이내 개봉 예정작 표시
+    // KST(한국 시간) 기준 오늘 이후 ~ 21일 이내 개봉 예정작 표시
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const todayKST = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
-    const in60days = new Date(todayKST); in60days.setDate(todayKST.getDate() + 60);
+    const in21days = new Date(todayKST); in21days.setDate(todayKST.getDate() + 21);
 
     const filtered = UPCOMING_MOVIES_DATABASE
       .filter(m => {
         if (!m.releaseDate) return false;
-        const relDate = new Date(m.releaseDate);
-        // KST 오늘 이후(당일 포함) ~ 60일 이내
-        return relDate >= todayKST && relDate <= in60days;
+        // 'YYYY-MM-DD'를 로컬 자정으로 파싱 (UTC midnight 방지)
+        const [yr, mo, dy] = m.releaseDate.split('-').map(Number);
+        const relDate = new Date(yr, mo - 1, dy);
+        return relDate >= todayKST && relDate <= in21days;
       })
       .sort((a, b) => new Date(a.releaseDate) - new Date(b.releaseDate))
-      .slice(0, 10);
+      .slice(0, 15);
 
     if (filtered.length === 0) {
-      grid.innerHTML = `<p class="text-muted text-center py-4">현재 기준 60일 내 개봉예정작이 없습니다.</p>`;
+      grid.innerHTML = `<p class="text-muted text-center py-4">현재 기준 21일 내 개봉예정작이 없습니다.</p>`;
       return;
     }
 
@@ -21807,11 +21844,17 @@ class CineMasterApp {
 
     let results;
     if (lowerQuery) {
-      results = MOVIES_DATABASE.filter(m =>
-        m.title.toLowerCase().includes(lowerQuery) ||
-        (m.director || '').toLowerCase().includes(lowerQuery) ||
-        (m.cast || []).some(a => a.toLowerCase().includes(lowerQuery))
-      );
+      // 공백 정규화: 붙여쓰기("왕과사는남자") → 공백 포함 DB값 매칭
+      const normQuery = lowerQuery.replace(/\s+/g, '');
+      results = MOVIES_DATABASE.filter(m => {
+        const normTitle = m.title.toLowerCase().replace(/\s+/g, '');
+        const normDir = (m.director || '').toLowerCase().replace(/\s+/g, '');
+        return normTitle.includes(normQuery) ||
+          m.title.toLowerCase().includes(lowerQuery) ||
+          normDir.includes(normQuery) ||
+          (m.director || '').toLowerCase().includes(lowerQuery) ||
+          (m.cast || []).some(a => a.toLowerCase().replace(/\s+/g, '').includes(normQuery));
+      });
     } else {
       // 초기: 최신 개봉순 상위 30개
       results = [...MOVIES_DATABASE]
@@ -22211,7 +22254,7 @@ class CineMasterApp {
       this.currentQuiz.groupSessionId = null;
     }
 
-    // Load questions based on type
+    // Load questions based on type (setup 함수는 switchView 이후에 호출)
     if (type === 'score') {
       const rawPool = MOVIES_DATABASE;
       const pool = this._deduplicatePool(rawPool);
@@ -22220,9 +22263,6 @@ class CineMasterApp {
       this.currentQuiz.currentStep = 0;
       this.currentQuiz.stepAnswers = [];
       this.currentQuiz.correctAnswersCount = 0;
-      
-      document.getElementById('quiz-round-container').style.display = 'block';
-      this.setupScoreQuizLayout();
     } 
     else if (type === 'filmo') {
       let pool;
@@ -22236,7 +22276,6 @@ class CineMasterApp {
         pool = [...directors, ...actors];
       }
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
-      this.setupFilmoQuizLayout();
     } 
     else if (type === 'lines') {
       const rawPool = MOVIES_DATABASE.filter(m =>
@@ -22246,7 +22285,6 @@ class CineMasterApp {
       const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this._recordShownMovies(this.currentQuiz.movies);
-      this.setupLinesQuizLayout();
     }
     else if (type === 'challenge') {
       // 개봉작만 (개봉예정 제외), posterUrl 있는 것만
@@ -22254,7 +22292,6 @@ class CineMasterApp {
       const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this._recordShownMovies(this.currentQuiz.movies);
-      this.setupChallengeQuizLayout();
     }
     else if (type === 'ordinary') {
       // 포스터 있는 영화 전체 (개봉작 + 개봉예정작)
@@ -22265,7 +22302,6 @@ class CineMasterApp {
       const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this._recordShownMovies(this.currentQuiz.movies);
-      this.setupOrdinaryQuizLayout();
     }
 
     // ── 단체전: 첫 참가자 등록 화면으로 이동 ────────────────────────────
@@ -22279,8 +22315,24 @@ class CineMasterApp {
       return;
     }
 
+    // switchView → activateQuizPanel 먼저 (DOM 가시화) → setup 함수 실행
     this.switchView('quiz');
     this.activateQuizPanel(type);
+
+    // 각 타입별 레이아웃 초기화 (DOM 가시화 이후 실행해야 포스터 등이 정상 표시됨)
+    if (type === 'score') {
+      document.getElementById('quiz-round-container').style.display = 'block';
+      this.setupScoreQuizLayout();
+    } else if (type === 'filmo') {
+      this.setupFilmoQuizLayout();
+    } else if (type === 'lines') {
+      this.setupLinesQuizLayout();
+    } else if (type === 'challenge') {
+      this.setupChallengeQuizLayout();
+    } else if (type === 'ordinary') {
+      this.setupOrdinaryQuizLayout();
+    }
+
     this.startTimer();
   }
 
@@ -22443,7 +22495,7 @@ class CineMasterApp {
     const poster = document.getElementById('challenge-movie-poster');
     if (poster) {
       poster.style.backgroundImage = movie.posterUrl
-        ? `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.85)), url('${movie.posterUrl}')`
+        ? `url('${movie.posterUrl}')`
         : '';
       poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
     }
@@ -22701,13 +22753,19 @@ class CineMasterApp {
   renderFilmoChoices(choices, name, isNegativeQuestion, correctAnswerTitle) {
     const container = document.getElementById('filmo-choices');
     container.innerHTML = choices.map(c => {
-      // 1순위: FILMO_POSTERS 딕셔너리, 2순위: MOVIES_DATABASE
+      // 1순위: FILMO_POSTERS 딕셔너리, 2순위: MOVIES_DATABASE 정확매칭, 3순위: 포함매칭
       let posterUrl = '';
       if (typeof FILMO_POSTERS !== 'undefined' && FILMO_POSTERS[c.title]) {
         posterUrl = FILMO_POSTERS[c.title];
       } else if (typeof MOVIES_DATABASE !== 'undefined') {
-        const movieData = MOVIES_DATABASE.find(m => m.title === c.title);
-        posterUrl = movieData?.posterUrl || '';
+        const exact = MOVIES_DATABASE.find(m => m.title === c.title && m.posterUrl);
+        if (exact) {
+          posterUrl = exact.posterUrl;
+        } else {
+          const partial = MOVIES_DATABASE.find(m => m.posterUrl &&
+            (m.title.includes(c.title.slice(0, 4)) || c.title.includes(m.title.slice(0, 4))));
+          posterUrl = partial?.posterUrl || '';
+        }
       }
       const posterStyle = posterUrl
         ? `background-image:url('${posterUrl}');background-size:cover;background-position:center;`
@@ -22802,6 +22860,16 @@ class CineMasterApp {
       document.getElementById('choseong-display').innerText = movie.choseong;
     }
     
+    // E모드 포스터 설정
+    const linesPosterEl = document.getElementById('lines-movie-poster');
+    if (linesPosterEl && movie.posterUrl) {
+      linesPosterEl.style.backgroundImage = `url('${movie.posterUrl}')`;
+      linesPosterEl.style.display = 'block';
+    } else if (linesPosterEl) {
+      linesPosterEl.style.backgroundImage = 'none';
+      linesPosterEl.style.background = 'var(--bg-secondary)';
+    }
+
     document.getElementById('input-lines-answer').value = '';
     
     setTimeout(() => {
@@ -23515,6 +23583,25 @@ class CineMasterApp {
     }
 
     if (crop) {
+      // 이미지 프리로딩으로 404 감지 후 fallback
+      const img = new Image();
+      img.onload = () => {
+        crop.style.backgroundImage    = `url('${movie.posterUrl}')`;
+        crop.style.backgroundSize     = `${posterW * 2}px ${posterH * 2}px`;
+        crop.style.backgroundPosition = `${offsetX * 2}px ${offsetY * 2}px`;
+        crop.style.width              = `${posterW * 2}px`;
+        crop.style.height             = `${posterH * 2}px`;
+        crop.style.backgroundRepeat   = 'no-repeat';
+        crop.style.background         = '';
+      };
+      img.onerror = () => {
+        // 포스터 로드 실패 → 그레이 배경 + 아이콘
+        crop.style.backgroundImage = 'none';
+        crop.style.background = 'var(--bg-secondary)';
+        crop.innerHTML = '<span class="material-symbols-outlined" style="font-size:3rem;color:var(--text-muted);display:flex;align-items:center;justify-content:center;height:100%">hide_image</span>';
+      };
+      img.src = movie.posterUrl;
+      // 즉시 설정도 유지 (캐시 히트 시 onload 미호출 방지)
       crop.style.backgroundImage    = `url('${movie.posterUrl}')`;
       crop.style.backgroundSize     = `${posterW * 2}px ${posterH * 2}px`;
       crop.style.backgroundPosition = `${offsetX * 2}px ${offsetY * 2}px`;
@@ -23633,57 +23720,32 @@ class CineMasterApp {
     let usedTitles = [];
     try { usedTitles = JSON.parse(sessionStorage.getItem(usedKey) || '[]'); } catch(e) {}
 
-    // AI_QUIZ_MOVIES에서 랜덤으로 30편 샘플 (미사용 우선)
+    // AI_QUIZ_MOVIES에서 랜덤 12편 샘플 (URL 초과 방지 — GAS GET 한도 ~6KB)
     const pool = AI_QUIZ_MOVIES.filter(m => !usedTitles.includes(m.title));
-    const src = (pool.length >= 15 ? pool : AI_QUIZ_MOVIES)
+    const src = (pool.length >= 8 ? pool : AI_QUIZ_MOVIES)
       .slice()
       .sort(() => Math.random() - 0.5)
-      .slice(0, 30);
+      .slice(0, 12);
 
     // 사용 기록 저장
-    const newUsed = [...new Set([...usedTitles, ...src.map(m => m.title)])].slice(-120);
+    const newUsed = [...new Set([...usedTitles, ...src.map(m => m.title)])].slice(-150);
     try { sessionStorage.setItem(usedKey, JSON.stringify(newUsed)); } catch(e) {}
 
-    // 개봉일 스코어 + 필모그래피 위주 프롬프트
-    const prompt = `당신은 한국 영화 흥행 분석 전문가입니다. 아래 실제 흥행 데이터를 바탕으로 4지선다 퀴즈 10문제를 만드세요.
+    // 필드 최소화: 8편, 핵심 필드만 (URL 4KB 이내 유지)
+    const minData = src.slice(0, 8).map(m => ({
+      t: m.title,
+      d: m.director,
+      a: m.actors.slice(0, 2).join('/'),
+      od: m.openingDayCat || '',
+      ow: m.openingWeekCat || '',
+      f: m.finalCat || '',
+      yr: m.openDt ? m.openDt.slice(0, 4) : ''
+    }));
 
-[영화 데이터 (실측치)]
-${JSON.stringify(src.map(m => ({
-  제목: m.title,
-  개봉일: m.openDt,
-  감독: m.director,
-  주연: m.actors.slice(0,3).join(', '),
-  장르: m.genre,
-  배급사: m.dist,
-  국가: m.nation,
-  개봉일관객수: m.openingDayCat || '정보없음',
-  개봉주관객수: m.openingWeekCat || '정보없음',
-  최종관객수: m.finalCat || '정보없음',
-  실제개봉일관객: m.opening_day_audi,
-  실제개봉주관객: m.opening_week_audi,
-  실제총관객: m.total_audi
-})), null, 0)}
+    // 개봉일 스코어 + 필모그래피 위주 프롬프트 (최대 압축)
+    const prompt = `영화퀴즈. 데이터로 4지선다10문제 JSON출력.\nD:${JSON.stringify(minData, null, 0)}\n유형:①개봉일관객(od,1~5만명/5~10만명/11~20만명/21만명이상)②개봉주관객(ow,10만이하/11~50만/51~100만/101만이상)③최종관객(f,11~50만/51~100만/101만이상/201~300만/301~500만/501만이상)④감독필모⑤배우필모 — ①②③5개이상④⑤3개이상\n규칙:데이터값만정답,오답유사값,중복금지,한국어\n[{"q":"질문","o":["A","B","C","D"],"a":"정답","e":"근거","m":"영화"}]`;
 
-[문제 유형 — 반드시 아래 유형 위주로 출제]
-1. 개봉일 관객수 범주 맞추기: "X 영화의 개봉일 관객수 범주는?" → 보기: 1~5만명 / 5~10만명 / 11~20만명 / 21만명 이상
-2. 개봉주 관객수 범주 맞추기: "X 영화의 개봉주 누적 관객수는?" → 보기: 10만명 이하 / 11~50만명 / 51~100만명 / 101만명 이상
-3. 최종 관객수 범주: "X 영화의 최종 누적 관객수 범주는?" → 보기 6개 범주 중 4개
-4. 감독 필모그래피: "감독 OOO의 작품이 아닌 것은?" 또는 "다음 중 OOO 감독 작품은?"
-5. 배우 필모그래피: "배우 OOO이 출연하지 않은 영화는?" 또는 "다음 중 OOO 배우 출연작은?"
-6. 배급사 맞추기: "X 영화의 배급사는?"
-7. 개봉일/연도 맞추기: "X 영화가 개봉한 연도는?" 또는 "X 영화의 개봉일 월은?"
-(유형 1,2,3을 합쳐 최소 5문제, 유형 4,5를 합쳐 최소 3문제 포함)
-
-[규칙]
-- 반드시 위 데이터에 실제로 존재하는 값만 정답으로 사용하세요.
-- 오답 3개는 같은 유형의 그럴듯한 값이어야 합니다.
-- 같은 영화를 2번 이상 출제하지 마세요.
-- 한국어로 작성하세요.
-- 응답은 아래 JSON 배열 형식만 출력하세요. 다른 텍스트 없이.
-
-[출력 형식]
-[{"question":"질문","options":["A","B","C","D"],"answer":"정답(options 중 하나와 정확히 일치)","explanation":"근거 한 줄","movieTitle":"관련 영화 제목(없으면 빈 문자열)"}]`;
-
+    // GAS JSONP로 Gemini 호출 (URL 총 ~4KB 이내)
     return new Promise((resolve) => {
       const cbName = '_aiCb_' + Date.now() + '_' + Math.floor(Math.random()*9999);
       const script = document.createElement('script');
@@ -23694,7 +23756,7 @@ ${JSON.stringify(src.map(m => ({
         if (script.parentNode) script.parentNode.removeChild(script);
         console.error('AI quiz: GAS timeout');
         resolve(null);
-      }, 20000);
+      }, 35000);
 
       window[cbName] = (data) => {
         if (settled) return; settled = true;
@@ -23707,14 +23769,28 @@ ${JSON.stringify(src.map(m => ({
           return;
         }
         try {
-          let text = data.text.replace(/```json\s*/g, '').replace(/```\s*/g, '').trim();
+          let text = data.text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+          // q→question, o→options, a→answer, e→explanation, m→movieTitle 필드 정규화
+          text = text
+            .replace(/"q":/g, '"question":')
+            .replace(/"o":/g, '"options":')
+            .replace(/"a":/g, '"answer":')
+            .replace(/"e":/g, '"explanation":')
+            .replace(/"m":/g, '"movieTitle":');
           const match = text.match(/\[[\s\S]*\]/);
           if (!match) { resolve(null); return; }
           const qs = JSON.parse(match[0]);
           const valid = qs.filter(q =>
-            q.question && Array.isArray(q.options) && q.options.length === 4 &&
-            q.answer && q.options.includes(q.answer)
-          ).slice(0, 10);
+            (q.question || q.q) && Array.isArray(q.options || q.o) &&
+            (q.options || q.o).length === 4 &&
+            (q.answer || q.a) && (q.options || q.o).includes(q.answer || q.a)
+          ).map(q => ({
+            question: q.question || q.q,
+            options: q.options || q.o,
+            answer: q.answer || q.a,
+            explanation: q.explanation || q.e || '',
+            movieTitle: q.movieTitle || q.m || ''
+          })).slice(0, 10);
           resolve(valid.length >= 3 ? valid : null);
         } catch(e) {
           console.error('AI parse error:', e);
@@ -23726,7 +23802,7 @@ ${JSON.stringify(src.map(m => ({
       script.src = SCORE_SHEET_WEBHOOK_URL
         + '?action=geminiGenerate'
         + '&callback=' + cbName
-        + '&temperature=0.5'
+        + '&temperature=0.7'
         + '&prompt=' + encodedPrompt;
       script.onerror = () => {
         if (settled) return; settled = true;
@@ -23760,20 +23836,32 @@ ${JSON.stringify(src.map(m => ({
     if (scoreEl) scoreEl.textContent = `정답 ${this.currentQuiz.aiCorrect}`;
     if (questionEl) questionEl.textContent = q.question;
 
-    // 포스터: posterKeyword로 MOVIES_DATABASE에서 검색
+    // 포스터: movieTitle(GAS 응답) 또는 posterKeyword로 MOVIES_DATABASE 검색
     if (posterEl) {
-      const keyword = (q.posterKeyword || '').trim();
+      const keyword = (q.movieTitle || q.posterKeyword || '').trim();
       let posterUrl = '';
       if (keyword && typeof MOVIES_DATABASE !== 'undefined') {
-        const found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && m.title.includes(keyword))
-          || MOVIES_DATABASE.find(m => m.title && m.posterUrl && keyword.includes(m.title.slice(0, 4)));
+        // 1) 정확 매칭
+        let found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && m.title === keyword);
+        // 2) 포함 매칭
+        if (!found) found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && m.title.includes(keyword));
+        // 3) 역포함 매칭 (키워드가 DB 제목의 앞 4글자 포함)
+        if (!found) found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && keyword.includes(m.title.slice(0, 4)));
+        // 4) AI_QUIZ_MOVIES에서 검색 (title 기준)
+        if (!found && typeof AI_QUIZ_MOVIES !== 'undefined') {
+          const aiM = AI_QUIZ_MOVIES.find(m => m.title === keyword || m.title.includes(keyword));
+          if (aiM) {
+            // AI_QUIZ_MOVIES에는 posterUrl이 없으므로 MOVIES_DATABASE에서 제목으로 재검색
+            found = MOVIES_DATABASE.find(m => m.posterUrl && m.title.includes(aiM.title.slice(0, 4)));
+          }
+        }
         if (found) posterUrl = found.posterUrl;
       }
       if (posterUrl) {
         posterEl.style.backgroundImage = `url('${posterUrl}')`;
         posterEl.style.backgroundSize = 'cover';
         posterEl.style.backgroundPosition = 'center';
-        posterEl.innerHTML = ''; // 아이콘 제거
+        posterEl.innerHTML = '';
       } else {
         posterEl.style.backgroundImage = 'none';
         posterEl.innerHTML = '<span class="material-symbols-outlined" style="font-size:2rem;color:var(--text-muted)">quiz</span>';
