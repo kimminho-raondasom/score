@@ -3143,12 +3143,12 @@ html, body, .app-container, .view-section, .glass-card {
 .filmo-question-text { font-size:0.9rem; color:var(--text-muted); line-height:1.6; }
 
 /* ── 명대사·초성 퀴즈 ────────────────────────────────────────────────────── */
-.quote-card      { padding:24px; text-align:left; }
+.quote-card      { padding:24px; text-align:left; display:none; } /* 초기 숨김, JS에서 토글 */
 .quote-icon      { font-size:2rem; color:var(--text-muted); margin-bottom:12px; }
 .quote-text      { font-size:1rem; font-style:italic; line-height:1.7; color:var(--text-main); margin-bottom:16px; }
 .quote-hint-row  { display:flex; align-items:center; gap:8px; padding-top:12px; border-top:1px solid var(--border-color); }
 .quote-character { font-size:0.8rem; color:var(--text-muted); }
-.choseong-card   { padding:24px; text-align:center; }
+.choseong-card   { padding:24px; text-align:center; display:none; } /* 초기 숨김, JS에서 토글 */
 .choseong-label  { font-size:0.75rem; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:12px; }
 .choseong-letters { font-family:var(--font-family-display); font-size:2.5rem; font-weight:700; letter-spacing:0.3em; color:var(--text-main); }
 .answer-card     { width:100%; }
@@ -3980,15 +3980,17 @@ html, body, .app-container, .view-section, .glass-card {
 
           <!-- Challenge 날짜 입력 (개봉일 YYMMDD) — setupChallengeQuizLayout이 토글 -->
           <div class="challenge-date-input-wrap" id="challenge-date-wrap" style="display:none;margin-top:20px;">
-            <label>개봉일을 YYMMDD 형식으로 입력하세요</label>
-            <input type="text" id="challenge-date-input" class="challenge-date-input"
-              maxlength="6" inputmode="numeric" pattern="\d{6}"
-              placeholder="예: 260625">
-            <div id="challenge-digit-result" style="display:none;flex-direction:row;gap:4px;margin-top:10px;justify-content:center;"></div>
-            <button id="btn-challenge-submit" class="btn-primary w-100 mt-3" onclick="app.gradeChallengeQuiz()">
-              <span>제출</span>
-              <span class="material-symbols-outlined">check_circle</span>
-            </button>
+            <form id="form-challenge-quiz" onsubmit="event.preventDefault(); app.gradeChallengeQuiz();">
+              <label>개봉일을 YYMMDD 형식으로 입력하세요</label>
+              <input type="text" id="challenge-date-input" class="challenge-date-input"
+                maxlength="6" inputmode="numeric" pattern="\d{6}"
+                placeholder="예: 260625">
+              <div id="challenge-digit-result" style="display:none;flex-direction:row;gap:4px;margin-top:10px;justify-content:center;"></div>
+              <button id="btn-challenge-submit" type="submit" class="btn-primary w-100 mt-3">
+                <span>제출</span>
+                <span class="material-symbols-outlined">check_circle</span>
+              </button>
+            </form>
           </div>
 
           <button id="btn-next-step" class="btn-primary w-100" style="margin-top:28px;">
@@ -20932,6 +20934,209 @@ const AI_QUIZ_MOVIES = [
 {"title":"인투 더 스톰","openDt":"2014-08-28","total_audi":2077544,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":97234,"opening_week_audi":881343,"director":"스티븐 쿼일","actors":["리차드 아미티지", "사라 웨인 콜리스", "제레미 섬터"],"genre":"액션, 스릴러","nation":"미국","dist":"워너브러더스 코리아(주)"}
 ];
 
+const SAME_DAY_QUIZ = [
+{"t":"왕과 사는 남자","dt":"2026-02-04","sd":["2024.12.03 그날 조작된 내란, 감춰진 진실", "노 머시: 90분", "아이엠스타!X프리파라 더 무비 -만남의 기적!-"]},
+{"t":"신과함께-죄와 벌","dt":"2017-12-20","sd":["위대한 쇼맨"]},
+{"t":"국제시장","dt":"2014-12-17","sd":["호빗: 다섯 군대 전투"]},
+{"t":"베테랑","dt":"2015-08-05","sd":["명탐정 코난 : 화염의 해바라기"]},
+{"t":"도둑들","dt":"2012-07-25","sd":["아이스 에이지 4: 대륙 이동설", "무서운 이야기", "극장판 도라에몽: 진구와 기적의 섬 애니멀 어드벤처"]},
+{"t":"7번방의 선물","dt":"2013-01-23","sd":["뽀로로 극장판 슈퍼썰매 대모험", "마마"]},
+{"t":"알라딘","dt":"2019-05-23","sd":["더 보이"]},
+{"t":"암살","dt":"2015-07-22","sd":["극장판 요괴워치: 탄생의 비밀이다냥!"]},
+{"t":"광해, 왕이 된 남자","dt":"2012-09-13","sd":["레지던트 이블 5 : 최후의 심판", "늑대아이"]},
+{"t":"신과함께-인과 연","dt":"2018-08-01","sd":["극장판 헬로카봇 : 백악기 시대"]},
+{"t":"택시운전사","dt":"2017-08-02","sd":["명탐정 코난:진홍의 연가"]},
+{"t":"부산행","dt":"2016-07-20","sd":["아이스 에이지: 지구 대충돌", "극장판 요괴워치: 염라대왕과 5개의 이야기다냥!"]},
+{"t":"범죄도시4","dt":"2024-04-24","sd":["챌린저스"]},
+{"t":"변호인","dt":"2013-12-18","sd":["캐치미"]},
+{"t":"어벤져스: 인피니티 워","dt":"2018-04-25","sd":["당갈"]},
+{"t":"아바타: 물의 길","dt":"2022-12-14","sd":["신비아파트 극장판 차원도깨비와 7개의 세계"]},
+{"t":"어벤져스: 에이지 오브 울트론","dt":"2015-04-23","sd":["짱구는 못말려 극장판 : 정면승부! 로봇아빠의 역습"]},
+{"t":"인터스텔라","dt":"2014-11-06","sd":["패션왕", "박스트롤"]},
+{"t":"겨울왕국","dt":"2014-01-16","sd":["잭 라이언 : 코드네임 쉐도우"]},
+{"t":"보헤미안 랩소디","dt":"2018-10-31","sd":["완벽한 타인", "벽 속에 숨은 마법시계", "할로윈"]},
+{"t":"엑시트","dt":"2019-07-31","sd":["사자", "마이펫의 이중생활 2"]},
+{"t":"설국열차","dt":"2013-08-01","sd":["개구쟁이 스머프 2"]},
+{"t":"아이언맨 3","dt":"2013-04-25","sd":["피노키오: 당나귀 섬의 비밀", "에반게리온: Q", "짱구는 못말려 극장판:태풍을 부르는 나와 우주의 프린세스"]},
+{"t":"인사이드 아웃 2","dt":"2024-06-12","sd":["드라이브"]},
+{"t":"수상한 그녀","dt":"2014-01-22","sd":["피끓는 청춘", "남자가 사랑할 때"]},
+{"t":"해적: 바다로 간 산적","dt":"2014-08-06","sd":["명탐정 코난 : 이차원의 저격수", "허큘리스"]},
+{"t":"백두산","dt":"2019-12-19","sd":["신비아파트 극장판 하늘도깨비 대 요르문간드"]},
+{"t":"공조","dt":"2017-01-18","sd":["더 킹", "터닝메카드W: 블랙미러의 부활"]},
+{"t":"히말라야","dt":"2015-12-16","sd":["대호"]},
+{"t":"미션임파서블:고스트프로토콜","dt":"2011-12-15","sd":["앨빈과 슈퍼밴드3"]},
+{"t":"밀정","dt":"2016-09-07","sd":["고산자, 대동여지도", "거울나라의 앨리스", "장난감이 살아있다"]},
+{"t":"최종병기 활","dt":"2011-08-10","sd":["블라인드"]},
+{"t":"써니","dt":"2011-05-04","sd":["체포왕", "소스 코드"]},
+{"t":"엘리멘탈","dt":"2023-06-14","sd":["플래시"]},
+{"t":"1987","dt":"2017-12-27","sd":["원더"]},
+{"t":"마스터","dt":"2016-12-21","sd":["씽", "극장판 도라에몽: 신 진구의 버스 오브 재팬"]},
+{"t":"터널","dt":"2016-08-10","sd":["국가대표 2", "마이 리틀 자이언트"]},
+{"t":"어벤져스","dt":"2012-04-26","sd":["짱구는 못말려 극장판: 태풍을 부르는 황금스파이 대작전"]},
+{"t":"내부자들","dt":"2015-11-19","sd":["프리덤"]},
+{"t":"인천상륙작전","dt":"2016-07-27","sd":["제이슨 본", "빅", "태풍이 지나가고"]},
+{"t":"공조2: 인터내셔날","dt":"2022-09-07","sd":["블랙폰", "인생은 뷰티풀: 비타돌체"]},
+{"t":"럭키","dt":"2016-10-13","sd":["자백", "바스티유 데이", "어카운턴트"]},
+{"t":"은밀하게 위대하게","dt":"2013-06-05","sd":["무서운 이야기 2", "백악관 최후의 날"]},
+{"t":"범죄도시","dt":"2017-10-03","sd":["남한산성", "넛잡 2", "딥"]},
+{"t":"곡성","dt":"2016-05-12","sd":["다이버전트 시리즈: 얼리전트", "나의 소녀시대", "엽기적인 그녀 2"]},
+{"t":"늑대소년","dt":"2012-10-31","sd":["아르고"]},
+{"t":"군함도","dt":"2017-07-26","sd":["슈퍼배드 3"]},
+{"t":"미션 임파서블: 폴아웃","dt":"2018-07-25","sd":["인랑", "신비아파트: 금빛 도깨비와 비밀의 동굴"]},
+{"t":"다크 나이트 라이즈","dt":"2012-07-19","sd":["5백만불의 사나이", "명탐정 코난: 11번째 스트라이커"]},
+{"t":"사도","dt":"2015-09-16","sd":["메이즈 러너: 스코치 트라이얼"]},
+{"t":"킹스맨 : 시크릿 에이전트","dt":"2015-02-11","sd":["조선명탐정 : 사라진 놉의 딸", "7번째 아들"]},
+{"t":"연평해전","dt":"2015-06-24","sd":["소수의견"]},
+{"t":"인셉션","dt":"2010-07-21","sd":["마음이2", "명탐정 코난: 천공의 난파선", "마법사의 제자"]},
+{"t":"레미제라블","dt":"2012-12-19","sd":["반창꼬", "주먹왕 랄프", "가문의 영광5 - 가문의 귀환"]},
+{"t":"닥터 스트레인지: 대혼돈의 멀티버스","dt":"2022-05-04","sd":["배드 가이즈"]},
+{"t":"쥬라기 월드: 폴른 킹덤","dt":"2018-06-06","sd":["극장판 포켓몬스터DP - 디아루가 VS 펄기아 VS 다크라이", "아이 필 프리티"]},
+{"t":"좀비딸","dt":"2025-07-30","sd":["배드 가이즈 2"]},
+{"t":"청년경찰","dt":"2017-08-09","sd":["빅풋 주니어"]},
+{"t":"숨바꼭질","dt":"2013-08-14","sd":["감기", "언어의 정원"]},
+{"t":"덕혜옹주","dt":"2016-08-03","sd":["마이펫의 이중생활", "수어사이드 스쿼드", "명탐정 코난: 순흑의 악몽"]},
+{"t":"앤트맨과 와스프","dt":"2018-07-04","sd":["변산"]},
+{"t":"닥터 스트레인지","dt":"2016-10-26","sd":["무현, 두 도시 이야기", "혼숨"]},
+{"t":"검은 사제들","dt":"2015-11-05","sd":["스파이 브릿지", "더 셰프", "아더와 미니모이 3: 두 세계의 전쟁"]},
+{"t":"안시성","dt":"2018-09-19","sd":["협상", "명당", "더 넌"]},
+{"t":"블랙 팬서","dt":"2018-02-14","sd":["골든슬럼버", "흥부: 글로 세상을 바꾼 자", "명탐정 코난:감벽의 관"]},
+{"t":"완득이","dt":"2011-10-20","sd":["오직 그대만", "파라노말 액티비티 3"]},
+{"t":"조커","dt":"2019-10-02","sd":["퍼펙트맨", "가장 보통의 연애", "소피와 드래곤: 마법책의 비밀"]},
+{"t":"F1 더 무비","dt":"2025-06-25","sd":["노이즈", "무명 無名"]},
+{"t":"월드 워 Z","dt":"2013-06-20","sd":["더 콜", "닥터", "토토의 움직이는 숲"]},
+{"t":"타워","dt":"2012-12-25","sd":["니코: 산타비행단의 모험", "잠베지아: 신비한 나무섬의 비밀"]},
+{"t":"미녀와 야수","dt":"2014-06-18","sd":["그레이스 오브 모나코", "창문 넘어 도망친 100세 노인"]},
+{"t":"미녀와 야수","dt":"2017-03-16","sd":["비정규직 특수요원"]},
+{"t":"독전","dt":"2018-05-22","sd":["트루스 오어 데어"]},
+{"t":"쿵푸팬더 2","dt":"2011-05-26","sd":["헤드"]},
+{"t":"아쿠아맨","dt":"2018-12-19","sd":["스윙키즈", "마약왕", "그린치"]},
+{"t":"공작","dt":"2018-08-08","sd":["맘마미아!2", "명탐정 코난 : 제로의 집행인", "몬스터 호텔 3"]},
+{"t":"인사이드 아웃","dt":"2015-07-09","sd":["손님", "인시디어스 3", "우먼 인 골드"]},
+{"t":"킹스맨: 골든 서클","dt":"2017-09-27","sd":["극장판 요괴워치: 하늘을 나는 고래와 더블세계다냥!"]},
+{"t":"더 퍼스트 슬램덩크","dt":"2023-01-04","sd":["스위치", "장화신은 고양이: 끝내주는 모험"]},
+{"t":"마션","dt":"2015-10-08","sd":["성난 변호사", "팬"]},
+{"t":"바람과 함께 사라지다","dt":"2012-08-08","sd":["나는 왕이로소이다", "빌리와 용감한 녀석들 3D"]},
+{"t":"어메이징 스파이더맨","dt":"2012-06-28","sd":["캐빈 인 더 우즈"]},
+{"t":"토르: 라그나로크","dt":"2017-10-25","sd":["너의 췌장을 먹고 싶어"]},
+{"t":"조선명탐정 : 각시투구꽃의 비밀","dt":"2011-01-27","sd":["평양성", "걸리버 여행기", "상하이"]},
+{"t":"봉오동 전투","dt":"2019-08-07","sd":["앵그리 버드 2: 독수리 왕국의 침공", "브링 더 소울 : 더 무비"]},
+{"t":"군도: 민란의 시대","dt":"2014-07-23","sd":["드래곤 길들이기 2"]},
+{"t":"님아, 그 강을 건너지 마오","dt":"2014-11-27","sd":["꾸뻬씨의 행복여행", "빅매치", "덤 앤 더머 투"]},
+{"t":"남산의 부장들","dt":"2020-01-22","sd":["스파이 지니어스 ", "히트맨", "미스터 주: 사라진 VIP"]},
+{"t":"범죄와의 전쟁: 나쁜놈들 전성시대","dt":"2012-02-02","sd":["해피 피트 2", "하이힐을 신고 달리는 여자"]},
+{"t":"라이온 킹","dt":"2019-07-17","sd":["사일런스"]},
+{"t":"주토피아","dt":"2016-02-17","sd":["좋아해줘", "데드풀", "동주"]},
+{"t":"엣지 오브 투모로우","dt":"2014-06-04","sd":["우는 남자"]},
+{"t":"신세계","dt":"2013-02-21","sd":["라스트 스탠드", "분노의 윤리학", "빌리와 용감한 녀석들 2 "]},
+{"t":"신비한 동물사전","dt":"2016-11-16","sd":["가려진 시간", "하이큐!! 끝과 시작"]},
+{"t":"도가니","dt":"2011-09-22","sd":["컨테이젼", "킬러 엘리트"]},
+{"t":"내 아내의 모든 것","dt":"2012-05-17","sd":["돈의 맛", "콜드 라잇 오브 데이"]},
+{"t":"나쁜 녀석들: 더 무비","dt":"2019-09-11","sd":["힘을 내요, 미스터 리", "타짜: 원 아이드 잭", "극장판 반지의 비밀일기"]},
+{"t":"노량: 죽음의 바다","dt":"2023-12-20","sd":["트롤: 밴드 투게더", "아쿠아맨과 로스트 킹덤"]},
+{"t":"판도라","dt":"2016-12-07","sd":["라라랜드", "아기배달부 스토크"]},
+{"t":"연가시","dt":"2012-07-05","sd":["모모와 다락방의 수상한 요괴들", "더 레이븐", "미드나잇 인 파리"]},
+{"t":"강철비","dt":"2017-12-14","sd":["스타워즈: 라스트 제다이"]},
+{"t":"해리 포터와 죽음의 성물2","dt":"2011-07-13","sd":["빨간모자의 진실 2"]},
+{"t":"아이언맨 2","dt":"2010-04-29","sd":["케로로 더 무비 5: 기적의 사차원섬"]},
+{"t":"다만 악에서 구하소서","dt":"2020-08-05","sd":["애니멀 크래커"]},
+{"t":"헌트","dt":"2022-08-10","sd":["DC 리그 오브 슈퍼-펫"]},
+{"t":"엑스맨: 데이즈 오브 퓨처 패스트","dt":"2014-05-22","sd":["도희야", "더 바디", "그녀"]},
+{"t":"아가씨","dt":"2016-06-01","sd":["미 비포 유", "무서운 이야기 3 : 화성에서 온 소녀", "더 보이"]},
+{"t":"용의자","dt":"2013-12-24","sd":["썬더와 마법저택"]},
+{"t":"건축학개론","dt":"2012-03-22","sd":["언터처블: 1%의 우정"]},
+{"t":"댄싱퀸","dt":"2012-01-18","sd":["부러진 화살", "네버엔딩 스토리", "페이스메이커"]},
+{"t":"타짜-신의 손","dt":"2014-09-03","sd":["두근두근 내 인생", "루시", "스텝 업: 올 인"]},
+{"t":"혹성탈출: 반격의 서막","dt":"2014-07-10","sd":["좋은 친구들"]},
+{"t":"너의 이름은.","dt":"2017-01-04","sd":["사랑하기 때문에", "패신저스", "눈의 여왕 3: 눈과 불의 마법대결"]},
+{"t":"매드 맥스: 분노의 도로","dt":"2015-05-14","sd":["악의 연대기", "위아영"]},
+{"t":"박수건달","dt":"2013-01-09","sd":["클라우드 아틀라스", "마이 리틀 히어로"]},
+{"t":"베놈","dt":"2018-10-03","sd":["암수살인", "셜록 놈즈", "곰돌이 푸 다시 만나 행복해"]},
+{"t":"역린","dt":"2014-04-30","sd":["표적"]},
+{"t":"소방관","dt":"2024-12-04","sd":["1승"]},
+{"t":"데드풀 2","dt":"2018-05-16","sd":["피터 래빗", "안녕, 나의 소녀"]},
+{"t":"비긴 어게인","dt":"2014-08-13","sd":["해무(海霧)", "안녕, 헤이즐", "비행기 2: 소방구조대"]},
+{"t":"국가부도의 날","dt":"2018-11-28","sd":["후드"]},
+{"t":"82년생 김지영","dt":"2019-10-23","sd":["람보 : 라스트 워"]},
+{"t":"분노의 질주: 더 익스트림","dt":"2017-04-12","sd":["아빠는 딸"]},
+{"t":"분노의 질주: 홉스&쇼","dt":"2019-08-14","sd":["안녕, 티라노: 영원히, 함께", "원더랜드"]},
+{"t":"모가디슈","dt":"2021-07-28","sd":["방법: 재차의", "정글 크루즈"]},
+{"t":"인턴","dt":"2015-09-24","sd":["탐정 : 더 비기닝", "서부전선", "에베레스트"]},
+{"t":"귀향","dt":"2016-02-24","sd":["순정", "스포트라이트"]},
+{"t":"리얼 스틸","dt":"2011-10-12","sd":["삼총사 3D"]},
+{"t":"웡카","dt":"2024-01-31","sd":["추락의 해부"]},
+{"t":"코코","dt":"2018-01-11","sd":["다운사이징"]},
+{"t":"극장판 체인소 맨: 레제편","dt":"2025-09-24","sd":["어쩔수가없다"]},
+{"t":"어바웃 타임","dt":"2013-12-05","sd":["오싱", "인시디어스: 두번째 집", "이스케이프 플랜"]},
+{"t":"끝까지 간다","dt":"2014-05-29","sd":["오큘러스", "말레피센트", "극장판 루팡 3세 VS 명탐정 코난"]},
+{"t":"그것만이 내 세상","dt":"2018-01-17","sd":["메이즈 러너: 데스 큐어"]},
+{"t":"돈","dt":"2019-03-20","sd":["우상", "악질경찰"]},
+{"t":"맨 인 블랙 3","dt":"2012-05-24","sd":["극장판 썬더일레븐GO : 궁극의 우정 그리폰"]},
+{"t":"토이 스토리 4","dt":"2019-06-20","sd":["사탄의 인형"]},
+{"t":"악인전","dt":"2019-05-15","sd":["배심원들"]},
+{"t":"올빼미","dt":"2022-11-23","sd":["스트레인지 월드"]},
+{"t":"포화속으로","dt":"2010-06-16","sd":["스트리트댄스"]},
+{"t":"그래비티","dt":"2013-10-17","sd":["밤의 여왕", "롤러코스터"]},
+{"t":"아이 캔 스피크","dt":"2017-09-21","sd":["인비저블 게스트"]},
+{"t":"오펜하이머","dt":"2023-08-15","sd":["달짝지근해: 7510", "보호자", "메가로돈 2"]},
+{"t":"마녀","dt":"2018-06-27","sd":["허스토리", "시카리오: 데이 오브 솔다도", "빅샤크: 매직체인지"]},
+{"t":"탐정: 리턴즈","dt":"2018-06-13","sd":["오션스8"]},
+{"t":"퀵","dt":"2011-07-20","sd":["고지전", "카 2", "바니버디"]},
+{"t":"캐리비안의 해적: 낯선 조류","dt":"2011-05-19","sd":["회초리", "삼국지: 명장 관우"]},
+{"t":"나우 유 씨 미 2","dt":"2016-07-13","sd":["언더 워터"]},
+{"t":"스물","dt":"2015-03-25","sd":["인서전트"]},
+{"t":"토르: 다크 월드","dt":"2013-10-30","sd":["응징자", "노브레싱"]},
+{"t":"헬로우 고스트","dt":"2010-12-22","sd":["쓰리 데이즈", "황해"]},
+{"t":"인크레더블 2","dt":"2018-07-18","sd":["독전: 익스텐디드 컷", "호텔 아르테미스"]},
+{"t":"하모니","dt":"2010-01-28","sd":["유희왕", "식객2 : 김치전쟁", "꼬마 니콜라"]},
+{"t":"레드: 더 레전드","dt":"2013-07-18","sd":["토니 스토리: 깡통제국의 비밀"]},
+{"t":"방자전","dt":"2010-06-02","sd":["유령작가", "엣지 오브 다크니스"]},
+{"t":"친구 2","dt":"2013-11-14","sd":["더 파이브", "카운슬러"]},
+{"t":"서치","dt":"2018-08-29","sd":["상류사회"]},
+{"t":"엑스맨: 아포칼립스","dt":"2016-05-25","sd":["오베라는 남자"]},
+{"t":"프리즌","dt":"2017-03-23","sd":["히든 피겨스", "보통사람"]},
+{"t":"26년","dt":"2012-11-29","sd":["음치 클리닉 ", "가디언즈"]},
+{"t":"프로젝트 헤일메리","dt":"2026-03-18","sd":["메소드연기"]},
+{"t":"해리 포터와 죽음의 성물1","dt":"2010-12-15","sd":["새미의 어드벤쳐"]},
+{"t":"말모이","dt":"2019-01-09","sd":["내안의 그놈", "그린 북"]},
+{"t":"극비수사","dt":"2015-06-18","sd":["경성학교: 사라진 소녀들", "심야식당"]},
+{"t":"쥬라기 월드: 도미니언","dt":"2022-06-01","sd":["극장판 포켓몬스터DP: 기라티나와 하늘의 꽃다발 쉐이미"]},
+{"t":"호빗: 뜻밖의 여정","dt":"2012-12-13","sd":["원 데이", "극장판 파워레인저: 캡틴포스 VS 미라클포스 199 히어로 대결전 "]},
+{"t":"앤트맨","dt":"2015-09-03","sd":["오피스", "갤로우즈", "히트맨: 에이전트 47"]},
+{"t":"덩케르크","dt":"2017-07-20","sd":["오즈: 신기한 마법가루", "극장판 짱구는 못말려 : 습격!! 외계인 덩덩이"]},
+{"t":"메이즈 러너","dt":"2014-09-18","sd":["툼스톤"]},
+{"t":"너의 결혼식","dt":"2018-08-22","sd":["나를 차버린 스파이"]},
+{"t":"마녀(魔女) Part2. The Other One","dt":"2022-06-15","sd":["버즈 라이트이어"]},
+{"t":"혹성탈출: 진화의 시작","dt":"2011-08-17","sd":["로맨틱 크라운"]},
+{"t":"빅 히어로","dt":"2015-01-21","sd":["강남 1970", "존 윅", "엑스 마키나"]},
+{"t":"내가 살인범이다","dt":"2012-11-08","sd":["업사이드 다운", "나우이즈굿 "]},
+{"t":"가디언즈 오브 갤럭시 VOL. 2","dt":"2017-05-03","sd":["보안관", "보스 베이비", "슈퍼 빼꼼: 스파이 대작전"]},
+{"t":"부당거래","dt":"2010-10-28","sd":["가디언의 전설", "나탈리"]},
+{"t":"토르: 러브 앤 썬더","dt":"2022-07-06","sd":["빅샤크4: 바다공룡 대모험"]},
+{"t":"미스 페레그린과 이상한 아이들의 집","dt":"2016-09-28","sd":["브리짓 존스의 베이비", "아수라", "설리: 허드슨강의 기적"]},
+{"t":"나우 유 씨 미 : 마술사기단","dt":"2013-08-22","sd":["R.I.P.D. : 알.아이.피.디.", "투 마더스", "일대종사"]},
+{"t":"소원","dt":"2013-10-02","sd":["깡철이", "프리즈너스", "로덴시아: 마법왕국의 전설"]},
+{"t":"시라노; 연애조작단","dt":"2010-09-16","sd":["퀴즈왕", "레지던트 이블 4: 끝나지 않은 전쟁 3D", "무적자"]},
+{"t":"곤지암","dt":"2018-03-28","sd":["7년의 밤", "레디 플레이어 원"]},
+{"t":"브레이킹 던 part2","dt":"2012-11-15","sd":["자칼이 온다", "살인소설"]},
+{"t":"살인자의 기억법","dt":"2017-09-06","sd":["그것"]},
+{"t":"후궁 : 제왕의 첩","dt":"2012-06-06","sd":["마다가스카3 : 이번엔 서커스다!", "프로메테우스"]},
+{"t":"미니언즈","dt":"2015-07-29","sd":["고녀석 맛나겠다2 : 함께라서 행복해"]},
+{"t":"지금 만나러 갑니다","dt":"2018-03-14","sd":["치즈인더트랩", "허리케인 하이스트"]},
+{"t":"만약에 우리","dt":"2025-12-31","sd":["신의악단"]},
+{"t":"위험한 상견례","dt":"2011-03-31","sd":["줄리아의 눈", "미트 페어런츠 3", "베니싱"]},
+{"t":"도리를 찾아서","dt":"2016-07-06","sd":["봉이 김선달"]},
+{"t":"탈주","dt":"2024-07-03","sd":["퍼펙트 데이즈"]},
+{"t":"드래곤 길들이기","dt":"2010-05-20","sd":["내 깡패 같은 애인", "나이트메어"]},
+{"t":"드래곤 길들이기","dt":"2025-06-06","sd":["브링 허 백"]},
+{"t":"기술자들","dt":"2014-12-24","sd":["상의원", "숲속으로", "눈의 여왕 2: 트롤의 마법거울"]},
+{"t":"라스트 갓파더","dt":"2010-12-29","sd":["트론: 새로운 시작", "아메리칸"]},
+{"t":"히트맨2","dt":"2025-01-22","sd":["극장판 포켓몬스터 AG: 뮤와 파동의 용사 루카리오"]},
+{"t":"정글북","dt":"2016-06-09","sd":["컨저링 2", "워크래프트: 전쟁의 서막", "본 투 비 블루"]},
+{"t":"엑스맨: 퍼스트 클래스","dt":"2011-06-02","sd":["레지던트"]},
+{"t":"증인","dt":"2019-02-13","sd":["기묘한 가족"]},
+{"t":"목격자","dt":"2018-08-15","sd":["메가로돈", "극장판 도라에몽: 진구의 보물섬"]}
+];
+
 const SCORE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyVl_9H-axF2BPzAjH28T92tD_bLzvmfbpYTvd4Nq_0ObhesNDnsWn1_E6Mnp3g4F5n6g/exec';
 
 // ── S모드 AI 퀴즈 설정 ──────────────────────────────────────────────────────
@@ -22256,8 +22461,26 @@ class CineMasterApp {
 
     // Load questions based on type (setup 함수는 switchView 이후에 호출)
     if (type === 'score') {
-      const rawPool = MOVIES_DATABASE;
-      const pool = this._deduplicatePool(rawPool);
+      // AI_QUIZ_MOVIES (350편, CSV 실측 데이터) 기반으로 풀 구성
+      // openingDayCat, openingWeekCat, finalCat 모두 있는 영화만
+      const aiPool = (typeof AI_QUIZ_MOVIES !== 'undefined' ? AI_QUIZ_MOVIES : [])
+        .filter(m => m.openingDayCat && m.openingWeekCat && m.finalCat);
+      const pool = this._deduplicatePool(
+        aiPool.map(m => ({
+          id: 'ai_' + m.title,
+          title: m.title,
+          releaseDate: m.openDt,
+          director: m.director,
+          cast: m.actors || [],
+          posterUrl: (MOVIES_DATABASE.find(db => db.title === m.title) || {}).posterUrl || '',
+          openingDayScore: m.openingDayCat,
+          openingWeekScore: m.openingWeekCat,
+          finalScore: m.finalCat,
+          openingSeats: '',
+          vodSales: '',
+          svodOtt: ''
+        }))
+      );
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
       this._recordShownMovies(this.currentQuiz.movies);
       this.currentQuiz.currentStep = 0;
@@ -22468,13 +22691,11 @@ class CineMasterApp {
       this.showAnswerOverlay(false, "시간 초과!", `시간 초과! 정답은 <b>${movie.title}</b>입니다.`);
     }
     else if (this.currentQuiz.type === 'special_ai') {
-      // AI 퀴즈: 시간 초과 시 오답 처리 후 다음 문제로 이동
+      // AI 퀴즈: 시간 초과 시 정답 표시 후 다음 문제로 이동 (마지막 문제도 오버레이 표시)
+      const prevQ = (this.currentQuiz.aiQuestions || [])[this.currentQuiz.aiCurrentQ];
+      const correctAns = prevQ ? prevQ.answer : '';
       this.currentQuiz.aiCurrentQ++;
-      if (this.currentQuiz.aiCurrentQ < (this.currentQuiz.aiQuestions || []).length) {
-        this.showAnswerOverlay(false, "시간 초과!", "시간이 초과되었습니다. 다음 문제로 이동합니다.");
-      } else {
-        this._finishSpecialAiQuiz();
-      }
+      this.showAnswerOverlay(false, "시간 초과!", `정답은 <b>${correctAns}</b>입니다.`);
     }
   }
 
@@ -22500,28 +22721,21 @@ class CineMasterApp {
       poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
     }
 
-    // Populate Option items lists
-    // Q1 Seats
-    document.getElementById('q-score-seats').innerHTML = this.renderRadioOptions('quiz-seats', GAME_OPTIONS.openingSeats);
-
-    // Q2 Opening Day
+    // 3단계 퀴즈: 개봉일 관객수 / 개봉주 관객수 / 최종 관객수
+    // (좌석수/VOD/OTT는 데이터 없는 항목이 대부분이므로 제외)
     document.getElementById('q-score-opening-day').innerHTML = this.renderRadioOptions('quiz-opday', GAME_OPTIONS.openingDayScore);
-
-    // Q3 Opening Week
     document.getElementById('q-score-opening-week').innerHTML = this.renderRadioOptions('quiz-opweek', GAME_OPTIONS.openingWeekScore);
-
-    // Q4 Final Score
     document.getElementById('q-score-final').innerHTML = this.renderRadioOptions('quiz-final', GAME_OPTIONS.finalScore);
 
-    // Q5 VOD
-    document.getElementById('q-score-vod').innerHTML = this.renderRadioOptions('quiz-vod', GAME_OPTIONS.vodSales);
+    // 사용되지 않는 step 0,4,5는 비워서 숨김 처리
+    ['q-score-seats','q-score-vod','q-score-ott'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.closest('.step-card').style.display = 'none';
+    });
 
-    // Q6 OTT
-    document.getElementById('q-score-ott').innerHTML = this.renderRadioOptions('quiz-ott', GAME_OPTIONS.svodOtt);
-
-    // Reset step indicators
-    this.currentQuiz.currentStep = 0;
-    this.currentQuiz.stepAnswers = [];
+    // Reset step indicators (3단계: step 1,2,3 사용)
+    this.currentQuiz.currentStep = 1; // step 0(좌석) 건너뛰고 step 1(개봉일)부터
+    this.currentQuiz.stepAnswers = [null]; // step 0 placeholder
     this.currentQuiz.correctAnswersCount = 0;
     
     this.renderScoreQuizStepUI();
@@ -22570,68 +22784,50 @@ class CineMasterApp {
       }
     });
 
-    // Toggle button caption based on final step
+    // Toggle button caption based on final step (3단계: step 3이 마지막)
     const nextBtn = document.getElementById('btn-next-step');
-    if (step === 5) {
-      nextBtn.querySelector('span').innerText = '흥행 분석 결과 제출';
-      nextBtn.querySelector('span:last-child').innerText = 'done_all';
-    } else {
-      nextBtn.querySelector('span').innerText = '답안 제출 & 다음 질문';
-      nextBtn.querySelector('span:last-child').innerText = 'navigate_next';
+    if (nextBtn) {
+      if (step === 3) {
+        nextBtn.querySelector('span').innerText = '흥행 분석 결과 제출';
+        nextBtn.querySelector('span:last-child').innerText = 'done_all';
+      } else {
+        nextBtn.querySelector('span').innerText = '답안 제출 & 다음 질문';
+        nextBtn.querySelector('span:last-child').innerText = 'navigate_next';
+      }
     }
   }
 
-  // Submit step answer inside the Score quiz
+  // Submit step answer inside the Score quiz (3단계: step1=개봉일, step2=개봉주, step3=최종)
   submitScoreStepAnswer() {
     clearInterval(this.currentQuiz.timerId);
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     const step = this.currentQuiz.currentStep;
 
     let isCorrect = false;
-    let xpGain = 0;
+    let xpGain = 20;
 
-    // Grade according to the active step index
-    if (step === 0) {
-      const val = document.querySelector('input[name="quiz-seats"]:checked')?.value;
-      if (!val) { showToast("좌석수를 선택해 주세요.", "warn"); this.startTimer(); return; }
-      isCorrect = val === movie.openingSeats;
-      if (this.currentQuiz.isUpcoming) this.currentQuiz.upcomingAnswers.openingSeats = val;
-      xpGain = 15;
-    }
-    else if (step === 1) {
+    if (step === 1) {
       const val = document.querySelector('input[name="quiz-opday"]:checked')?.value;
-      if (!val) { showToast("개봉일 스코어를 선택해 주세요.", "warn"); this.startTimer(); return; }
+      if (!val) { showToast("개봉일 관객수를 선택해 주세요.", "warn"); this.startTimer(); return; }
       isCorrect = val === movie.openingDayScore;
       if (this.currentQuiz.isUpcoming) this.currentQuiz.upcomingAnswers.openingDayScore = val;
-      xpGain = 15;
     }
     else if (step === 2) {
       const val = document.querySelector('input[name="quiz-opweek"]:checked')?.value;
-      if (!val) { showToast("개봉주 누적 스코어를 선택해 주세요.", "warn"); this.startTimer(); return; }
+      if (!val) { showToast("개봉주 누적 관객수를 선택해 주세요.", "warn"); this.startTimer(); return; }
       isCorrect = val === movie.openingWeekScore;
       if (this.currentQuiz.isUpcoming) this.currentQuiz.upcomingAnswers.openingWeekScore = val;
-      xpGain = 15;
     }
     else if (step === 3) {
       const val = document.querySelector('input[name="quiz-final"]:checked')?.value;
-      if (!val) { showToast("최종 스코어를 선택해 주세요.", "warn"); this.startTimer(); return; }
+      if (!val) { showToast("최종 관객수를 선택해 주세요.", "warn"); this.startTimer(); return; }
       isCorrect = val === movie.finalScore;
       if (this.currentQuiz.isUpcoming) this.currentQuiz.upcomingAnswers.finalScore = val;
-      xpGain = 15;
     }
-    else if (step === 4) {
-      const val = document.querySelector('input[name="quiz-vod"]:checked')?.value;
-      if (!val) { showToast("VOD 매출을 선택해 주세요.", "warn"); this.startTimer(); return; }
-      isCorrect = val === movie.vodSales;
-      if (this.currentQuiz.isUpcoming) this.currentQuiz.upcomingAnswers.vodSales = val;
-      xpGain = 15;
-    }
-    else if (step === 5) {
-      const val = document.querySelector('input[name="quiz-ott"]:checked')?.value;
-      if (!val) { showToast("SVOD OTT를 선택해 주세요.", "warn"); this.startTimer(); return; }
-      isCorrect = val === movie.svodOtt;
-      if (this.currentQuiz.isUpcoming) this.currentQuiz.upcomingAnswers.svodOtt = val;
-      xpGain = 15;
+    else {
+      // step 0, 4, 5 는 사용 안 함 → 즉시 다음으로
+      this.advanceScoreQuizStep();
+      return;
     }
 
     // Play quick visual & audio feedback
@@ -22667,11 +22863,16 @@ class CineMasterApp {
   advanceScoreQuizStep() {
     this.currentQuiz.currentStep++;
     
-    if (this.currentQuiz.currentStep < 6) {
+    // step 0, 4, 5는 건너뜀
+    if ([0, 4, 5].includes(this.currentQuiz.currentStep)) {
+      this.currentQuiz.currentStep++;
+    }
+
+    if (this.currentQuiz.currentStep < 4) {
       this.renderScoreQuizStepUI();
       this.startTimer();
     } else {
-      // Completed Q1-Q6 for this movie card.
+      // step 1, 2, 3 완료 (3문제)
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
 
       // ── 개봉예정작: 채점 없이 "예측 접수 완료" 표시 ───────────────────
@@ -22689,7 +22890,7 @@ class CineMasterApp {
 
       // ── 개봉작: 정상 채점 ─────────────────────────────────────────────
       const correctCount = this.currentQuiz.correctAnswersCount;
-      const isRoundSuccess = correctCount >= 4;
+      const isRoundSuccess = correctCount >= 2; // 3문제 중 2개 이상
       
       if (isRoundSuccess) {
         this.currentQuiz.score++;
@@ -22784,6 +22985,10 @@ class CineMasterApp {
   }
 
   gradeFilmoQuiz(chosenTitle, isCorrect, answer, isNegativeQuestion) {
+    // 중복 클릭 방지 (오버레이 표시 중에는 재호출 차단)
+    if (this._filmoGrading) return;
+    this._filmoGrading = true;
+    setTimeout(() => { this._filmoGrading = false; }, 3000);
     clearInterval(this.currentQuiz.timerId);
     
     const xpReward = 20;
@@ -22836,28 +23041,29 @@ class CineMasterApp {
     const quoteCard = document.querySelector('.quote-card');
     const choseongCard = document.querySelector('.choseong-card');
 
-    if (subType === 'quote' || (!hasChoseong && hasLines)) {
-      // 명대사 모드
+    // subType 우선 처리, 해당 데이터 없으면 fallback
+    const showQuote = (subType === 'quote' && hasLines) ||
+                      (subType !== 'choseong' && hasLines && !hasChoseong) ||
+                      (subType === null && hasLines);
+    const showChoseong = (subType === 'choseong' && hasChoseong) ||
+                         (subType !== 'quote' && hasChoseong && !hasLines) ||
+                         (subType === null && hasChoseong && !hasLines);
+
+    if (showQuote) {
       if (quoteCard) quoteCard.style.display = '';
       if (choseongCard) choseongCard.style.display = 'none';
-      if (hasLines) {
-        const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
-        document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
-        document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
-      }
-    } else if (subType === 'choseong' || (!hasLines && hasChoseong)) {
-      // 초성 모드
+      const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
+      document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
+      document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
+    } else if (showChoseong) {
       if (quoteCard) quoteCard.style.display = 'none';
       if (choseongCard) choseongCard.style.display = '';
       document.getElementById('choseong-display').innerText = movie.choseong;
     } else {
-      // 기본: 둘 다 표시 (hasLines && hasChoseong 보장됨)
-      if (quoteCard) quoteCard.style.display = '';
+      // 초성만 있는 경우 (famousLines=0, choseong만 있음) → 항상 초성 표시
+      if (quoteCard) quoteCard.style.display = 'none';
       if (choseongCard) choseongCard.style.display = '';
-      const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
-      document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
-      document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
-      document.getElementById('choseong-display').innerText = movie.choseong;
+      if (hasChoseong) document.getElementById('choseong-display').innerText = movie.choseong;
     }
     
     // E모드 포스터 설정
@@ -23586,13 +23792,13 @@ class CineMasterApp {
       // 이미지 프리로딩으로 404 감지 후 fallback
       const img = new Image();
       img.onload = () => {
+        // background='' 는 backgroundImage를 초기화하므로 제거
         crop.style.backgroundImage    = `url('${movie.posterUrl}')`;
         crop.style.backgroundSize     = `${posterW * 2}px ${posterH * 2}px`;
         crop.style.backgroundPosition = `${offsetX * 2}px ${offsetY * 2}px`;
         crop.style.width              = `${posterW * 2}px`;
         crop.style.height             = `${posterH * 2}px`;
         crop.style.backgroundRepeat   = 'no-repeat';
-        crop.style.background         = '';
       };
       img.onerror = () => {
         // 포스터 로드 실패 → 그레이 배경 + 아이콘
@@ -23690,128 +23896,157 @@ class CineMasterApp {
     if (loading) loading.style.display = 'block';
     if (body)    body.style.display    = 'none';
 
-    try {
-      const questions = await this._generateAiQuestions();
-      if (!questions || questions.length === 0) {
-        showToast('문제 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
-        this.switchView('dashboard');
-        return;
-      }
-
-      this.currentQuiz.aiQuestions = questions;
-      this.currentQuiz.aiCurrentQ  = 0;
-      this.currentQuiz.aiCorrect   = 0;
-
-      if (loading) loading.style.display = 'none';
-      if (body)    body.style.display    = 'block';
-
-      this._renderSpecialAiQuestion();
-    } catch (err) {
-      console.error('Special AI Quiz error:', err);
-      showToast('오류가 발생했습니다: ' + err.message, 'error');
+    // 로컬 CSV 데이터로 즉시 문제 생성 (AI/GAS 불필요)
+    const questions = this._generateLocalQuiz();
+    if (!questions || questions.length === 0) {
+      showToast('문제 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
       this.switchView('dashboard');
+      return;
     }
+
+    this.currentQuiz.aiQuestions = questions;
+    this.currentQuiz.aiCurrentQ  = 0;
+    this.currentQuiz.aiCorrect   = 0;
+
+    if (loading) loading.style.display = 'none';
+    if (body)    body.style.display    = 'block';
+
+    this._renderSpecialAiQuestion();
   }
 
-  // ── S모드: AI_QUIZ_MOVIES 내장 데이터 기반 문제 생성 (GAS JSONP 프록시) ──
-  async _generateAiQuestions() {
-    // 세션 내 이미 사용한 영화 추적 (동일 문제 반복 방지)
-    const usedKey = 'score_ai_used_' + new Date().toDateString();
+  // ── S모드: CSV 로컬 데이터 기반 퀴즈 생성 (AI 불필요) ──────────────────
+  _generateLocalQuiz() {
+    const usedKey = 'score_local_used_' + new Date().toDateString();
     let usedTitles = [];
     try { usedTitles = JSON.parse(sessionStorage.getItem(usedKey) || '[]'); } catch(e) {}
 
-    // AI_QUIZ_MOVIES에서 랜덤 12편 샘플 (URL 초과 방지 — GAS GET 한도 ~6KB)
-    const pool = AI_QUIZ_MOVIES.filter(m => !usedTitles.includes(m.title));
-    const src = (pool.length >= 8 ? pool : AI_QUIZ_MOVIES)
-      .slice()
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 12);
+    // ── 유형 1: 동시개봉 퀴즈 ──────────────────────────────────────────
+    // "다음 중 [영화]와 같은 날(YYYY-MM-DD) 개봉한 영화는?"
+    const sdPool = (typeof SAME_DAY_QUIZ !== 'undefined' ? SAME_DAY_QUIZ : [])
+      .filter(q => !usedTitles.includes(q.t) && q.sd && q.sd.length >= 1);
+    const sdSampled = this.shuffleArray([...sdPool]).slice(0, 15);
 
-    // 사용 기록 저장
-    const newUsed = [...new Set([...usedTitles, ...src.map(m => m.title)])].slice(-150);
-    try { sessionStorage.setItem(usedKey, JSON.stringify(newUsed)); } catch(e) {}
+    // ── 유형 2: 개봉일/개봉주/최종 관객수 범주 퀴즈 ────────────────────
+    const scorePool = (typeof AI_QUIZ_MOVIES !== 'undefined' ? AI_QUIZ_MOVIES : [])
+      .filter(m => !usedTitles.includes(m.title) && m.openingDayCat && m.openingWeekCat && m.finalCat);
+    const scoreSampled = this.shuffleArray([...scorePool]).slice(0, 15);
 
-    // 필드 최소화: 8편, 핵심 필드만 (URL 4KB 이내 유지)
-    const minData = src.slice(0, 8).map(m => ({
-      t: m.title,
-      d: m.director,
-      a: m.actors.slice(0, 2).join('/'),
-      od: m.openingDayCat || '',
-      ow: m.openingWeekCat || '',
-      f: m.finalCat || '',
-      yr: m.openDt ? m.openDt.slice(0, 4) : ''
-    }));
-
-    // 개봉일 스코어 + 필모그래피 위주 프롬프트 (최대 압축)
-    const prompt = `영화퀴즈. 데이터로 4지선다10문제 JSON출력.\nD:${JSON.stringify(minData, null, 0)}\n유형:①개봉일관객(od,1~5만명/5~10만명/11~20만명/21만명이상)②개봉주관객(ow,10만이하/11~50만/51~100만/101만이상)③최종관객(f,11~50만/51~100만/101만이상/201~300만/301~500만/501만이상)④감독필모⑤배우필모 — ①②③5개이상④⑤3개이상\n규칙:데이터값만정답,오답유사값,중복금지,한국어\n[{"q":"질문","o":["A","B","C","D"],"a":"정답","e":"근거","m":"영화"}]`;
-
-    // GAS JSONP로 Gemini 호출 (URL 총 ~4KB 이내)
-    return new Promise((resolve) => {
-      const cbName = '_aiCb_' + Date.now() + '_' + Math.floor(Math.random()*9999);
-      const script = document.createElement('script');
-      let settled = false;
-      const timer = setTimeout(() => {
-        if (settled) return; settled = true;
-        delete window[cbName];
-        if (script.parentNode) script.parentNode.removeChild(script);
-        console.error('AI quiz: GAS timeout');
-        resolve(null);
-      }, 35000);
-
-      window[cbName] = (data) => {
-        if (settled) return; settled = true;
-        clearTimeout(timer);
-        delete window[cbName];
-        if (script.parentNode) script.parentNode.removeChild(script);
-        if (!data || data.status !== 'ok' || !data.text) {
-          console.error('GAS error:', data && data.message);
-          resolve(null);
-          return;
-        }
-        try {
-          let text = data.text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-          // q→question, o→options, a→answer, e→explanation, m→movieTitle 필드 정규화
-          text = text
-            .replace(/"q":/g, '"question":')
-            .replace(/"o":/g, '"options":')
-            .replace(/"a":/g, '"answer":')
-            .replace(/"e":/g, '"explanation":')
-            .replace(/"m":/g, '"movieTitle":');
-          const match = text.match(/\[[\s\S]*\]/);
-          if (!match) { resolve(null); return; }
-          const qs = JSON.parse(match[0]);
-          const valid = qs.filter(q =>
-            (q.question || q.q) && Array.isArray(q.options || q.o) &&
-            (q.options || q.o).length === 4 &&
-            (q.answer || q.a) && (q.options || q.o).includes(q.answer || q.a)
-          ).map(q => ({
-            question: q.question || q.q,
-            options: q.options || q.o,
-            answer: q.answer || q.a,
-            explanation: q.explanation || q.e || '',
-            movieTitle: q.movieTitle || q.m || ''
-          })).slice(0, 10);
-          resolve(valid.length >= 3 ? valid : null);
-        } catch(e) {
-          console.error('AI parse error:', e);
-          resolve(null);
-        }
-      };
-
-      const encodedPrompt = encodeURIComponent(prompt);
-      script.src = SCORE_SHEET_WEBHOOK_URL
-        + '?action=geminiGenerate'
-        + '&callback=' + cbName
-        + '&temperature=0.7'
-        + '&prompt=' + encodedPrompt;
-      script.onerror = () => {
-        if (settled) return; settled = true;
-        clearTimeout(timer);
-        delete window[cbName];
-        resolve(null);
-      };
-      document.head.appendChild(script);
+    // ── 유형 3: 감독 필모그래피 퀴즈 ──────────────────────────────────
+    // "다음 중 [감독]의 작품이 아닌 것은?" — AI_QUIZ_MOVIES 감독 그룹으로 생성
+    const dirMap = {};
+    (typeof AI_QUIZ_MOVIES !== 'undefined' ? AI_QUIZ_MOVIES : []).forEach(m => {
+      if (!m.director) return;
+      const dirs = m.director.split(',').map(d => d.trim());
+      dirs.forEach(d => {
+        if (!dirMap[d]) dirMap[d] = [];
+        dirMap[d].push(m.title);
+      });
     });
+    const validDirs = Object.entries(dirMap).filter(([, films]) => films.length >= 2);
+
+    const questions = [];
+    const usedNew = new Set(usedTitles);
+
+    // ── 동시개봉 문제 3개 ──────────────────────────────────────────────
+    const dayCategories = ['1~5만명','5~10만명','11~20만명','21만명 이상'];
+    const weekCategories = ['10만명 이하','11~50만명','51~100만명','101만명 이상'];
+    const finalCategories = ['11~50만명','51~100만명','101만명 이상','201~300만명','301~500만명','501만명 이상'];
+
+    for (let i = 0; i < sdSampled.length && questions.length < 3; i++) {
+      const q = sdSampled[i];
+      if (usedNew.has(q.t)) continue;
+      // 오답: 다른 날 개봉한 영화들 (AI_QUIZ_MOVIES에서 랜덤)
+      const wrongPool = scoreSampled.filter(m => m.title !== q.t && !q.sd.includes(m.title));
+      if (wrongPool.length < 3) continue;
+      const wrongs = this.shuffleArray([...wrongPool]).slice(0, 3).map(m => m.title);
+      // 정답 포함 섞기
+      const correctAns = q.sd[0]; // 실제 같은 날 개봉한 영화
+      // 단, 정답 영화가 실제로 same_day에 있는 것 확인
+      const options = this.shuffleArray([correctAns, ...wrongs]);
+      questions.push({
+        question: `다음 중 영화 <b>${q.t}</b>(${q.dt} 개봉)와 같은 날 개봉한 영화는?`,
+        options,
+        answer: correctAns,
+        explanation: `${q.t}은 ${q.dt} 개봉이며, ${correctAns}도 같은 날 개봉했습니다.`,
+        movieTitle: q.t,
+        type: 'sameday'
+      });
+      usedNew.add(q.t);
+    }
+
+    // ── 개봉일 관객수 범주 문제 3개 ────────────────────────────────────
+    for (let i = 0; i < scoreSampled.length && questions.length < 6; i++) {
+      const m = scoreSampled[i];
+      if (usedNew.has(m.title) || !m.openingDayCat) continue;
+      const correct = m.openingDayCat;
+      const wrongs = dayCategories.filter(c => c !== correct);
+      const options = this.shuffleArray([correct, ...this.shuffleArray(wrongs).slice(0, 3)]);
+      questions.push({
+        question: `<b>${m.title}</b>(${m.openDt} 개봉)의 개봉일 관객수 범주는?`,
+        options,
+        answer: correct,
+        explanation: `${m.title}의 개봉일 관객 ${(m.opening_day_audi||0).toLocaleString()}명 → ${correct}`,
+        movieTitle: m.title,
+        type: 'opening_day'
+      });
+      usedNew.add(m.title);
+    }
+
+    // ── 개봉주 누적 관객수 범주 문제 2개 ──────────────────────────────
+    const scoreRem = scoreSampled.filter(m => !usedNew.has(m.title) && m.openingWeekCat);
+    for (let i = 0; i < scoreRem.length && questions.length < 8; i++) {
+      const m = scoreRem[i];
+      const correct = m.openingWeekCat;
+      const wrongs = weekCategories.filter(c => c !== correct);
+      const options = this.shuffleArray([correct, ...this.shuffleArray(wrongs).slice(0, 3)]);
+      questions.push({
+        question: `<b>${m.title}</b>의 개봉 첫 주 누적 관객수 범주는?`,
+        options,
+        answer: correct,
+        explanation: `${m.title}의 개봉주 누적 ${(m.opening_week_audi||0).toLocaleString()}명 → ${correct}`,
+        movieTitle: m.title,
+        type: 'opening_week'
+      });
+      usedNew.add(m.title);
+    }
+
+    // ── 감독 필모그래피 문제 2개 ────────────────────────────────────────
+    const dirSampled = this.shuffleArray([...validDirs]).slice(0, 10);
+    for (let i = 0; i < dirSampled.length && questions.length < 10; i++) {
+      const [dir, films] = dirSampled[i];
+      // "감독 X의 작품이 아닌 것은?" — 정답은 다른 감독 영화
+      const correctFilm = films[0]; // 실제 작품
+      // 오답 1개 (다른 감독 영화)
+      const otherDirFilms = (typeof AI_QUIZ_MOVIES !== 'undefined' ? AI_QUIZ_MOVIES : [])
+        .filter(m => {
+          if (!m.director) return false;
+          const dirs = m.director.split(',').map(d => d.trim());
+          return !dirs.includes(dir) && !usedNew.has(m.title);
+        });
+      if (otherDirFilms.length < 1) continue;
+      const fakeFilm = this.shuffleArray([...otherDirFilms])[0].title;
+      // 나머지 보기: 감독의 다른 실제 작품들
+      const otherRealFilms = this.shuffleArray(films.filter(f => f !== correctFilm)).slice(0, 2);
+      if (otherRealFilms.length < 2) continue;
+      const options = this.shuffleArray([fakeFilm, ...otherRealFilms, correctFilm]);
+      questions.push({
+        question: `다음 중 감독 <b>${dir}</b>의 연출작이 <b>아닌</b> 것은?`,
+        options,
+        answer: fakeFilm,
+        explanation: `${fakeFilm}은 ${dir} 감독 작품이 아닙니다. ${dir} 작품: ${films.slice(0,3).join(', ')}`,
+        movieTitle: correctFilm,
+        type: 'director'
+      });
+    }
+
+    // 10개로 슬라이스
+    const finalQs = this.shuffleArray(questions).slice(0, 10);
+
+    // 사용 영화 기록
+    const newUsedArr = [...new Set([...usedTitles, ...finalQs.map(q => q.movieTitle)])].slice(-200);
+    try { sessionStorage.setItem(usedKey, JSON.stringify(newUsedArr)); } catch(e) {}
+
+    return finalQs;
   }
 
   _renderSpecialAiQuestion() {
@@ -23834,7 +24069,7 @@ class CineMasterApp {
     if (progressEl) progressEl.textContent = `${idx + 1} / ${total}`;
     if (progressBar) progressBar.style.width = `${((idx + 1) / total) * 100}%`;
     if (scoreEl) scoreEl.textContent = `정답 ${this.currentQuiz.aiCorrect}`;
-    if (questionEl) questionEl.textContent = q.question;
+    if (questionEl) questionEl.innerHTML = q.question; // <b> 태그 지원
 
     // 포스터: movieTitle(GAS 응답) 또는 posterKeyword로 MOVIES_DATABASE 검색
     if (posterEl) {

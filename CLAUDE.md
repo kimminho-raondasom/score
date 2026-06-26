@@ -210,3 +210,75 @@ startQuiz(type, subType, battleMode)
 ```
 
 이전 버전은 5번이 1번 직후에 실행되어 DOM이 숨겨진 상태에서 backgroundImage 설정 → 브라우저 렌더링 지연으로 포스터 미표시 가능성.
+
+---
+
+## 2026-06-26 3차 수정 (제3자 테스트 기반 종합 수정)
+
+### 테스트 결과 발견된 핵심 버그
+
+| 우선순위 | 버그 | 원인 | 수정 |
+|---|---|---|---|
+| P0 | C모드 스텝 0/4/5 항상 오답 | MOVIES_DATABASE 99.4%가 openingSeats/VOD/OTT 비어있음 | 3단계(개봉일/개봉주/최종)로 축소 + AI_QUIZ_MOVIES 350편 풀로 교체 |
+| P0 | E모드 초성퀴즈가 모든 화면에 노출 | quote-card/choseong-card에 CSS display:none 없음 | CSS에 초기 display:none 추가, JS에서 showQuote/showChoseong 토글 |
+| P0 | E모드 subType='choseong'인데 명대사 표시 | `!hasChoseong && hasLines`가 subType 보다 우선 처리됨 | subType 우선 처리하는 조건 로직으로 전면 교체 |
+| P0 | S모드 AI 퀴즈 항상 실패 | GAS URL 초과, Gemini 응답 불안정 | **CSV 로컬 퀴즈로 완전 대체 (AI/GAS 제거)** |
+| P1 | O모드 첫 로드 시 포스터 미표시 | `img.onload` 내 `crop.style.background = ''`가 backgroundImage 초기화 | `background = ''` 줄 제거 |
+| P1 | C모드 Enter 키로 제출 불가 | `form-challenge-quiz` HTML 폼 없음 | form 태그로 래핑 추가 |
+| P2 | R모드 중복 클릭 시 XP 중복 | 오버레이 표시 중 재클릭 가능 | `_filmoGrading` 플래그로 3초간 차단 |
+| P2 | S모드 마지막 문제 타임아웃 즉시 종료 | 마지막 문제에서 오버레이 없이 _finishSpecialAiQuiz() 직접 호출 | 정답 표시 오버레이 추가 후 종료 |
+
+### S모드 로컬 퀴즈 구조 (AI 제거)
+
+**데이터 소스:**
+- `AI_QUIZ_MOVIES` (350편, CSV 기반): 개봉일/주/최종 관객수 범주 포함
+- `SAME_DAY_QUIZ` (200건, CSV 기반): 동시개봉 정보
+
+**문제 유형 (10문제):**
+1. **동시개봉 퀴즈** (3문제): "다음 중 [영화A]와 같은 날 개봉한 영화는?" — 정답: 실제 같은 날 개봉, 오답: 다른 날짜 영화
+2. **개봉일 관객수 범주** (3문제): "다음 중 [영화]의 개봉일 관객수 범주는?" — 4지선다
+3. **개봉주 누적 관객수** (2문제): "개봉 첫 주 누적 관객수는?" — 4지선다
+4. **감독 필모그래피** (2문제): "다음 중 [감독]의 작품이 아닌 것은?" — 4지선다
+
+**반복 방지:** `sessionStorage`에 당일 사용한 영화 목록 저장, 다음 퀴즈에서 미사용 영화 우선 샘플링
+
+### C모드 3단계 퀴즈 구조
+
+**풀:** `AI_QUIZ_MOVIES` 350편 (openingDayCat + openingWeekCat + finalCat 모두 있는 영화만)  
+**단계:**
+1. Step 1: 개봉일 관객수 범주 (1~5만명/5~10만명/11~20만명/21만명 이상)
+2. Step 2: 개봉 첫 주 누적 관객수 (10만명 이하/11~50만명/51~100만명/101만명 이상)
+3. Step 3: 최종 누적 관객수 (11~50만명/51~100만명/101만명 이상/201~300만명/301~500만명/501만명 이상)
+
+**성공 기준:** 3문제 중 2개 이상 (기존 6문제 중 4개에서 변경)
+
+### E모드 초성/명대사 토글 로직
+
+```javascript
+const showQuote   = (subType === 'quote' && hasLines) ||
+                    (subType !== 'choseong' && hasLines && !hasChoseong) ||
+                    (subType === null && hasLines);
+const showChoseong = (subType === 'choseong' && hasChoseong) ||
+                     (subType !== 'quote' && hasChoseong && !hasLines) ||
+                     (subType === null && hasChoseong && !hasLines);
+```
+
+MOVIES_DATABASE에 famousLines=0개, choseong=26개만 있으므로 현재는 초성 퀴즈만 사용 가능.
+famousLines 데이터 추가 시 명대사 퀴즈도 자동으로 활성화됨.
+
+### 데이터 갱신 방법
+
+**SAME_DAY_QUIZ 재생성** (past_boxoffice.csv 갱신 시):
+```python
+# 서버에서 실행
+python3 << 'EOF'
+import csv, json
+from collections import defaultdict
+# ... (gen_same_day_quiz.py 스크립트 작성 필요)
+EOF
+```
+
+**AI_QUIZ_MOVIES 재생성** (past_boxoffice.csv + movie_details.csv 갱신 시):
+```bash
+# /tmp/opencode/ai_quiz_movies.js 재생성 후 index.html에 반영
+```
