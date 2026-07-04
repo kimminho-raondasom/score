@@ -1352,12 +1352,12 @@ button, .btn {
 }
 
 .quiz-mode-panel {
-  display: none;
+  display: none !important;
   width: 100%;
 }
 
 .quiz-mode-panel.active {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
 }
 
@@ -3351,7 +3351,7 @@ html, body, .app-container, .view-section, .glass-card {
               </label>
             </div>
             <div class="consent-text-box">
-              score 서비스 제공을 위해 실명, 연령대 및 성별 정보를 수집하며, 해당 정보는 영화 퀴즈 분석 통계 및 서비스 개선 용도로만 활용됩니다. 수집된 정보는 로컬 브라우저 저장소에만 안전하게 기록됩니다.
+              score 서비스 제공을 위해 실명, 연령대 및 성별 정보를 수집하며, 해당 정보는 영화 퀴즈 분석 통계 및 서비스 개선 용도로만 활용됩니다. 프로필 정보는 브라우저 저장소에 보관되며, 퀴즈 결과(닉네임·이메일·점수 등)는 통계 집계를 위해 운영자의 구글 시트에도 함께 저장됩니다.
             </div>
           </div>
 
@@ -21425,6 +21425,15 @@ class CineMasterApp {
       showToast('유효한 이메일 주소를 입력해 주세요.', 'warn'); return;
     }
 
+    // 남용 방지: 30초 이내 재요청 차단 (MailApp 일일 발송 한도 보호)
+    const now = Date.now();
+    if (this._otpLastSentAt && now - this._otpLastSentAt < 30 * 1000) {
+      const waitSec = Math.ceil((30 * 1000 - (now - this._otpLastSentAt)) / 1000);
+      showToast(`잠시 후 다시 시도해 주세요. (${waitSec}초 남음)`, 'warn');
+      return;
+    }
+    this._otpLastSentAt = now;
+
     // 6자리 랜덤 코드 생성
     const code = String(Math.floor(100000 + Math.random() * 900000));
     this._otpCode      = code;
@@ -22905,7 +22914,7 @@ class CineMasterApp {
       }
 
       const resultTitle = isRoundSuccess ? "흥행 분석 완료! (성공)" : "흥행 분석 미달 (실패)";
-      let desc = `<b>${movie.title}</b>의 6가지 예측 문항 중 <b>${correctCount}개</b>를 적중시켰습니다.<br><br>`;
+      let desc = `<b>${movie.title}</b>의 3가지 예측 문항 중 <b>${correctCount}개</b>를 적중시켰습니다.<br><br>`;
       desc += `<span style="font-size:0.8rem; color:var(--text-muted);">최종 관객: ${movie.finalScore}</span>`;
 
       this.showAnswerOverlay(isRoundSuccess, resultTitle, desc);
@@ -22917,7 +22926,11 @@ class CineMasterApp {
     const target = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     document.getElementById('filmo-target-role').innerText = target.role;
     document.getElementById('filmo-target-name').innerText = target.name;
-    
+
+    // 새 라운드 시작 시 중복 클릭 방지 락 해제 (이전 라운드 타이머가 남아있으면
+    // 사용자가 3초 안에 답을 클릭해도 아무 반응이 없는 버그 방지)
+    this._filmoGrading = false;
+
     const isQuestionNegative = Math.random() < 0.75;
     
     if (isQuestionNegative) {
@@ -23050,19 +23063,19 @@ class CineMasterApp {
                          (subType === null && hasChoseong && !hasLines);
 
     if (showQuote) {
-      if (quoteCard) quoteCard.style.display = '';
+      if (quoteCard) quoteCard.style.display = 'block';
       if (choseongCard) choseongCard.style.display = 'none';
       const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
       document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
       document.getElementById('quote-char-display').innerText = `- ${quoteObj.character}`;
     } else if (showChoseong) {
       if (quoteCard) quoteCard.style.display = 'none';
-      if (choseongCard) choseongCard.style.display = '';
+      if (choseongCard) choseongCard.style.display = 'block';
       document.getElementById('choseong-display').innerText = movie.choseong;
     } else {
       // 초성만 있는 경우 (famousLines=0, choseong만 있음) → 항상 초성 표시
       if (quoteCard) quoteCard.style.display = 'none';
-      if (choseongCard) choseongCard.style.display = '';
+      if (choseongCard) choseongCard.style.display = 'block';
       if (hasChoseong) document.getElementById('choseong-display').innerText = movie.choseong;
     }
     
