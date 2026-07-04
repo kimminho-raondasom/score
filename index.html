@@ -23367,8 +23367,14 @@ class CineMasterApp {
           this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
         }
         // prediction-overlay 표시 (기존 HTML 활용)
+        // .answer-overlay-card 클래스는 :not(.active) 상태에서 opacity:0 + pointer-events:none이
+        // 적용되므로, style.display만 바꾸는 것으로는 절대 화면에 보이지 않고 클릭도 되지 않는다.
+        // (요청 4단계에서 "제출해도 다음으로 안 넘어간다"는 버그의 실제 원인)
         const overlay = document.getElementById('prediction-overlay');
-        if (overlay) overlay.style.display = 'flex';
+        if (overlay) {
+          overlay.style.display = 'flex';
+          overlay.classList.add('active');
+        }
         return;
       }
 
@@ -23839,6 +23845,7 @@ class CineMasterApp {
       mode:    'group',
       sessionId: this.currentQuiz.groupSessionId,
       movies:  this.currentQuiz.movies,
+      isUpcoming: !!this.currentQuiz.isUpcoming,
     };
     this._showGroupRegister(answers.length + 1);
   }
@@ -23922,7 +23929,11 @@ class CineMasterApp {
     }
 
     this.switchView('quiz');
-    this.activateQuizPanel(type);
+    // type==='score'는 실제로 challenge 패널(quiz-panel-challenge)의 4지선다 UI를 사용한다.
+    // quiz-panel-score DOM은 Special AI 종합퀴즈(special_ai) 전용이므로, 여기서 'score'를 그대로
+    // 넘기면 잘못된 패널(AI 로딩 화면)이 뜨고 실제 문항은 challenge 패널에 렌더링되어 멈춘 것처럼 보인다.
+    // (단체전에서 개봉작/개봉예정작 스코어 예측 시 "다음 단계로 안 넘어간다"는 버그의 실제 원인)
+    this.activateQuizPanel(type === 'score' ? 'challenge' : type);
     this.startTimer();
   }
 
@@ -24108,7 +24119,10 @@ class CineMasterApp {
     }
     // prediction-overlay 닫기
     const overlay = document.getElementById('prediction-overlay');
-    if (overlay) overlay.style.display = 'none';
+    if (overlay) {
+      overlay.style.display = 'none';
+      overlay.classList.remove('active');
+    }
     this.switchView('dashboard');
   }
 

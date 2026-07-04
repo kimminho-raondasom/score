@@ -436,5 +436,47 @@ Playwright로 5개 섹션을 실제 클릭 흐름으로 5라운드씩 끝까지 
 - 만약 어느 주에 "감독 미정 + 포스터 없음"인 영화가 유독 많아 최종 후보가 0편이 되면, 스크립트가 `index.html`을 건드리지 않고 조용히 종료하므로 그 주는 이전 주 데이터가 유지됨(로그에서 확인 가능).
 - KOBIS API 키/TMDB API 키는 `/home/kimminho/config.py`에 있음(기존 `kobis_movies_updater.py`와 동일한 키 재사용, 별도 키 발급 불필요).
 
+---
+
+## 2026-07-04 7차 수정 (OpenCode — "4단계에서 제출해도 다음으로 안 넘어감" 버그 근본 원인 2건 발견 및 수정)
+
+### 배경
+
+사용자가 "Challenge(스코어 예측) 퀴즈에서 최종 누적관객수를 묻는 4단계(화면 상단 스텝 표시 기준 4번째 dot) 답을 제출해도 다음으로 넘어가지 않고 멈춘다"고 제보. 코드 추측이 아니라 Playwright로 실제 클릭 흐름을 단계별로 재현(라디오 클릭 → 값 체크 여부 → 제출 버튼 클릭 → 오버레이 표시 여부 → "다음" 클릭 → 화면 전환 여부)하여 정확히 두 가지 독립된 버그를 확인함. 둘 다 "개인전 개봉작"(가장 흔히 테스트되는 경로)에서는 재현되지 않고, **개봉예정작 흐름** 및 **단체전 흐름**에서만 재현되는 특징이 있어 초기 회귀 테스트(개인전 개봉작 위주)로는 잡히지 않았던 버그.
+
+### BUG-A ★★★ 개봉예정작(Challenge) 4단계 제출 후 "예측 접수 완료" 화면이 투명 처리되어 완전히 안 보이고 클릭도 안 됨
+
+- **증상 재현**: Challenge → 개봉예정작 → 개인전 → 영화 선택 → 1~3단계(화면 표시로는 2~4번째 dot) 답 제출 → 마지막 "흥행 분석 결과 제출" 클릭 → **화면이 그대로 멈춘 것처럼 보임** (실제로는 `prediction-overlay`가 DOM 상 `display:flex`로 바뀌었지만 화면엔 안 보이고 이전 화면의 라디오 버튼들이 그대로 노출된 상태로 남음).
+- **원인**: CSS에 `.answer-overlay-card:not(.active) { opacity: 0; pointer-events: none; }` 규칙이 있음(정답/오답 오버레이의 페이드인 효과용). `prediction-overlay`(개봉예정작 예측 완료 안내 화면) 역시 `class="answer-overlay-card"`를 상속받는데, `advanceScoreQuizStep()`의 개봉예정작 분기에서는 `overlay.style.display = 'flex'`만 설정하고 `classList.add('active')`를 호출하지 않았음. 그 결과 `:not(.active)` 규칙이 계속 적용되어 **`display:flex`인데도 `opacity:0`+`pointer-events:none`으로 완전히 투명하고 클릭 불가능한 상태**가 되어, 사용자 입장에서는 "제출해도 아무 반응이 없다(=멈췄다)"로 보임.
+- **수정**: `advanceScoreQuizStep()`에서 `prediction-overlay`를 열 때 `classList.add('active')`도 함께 호출. `finishUpcomingQuiz()`(오버레이의 "대시보드로 복귀" 버튼 핸들러)에서 닫을 때도 대칭적으로 `classList.remove('active')` 추가.
+- **검증**: 수정 전 스크린샷에서는 4단계 제출 후에도 라디오 옵션 화면이 그대로 남아있고 "예측 접수 완료!" 문구가 전혀 안 보였음. 수정 후에는 `getComputedStyle()` 확인 결과 `opacity:1, pointerEvents:auto`로 정상화되었고, "예측 접수 완료!" 화면이 실제로 표시되며 "대시보드로 복귀" 버튼 클릭까지 정상 작동함을 확인.
+
+### BUG-B ★★★ 단체전(Challenge, 개봉작/개봉예정작 모두)에서 완전히 잘못된 화면(AI 퀴즈 로딩 패널)이 뜨며 멈춤
+
+- **증상 재현**: Challenge → 개봉작 또는 개봉예정작 → **단체전** → 참가자 이름/PIN 등록 → 등록 완료 후 화면이 "AI가 문제를 생성하고 있습니다..." 로딩 스피너에서 멈춘 것처럼 보임(실제로는 로딩이 끝나지 않는 게 아니라, 애초에 엉뚱한 화면임).
+- **원인**: `startSpecificQuiz()`가 개별 영화의 스코어 예측 퀴즈(4지선다, 실제 DOM은 `quiz-panel-challenge`)를 시작할 때 내부적으로 `this.currentQuiz.type = 'score'`로 설정함(레거시 네이밍). 개인전에서는 `activateQuizPanel('challenge')`를 하드코딩으로 직접 호출해 문제가 없었지만, **단체전**에서는 `_pendingGroupRestart.type = 'score'`로 저장된 값이 그대로 `submitGroupRegistration()` 마지막의 `this.activateQuizPanel(type)`로 전달됨. 그런데 DOM ID `quiz-panel-score`는 실제로 "Special AI 종합퀴즈"(`type: 'special_ai'`) 전용 패널이라, 전혀 다른 화면(AI 로딩 스피너 + 10문제 진행 UI)이 열려버림. 실제 문항(4지선다 라디오)은 `quiz-panel-challenge`에 정상적으로 채워져 있었지만 화면에 보이는 패널이 다르니 사용자는 아무것도 할 수 없는 상태가 됨.
+- **수정**: `submitGroupRegistration()`의 `activateQuizPanel(type)` 호출을 `activateQuizPanel(type === 'score' ? 'challenge' : type)`로 변경해, "score 타입은 실제로 challenge 패널을 쓴다"는 사실을 명시적으로 반영. 겸사겸사 `addNextGroupPlayer()`(단체전 2번째 참가자부터 재시작하는 함수)에 `isUpcoming` 필드가 누락되어 있던 것도 함께 수정(2번째 참가자부터는 개봉예정작인데도 `isUpcoming`이 `undefined`→`false`로 되어 정답 채점을 시도하려는 잠재적 버그였음).
+- **검증**: 수정 전 스크린샷에서 단체전 등록 직후 `quiz-panel-score`(AI 로딩 화면)가 활성화되는 것을 확인. 수정 후 동일 시나리오에서 `quiz-panel-challenge`가 정상적으로 활성화되고, 4지선다 라디오 화면이 정상 표시되며 1~4단계(화면 dot 기준)를 실제로 클릭해 끝까지 진행 → 개봉작은 결과 오버레이 후 `view-finale`, 개봉예정작은 "예측 접수 완료!" 화면 후 `view-dashboard`까지 정상 도달함을 확인.
+
+### 왜 이전 회귀 테스트에서 발견되지 못했는가
+
+기존 회귀 테스트 스위트(`regression_all.py`)는 **개인전 + 개봉작(released)** 경로만 검증하고 있었음. BUG-A는 개봉예정작(isUpcoming) 전용 분기에서만 발생하고, BUG-B는 단체전(group) 전용 분기에서만 발생해 둘 다 커버되지 않았음. 재발 방지를 위해 향후 회귀 테스트에는 다음 4가지 조합을 모두 포함해야 함:
+
+| 시나리오 | 확인해야 할 것 |
+|---|---|
+| 개인전 + 개봉작 | 기존 커버리지, 계속 유지 |
+| 개인전 + 개봉예정작 | `prediction-overlay`가 실제로 보이고 클릭 가능한지 (`getComputedStyle().opacity !== '0'`) |
+| 단체전 + 개봉작 | 참가자 등록 후 `activateQuizPanel`이 여는 패널 id가 `quiz-panel-challenge`인지 |
+| 단체전 + 개봉예정작 | 위 두 가지가 동시에 해당 — 패널 확인 + 오버레이 표시 확인 모두 필요 |
+
+### 참고: `type: 'score'`라는 이름이 실제로는 두 가지 다른 UI를 가리키는 문제 (여전히 남아있는 잠재 위험)
+
+이번에 발견된 두 버그의 공통 근본 원인은, 코드 안에서 **`'score'`라는 문자열이 서로 다른 두 화면을 가리키는 데 재사용되고 있다는 점**임:
+1. `startSpecificQuiz()`가 만드는 개별 영화 스코어 예측(4지선다, 실제 DOM은 `quiz-panel-challenge`) — `this.currentQuiz.type = 'score'`
+2. Special 모드의 AI 종합퀴즈(`_startSpecialAiQuizCore()`) — `this.currentQuiz.type = 'special_ai'`이지만 패널은 `activateQuizPanel('score')`로 문자열을 직접 하드코딩해서 열기 때문에 `quiz-panel-score`라는 DOM id 자체가 이 두 번째 것과만 연결되어 있음
+
+이번 수정으로 실제로 문제가 되는 호출 지점(단체전)은 고쳤지만, 코드베이스 전체에 `type === 'score'`라는 조건이 여러 곳에 흩어져 있어(`22996`, `23037`, `23168`, `23667`, `23916`, `24040` 부근 등) 향후 새로운 진입점을 추가할 때 동일한 혼동이 재발할 위험이 있음. **장기적으로는 `startSpecificQuiz()`가 쓰는 타입명을 `'score'`가 아니라 `'challenge'`(또는 별도의 `'movie_score'`)로 리네이밍하고, 관련된 모든 `type === 'score'` 분기를 일괄 교체하는 리팩터링을 권장함.** 지금 당장 기능은 정상이나, 이름 자체가 오해를 유발하는 구조이므로 다음 대규모 수정 시 함께 정리하는 것이 안전함.
+
+
 
 
