@@ -478,5 +478,69 @@ Playwright로 5개 섹션을 실제 클릭 흐름으로 5라운드씩 끝까지 
 이번 수정으로 실제로 문제가 되는 호출 지점(단체전)은 고쳤지만, 코드베이스 전체에 `type === 'score'`라는 조건이 여러 곳에 흩어져 있어(`22996`, `23037`, `23168`, `23667`, `23916`, `24040` 부근 등) 향후 새로운 진입점을 추가할 때 동일한 혼동이 재발할 위험이 있음. **장기적으로는 `startSpecificQuiz()`가 쓰는 타입명을 `'score'`가 아니라 `'challenge'`(또는 별도의 `'movie_score'`)로 리네이밍하고, 관련된 모든 `type === 'score'` 분기를 일괄 교체하는 리팩터링을 권장함.** 지금 당장 기능은 정상이나, 이름 자체가 오해를 유발하는 구조이므로 다음 대규모 수정 시 함께 정리하는 것이 안전함.
 
 
+## 2026-08-02 — C섹션 퀴즈 v4 리팩터링 (OpenCode)
+
+### 요청 사항
+
+C섹션(Challenge/Score) 퀴즈를 개봉작·개봉예정작 모두 4문항 10지선다로 통일:
+1. 개봉일 관객수 / 개봉 1주차 누적 / 개봉 2주차 누적(신규) / 최종 — 각 10단계
+2. 모든 문제 후 리뷰 화면에서 최종 제출 확인
+3. 개봉작은 즉시 정답 확인, 개봉예정작은 개인 퀴즈 기록에만 저장
+4. O섹션 포스터 조각 10% 확대
+
+### 변경 내용
+
+#### 🗄️ 데이터 생성: `gen_score_quiz_data.py` (신규, 서버 `/home/kimminho/scripts/`)
+- `past_boxoffice.csv`(82,452행)에서 SCORE_QUIZ_POOL 442편의 2주차 누적 관객수 계산
+- 362건 CSV 매칭 성공, 80건은 제목 불일치로 weekAudi×1.7 추정값 사용
+- 사용자가 지정한 4×10단계 범주로 재분류
+
+#### 📝 index.html 수정 (10개 파일 내 변경)
+
+| # | 대상 | 변경 |
+|---|------|------|
+| 1 | `GAME_OPTIONS` | `openingDayScore`/`week1Score`/`week2Score`/`finalScore` 각 10단계로 교체 (VOD/seats 제거) |
+| 2 | `SCORE_QUIZ_POOL` | 442편에 `week2Score` 필드 추가, 새 범주값으로 전면 교체 |
+| 3 | HTML 스텝 카드 | 6개(VOD 포함) → 4개로 축소, "2주차 누적" 문항 추가 |
+| 4 | `setupScoreQuizLayout()` | `scoreStepCount=4` 고정, VOD 렌더링 제거, 새 카테고리명 사용 |
+| 5 | `renderScoreQuizStepUI()` | groupNames/warnMsgs 4개로 갱신 |
+| 6 | `submitScoreStepAnswer()` | groupNames/warnMsgs 4개로 갱신 |
+| 7 | `showScoreReview()` | 라벨 4개로 갱신, isUpcoming 분기 제거 |
+| 8 | `submitScoreFinal()` | realValues 새 필드명, 개봉예정작 `saveQuizHistory()` 추가 (`score_upcoming` 타입) |
+| 9 | `showRevealedResult()` | VOD 항목 제거, 비교 필드 4개로 갱신 |
+| 10 | `startQuiz('score')` / `startSpecificQuiz()` | 새 필드 매핑 (`openingDayScore`/`week1Score`/`week2Score`/`finalScore`) |
+| 11 | S섹션 AI 퀴즈 | SCORE_QUIZ_POOL 참조 4개 항목 새 필드명으로 갱신 |
+| 12 | O섹션 포스터 | `ZOOM = 1.15` → `1.265` (10% 확대, 138px→152px) |
+| 13 | `typeLabel` | `score_upcoming: '스코어 예측'` 추가 |
+
+#### 📅 개봉예정작 갱신
+- `update_upcoming_movies.py` 수동 실행: 기존 13편(7/4~7/24, 모두 지남) → 신규 15편(8/5~9/2) 확보
+- 주요 편: 사랑의 하츄핑(8/5), 오디세이(8/5, 크리스토퍼 놀란), 오케이 마담2(8/12) 등
+
+### 데이터: 4개 카테고리 10단계
+
+| 순번 | 개봉일 | 1주차 | 2주차 | 최종 |
+|------|--------|-------|-------|------|
+| 1 | 0.5만명 미만 | 2만명 미만 | 3만명 미만 | 5만명 미만 |
+| 2 | 0.5~1만명 | 2~4만명 | 4~9만명 | 6~19만명 |
+| 3 | 2~3만명 | 5~9만명 | 10~19만명 | 20~49만명 |
+| 4 | 4~6만명 | 10~19만명 | 20~39만명 | 50~75만명 |
+| 5 | 7~9만명 | 20~29만명 | 40~59만명 | 76~99만명 |
+| 6 | 10~14만명 | 30~45만명 | 60~85만명 | 100~199만명 |
+| 7 | 15~19만명 | 46~59만명 | 86~99만명 | 200~299만명 |
+| 8 | 20~24만명 | 60~79만명 | 100~149만명 | 300~399만명 |
+| 9 | 25~29만명 | 80~99만명 | 150~199만명 | 400~499만명 |
+| 10 | 30만명 이상 | 100만명 이상 | 200만명 이상 | 500만명 이상 |
+
+### 배포 상태
+- Git 커밋: `fcd849d` (개봉예정작 자동 갱신 스크립트가 자동 커밋)
+- 푸시: GitHub 인증 문제로 실패 → 수동 푸시 필요 (`cd /tmp/opencode/score && git push origin main`)
+- 백업: `/home/kimminho/opencode-test/index.html.bak`
+
+### 검증
+- `gen_score_quiz_data.py` 정상 실행: 442개 항목, 4개 카테고리 각 10단계 분류
+- index.html: 모든 키워드 검증 통과 (v4 주석, scoreStepCount=4, ZOOM=1.265, VOD 0건, score_upcoming 타입)
+- 개봉예정작 15편, showUpcomingList 필터 통과 확인
+
 
 
