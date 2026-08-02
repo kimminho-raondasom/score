@@ -543,4 +543,47 @@ C섹션(Challenge/Score) 퀴즈를 개봉작·개봉예정작 모두 4문항 10�
 - 개봉예정작 15편, showUpcomingList 필터 통과 확인
 
 
+## 2026-08-02 — C섹션 5→6문항 확장 + QA 전면 감사 수정 (OpenCode)
+
+### 6문항 확장 (v6)
+
+기존 4문항 → Q1(좌석수)+Q2(좌판율) 추가하여 6문항 10지선다로 확장:
+| Q1: 개봉일 좌석수 | 5만석 미만~100만석 이상 | 10단계 |
+| Q2: 개봉일 좌판율 | 1% 미만~50% 이상 | 10단계 |
+| Q3: 개봉일 관객수 | 0.5만명 미만~30만명 이상 | 10단계 |
+| Q4: 개봉 1주차 누적 | 2만명 미만~100만명 이상 | 10단계 |
+| Q5: 개봉 2주차 누적 | 3만명 미만~200만명 이상 | 10단계 |
+| Q6: 최종 누적 관객수 | 5만명 미만~500만명 이상 | 10단계 |
+
+- 성공 기준: 5/6 (6문제 중 5개 이상), XP: 문제당 14XP
+- `gen_score_quiz_data.py` 수정: `seatRatio = dayAudi/seatsAudi*100` 계산, 10단계 분류
+- `categorize_ratio()` 별도 함수 추가 (만명 변환 없이 비율 그대로 사용)
+
+### QA 전면 감사 (제3자 관점) — 18건 수정
+
+**빈 데이터 풀 충돌 방지 (7건):**
+- C-Score/R-Filmo(감독/한국배우/외국배우/actor)/E-Lines/O-Ordinary 섹션에서 풀 0편 시 `movies[0]` undefined → TypeError 충돌
+- 수정: 각 섹션에 `pool.length` 체크 + 토스트 + dashboard 복귀
+
+**그룹 모드 정리 누락 (3건):**
+- `exitQuiz()`: 닉네임 복원, `clearGroupSession`, `_pendingGroupRestart` 정리 누락
+- `popstate` handler: 동일 누락 → 브라우저 뒤로가기 시 그룹 닉네임 영구 변경
+- `saveProfile`: groupMode 시 저장 차단 → 브라우저 종료 시 XP 증발 → `beforeunload` 없지만 `finishQuiz`에서 groupMode 아닐 때만 saveProfile
+
+**OTP 인증 (2건):**
+- `fetch().then()`이 HTTP 오류에도 실행 → `if (!r.ok) throw` 상태 체크 추가
+- 타이머 만료 시 자동으로 이메일 입력 화면으로 복귀하지 않음 → 만료 시 자동 전환
+
+**초기화 안정화 (3건):**
+- `loadState()`: 한 항목 손상 시 `localStorage.clear()`로 전체 삭제 → 선별적 try-catch
+- 구버전 유저 객체(stats/xp/level 없음) 보정 추가
+- `init()`: 예외 발생 시 빈 화면 → try-catch + 오류 안내 화면 표시
+- `_checkPredictionNotifications`: `JSON.parse` try-catch 누락
+
+**null 방어 (3건):**
+- `startSpecificQuiz()`: null 필드 → `|| '데이터 없음'` fallback
+- `saveGroupAnswer()`: localStorage.setItem try-catch 누락
+- `sendGroupResultEmail()`: 예측 없는 퀴즈(필모 등)에서 호출 방지
+
+
 
