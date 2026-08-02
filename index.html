@@ -22539,16 +22539,12 @@ class CineMasterApp {
     this._otpExpiry    = Date.now() + 5 * 60 * 1000; // 5분
     this._otpAttempts  = 0;  // 새 코드 발송 시 시도 횟수 리셋
 
-    // Apps Script로 전송
+    // Apps Script로 OTP 전송 (GET 방식 — fetch + POST + no-cors는 body 전달 불가)
     const btn = document.getElementById('btn-send-otp');
     if (btn) { btn.disabled = true; btn.textContent = '전송 중…'; }
 
-    fetch(SCORE_SHEET_WEBHOOK_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'sendOtp', email, code })
-    })
+    const otpUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=sendOtp&email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`;
+    fetch(otpUrl)
     .then(() => {
       showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
       document.getElementById('otp-step-email').style.display = 'none';
@@ -22556,11 +22552,7 @@ class CineMasterApp {
       this._startOtpTimer();
     })
     .catch(() => {
-      // no-cors는 항상 opaque response — 전송 성공으로 처리
-      showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
-      document.getElementById('otp-step-email').style.display = 'none';
-      document.getElementById('otp-step-code').style.display = 'block';
-      this._startOtpTimer();
+      showToast('인증 코드 전송에 실패했습니다. 다시 시도해 주세요.', 'warn');
     })
     .finally(() => {
       if (btn) { btn.disabled = false; btn.textContent = '인증코드 받기'; }
@@ -23927,6 +23919,7 @@ class CineMasterApp {
     this.currentQuiz.stepAnswers = [];
     this.currentQuiz.stepUserValues = [];
     this.currentQuiz.correctAnswersCount = 0;
+    this.currentQuiz._scoreSubmitted = false;
     
     this.renderScoreQuizStepUI();
   }
@@ -24048,6 +24041,7 @@ class CineMasterApp {
 
   // 리뷰 화면에서 특정 문제로 돌아가 답을 수정
   _editScoreStep(stepIdx) {
+    if (this.currentQuiz._scoreSubmitted) { showToast('이미 제출된 답안은 수정할 수 없습니다.', 'warn'); return; }
     this.currentQuiz.currentStep = stepIdx;
     this.switchView('quiz');
     this.activateQuizPanel(this._getScorePanelType(this.currentQuiz.type));
@@ -24063,6 +24057,8 @@ class CineMasterApp {
 
   // 리뷰 화면 "최종 제출" 버튼
   submitScoreFinal() {
+    if (this.currentQuiz._scoreSubmitted) { showToast('이미 제출된 답안입니다.', 'warn'); return; }
+    this.currentQuiz._scoreSubmitted = true;
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     const values = this.currentQuiz.stepUserValues || [];
 
@@ -24903,18 +24899,22 @@ class CineMasterApp {
 
     // ── Google Sheets 전송 ──────────────────────────────────────────────
     if (SCORE_SHEET_WEBHOOK_URL) {
-      const payload = {
-        ...record,
-        userEmail: this.currentUser?.email || '',
+      const params = new URLSearchParams({
+        action: 'saveQuiz',
+        nickname: record.nickname || '',
+        email: this.currentUser?.email || '',
         userId: this.currentUser?.uid || '',
+        type: record.type || '',
+        score: String(record.score ?? ''),
+        total: String(record.total ?? ''),
+        accuracy: String(record.accuracy ?? ''),
+        xp: String(record.xp ?? ''),
+        combo: String(record.combo ?? ''),
+        movies: Array.isArray(record.movies) ? record.movies.join(',') : '',
         timestamp: new Date().toISOString(),
-      };
-      fetch(SCORE_SHEET_WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      }).catch(() => {}); // 실패 시 무시 (로컬에는 저장됨)
+      });
+      fetch(`${SCORE_SHEET_WEBHOOK_URL}?${params.toString()}`).catch(() => {});
+      // 실패 시 무시 (로컬에는 저장됨)
     }
   }
 
