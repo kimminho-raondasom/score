@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>score | 프리미엄 영화 퀴즈 & 흥행 예측 리그</title>
   <!-- SEO Meta Tags -->
   <meta name="description" content="score에서 영화 관객수 예측, 감독과 배우의 필모그래피 매칭, 명대사와 초성 퀴즈를 즐겨보세요! 무채색 미니멀 스타일의 영화 퀴즈 어플리케이션.">
@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Outfit:wght@100;300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
   
   <!-- Style Sheet -->
   <style>
@@ -164,14 +164,28 @@ body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-text-size-adjust: 100%;
+}
+
+button, .btn, .nav-item, .movie-card, .option-item, .quiz-option-btn, .filmo-choice-card,
+input[type="radio"] + label, .review-item-edit-btn, .glass-card.hover-lift {
+  touch-action: manipulation;
+}
+/* 접근성: 사용자가 움직임 축소를 선호하는 경우 애니메이션 비활성화 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* 2. Background Glow — 로그인 화면 이외 구간에만 적용 */
 .glow-bg {
   position: fixed;
   top: 0; left: 0;
-  width: 100vw; height: 100vh;
+  width: 100vw; height: 100dvh;
   overflow: hidden;
   z-index: -1;
   pointer-events: none;
@@ -185,11 +199,11 @@ body.login-active .glow-bg { opacity: 0; }
 .app-container {
   width: 100%;
   max-width: 600px;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   padding: 20px;
-  padding-bottom: 90px;
+  padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   position: relative;
   margin: 0 auto;
   box-sizing: border-box;
@@ -214,7 +228,7 @@ body.login-active .glow-bg { opacity: 0; }
   inset: 0;
   max-width: none;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   z-index: 200;
   overflow: hidden;
   padding: 0;
@@ -784,7 +798,8 @@ button, .btn {
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 65px;
+  height: calc(65px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: var(--bg-primary);
   border-top: 1px solid var(--border-color);
   display: flex;
@@ -1872,7 +1887,7 @@ button, .btn {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(5px);
   z-index: 1000;
@@ -1999,7 +2014,7 @@ button, .btn {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background: rgba(255, 255, 255, 0.95);
   z-index: 2000;
   display: none;
@@ -2278,7 +2293,7 @@ html, body, .app-container, .view-section, .glass-card {
 /* ── 전역 토스트 메시지 ─────────────────────────────────────────────────────── */
 .global-toast {
   position: fixed;
-  bottom: 90px;
+  bottom: calc(90px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%) translateY(20px);
   background: var(--color-secondary);
@@ -3267,18 +3282,18 @@ html, body, .app-container, .view-section, .glass-card {
   <!-- 1. SPLASH / LOGIN SCREEN — app-container 밖에 독립 배치 -->
   <section id="view-login" class="view-section active">
       <div class="login-bg-grid" aria-hidden="true">
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1542204172-e70528091b50?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1509281373149-e957c6296406?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1535083783855-76ae62b2914e?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=60&w=200&auto=format&fit=crop')"></div>
-        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=60&w=200&auto=format&fit=crop')"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1594909122845-11baa439b7bf?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1542204172-e70528091b50?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1509281373149-e957c6296406?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1535083783855-76ae62b2914e?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
+        <div class="login-bg-cell" style="background-image:url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=60&w=200&auto=format&fit=crop'); background-color:#1a1a1a"></div>
       </div>
       <div class="login-overlay" aria-hidden="true"></div>
       <div class="login-content">
@@ -22329,6 +22344,7 @@ class CineMasterApp {
 
   // Load state from LocalStorage
   loadState() {
+    try {
     const storedUser = localStorage.getItem('cinemaster_user');
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
@@ -22341,20 +22357,21 @@ class CineMasterApp {
     if (storedSound !== null) {
       this.soundEnabled = JSON.parse(storedSound);
     }
+    } catch(e) { console.warn('loadState corrupted, resetting'); localStorage.clear(); }
   }
 
   saveProfile() {
-    if (this.currentUser) {
-      localStorage.setItem('cinemaster_user', JSON.stringify(this.currentUser));
+    if (this.currentUser && !this.currentQuiz?.groupMode) {
+      try { localStorage.setItem('cinemaster_user', JSON.stringify(this.currentUser)); } catch(e) {}
     }
   }
 
   saveAchievements() {
-    localStorage.setItem('cinemaster_achievements', JSON.stringify(this.achievements));
+    try { localStorage.setItem('cinemaster_achievements', JSON.stringify(this.achievements)); } catch(e) {}
   }
 
   saveSystemSettings() {
-    localStorage.setItem('cinemaster_sound', JSON.stringify(this.soundEnabled));
+    try { localStorage.setItem('cinemaster_sound', JSON.stringify(this.soundEnabled)); } catch(e) {}
   }
 
   setupEventListeners() {
@@ -22598,6 +22615,7 @@ class CineMasterApp {
 
     // 인증 완료 → 가입 화면으로 이동
     this.currentUser = {
+      uid: 'otp_' + Date.now().toString(36),
       email: this._otpEmail,
       realName: "",
       nickname: "",
@@ -22702,9 +22720,11 @@ class CineMasterApp {
     // ── 개봉예정작 알림 배지 체크 ──────────────────────────────────────
     this._checkPredictionNotifications();
 
-    // Header Profile widgets
-    document.getElementById('dash-user-nickname').innerText = this.currentUser.nickname;
-    document.getElementById('dash-user-rank').innerText = this.calculateRankLabel(this.currentUser.xp);
+    // Header Profile widgets (null-safe)
+    const $ = id => document.getElementById(id);
+    const setText = (id, val) => { const el = $(id); if (el) el.innerText = val; };
+    setText('dash-user-nickname', this.currentUser.nickname);
+    setText('dash-user-rank', this.calculateRankLabel(this.currentUser.xp));
 
     // Profile avatar emoji selection based on gender
     const avatar = document.getElementById('dash-user-avatar');
@@ -22712,11 +22732,12 @@ class CineMasterApp {
       avatar.innerText = this.currentUser.gender === '남성' ? '🍿' : '🎬';
     }
 
-    // Load user stats details
-    document.getElementById('stat-quiz-count').innerText = `${this.currentUser.stats.games}건`;
-    document.getElementById('stat-avg-score').innerText = `${this.currentUser.stats.accuracy}%`;
-    document.getElementById('stat-max-combo').innerText = this.currentUser.stats.maxCombo;
-    document.getElementById('stat-total-xp').innerText = `${this.currentUser.xp} XP`;
+    // Load user stats details (null-safe)
+    const s = this.currentUser.stats || {};
+    setText('stat-quiz-count', `${s.games || 0}건`);
+    setText('stat-avg-score', `${s.accuracy || 0}%`);
+    setText('stat-max-combo', s.maxCombo || 0);
+    setText('stat-total-xp', `${this.currentUser.xp || 0} XP`);
 
     // Tier Levels threshold logic — tiersSpecs 기준으로 통일
     const currentTierSpec = this.getTierSpecByXp(this.currentUser.xp);
@@ -22787,6 +22808,11 @@ class CineMasterApp {
   }
 
   switchView(viewId) {
+    // 화면 전환 시 실행 중인 타이머 정리
+    if (this.currentQuiz && this.currentQuiz.timerId) {
+      clearInterval(this.currentQuiz.timerId);
+      this.currentQuiz.timerId = null;
+    }
     document.querySelectorAll('.view-section').forEach(view => {
       view.classList.remove('active');
     });
@@ -23100,7 +23126,7 @@ class CineMasterApp {
   savePrediction(movieTitle, predObj) {
     const stored = JSON.parse(localStorage.getItem('score_predictions') || '{}');
     stored[movieTitle] = predObj;
-    localStorage.setItem('score_predictions', JSON.stringify(stored));
+    try { localStorage.setItem('score_predictions', JSON.stringify(stored)); } catch(e) {}
   }
 
   getPrediction(movieTitle) {
@@ -23229,7 +23255,7 @@ class CineMasterApp {
     if (mode === 'group') {
       const existingSession = localStorage.getItem('score_group_current_session');
       this.currentQuiz.groupSessionId = existingSession || `${selectedMovie.title}_${Date.now()}`;
-      localStorage.setItem('score_group_current_session', this.currentQuiz.groupSessionId);
+      try { localStorage.setItem('score_group_current_session', this.currentQuiz.groupSessionId); } catch(e) {}
     } else {
       this.currentQuiz.groupSessionId = null;
       localStorage.removeItem('score_group_current_session');
@@ -23289,6 +23315,7 @@ class CineMasterApp {
     const modal = document.getElementById(`modal-${modalId}`);
     if (modal) {
       modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
     if (modalId === 'achievements') {
       this.renderAchievementsGrid();
@@ -23300,6 +23327,7 @@ class CineMasterApp {
     const modal = document.getElementById(`modal-${modalId}`);
     if (modal) {
       modal.classList.remove('active');
+      document.body.style.overflow = '';
     }
   }
 
@@ -23570,7 +23598,7 @@ class CineMasterApp {
     if (battleMode === 'group') {
       const existingSession = localStorage.getItem('score_group_current_session');
       this.currentQuiz.groupSessionId = existingSession || `${type}_${Date.now()}`;
-      localStorage.setItem('score_group_current_session', this.currentQuiz.groupSessionId);
+      try { localStorage.setItem('score_group_current_session', this.currentQuiz.groupSessionId); } catch(e) {}
     } else {
       this.currentQuiz.groupSessionId = null;
     }
@@ -23660,7 +23688,7 @@ class CineMasterApp {
     // switchView → activateQuizPanel 먼저 (DOM 가시화) → setup 함수 실행
     this.switchView('quiz');
     // 'score' 타입은 quiz-panel-challenge DOM(challenge-movie-* 요소들)을 재사용함
-    this.activateQuizPanel(type === 'score' ? 'challenge' : type);
+    this.activateQuizPanel(this._getScorePanelType(type));
 
     // 각 타입별 레이아웃 초기화 (DOM 가시화 이후 실행해야 포스터 등이 정상 표시됨)
     if (type === 'score') {
@@ -23679,10 +23707,23 @@ class CineMasterApp {
     this.startTimer();
   }
 
+  // ── 퀴즈 타입 → 패널 ID 중앙 매핑 ──────────────────────────────────
+  _getScorePanelType(type) {
+    if (type === 'score') return 'challenge';
+    return type;
+  }
+
   activateQuizPanel(type) {
     document.querySelectorAll('.quiz-mode-panel').forEach(p => p.classList.remove('active'));
     const panel = document.getElementById(`quiz-panel-${type}`);
-    if (panel) panel.classList.add('active');
+    if (panel) {
+      panel.classList.add('active');
+    } else {
+      console.warn('Unknown quiz panel type:', type);
+      showToast('알 수 없는 퀴즈 유형입니다.', 'warn');
+      this.switchView('dashboard');
+      return;
+    }
     
     // Init Scoreboard
     if (this.currentUser) {
@@ -23763,11 +23804,14 @@ class CineMasterApp {
     document.getElementById('quiz-timer-wrapper').style.color = "var(--text-main)";
 
     this.currentQuiz.timerId = setInterval(() => {
+      if (!this.currentQuiz || !this.currentQuiz.timerId) return;
       this.timerSeconds--;
-      document.getElementById('quiz-timer').innerText = this.timerSeconds;
+      const timerEl = document.getElementById('quiz-timer');
+      const wrapperEl = document.getElementById('quiz-timer-wrapper');
+      if (timerEl) timerEl.innerText = this.timerSeconds;
       
       if (this.timerSeconds <= 3) {
-        document.getElementById('quiz-timer-wrapper').style.color = "var(--color-danger)";
+        if (wrapperEl) wrapperEl.style.color = "var(--color-danger)";
       }
       
       if (this.timerSeconds <= 0) {
@@ -24002,7 +24046,7 @@ class CineMasterApp {
   _editScoreStep(stepIdx) {
     this.currentQuiz.currentStep = stepIdx;
     this.switchView('quiz');
-    this.activateQuizPanel(this.currentQuiz.isUpcoming || this.currentQuiz.type === 'score' ? 'challenge' : this.currentQuiz.type);
+    this.activateQuizPanel(this._getScorePanelType(this.currentQuiz.type));
     this.renderScoreQuizStepUI();
     this.startTimer();
   }
@@ -24618,7 +24662,10 @@ class CineMasterApp {
   }
 
   clearGroupSession(sessionId) {
-    localStorage.removeItem(`score_group_${sessionId}`);
+    try {
+      localStorage.removeItem(`score_group_${sessionId}`);
+      localStorage.removeItem(`score_group_pin_${sessionId}`);
+    } catch(e) {}
   }
 
   renderGroupResults(sessionId) {
@@ -24799,7 +24846,7 @@ class CineMasterApp {
     }
 
     this.switchView('quiz');
-    this.activateQuizPanel(type === 'score' ? 'challenge' : type);
+    this.activateQuizPanel(this._getScorePanelType(type));
     this.startTimer();
   }
 
@@ -24848,7 +24895,7 @@ class CineMasterApp {
     const history = this.getQuizHistory();
     history.unshift(record);           // 최신 순 앞에 추가
     const trimmed = history.slice(0, 50); // 최대 50개 보관
-    localStorage.setItem('score_quiz_history', JSON.stringify(trimmed));
+    try { localStorage.setItem('score_quiz_history', JSON.stringify(trimmed)); } catch(e) {}
 
     // ── Google Sheets 전송 ──────────────────────────────────────────────
     if (SCORE_SHEET_WEBHOOK_URL) {
@@ -24992,6 +25039,7 @@ class CineMasterApp {
 
   // ── 개봉예정작 결과 알림 배지 ──────────────────────────────────────────
   _checkPredictionNotifications() {
+    if (typeof UPCOMING_MOVIES_DATABASE === 'undefined') { this._predictionNotiCount = 0; return; }
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
     const stored = JSON.parse(localStorage.getItem('score_predictions') || '{}');
@@ -26032,6 +26080,7 @@ class CineMasterApp {
   }
 
   _enableDragScroll(el) {
+    return; /* 모바일: 네이티브 스크롤로 충분, 마우스 드래그 비활성화 */
     if (!el || el._dragBound) return;
     el._dragBound = true;
     let isDown = false, startX, scrollLeft;
