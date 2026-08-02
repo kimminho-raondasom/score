@@ -178,6 +178,26 @@ function doGet(e) {
     }
   }
 
+    // ── 단체전 결과 이메일 발송 ───────────────────────────────────────
+    if (e.parameter.action === 'sendGroupResult') {
+      const emails   = (e.parameter.emails || '').split(',');
+      const subject  = e.parameter.subject || '[score] 단체전 예측 결과';
+      const bodyHtml = e.parameter.bodyHtml || '';
+      emails.forEach(toEmail => {
+        if (toEmail) {
+          MailApp.sendEmail({
+            to: toEmail,
+            subject: subject,
+            htmlBody: bodyHtml,
+          });
+        }
+      });
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', sent: emails.length }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
   // 기본: 기록 수 반환
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME);

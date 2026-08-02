@@ -24062,7 +24062,7 @@ class CineMasterApp {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     const values = this.currentQuiz.stepUserValues || [];
 
-    // ── 개봉예정작: 채점 없이 예측 저장 + 개인 퀴즈 기록 + 접수 완료 오버레이 ──
+    // ── 개봉예정작: 채점 없이 예측 저장 + 개인 퀴즈 기록 ──
     if (this.currentQuiz.isUpcoming) {
       this.playSynthSound('correct');
       this.currentQuiz.upcomingAnswers = {
@@ -24073,8 +24073,6 @@ class CineMasterApp {
       };
       if (movie) {
         this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
-        // 개인 퀴즈 기록에 예측 내용 저장
-        const movieList = [movie.title].concat(values.filter(v => v).map(v => `  ${v}`)).join('\n');
         this.saveQuizHistory({
           type: 'score_upcoming',
           movies: [movie.title],
@@ -24086,9 +24084,29 @@ class CineMasterApp {
           date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
           nickname: this.currentUser?.nickname || '',
           prediction: this.currentQuiz.upcomingAnswers,
-          moviesStr: movieList,
+          moviesStr: [movie.title].concat(values.filter(v => v).map(v => `  ${v}`)).join('\n'),
         });
       }
+
+      // ── 단체전: 공유 세션에 답안 저장 + 결과 이메일 발송 ──────────
+      if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+        this.saveGroupAnswer(this.currentQuiz.groupSessionId, {
+          nickname: this.currentUser?.nickname || '?',
+          email: this.currentUser?.email || '',
+          movie: movie?.title || '',
+          predictions: {
+            openingDayScore: values[0] || '—',
+            week1Score: values[1] || '—',
+            week2Score: values[2] || '—',
+            finalScore: values[3] || '—',
+          },
+          locked: true,
+          date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+        });
+        this.renderGroupResults(this.currentQuiz.groupSessionId);
+        this.sendGroupResultEmail(this.currentQuiz.groupSessionId);
+      }
+
       const overlay = document.getElementById('prediction-overlay');
       if (overlay) { overlay.style.display = 'flex'; overlay.classList.add('active'); }
       return;
@@ -24594,6 +24612,7 @@ class CineMasterApp {
     if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
       this.saveGroupAnswer(this.currentQuiz.groupSessionId, {
         nickname: this.currentUser.nickname,
+        email:    this.currentUser?.email || '',
         score:    this.currentQuiz.score,
         total:    totalRounds,
         accuracy: quizAccuracy,
@@ -24676,26 +24695,46 @@ class CineMasterApp {
 
     section.style.display = 'block';
 
-    const sorted = [...answers].sort((a, b) => b.score - a.score);
+    const isUpcoming = answers[0] && answers[0].predictions;
+    const sorted = isUpcoming ? [...answers] : [...answers].sort((a, b) => b.score - a.score);
     const medals = ['🥇','🥈','🥉'];
-    const quizTypeLabel = {
-      score:'스코어퀴즈', challenge:'개봉일맞추기',
+    const _typeLabelMap = {
+      score:'스코어퀴즈', challenge:'개봉일맞추기', score_upcoming:'스코어 예측',
       ordinary:'포스터조각', filmo:'필모그래피', lines:'명대사/초성'
-    }[this.currentQuiz.type] || '퀴즈';
+    };
+    const quizTypeLabel = _typeLabelMap[this.currentQuiz.type] || (this.currentQuiz.isUpcoming ? '스코어 예측' : '퀴즈');
 
-    const rows = sorted.map((a, i) => `
-      <div class="group-rank-row">
-        <div class="group-rank-medal">${medals[i] || `${i+1}`}</div>
-        <div>
-          <div class="group-rank-name">${a.nickname}</div>
-          <div class="group-rank-date">${a.date || ''}</div>
-        </div>
-        <div>
-          <div class="group-rank-score">${a.score}<span style="font-size:0.7rem;font-weight:400;color:var(--text-muted);">/${a.total}</span></div>
-          <div class="group-rank-acc">정확도 ${a.accuracy}%</div>
-        </div>
-      </div>
-    `).join('');
+    const rows = sorted.map((a, i) => {
+      if (isUpcoming) {
+        const p = a.predictions || {};
+        return `
+          <div class="group-rank-row">
+            <div class="group-rank-medal">${medals[i] || `${i+1}`}</div>
+            <div>
+              <div class="group-rank-name">${a.nickname}</div>
+              <div class="group-rank-date">${a.date || ''}</div>
+            </div>
+            <div style="font-size:0.72rem;color:var(--text-muted);line-height:1.5;">
+              <div>개봉일: ${p.openingDayScore || '—'}</div>
+              <div>1주차: ${p.week1Score || '—'}</div>
+              <div>2주차: ${p.week2Score || '—'}</div>
+              <div>최종: ${p.finalScore || '—'}</div>
+            </div>
+          </div>`;
+      }
+      return `
+        <div class="group-rank-row">
+          <div class="group-rank-medal">${medals[i] || `${i+1}`}</div>
+          <div>
+            <div class="group-rank-name">${a.nickname}</div>
+            <div class="group-rank-date">${a.date || ''}</div>
+          </div>
+          <div>
+            <div class="group-rank-score">${a.score}<span style="font-size:0.7rem;font-weight:400;color:var(--text-muted);">/${a.total}</span></div>
+            <div class="group-rank-acc">정확도 ${a.accuracy}%</div>
+          </div>
+        </div>`;
+    }).join('');
 
     section.innerHTML = `
       <div class="group-result-card">
@@ -24716,6 +24755,56 @@ class CineMasterApp {
         </div>
       </div>
     `;
+  }
+
+  // ── 단체전 결과 이메일 발송 (개봉예정작 전용) ───────────────────────────
+  sendGroupResultEmail(sessionId) {
+    const answers = this.getGroupAnswers(sessionId);
+    if (!answers.length || !answers[0].movie) return;
+    const movie = answers[0].movie;
+    const emails = answers.map(a => a.email).filter(Boolean);
+    if (!emails.length) return;
+
+    const movieRow = `
+      <tr style="background:#2c2a27;color:#fdfbf7;">
+        <td colspan="5" style="padding:10px 12px;font-size:0.95rem;font-weight:700;">
+          🎬 ${movie} — 단체전 예측 결과
+        </td>
+      </tr>`;
+    const headerRow = `
+      <tr style="background:#f4f1ea;font-size:0.8rem;font-weight:600;color:#4a453f;">
+        <td style="padding:8px 12px;">참가자</td>
+        <td style="padding:8px 12px;">개봉일</td>
+        <td style="padding:8px 12px;">1주차</td>
+        <td style="padding:8px 12px;">2주차</td>
+        <td style="padding:8px 12px;">최종</td>
+      </tr>`;
+    const dataRows = answers.map(a => {
+      const p = a.predictions || {};
+      return `
+        <tr style="border-bottom:1px solid #e0dbd4;">
+          <td style="padding:8px 12px;font-weight:500;">${a.nickname}</td>
+          <td style="padding:8px 12px;">${p.openingDayScore || '—'}</td>
+          <td style="padding:8px 12px;">${p.week1Score || '—'}</td>
+          <td style="padding:8px 12px;">${p.week2Score || '—'}</td>
+          <td style="padding:8px 12px;">${p.finalScore || '—'}</td>
+        </tr>`;
+    }).join('');
+
+    const html = `<div style="font-family:'Noto Sans KR',sans-serif;max-width:560px;margin:0 auto;padding:24px;background:#fdfbf7;border:1px solid #e0dbd4;">
+      <p style="font-size:1.4rem;font-weight:700;letter-spacing:2px;margin:0 0 4px;color:#2c2a27;">score<span style="color:#e6b87a;">.</span></p>
+      <p style="font-size:0.85rem;color:#8a7f78;margin:0 0 20px;">단체전 예측 결과가 집계되었습니다.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+        ${movieRow}${headerRow}${dataRows}
+      </table>
+      <p style="font-size:0.72rem;color:#8a7f78;margin-top:16px;">개봉 후 정답이 공개되면 예측과 비교할 수 있습니다.</p>
+    </div>`;
+
+    const encodedEmails = encodeURIComponent(emails.join(','));
+    const encodedSubject = encodeURIComponent(`[score] 단체전 예측 결과 — ${movie}`);
+    const encodedHtml = encodeURIComponent(html);
+    const url = `${SCORE_SHEET_WEBHOOK_URL}?action=sendGroupResult&emails=${encodedEmails}&subject=${encodedSubject}&bodyHtml=${encodedHtml}`;
+    fetch(url).catch(() => {});
   }
 
   addNextGroupPlayer() {
