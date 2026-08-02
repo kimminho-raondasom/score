@@ -22360,20 +22360,15 @@ class CineMasterApp {
 
   // Load state from LocalStorage
   loadState() {
-    try {
-    const storedUser = localStorage.getItem('cinemaster_user');
-    if (storedUser) {
-      this.currentUser = JSON.parse(storedUser);
+    try { this.currentUser = JSON.parse(localStorage.getItem('cinemaster_user') || 'null'); } catch(e) { this.currentUser = null; }
+    try { this.achievements = JSON.parse(localStorage.getItem('cinemaster_achievements') || '[]'); } catch(e) { this.achievements = []; }
+    try { this.soundEnabled = JSON.parse(localStorage.getItem('cinemaster_sound') || 'true'); } catch(e) { this.soundEnabled = true; }
+    // 구버전 유저 객체 보정
+    if (this.currentUser) {
+      if (!this.currentUser.stats) this.currentUser.stats = { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 };
+      if (!this.currentUser.xp && this.currentUser.xp !== 0) this.currentUser.xp = 0;
+      if (!this.currentUser.level) this.currentUser.level = 1;
     }
-
-    const storedBadges = localStorage.getItem('cinemaster_achievements');
-    this.achievements = storedBadges ? JSON.parse(storedBadges) : [];
-
-    const storedSound = localStorage.getItem('cinemaster_sound');
-    if (storedSound !== null) {
-      this.soundEnabled = JSON.parse(storedSound);
-    }
-    } catch(e) { console.warn('loadState corrupted, resetting'); localStorage.clear(); }
   }
 
   saveProfile() {
@@ -22557,7 +22552,8 @@ class CineMasterApp {
 
     const otpUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=sendOtp&email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`;
     fetch(otpUrl)
-    .then(() => {
+    .then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
       document.getElementById('otp-step-email').style.display = 'none';
       document.getElementById('otp-step-code').style.display = 'block';
@@ -23236,16 +23232,17 @@ class CineMasterApp {
           director: poolMovie.director,
           cast: poolMovie.cast || [],
           posterUrl: poolMovie.posterUrl || '',
-          seatsCat: poolMovie.seatsCat,
-          seatRatioCat: poolMovie.seatRatioCat,
-          openingDayScore: poolMovie.openingDayScore,
-          week1Score: poolMovie.week1Score,
-          week2Score: poolMovie.week2Score,
-          finalScore: poolMovie.finalScore
+          seatsCat: poolMovie.seatsCat || '데이터 없음',
+          seatRatioCat: poolMovie.seatRatioCat || '데이터 없음',
+          openingDayScore: poolMovie.openingDayScore || '데이터 없음',
+          week1Score: poolMovie.week1Score || '데이터 없음',
+          week2Score: poolMovie.week2Score || '데이터 없음',
+          finalScore: poolMovie.finalScore || '데이터 없음'
         };
       } else {
         // SCORE_QUIZ_POOL에 없는 영화(구/신작 등)는 스코어 퀴즈 데이터가 없어 진행 불가
         showToast('해당 영화는 흥행 스코어 데이터가 없어 스코어 퀴즈를 진행할 수 없습니다.', 'warn');
+        this.switchView('dashboard');
         return;
       }
     }
@@ -23634,8 +23631,10 @@ class CineMasterApp {
           finalScore: m.finalScore
         }))
       );
-      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
-      this._recordShownMovies(this.currentQuiz.movies);
+      const movies = this.shuffleArray([...pool]).slice(0, 5);
+      if (!movies.length) { showToast('퀴즈 가능한 영화 데이터가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
+      this.currentQuiz.movies = movies;
+      this._recordShownMovies(movies);
       this.currentQuiz.currentStep = 0;
       this.currentQuiz.stepAnswers = [];
       this.currentQuiz.correctAnswersCount = 0;
@@ -23645,10 +23644,13 @@ class CineMasterApp {
       let pool;
       if (subType === 'director') {
         pool = FILMOGRAPHIES.directors.map(d => ({ ...d, role: "영화감독" }));
+        if (!pool.length) { showToast('감독 데이터가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
       } else if (subType === 'actor_kr') {
         pool = FILMOGRAPHIES.actors.filter(a => !this._isForeignActorName(a.name)).map(a => ({ ...a, role: "배우" }));
+        if (!pool.length) { showToast('한국 배우 데이터가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
       } else if (subType === 'actor_foreign') {
         pool = FILMOGRAPHIES.actors.filter(a => this._isForeignActorName(a.name)).map(a => ({ ...a, role: "배우" }));
+        if (!pool.length) { showToast('외국 배우 데이터가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
       } else if (subType === 'actor') {
         // 하위호환(구 링크 등에서 subType 없이 넘어온 경우) — 전체 배우 풀
         pool = FILMOGRAPHIES.actors.map(a => ({ ...a, role: "배우" }));
@@ -23657,6 +23659,7 @@ class CineMasterApp {
         const actors = FILMOGRAPHIES.actors.map(a => ({ ...a, role: "배우" }));
         pool = [...directors, ...actors];
       }
+      if (!pool.length) { showToast('필모그래피 데이터가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
     } 
     else if (type === 'lines') {
@@ -23665,8 +23668,10 @@ class CineMasterApp {
         (m.choseong && m.choseong.trim().length > 0)
       );
       const pool = this._deduplicatePool(rawPool);
-      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
-      this._recordShownMovies(this.currentQuiz.movies);
+      const linesMovies = this.shuffleArray([...pool]).slice(0, 5);
+      if (!linesMovies.length) { showToast('명대사/초성 데이터가 있는 영화가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
+      this.currentQuiz.movies = linesMovies;
+      this._recordShownMovies(linesMovies);
     }
     else if (type === 'challenge') {
       // 개봉작만 (개봉예정 제외), posterUrl 있는 것만
@@ -23682,8 +23687,10 @@ class CineMasterApp {
         ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE.filter(m => m.posterUrl) : [])
       ];
       const pool = this._deduplicatePool(rawPool);
-      this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
-      this._recordShownMovies(this.currentQuiz.movies);
+      const ordinaryMovies = this.shuffleArray([...pool]).slice(0, 5);
+      if (!ordinaryMovies.length) { showToast('포스터가 있는 영화가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
+      this.currentQuiz.movies = ordinaryMovies;
+      this._recordShownMovies(ordinaryMovies);
     }
 
     // ── 단체전: 첫 참가자 등록 화면으로 이동 ────────────────────────────
@@ -24646,7 +24653,8 @@ class CineMasterApp {
       });
     }
 
-    this.saveProfile();
+    // 그룹 모드: XP 저장 보장
+    if (!this.currentQuiz?.groupMode) this.saveProfile();
     this.checkAndUnlockAchievements();
 
     // AI 퀴즈 전용 행 숨김 (일반 퀴즈에서는 불필요)
@@ -24691,7 +24699,7 @@ class CineMasterApp {
     const alreadySaved = existing.find(a => a.nickname === answer.nickname);
     if (alreadySaved) return;
     existing.push(answer);
-    localStorage.setItem(key, JSON.stringify(existing));
+    try { localStorage.setItem(key, JSON.stringify(existing)); } catch(e) {}
   }
 
   getGroupAnswers(sessionId) {
@@ -24783,6 +24791,7 @@ class CineMasterApp {
   sendGroupResultEmail(sessionId) {
     const answers = this.getGroupAnswers(sessionId);
     if (!answers.length || !answers[0].movie) return;
+    if (!answers[0].predictions) return; // 예측 없는 퀴즈(필모/명대사 등)는 이메일 발송 안 함
     const movie = answers[0].movie;
     const emails = answers.map(a => a.email).filter(Boolean);
     if (!emails.length) return;
@@ -25084,6 +25093,17 @@ class CineMasterApp {
     this.playSynthSound('click');
     if (confirm("정말 퀴즈를 종료하시겠습니까?")) {
       clearInterval(this.currentQuiz.timerId);
+      // 그룹 세션 정리 (닉네임 복원 + localStorage 정리)
+      if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+        this.clearGroupSession(this.currentQuiz.groupSessionId);
+      }
+      if (this.currentUser && this._savedGroupNickname) {
+        this.currentUser.nickname = this._savedGroupNickname;
+        this.currentUser.realName = this._savedGroupRealName || this._savedGroupNickname;
+        this._savedGroupNickname = null; this._savedGroupRealName = null;
+      }
+      this._pendingGroupRestart = null;
+      localStorage.removeItem('score_group_current_session');
       // 상태 완전 리셋 — 이전 세션의 groupMode 등이 다음 퀴즈에 오염되는 것 방지
       this.currentQuiz = {
         type: '', movies: [], currentIndex: 0, score: 0,
@@ -25161,7 +25181,8 @@ class CineMasterApp {
     if (typeof UPCOMING_MOVIES_DATABASE === 'undefined') { this._predictionNotiCount = 0; return; }
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const today = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
-    const stored = JSON.parse(localStorage.getItem('score_predictions') || '{}');
+    let stored = {};
+    try { stored = JSON.parse(localStorage.getItem('score_predictions') || '{}'); } catch(e) {}
     const badge = document.getElementById('special-badge');
     if (!badge) return;
 
@@ -26335,8 +26356,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }, 4400);
   }
 
-  app = new CineMasterApp();
-  app.init();
+  try {
+    app = new CineMasterApp();
+    app.init();
+  } catch(e) {
+    console.error('App init failed:', e);
+    document.getElementById('splash-screen')?.classList.add('hidden');
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100dvh;font-family:sans-serif;color:#2c2a27;text-align:center;padding:20px;"><div><p style="font-size:1.5rem;font-weight:700;">앱 초기화 오류</p><p style="color:#8a7f78;margin-top:8px;">페이지를 새로고침해 주세요.</p><button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#2c2a27;color:#fff;border:none;font-size:0.9rem;cursor:pointer;">새로고침</button></div></div>';
+  }
 
   // ── 핸드폰 뒤로가기 버튼 처리 ────────────────────────────────────────
   window.addEventListener('popstate', (e) => {
@@ -26354,6 +26381,17 @@ window.addEventListener('DOMContentLoaded', () => {
         history.pushState({ viewId: 'quiz' }, '', '#quiz');
         if (confirm('퀴즈를 종료하시겠습니까?')) {
           clearInterval(app.currentQuiz.timerId);
+          app.currentQuiz.timerId = null;
+          if (app.currentQuiz.groupMode && app.currentQuiz.groupSessionId) {
+            app.clearGroupSession(app.currentQuiz.groupSessionId);
+          }
+          if (app.currentUser && app._savedGroupNickname) {
+            app.currentUser.nickname = app._savedGroupNickname;
+            app.currentUser.realName = app._savedGroupRealName || app._savedGroupNickname;
+            app._savedGroupNickname = null; app._savedGroupRealName = null;
+          }
+          app._pendingGroupRestart = null;
+          localStorage.removeItem('score_group_current_session');
           app.switchView('dashboard');
           app.renderDashboard();
         }
