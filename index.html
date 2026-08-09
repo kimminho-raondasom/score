@@ -6017,6 +6017,8 @@ class CineMasterApp {
     this.currentQuiz.combo = 0;
     this.currentQuiz.maxComboThisRun = 0;
     this.currentQuiz.roundHistory = [];
+    this._grading = false;
+    this._submitting = false;
 
     // ── 단체전 세션 처리 ──────────────────────────────────────────────────
     this.currentQuiz.groupMode = (battleMode === 'group');
@@ -6030,9 +6032,12 @@ class CineMasterApp {
 
     // Load questions based on type (setup 함수는 switchView 이후에 호출)
     if (type === 'score') {
+      this.currentQuiz.isUpcoming = false;
+      this.currentQuiz.totalXpEarned = 0;
       // SCORE_QUIZ_POOL (442편, 구글시트 '영화 상세' 탭 실측 데이터) 기반으로 풀 구성
+      // 데이터 없는 영화도 포함 (채점은 showScoreReview에서 처리)
       const rawPool = (typeof SCORE_QUIZ_POOL !== 'undefined' ? SCORE_QUIZ_POOL : [])
-        .filter(m => m.seatsCat && m.seatRatioCat && m.openingDayScore && m.week1Score && m.week2Score && m.finalScore);
+        .filter(m => m.title);
       const pool = this._deduplicatePool(
         rawPool.map(m => ({
           id: 'score_' + m.title,
@@ -6041,12 +6046,12 @@ class CineMasterApp {
           director: m.director,
           cast: m.cast || [],
           posterUrl: m.posterUrl || '',
-          seatsCat: m.seatsCat,
-          seatRatioCat: m.seatRatioCat,
-          openingDayScore: m.openingDayScore,
-          week1Score: m.week1Score,
-          week2Score: m.week2Score,
-          finalScore: m.finalScore
+          seatsCat: m.seatsCat || null,
+          seatRatioCat: m.seatRatioCat || null,
+          openingDayScore: m.openingDayScore || null,
+          week1Score: m.week1Score || null,
+          week2Score: m.week2Score || null,
+          finalScore: m.finalScore || null
         }))
       );
       const movies = this.shuffleArray([...pool]).slice(0, 5);
@@ -6083,8 +6088,10 @@ class CineMasterApp {
     else if (type === 'lines') {
       if (typeof MOVIES_DATABASE === 'undefined') { showToast('영화 데이터를 불러올 수 없습니다.', 'warn'); this.switchView('dashboard'); return; }
       const rawPool = MOVIES_DATABASE.filter(m =>
-        (Array.isArray(m.famousLines) && m.famousLines.length > 0) ||
-        (m.choseong && m.choseong.trim().length > 0)
+        m.posterUrl && (
+          (Array.isArray(m.famousLines) && m.famousLines.length > 0) ||
+          (m.choseong && m.choseong.trim().length > 0)
+        )
       );
       const pool = this._deduplicatePool(rawPool);
       const linesMovies = this.shuffleArray([...pool]).slice(0, 5);
@@ -6098,6 +6105,7 @@ class CineMasterApp {
       const rawPool = MOVIES_DATABASE.filter(m => m.posterUrl && m.releaseDate);
       const pool = this._deduplicatePool(rawPool);
       this.currentQuiz.movies = this.shuffleArray([...pool]).slice(0, 5);
+      if (!this.currentQuiz.movies.length) { showToast('개봉일 데이터가 있는 영화가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
       this._recordShownMovies(this.currentQuiz.movies);
     }
     else if (type === 'ordinary') {
@@ -6297,26 +6305,41 @@ class CineMasterApp {
       }, 800);
     } 
     else if (this.currentQuiz.type === 'filmo') {
+      const target = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+      this._recordRoundHistory({ question: `${target?.name || ''}(${target?.role || ''})의 연출·출연작은?`, userAnswer: '(시간 초과)', correctAnswer: '', isCorrect: false });
       this.showAnswerOverlay(false, "시간 초과!", "10초 시간이 초과되었습니다.");
     } 
     else if (this.currentQuiz.type === 'lines') {
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+      const isChoseong = this.currentQuiz.subType === 'choseong';
+      this._recordRoundHistory({ question: isChoseong ? `초성 '${movie.choseong}'의 영화 제목은?` : '이 명대사가 나온 영화는?', userAnswer: '(시간 초과)', correctAnswer: movie.title, isCorrect: false });
       this.showAnswerOverlay(false, "시간 초과!", `시간 초과되었습니다! 정답은 <b>${movie.title}</b>입니다.`);
     }
     else if (this.currentQuiz.type === 'challenge') {
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
       const correctYYMMDD = (movie.releaseDate || '').replace(/-/g, '').slice(2);
+      this._recordRoundHistory({ question: `${movie.title}의 개봉일(YYMMDD)은?`, userAnswer: '(시간 초과)', correctAnswer: correctYYMMDD, isCorrect: false });
       this.showAnswerOverlay(false, "시간 초과!", `시간 초과! 정답은 <b>${correctYYMMDD}</b> (${movie.releaseDate})입니다.`);
     }
     else if (this.currentQuiz.type === 'ordinary') {
       const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
+      this._recordRoundHistory({ question: '이 포스터 조각의 영화는?', userAnswer: '(시간 초과)', correctAnswer: movie.title, isCorrect: false });
       this.showAnswerOverlay(false, "시간 초과!", `시간 초과! 정답은 <b>${movie.title}</b>입니다.`);
     }
     else if (this.currentQuiz.type === 'special_ai') {
       // AI 퀴즈: 시간 초과 시 정답 표시 후 다음 문제로 이동 (마지막 문제도 오버레이 표시)
       const prevQ = (this.currentQuiz.aiQuestions || [])[this.currentQuiz.aiCurrentQ];
       const correctAns = prevQ ? prevQ.answer : '';
+      if (!this.currentQuiz.aiAnswerHistory) this.currentQuiz.aiAnswerHistory = [];
+      this.currentQuiz.aiAnswerHistory.push({
+        question: prevQ?.question || '',
+        userAnswer: '(시간 초과)',
+        correctAnswer: correctAns,
+        explanation: prevQ?.explanation || '',
+        isCorrect: false
+      });
       this.currentQuiz.aiCurrentQ++;
+      this.currentQuiz.combo = 0;
       this.showAnswerOverlay(false, "시간 초과!", `정답은 <b>${correctAns}</b>입니다.`);
     }
   }
@@ -6330,10 +6353,14 @@ class CineMasterApp {
      if (nextStepBtn) nextStepBtn.style.display = '';
 
      // Movie meta presenter card setup
-     document.getElementById('challenge-movie-title').innerText = movie.title;
-     document.getElementById('score-movie-year').innerText = `${(movie.releaseDate || '').split('-')[0]}년 개봉`;
-     document.getElementById('challenge-movie-director').innerText = `감독: ${movie.director || '—'}`;
-     document.getElementById('challenge-movie-cast').innerText = `주연: ${(movie.cast || []).slice(0, 2).join(', ') || '—'}`;
+     const mTitle = document.getElementById('challenge-movie-title');
+     const mYear = document.getElementById('score-movie-year');
+     const mDir = document.getElementById('challenge-movie-director');
+     const mCast = document.getElementById('challenge-movie-cast');
+     if (mTitle) mTitle.innerText = movie.title;
+     if (mYear) mYear.innerText = `${(movie.releaseDate || '').split('-')[0]}년 개봉`;
+     if (mDir) mDir.innerText = `감독: ${movie.director || '—'}`;
+     if (mCast) mCast.innerText = `주연: ${(movie.cast || []).slice(0, 2).join(', ') || '—'}`;
     
     const poster = document.getElementById('challenge-movie-poster');
     if (poster) {
@@ -6467,6 +6494,7 @@ class CineMasterApp {
       this.currentQuiz.currentStep++;
       this.renderScoreQuizStepUI();
       this.startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // 모든 문제 입력 완료 → 제출 전 리뷰 화면으로 이동
       clearInterval(this.currentQuiz.timerId);
@@ -6505,6 +6533,7 @@ class CineMasterApp {
     if (submitLabel) submitLabel.innerText = '최종 제출';
 
     this.switchView('score-review');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // 리뷰 화면에서 특정 문제로 돌아가 답을 수정
@@ -6593,16 +6622,19 @@ class CineMasterApp {
     // ── 개봉작: 문제별 정답/오답 채점 (6문항) ──────────────────────────
     const realValues = [movie.seatsCat, movie.seatRatioCat, movie.openingDayScore, movie.week1Score, movie.week2Score, movie.finalScore];
     const labels = ['개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 관객수'];
-    // 개봉작 values는 6개만 사용 (step index 조정 불필요)
 
-    const stepResults = values.map((v, idx) => ({
-      label: labels[idx],
-      userValue: v,
-      realValue: realValues[idx],
-      isCorrect: v === realValues[idx]
-    }));
+    const stepResults = values.map((v, idx) => {
+      const hasData = realValues[idx] != null && realValues[idx] !== undefined;
+      return {
+        label: labels[idx],
+        userValue: v,
+        realValue: hasData ? realValues[idx] : '데이터 없음',
+        isCorrect: hasData ? v === realValues[idx] : null, // null = 채점 불가
+        hasData: hasData
+      };
+    });
 
-    const correctCount = stepResults.filter(r => r.isCorrect).length;
+    const correctCount = stepResults.filter(r => r.isCorrect === true).length;
     this.currentQuiz.stepAnswers = stepResults.map(r => r.isCorrect);
     this.currentQuiz.correctAnswersCount = correctCount;
 
@@ -6611,7 +6643,9 @@ class CineMasterApp {
     this.currentQuiz.totalXpEarned += xpGain;
     if (xpGain > 0) this.addXp(xpGain, `${movie.title} 흥행 분석 ${correctCount}문항 적중`);
 
-    const isRoundSuccess = correctCount >= 5; // 6문제 중 5개 이상 성공 기준
+    const answerableCount = stepResults.filter(r => r.hasData).length;
+    const threshold = Math.max(3, Math.min(5, answerableCount)); // 데이터 있는 항목 기준
+    const isRoundSuccess = correctCount >= threshold;
     if (isRoundSuccess) {
       this.currentQuiz.score++;
       this.currentQuiz.combo++;
@@ -6637,19 +6671,25 @@ class CineMasterApp {
 
     const listEl = document.getElementById('score-result-list');
     if (listEl) {
-      listEl.innerHTML = stepResults.map((r, idx) => `
-        <div class="review-item ${r.isCorrect ? 'correct' : 'incorrect'}">
+      listEl.innerHTML = stepResults.map((r, idx) => {
+        const isCorrect = r.isCorrect;
+        const hasData = r.hasData;
+        const cls = !hasData ? 'nodata' : (isCorrect ? 'correct' : 'incorrect');
+        const badge = !hasData ? '데이터 없음' : (isCorrect ? '정답' : '오답');
+        return `
+        <div class="review-item ${cls}">
           <div>
             <div class="review-item-q">Q${idx + 1}. ${r.label}</div>
             <div class="review-item-a">내 답변: ${r.userValue}</div>
-            ${!r.isCorrect ? `<div class="review-item-real">실제 정답: <b>${r.realValue}</b></div>` : ''}
+            ${!isCorrect ? `<div class="review-item-real">실제 정답: <b>${r.realValue}</b></div>` : ''}
           </div>
-          <span class="review-item-badge ${r.isCorrect ? 'correct' : 'incorrect'}">${r.isCorrect ? '정답' : '오답'}</span>
+          <span class="review-item-badge ${cls}">${badge}</span>
         </div>
-      `).join('');
+      `}).join('');
     }
 
     this.switchView('score-result');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // "다음 문제(다음 영화)" 버튼 — 결과 화면에서 다음 라운드로 진행
@@ -6664,10 +6704,6 @@ class CineMasterApp {
     const target = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     document.getElementById('filmo-target-role').innerText = target.role;
     document.getElementById('filmo-target-name').innerText = target.name;
-
-    // 새 라운드 시작 시 중복 클릭 방지 락 해제 (이전 라운드 타이머가 남아있으면
-    // 사용자가 3초 안에 답을 클릭해도 아무 반응이 없는 버그 방지)
-    this._filmoGrading = false;
 
     const isQuestionNegative = Math.random() < 0.75;
     
@@ -6736,10 +6772,8 @@ class CineMasterApp {
   }
 
    gradeFilmoQuiz(chosenTitle, isCorrect, answer, isNegativeQuestion) {
-    // 중복 클릭 방지 (오버레이 표시 중에는 재호출 차단)
-    if (this._filmoGrading) return;
-    this._filmoGrading = true;
-    setTimeout(() => { this._filmoGrading = false; }, 3000);
+    if (this._grading) return;
+    this._grading = true;
     clearInterval(this.currentQuiz.timerId);
     const target = this.currentQuiz.movies[this.currentQuiz.currentIndex];
 
@@ -6752,29 +6786,21 @@ class CineMasterApp {
         this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
       }
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
-      
-      // Award XP immediately
-      this.addXp(xpReward, "필모그래피 퀴즈 정답");
 
       this._recordRoundHistory({
         question: `${target?.name || ''}(${target?.role || ''}) ${isNegativeQuestion ? '연출·출연작이 아닌 것' : '연출·출연작인 것'}은?`,
         userAnswer: chosenTitle, correctAnswer: answer, isCorrect: true,
       });
-      this.showAnswerOverlay(true, "정답입니다!", `필모그래피를 정확히 분석하셨습니다. +${xpReward} XP 획득!`);
     } else {
       this.currentQuiz.combo = 0;
       this.playSynthSound('incorrect');
-      
-      const desc = isNegativeQuestion 
-        ? `틀렸습니다! 정답은 <b>${answer}</b>입니다. (${answer}은 해당 필모에 없습니다.)`
-        : `틀렸습니다! 정답은 <b>${answer}</b>입니다.`;
 
       this._recordRoundHistory({
         question: `${target?.name || ''}(${target?.role || ''}) ${isNegativeQuestion ? '연출·출연작이 아닌 것' : '연출·출연작인 것'}은?`,
         userAnswer: chosenTitle, correctAnswer: answer, isCorrect: false,
       });
-      this.showAnswerOverlay(false, "오답입니다!", desc);
     }
+    this.nextRound();
   }
 
   // MODE 3: Quotes & Choseong layout init
@@ -6816,7 +6842,8 @@ class CineMasterApp {
        if (choseongCard) choseongCard.style.display = 'none';
        if (choseongAnswerCard) choseongAnswerCard.style.display = 'none';
        const quoteObj = movie.famousLines[Math.floor(Math.random() * movie.famousLines.length)];
-       document.getElementById('quote-display').innerText = `"${quoteObj.line}"`;
+       const qdEl = document.getElementById('quote-display');
+       if (qdEl) qdEl.innerText = `"${quoteObj.line}"`;
 
        // ── 명대사 퀴즈: 캐릭터명 표시 제거 + 영화 제목 4지선다 ──────────────
        if (quoteChoicesEl) {
@@ -6824,7 +6851,7 @@ class CineMasterApp {
          const wrongPool = this.currentQuiz.movies.filter(m => m.title !== movie.title);
          let wrongTitles = this.shuffleArray([...wrongPool]).slice(0, 3).map(m => m.title);
          if (wrongTitles.length < 3) {
-           const extraPool = MOVIES_DATABASE.filter(m => m.title !== movie.title && !wrongTitles.includes(m.title));
+        const extraPool = [...MOVIES_DATABASE, ...(typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : [])].filter(m => m.title !== movie.title && !wrongTitles.includes(m.title) && m.posterUrl);
            const extra = this.shuffleArray([...extraPool]).slice(0, 3 - wrongTitles.length).map(m => m.title);
            wrongTitles = [...wrongTitles, ...extra];
          }
@@ -6851,15 +6878,19 @@ class CineMasterApp {
        if (choseongCard) choseongCard.style.display = 'block';
        if (quoteChoicesEl) quoteChoicesEl.style.display = 'none';
        if (choseongAnswerCard) choseongAnswerCard.style.display = 'block';
-       document.getElementById('choseong-display').innerText = movie.choseong;
-     } else {
+        const cd2El = document.getElementById('choseong-display');
+        if (cd2El) cd2El.innerText = movie.choseong;
+      } else {
        // 초성만 있는 경우 (famousLines=0, choseong만 있음) → 항상 초성 표시
        if (quoteCard) quoteCard.style.display = 'none';
        if (choseongCard) choseongCard.style.display = 'block';
        if (quoteChoicesEl) quoteChoicesEl.style.display = 'none';
        if (choseongAnswerCard) choseongAnswerCard.style.display = 'block';
-       if (hasChoseong) document.getElementById('choseong-display').innerText = movie.choseong;
-     }
+        if (hasChoseong) {
+          const cdEl = document.getElementById('choseong-display');
+          if (cdEl) cdEl.innerText = movie.choseong;
+        }
+      }
      
      // E모드 포스터 설정
      const linesPosterEl = document.getElementById('lines-movie-poster');
@@ -6882,6 +6913,8 @@ class CineMasterApp {
 
   // 명대사(quote) 4지선다 클릭 채점
   gradeLinesQuoteQuiz(selectedTitle, correctTitle) {
+    if (this._grading) return;
+    this._grading = true;
     clearInterval(this.currentQuiz.timerId);
     const xpReward = 25;
 
@@ -6893,23 +6926,24 @@ class CineMasterApp {
         this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
       }
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
-      this.addXp(xpReward, "명대사 퀴즈 정답");
       this._recordRoundHistory({ question: '이 명대사가 나온 영화는?', userAnswer: selectedTitle, correctAnswer: correctTitle, isCorrect: true });
-      this.showAnswerOverlay(true, "정답입니다!", `명대사의 정답은 <b>${correctTitle}</b>입니다. +${xpReward} XP 획득!`);
     } else {
       this.currentQuiz.combo = 0;
       this.playSynthSound('incorrect');
       this._recordRoundHistory({ question: '이 명대사가 나온 영화는?', userAnswer: selectedTitle, correctAnswer: correctTitle, isCorrect: false });
-      this.showAnswerOverlay(false, "오답입니다!", `틀렸습니다! 정답은 <b>${correctTitle}</b>입니다. 선택: ${selectedTitle}`);
     }
+    this.nextRound();
   }
 
   gradeChoseongQuiz() {
+    if (this._grading) return;
+    this._grading = true;
     clearInterval(this.currentQuiz.timerId);
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     const userInput = document.getElementById('input-lines-answer').value.trim();
 
     if (!userInput) {
+      this._grading = false;
       showToast("영화 제목을 입력해 주세요.", 'warn');
       this.startTimer();
       return;
@@ -6928,18 +6962,14 @@ class CineMasterApp {
       }
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
 
-      // Award XP
-      this.addXp(xpReward, "초성 퀴즈 정답");
-
       this._recordRoundHistory({ question: `초성 '${movie.choseong}'의 영화 제목은?`, userAnswer: userInput, correctAnswer: movie.title, isCorrect: true });
-      this.showAnswerOverlay(true, "정답입니다!", `초성을 맞췄습니다. 정답은 <b>${movie.title}</b>입니다. +${xpReward} XP 획득!`);
     } else {
       this.currentQuiz.combo = 0;
       this.playSynthSound('incorrect');
 
       this._recordRoundHistory({ question: `초성 '${movie.choseong}'의 영화 제목은?`, userAnswer: userInput, correctAnswer: movie.title, isCorrect: false });
-      this.showAnswerOverlay(false, "오답입니다!", `틀렸습니다! 정답은 <b>${movie.title}</b>입니다. 입력값: ${userInput}`);
     }
+    this.nextRound();
   }
 
 
@@ -6969,10 +6999,12 @@ class CineMasterApp {
   }
 
   nextRound() {
+    this._grading = false;
     // special_ai 타입은 별도 흐름 처리
     if (this.currentQuiz.type === 'special_ai') {
       if (this.currentQuiz.aiCurrentQ < this.currentQuiz.aiQuestions.length) {
         this._renderSpecialAiQuestion();
+        this.startTimer();
       } else {
         this._finishSpecialAiQuiz();
       }
@@ -7005,6 +7037,7 @@ class CineMasterApp {
         this.setupOrdinaryQuizLayout();
       }
       this.startTimer();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       // filmo/lines/ordinary/challenge(5라운드 진행형 퀴즈)는 즉시 최종 결과로 넘어가지 않고,
       // 전체 라운드의 문제/답변을 한번에 확인하는 요약 화면을 먼저 보여준다.
@@ -7043,11 +7076,30 @@ class CineMasterApp {
       `).join('');
     }
 
+    // 버튼 핸들러 초기화 (special_ai에서 덮어썼을 수 있음)
+    const submitBtn = document.getElementById('btn-round-summary-submit');
+    if (submitBtn) submitBtn.onclick = () => app.confirmFinishQuiz();
+
     this.switchView('round-summary');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // 요약 화면 "최종 제출" 버튼 — 실제 결과 반영(finishQuiz)으로 진행
+  // 요약 화면 "최종 제출" 버튼 — XP 일괄 정산 후 finishQuiz
   confirmFinishQuiz() {
+    this._applyFinalResults();
+  }
+
+  _applyFinalResults() {
+    if (this._submitting) return;
+    this._submitting = true;
+    // grading 함수에서 이미 totalXpEarned + maxComboThisRun 누적 완료
+    const totalXp = this.currentQuiz.totalXpEarned || 0;
+
+    // XP 일괄 적용 (addXp 1회)
+    if (totalXp > 0 && this.currentUser) {
+      this.addXp(totalXp, `${this.currentQuiz.type} 퀴즈 최종 결과`);
+    }
+
     this.finishQuiz();
   }
 
@@ -7141,6 +7193,7 @@ class CineMasterApp {
     }
 
     this.switchView('finale');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // ── 단체전 답안 저장/조회 (localStorage, 수정 불가) ────────────────────
@@ -7525,7 +7578,7 @@ class CineMasterApp {
       return;
     }
 
-    const typeLabel = { score: 'Special', filmo: 'Regular', lines: 'Easy', challenge: 'Challenge', ordinary: 'Ordinary', score_upcoming: '스코어 예측' };
+    const typeLabel = { score: 'Special', filmo: 'Regular', lines: 'Easy', challenge: 'Challenge', ordinary: 'Ordinary', score_upcoming: '스코어 예측', special_ai: 'Special' };
     container.innerHTML = history.map((r, idx) => {
       const pct = r.accuracy ?? Math.round((r.score / r.total) * 100);
       const color = pct >= 80 ? 'var(--color-success)' : pct >= 50 ? 'var(--color-primary)' : 'var(--color-danger)';
@@ -7625,10 +7678,8 @@ class CineMasterApp {
   }
 
   finishUpcomingQuiz() {
-    // 개봉예정작 예측 결과 저장
     const movie = this.currentQuiz.movies[0];
     if (movie && this.currentQuiz.upcomingAnswers) {
-      this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
       showToast(`📋 <b>${movie.title}</b> 예측이 저장되었습니다. 개봉 후 정답이 공개됩니다!`, 'info', 4000);
     }
     // prediction-overlay 닫기
@@ -7682,9 +7733,12 @@ class CineMasterApp {
       poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
     }
 
-    document.getElementById('challenge-movie-title').innerText = movie.title;
-    document.getElementById('challenge-movie-director').innerText = `감독: ${movie.director || '—'}`;
-    document.getElementById('challenge-movie-cast').innerText = `출연: ${(movie.cast || []).slice(0, 3).join(', ') || '—'}`;
+    const tEl = document.getElementById('challenge-movie-title');
+    const dEl = document.getElementById('challenge-movie-director');
+    const cEl = document.getElementById('challenge-movie-cast');
+    if (tEl) tEl.innerText = movie.title;
+    if (dEl) dEl.innerText = `감독: ${movie.director || '—'}`;
+    if (cEl) cEl.innerText = `출연: ${(movie.cast || []).slice(0, 3).join(', ') || '—'}`;
 
     // 입력 초기화
     const input = document.getElementById('challenge-date-input');
@@ -7699,15 +7753,25 @@ class CineMasterApp {
     // Score 퀴즈 전용 step 버튼은 숨김 (Challenge 모드에서는 날짜 제출 버튼 사용)
     const nextStepBtn = document.getElementById('btn-next-step');
     if (nextStepBtn) nextStepBtn.style.display = 'none';
+    // Score 전용 step 카드/인디케이터 숨김
+    ['score-step-0','score-step-1','score-step-2','score-step-3','score-step-4','score-step-5','score-step-6','score-step-7','score-step-8'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+    const stepsBar = document.getElementById('score-quiz-steps-bar');
+    if (stepsBar) stepsBar.style.display = 'none';
   }
 
   gradeChallengeQuiz() {
+    if (this._grading) return;
+    this._grading = true;
     clearInterval(this.currentQuiz.timerId);
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     const input = document.getElementById('challenge-date-input');
     const userInput = (input?.value || '').trim();
 
     if (userInput.length !== 6 || !/^\d{6}$/.test(userInput)) {
+      this._grading = false;
       showToast('6자리 숫자(YYMMDD)를 입력해 주세요.', 'warn');
       this.startTimer();
       return;
@@ -7739,7 +7803,6 @@ class CineMasterApp {
 
     if (xpReward > 0) {
       this.currentQuiz.totalXpEarned += xpReward;
-      this.addXp(xpReward, `Challenge ${matchCount}자리 적중`);
     }
 
     if (isPerfect) {
@@ -7750,16 +7813,12 @@ class CineMasterApp {
       }
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
       this._recordRoundHistory({ question: `${movie.title}의 개봉일(YYMMDD)은?`, userAnswer: userInput, correctAnswer: correctYYMMDD, isCorrect: true });
-      this.showAnswerOverlay(true, "정확합니다!", `<b>${movie.title}</b>의 개봉일 <b>${correctYYMMDD}</b>을 정확히 맞혔습니다! +${xpReward} XP`);
     } else {
       this.currentQuiz.combo = 0;
       this.playSynthSound('incorrect');
-      const desc = matchCount > 0
-        ? `<b>${matchCount}자리</b>가 일치했습니다. 정답은 <b>${correctYYMMDD}</b> (${movie.releaseDate})입니다. +${xpReward} XP`
-        : `정답은 <b>${correctYYMMDD}</b> (${movie.releaseDate})입니다. 입력: ${userInput}`;
       this._recordRoundHistory({ question: `${movie.title}의 개봉일(YYMMDD)은?`, userAnswer: userInput, correctAnswer: correctYYMMDD, isCorrect: false });
-      this.showAnswerOverlay(false, matchCount > 0 ? `${matchCount}자리 적중!` : "불일치", desc);
     }
+    this.nextRound();
   }
 
   // ── Ordinary 퀴즈 레이아웃 ──────────────────────────────────────────────
@@ -7856,6 +7915,8 @@ class CineMasterApp {
   }
 
   gradeOrdinaryQuiz(selectedTitle, correctTitle) {
+    if (this._grading) return;
+    this._grading = true;
     clearInterval(this.currentQuiz.timerId);
     const xpReward = 25;
 
@@ -7867,15 +7928,13 @@ class CineMasterApp {
         this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
       }
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
-      this.addXp(xpReward, 'Ordinary 포스터 퀴즈 정답');
       this._recordRoundHistory({ question: '이 포스터 조각의 영화는?', userAnswer: selectedTitle, correctAnswer: correctTitle, isCorrect: true });
-      this.showAnswerOverlay(true, "정답입니다!", `포스터로 <b>${correctTitle}</b>을 맞혔습니다! +${xpReward} XP`);
     } else {
       this.currentQuiz.combo = 0;
       this.playSynthSound('incorrect');
       this._recordRoundHistory({ question: '이 포스터 조각의 영화는?', userAnswer: selectedTitle, correctAnswer: correctTitle, isCorrect: false });
-      this.showAnswerOverlay(false, "오답입니다!", `정답은 <b>${correctTitle}</b>입니다. 선택: ${selectedTitle}`);
     }
+    this.nextRound();
   }
 
 
@@ -7917,6 +7976,8 @@ class CineMasterApp {
     this.currentQuiz.aiCorrect     = 0;
     this.currentQuiz.groupMode     = (mode === 'group');
     this.currentQuiz.groupSessionId = sessionId || null;
+    this._grading = false;
+    this._submitting = false;
 
     this.switchView('quiz');
     this.activateQuizPanel('score');
@@ -7945,6 +8006,7 @@ class CineMasterApp {
     if (body)    body.style.display    = 'block';
 
     this._renderSpecialAiQuestion();
+    this.startTimer();
   }
 
   // ── S모드: CSV 로컬 데이터 기반 퀴즈 생성 (AI 불필요) ──────────────────
@@ -8330,12 +8392,15 @@ class CineMasterApp {
   }
 
   _submitSpecialAiAnswer() {
+    if (this._grading) return;
     const optName = this.currentQuiz._aiOptName || 'special-ai-opt';
     const selected = document.querySelector(`input[name="${optName}"]:checked`);
     if (!selected) {
       showToast('선택지를 선택해 주세요.', 'warn');
       return;
     }
+    clearInterval(this.currentQuiz.timerId);
+    this._grading = true;
     const questions = this.currentQuiz.aiQuestions;
     const idx = this.currentQuiz.aiCurrentQ;
     const q = questions[idx];
@@ -8351,30 +8416,76 @@ class CineMasterApp {
         this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
       }
       this.currentQuiz.totalXpEarned += xp;
-      this.addXp(xp, 'Special 종합 퀴즈 정답');
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
-      this.showAnswerOverlay(true, '정답입니다!',
-        `<b>${q.answer}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${q.explanation || ''}</span>`);
     } else {
       this.currentQuiz.combo = 0;
       this.playSynthSound('incorrect');
-      this.showAnswerOverlay(false, '오답입니다!',
-        `정답: <b>${q.answer}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${q.explanation || ''}</span>`);
     }
 
-    this.currentQuiz.aiCurrentQ++;
+    // 답변 이력 저장 (리뷰 화면용)
+    if (!this.currentQuiz.aiAnswerHistory) this.currentQuiz.aiAnswerHistory = [];
+    this.currentQuiz.aiAnswerHistory.push({
+      question: q.question,
+      userAnswer: userAnswer,
+      correctAnswer: q.answer,
+      explanation: q.explanation || '',
+      isCorrect: isCorrect
+    });
 
-    // 다음 문제 또는 종료는 showAnswerOverlay의 nextRound 흐름에서 처리
-    // nextRound 오버라이드: special_ai 타입 처리
+    this.currentQuiz.aiCurrentQ++;
+    this.nextRound();
   }
 
   _finishSpecialAiQuiz() {
+    clearInterval(this.currentQuiz.timerId);
+    const total   = this.currentQuiz.aiQuestions.length || 10;
+    const correct = this.currentQuiz.aiCorrect || 0;
+    const history = this.currentQuiz.aiAnswerHistory || [];
+
+    const titleEl = document.getElementById('round-summary-title');
+    if (titleEl) {
+      titleEl.innerHTML = `전체 ${total}문제 중 <b>${correct}개</b> 정답 — 최종 제출 전 답안을 확인하세요.`;
+    }
+
+    const listEl = document.getElementById('round-summary-list');
+    if (listEl) {
+      listEl.innerHTML = history.map((h, i) => `
+        <div class="review-item ${h.isCorrect ? 'correct' : 'incorrect'}">
+          <div>
+            <div class="review-item-q">Q${i + 1}. ${h.question}</div>
+            <div class="review-item-a">내 답변: ${h.userAnswer}</div>
+            ${!h.isCorrect ? `<div class="review-item-real">정답: <b>${h.correctAnswer}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${h.explanation || ''}</span></div>` : ''}
+          </div>
+          <span class="review-item-badge ${h.isCorrect ? 'correct' : 'incorrect'}">${h.isCorrect ? '정답' : '오답'}</span>
+        </div>
+      `).join('');
+    }
+
+    // 제출 버튼 텍스트와 핸들러 변경
+    const submitBtn = document.getElementById('btn-round-summary-submit');
+    if (submitBtn) {
+      submitBtn.innerHTML = '<span>최종 제출</span><span class="material-symbols-outlined">done_all</span>';
+      submitBtn.onclick = () => app._submitSpecialAiFinal();
+    }
+
+    this.switchView('round-summary');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  _submitSpecialAiFinal() {
+    if (this._submitting) return;
+    this._submitting = true;
     const total   = this.currentQuiz.aiQuestions.length || 10;
     const correct = this.currentQuiz.aiCorrect || 0;
     const xp      = this.currentQuiz.totalXpEarned || 0;
     const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-    // 퀴즈 기록 올바른 객체 형식으로 저장
+    // XP 일괄 적용
+    if (xp > 0 && this.currentUser) {
+      this.addXp(xp, `Special 종합 퀴즈 (${correct}/${total})`);
+    }
+
+    // 퀴즈 기록 저장
     this.saveQuizHistory({
       type:     'special_ai',
       movies:   [],
@@ -8386,6 +8497,24 @@ class CineMasterApp {
       date:     new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
       nickname: this.currentUser?.nickname || '',
     });
+
+    // ── 단체전: 공유 세션에 답안 저장 ───────────────────────
+    if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+      const aiHistory = this.currentQuiz.aiAnswerHistory || [];
+      this.saveGroupAnswer(this.currentQuiz.groupSessionId, {
+        nickname: this.currentUser?.nickname || '?',
+        email: this.currentUser?.email || '',
+        score: correct,
+        total: total,
+        accuracy: accuracy,
+        xp: xp,
+        combo: this.currentQuiz.maxComboThisRun || 0,
+        answers: aiHistory.map(h => ({ q: h.question, a: h.userAnswer, correct: h.isCorrect })),
+        movie: '',
+        locked: true,
+        date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+      });
+    }
 
     if (this.currentUser) {
       this.currentUser.stats.games = (this.currentUser.stats.games || 0) + 1;
