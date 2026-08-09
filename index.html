@@ -42,38 +42,42 @@
 
 /* 1. Variables & CSS Reset */
 :root {
-  /* Sophisticated Beige Tone Palette */
-  --bg-primary: #fdfbf7;
-  --bg-secondary: #f4f1ea;
-  --bg-card: rgba(250, 248, 242, 0.95);
-  --bg-input: rgba(44, 42, 39, 0.04);
-  
-  --border-color: rgba(138, 127, 118, 0.25);
-  --border-focus: rgba(138, 127, 118, 0.6);
-  
-  --color-primary: #8c7355;
-  --color-secondary: #4a453f;
-  
-  --color-success: #6b705c; /* Muted olive for success */
-  --color-danger: rgba(156, 102, 68, 0.8); /* Muted rust for danger */
-  
-  --text-main: #2c2a27;
-  --text-muted: rgba(44, 42, 39, 0.6);
-  /* Aliases for inline styles & AI quiz panel */
-  --text-primary: #2c2a27;
-  --accent: #8c7355;
-  
+  /* ── Cinematic Rose Gold Palette (v6.0) ── */
+  --bg-primary: #FFFAF8;
+  --bg-secondary: #FFF5F2;
+  --bg-card: rgba(255, 248, 246, 0.88);
+  --bg-input: rgba(200, 117, 123, 0.05);
+
+  --border-color: rgba(200, 117, 123, 0.18);
+  --border-focus: rgba(200, 117, 123, 0.45);
+  --border-soft: rgba(200, 117, 123, 0.10);
+
+  --color-primary: #C8757B;
+  --color-primary-light: #D4A0A6;
+  --color-secondary: #8B6A72;
+
+  --color-success: #8CB89A;
+  --color-danger: rgba(200, 117, 123, 0.75);
+
+  --text-main: #3D2A2C;
+  --text-muted: rgba(61, 42, 44, 0.55);
+  --text-primary: #3D2A2C;
+  --accent: #C8757B;
+  --accent-gold: #D4A96A;
+
   --font-family-sans: 'Noto Sans KR', sans-serif;
   --font-family-display: 'Outfit', sans-serif;
-  
-  --radius-sm: 0px; /* Sharp minimal edges */
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  
-  --shadow-card: none; /* Removed heavy shadows */
-  
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.4s cubic-bezier(0.2, 0, 0, 1);
+
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+
+  --shadow-card: 0 4px 24px rgba(200, 117, 123, 0.08);
+  --shadow-hover: 0 8px 32px rgba(200, 117, 123, 0.14);
+  --shadow-btn: 0 2px 12px rgba(200, 117, 123, 0.15);
+
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -87,7 +91,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #0a0a0a;
+  background: linear-gradient(135deg, #C8757B 0%, #8B6A72 50%, #3D2A2C 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,10 +182,10 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
+  background: linear-gradient(180deg, #FFFAF8 0%, #FFF0EE 50%, #FFFAF8 100%);
   color: var(--text-main);
   font-family: var(--font-family-sans);
-  font-weight: 300;
+  font-weight: 350;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -433,18 +437,23 @@ body.login-active .glow-bg { opacity: 0; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Minimalist Cards */
+/* Glass Cards */
 .glass-card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 30px 24px;
   margin-bottom: 24px;
-  transition: border-color var(--transition-normal);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
 }
 
 .glass-card.hover-lift:hover {
-  border-color: rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-focus);
 }
 
 /* 5. Typography */
@@ -524,9 +533,11 @@ button, .btn {
 }
 
 .btn-primary:hover {
-  background: transparent;
-  color: var(--text-main);
-  border-color: var(--text-main);
+  background: var(--color-primary-light);
+  color: #fff;
+  border-color: var(--color-primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-btn);
 }
 
 .btn-secondary {
@@ -536,7 +547,10 @@ button, .btn {
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-main);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-btn);
 }
 
 .btn-icon-text {
@@ -608,18 +622,19 @@ button, .btn {
   width: 100%;
   background: var(--bg-input);
   border: 1px solid var(--border-color);
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   padding: 14px 16px;
   color: var(--text-main);
   font-size: 1rem;
   font-weight: 300;
   outline: none;
   font-family: var(--font-family-sans);
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .form-control:focus {
-  border-color: var(--text-main);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(200, 117, 123, 0.1);
 }
 
 .form-control::placeholder {
@@ -816,13 +831,18 @@ button, .btn {
 /* Bottom Navigation */
 .bottom-nav {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  height: calc(65px + env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border-color);
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 24px);
+  max-width: 576px;
+  height: 62px;
+  border-radius: 20px;
+  background: rgba(255, 248, 246, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 20px rgba(200, 117, 123, 0.10);
   display: flex;
   justify-content: center;
   z-index: 1000;
@@ -1040,7 +1060,9 @@ button, .btn {
 }
 
 .quiz-option-btn:hover, .quiz-option-btn:focus-visible {
-  border-color: var(--text-main);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-1px);
   outline: none;
 }
 
@@ -1053,7 +1075,7 @@ button, .btn {
 .quiz-option-icon {
   font-size: 2rem;
   font-weight: 100;
-  color: var(--text-main);
+  color: var(--color-primary);
 }
 
 .quiz-option-text h4 {
@@ -1103,15 +1125,19 @@ button, .btn {
   gap: 14px;
   padding: 10px;
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
   background: var(--bg-card);
   cursor: pointer;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
+  box-shadow: 0 1px 8px rgba(200, 117, 123, 0.04);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
   -webkit-tap-highlight-color: transparent;
 }
 
 .movie-card:hover, .movie-card:active, .movie-card:focus-visible {
   border-color: var(--color-primary);
   background: var(--bg-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(200, 117, 123, 0.10);
   outline: none;
 }
 
@@ -1122,7 +1148,7 @@ button, .btn {
   background-size: cover;
   background-position: center;
   background-color: var(--bg-secondary);
-  /* 컬러 포스터 */
+  border-radius: 8px;
 }
 
 .movie-info {
@@ -1418,13 +1444,14 @@ button, .btn {
   width: 90px;
   height: 130px;
   border: 1px solid var(--border-color);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
-  /* 컬러 포스터 — 흑백 필터 제거 */
+  box-shadow: 0 2px 12px rgba(200, 117, 123, 0.08);
 }
 
 .movie-poster-placeholder .material-symbols-outlined {
@@ -1559,10 +1586,13 @@ button, .btn {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 12px 14px;
-  background: var(--bg-secondary);
-  border-radius: 8px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
+  box-shadow: 0 1px 6px rgba(200, 117, 123, 0.04);
 }
 .review-item-q {
   font-size: 0.78rem;
@@ -1654,6 +1684,7 @@ button, .btn {
   padding: 16px;
   background: transparent;
   border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
   transition: all var(--transition-fast);
   color: var(--text-muted);
@@ -1662,15 +1693,17 @@ button, .btn {
 }
 
 .option-item:hover .option-box, .option-item input:focus-visible + .option-box {
-  border-color: rgba(0, 0, 0, 0.3);
+  border-color: var(--color-primary-light);
   color: var(--text-main);
+  transform: translateY(-1px);
 }
 
 /* Checked state */
 .option-item input:checked + .option-box {
-  border-color: var(--text-main);
-  color: var(--text-main);
-  background: var(--bg-input);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(200, 117, 123, 0.06);
+  font-weight: 500;
 }
 
 
@@ -1911,8 +1944,9 @@ button, .btn {
   left: 0;
   width: 100vw;
   height: 100dvh;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(5px);
+  background: rgba(255, 245, 242, 0.80);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
   display: none;
   align-items: center;
@@ -7218,13 +7252,13 @@ class CineMasterApp {
     if (!emails.length) return;
 
     const movieRow = `
-      <tr style="background:#2c2a27;color:#fdfbf7;">
+      <tr style="background:#3D2A2C;color:#FFFAF8;">
         <td colspan="7" style="padding:10px 12px;font-size:0.95rem;font-weight:700;">
           🎬 ${movie} — 단체전 예측 결과
         </td>
       </tr>`;
     const headerRow = `
-      <tr style="background:#f4f1ea;font-size:0.8rem;font-weight:600;color:#4a453f;">
+      <tr style="background:#FFF5F2;font-size:0.8rem;font-weight:600;color:var(--color-secondary);">
         <td style="padding:8px 12px;">참가자</td>
         <td style="padding:8px 12px;">관람대상</td>
         <td style="padding:8px 12px;">좌석수</td>
@@ -7253,8 +7287,8 @@ class CineMasterApp {
         </tr>`;
     }).join('');
 
-    const html = `<div style="font-family:'Noto Sans KR',sans-serif;max-width:560px;margin:0 auto;padding:24px;background:#fdfbf7;border:1px solid #e0dbd4;">
-      <p style="font-size:1.4rem;font-weight:700;letter-spacing:2px;margin:0 0 4px;color:#2c2a27;">score<span style="color:#e6b87a;">.</span></p>
+    const html = `<div style="font-family:'Noto Sans KR',sans-serif;max-width:560px;margin:0 auto;padding:24px;background:#FFFAF8;border:1px solid var(--border-color);">
+      <p style="font-size:1.4rem;font-weight:700;letter-spacing:2px;margin:0 0 4px;color:#3D2A2C;">score<span style="color:#D4A96A;">.</span></p>
       <p style="font-size:0.85rem;color:#8a7f78;margin:0 0 20px;">단체전 예측 결과가 집계되었습니다.</p>
       <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
         ${movieRow}${headerRow}${dataRows}
@@ -8789,7 +8823,7 @@ window.addEventListener('DOMContentLoaded', () => {
   } catch(e) {
     console.error('App init failed:', e);
     document.getElementById('splash-screen')?.classList.add('hidden');
-    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100dvh;font-family:sans-serif;color:#2c2a27;text-align:center;padding:20px;"><div><p style="font-size:1.5rem;font-weight:700;">앱 초기화 오류</p><p style="color:#8a7f78;margin-top:8px;">페이지를 새로고침해 주세요.</p><button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#2c2a27;color:#fff;border:none;font-size:0.9rem;cursor:pointer;">새로고침</button></div></div>';
+    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100dvh;font-family:sans-serif;color:#3D2A2C;text-align:center;padding:20px;"><div><p style="font-size:1.5rem;font-weight:700;">앱 초기화 오류</p><p style="color:#8B6A72;margin-top:8px;">페이지를 새로고침해 주세요.</p><button onclick="location.reload()" style="margin-top:16px;padding:12px 24px;background:#3D2A2C;color:#fff;border:none;font-size:0.9rem;cursor:pointer;">새로고침</button></div></div>';
   }
 
   // ── 핸드폰 뒤로가기 버튼 처리 ────────────────────────────────────────
