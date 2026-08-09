@@ -1,0 +1,111 @@
+---
+permalink: /404.html
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이지를 찾을 수 없습니다 | score</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #faf5f7;
+      --bg-card: rgba(255,248,250,0.95);
+      --border-color: rgba(196,130,122,0.18);
+      --text-main: #3d2c33;
+      --text-muted: rgba(61,44,51,0.5);
+      --color-primary: #c4827a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-primary);
+      color: var(--text-main);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 350;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      text-align: center;
+      padding: 24px;
+    }
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .error-code {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(4rem, 15vw, 7rem);
+      font-weight: 300;
+      color: var(--color-primary);
+      letter-spacing: 6px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .logo {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .logo-dot { color: var(--color-primary); }
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .home-link {
+      display: inline-block;
+      padding: 12px 28px;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 1px;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .home-link:hover {
+      border-color: var(--text-main);
+      background: var(--bg-card);
+    }
+    .film-strip {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .film-frame {
+      width: 32px;
+      height: 48px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">score<span class="logo-dot">.</span></div>
+    <div class="error-code">404</div>
+    <h1>페이지를 찾을 수 없습니다</h1>
+    <p>요청하신 페이지가 존재하지 않거나<br>이동되었습니다.</p>
+    <div class="film-strip">
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+      <div class="film-frame"></div>
+    </div>
+    <a href="/score/" class="home-link">처음으로</a>
+  </div>
+</body>
+</html>

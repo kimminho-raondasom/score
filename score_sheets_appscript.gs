@@ -1,5 +1,10 @@
 /**
- * score 앱 — 퀴즈 기록 수신 & Google Sheets 저장 + 이메일 OTP 인증
+ * score 앱 — 퀴즈 기록 수신 & Google Sheets 저장 + 이메일 OTP 인증 (v2)
+ *
+ * [OTP 보안 강화 (2026-08-09)]
+ * - 서버에서 OTP 코드 생성·저장·검증 (클라이언트가 코드를 알 수 없음)
+ * - PropertiesService로 5분 유효기간 관리
+ * - 인증 완료 시 코드 즉시 폐기
  *
  * [설치 방법]
  * 1. Google Sheets에서 새 시트를 만듭니다.
@@ -11,94 +16,133 @@
  * 5. 배포 URL을 복사해서 index.html의 SCORE_SHEET_WEBHOOK_URL 에 붙여넣습니다.
  *
  * [OTP 인증 엔드포인트]
- * POST { action: 'sendOtp', email: '...', code: '123456' }
- * → 해당 이메일로 6자리 인증 코드 발송
+ * GET ?action=sendOtp&email=...       → 서버가 OTP 생성 후 이메일 발송
+ * GET ?action=verifyOtp&email=...&code=... → 서버에서 코드 검증
  */
 
 const SHEET_NAME = 'quiz_records';
+const OTP_EXPIRY_MS = 5 * 60 * 1000; // 5분
 
+// ── OTP 헬퍼 ────────────────────────────────────────────────────────────────
+function _generateOtpCode() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+function _storeOtp(email, code) {
+  const props = PropertiesService.getScriptProperties();
+  props.setProperty('otp_' + email, JSON.stringify({
+    code: code,
+    expires: Date.now() + OTP_EXPIRY_MS,
+    attempts: 0
+  }));
+}
+
+function _verifyOtpInternal(email, inputCode) {
+  const props = PropertiesService.getScriptProperties();
+  const raw = props.getProperty('otp_' + email);
+  if (!raw) return { valid: false, reason: 'no_code' };
+
+  var data;
+  try { data = JSON.parse(raw); } catch(e) { return { valid: false, reason: 'invalid_data' }; }
+
+  if (Date.now() > data.expires) {
+    props.deleteProperty('otp_' + email);
+    return { valid: false, reason: 'expired' };
+  }
+
+  if (inputCode !== data.code) {
+    data.attempts = (data.attempts || 0) + 1;
+    if (data.attempts >= 5) {
+      props.deleteProperty('otp_' + email);
+      return { valid: false, reason: 'max_attempts' };
+    }
+    props.setProperty('otp_' + email, JSON.stringify(data));
+    return { valid: false, reason: 'mismatch', attemptsLeft: 5 - data.attempts };
+  }
+
+  props.deleteProperty('otp_' + email);
+  return { valid: true };
+}
+
+// ── 이메일 전송 헬퍼 ────────────────────────────────────────────────────────
+function _sendOtpEmail(toEmail, code) {
+  MailApp.sendEmail({
+    to: toEmail,
+    subject: '[score] 이메일 인증 코드',
+    body:
+      'score 앱 가입 인증 코드입니다.\n\n' +
+      '인증 코드: ' + code + '\n\n' +
+      '이 코드는 5분간 유효합니다.\n' +
+      '본인이 요청하지 않은 경우 이 메일을 무시하세요.',
+    htmlBody:
+      '<div style="font-family:\'Noto Sans KR\',sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;background:#fdfbf7;border:1px solid #e0dbd4;">' +
+      '<p style="font-size:1.6rem;font-weight:700;letter-spacing:3px;margin:0 0 24px;color:#2c2a27;">score<span style="color:#e6b87a;">.</span></p>' +
+      '<p style="color:#4a453f;font-size:0.95rem;margin-bottom:16px;">이메일 인증 코드입니다.</p>' +
+      '<div style="background:#2c2a27;color:#fff;font-size:2rem;font-weight:700;letter-spacing:12px;text-align:center;padding:20px;margin:24px 0;">' + code + '</div>' +
+      '<p style="color:#8a7f78;font-size:0.8rem;margin-top:24px;">이 코드는 5분간 유효합니다. 본인이 요청하지 않은 경우 무시하세요.</p>' +
+      '</div>'
+  });
+}
+
+function _ensureSheet(sheet) {
+  if (!sheet) {
+    sheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet(SHEET_NAME);
+    sheet.appendRow([
+      '저장시각(KST)', '닉네임', '이메일', '유저ID', '퀴즈타입',
+      '점수', '전체라운드', '정확도(%)', 'XP', '최대콤보', '영화목록', '원본타임스탬프',
+    ]);
+    var headerRange = sheet.getRange(1, 1, 1, 12);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#2c2a27');
+    headerRange.setFontColor('#ffffff');
+  }
+  return sheet;
+}
+
+// ── POST ────────────────────────────────────────────────────────────────────
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
+    var data = JSON.parse(e.postData.contents);
 
-    // ── OTP 이메일 발송 ────────────────────────────────────────────────
     if (data.action === 'sendOtp') {
-      const toEmail = data.email || '';
-      const code    = data.code  || '';
-      if (!toEmail || !code) {
+      var toEmail = (data.email || '').trim().toLowerCase();
+      if (!toEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(toEmail)) {
         return ContentService
-          .createTextOutput(JSON.stringify({ status: 'error', message: 'email or code missing' }))
+          .createTextOutput(JSON.stringify({ status: 'error', message: 'invalid email' }))
           .setMimeType(ContentService.MimeType.JSON);
       }
-      MailApp.sendEmail({
-        to: toEmail,
-        subject: '[score] 이메일 인증 코드',
-        body:
-          'score 앱 가입 인증 코드입니다.\n\n' +
-          '인증 코드: ' + code + '\n\n' +
-          '이 코드는 5분간 유효합니다.\n' +
-          '본인이 요청하지 않은 경우 이 메일을 무시하세요.',
-        htmlBody:
-          '<div style="font-family:\'Noto Sans KR\',sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;background:#fdfbf7;border:1px solid #e0dbd4;">' +
-          '<p style="font-size:1.6rem;font-weight:700;letter-spacing:3px;margin:0 0 24px;color:#2c2a27;">score<span style="color:#e6b87a;">.</span></p>' +
-          '<p style="color:#4a453f;font-size:0.95rem;margin-bottom:16px;">이메일 인증 코드입니다.</p>' +
-          '<div style="background:#2c2a27;color:#fff;font-size:2rem;font-weight:700;letter-spacing:12px;text-align:center;padding:20px;margin:24px 0;">' + code + '</div>' +
-          '<p style="color:#8a7f78;font-size:0.8rem;margin-top:24px;">이 코드는 5분간 유효합니다. 본인이 요청하지 않은 경우 무시하세요.</p>' +
-          '</div>'
-      });
+      var code = _generateOtpCode();
+      _storeOtp(toEmail, code);
+      _sendOtpEmail(toEmail, code);
       return ContentService
         .createTextOutput(JSON.stringify({ status: 'ok' }))
         .setMimeType(ContentService.MimeType.JSON);
     }
 
-    // ── 퀴즈 기록 저장 ────────────────────────────────────────────────
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    let sheet = ss.getSheetByName(SHEET_NAME);
-
-    // 시트가 없으면 새로 생성 + 헤더 추가
-    if (!sheet) {
-      sheet = ss.insertSheet(SHEET_NAME);
-      sheet.appendRow([
-        '저장시각(KST)',
-        '닉네임',
-        '이메일',
-        '유저ID',
-        '퀴즈타입',
-        '점수',
-        '전체라운드',
-        '정확도(%)',
-        'XP',
-        '최대콤보',
-        '영화목록',
-        '원본타임스탬프',
-      ]);
-      // 헤더 행 스타일
-      const headerRange = sheet.getRange(1, 1, 1, 12);
-      headerRange.setFontWeight('bold');
-      headerRange.setBackground('#2c2a27');
-      headerRange.setFontColor('#ffffff');
+    if (data.action === 'verifyOtp') {
+      var email = (data.email || '').trim().toLowerCase();
+      var inputCode = (data.code || '').trim();
+      if (!email || !inputCode) {
+        return ContentService
+          .createTextOutput(JSON.stringify({ status: 'error', message: 'email or code missing' }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      var result = _verifyOtpInternal(email, inputCode);
+      return ContentService
+        .createTextOutput(JSON.stringify(result))
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
-    // KST 현재 시각
-    const kstNow = Utilities.formatDate(
-      new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss'
-    );
-
+    // 퀴즈 기록 저장
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = _ensureSheet(ss.getSheetByName(SHEET_NAME));
     sheet.appendRow([
-      kstNow,
-      data.nickname || '',
-      data.userEmail || '',
-      data.userId || '',
-      data.type || '',
-      data.score ?? '',
-      data.total ?? '',
-      data.accuracy ?? '',
-      data.xp ?? '',
-      data.combo ?? '',
-      (data.movies || []).join(', '),
-      data.timestamp || '',
+      Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss'),
+      data.nickname || '', data.userEmail || '', data.userId || '',
+      data.type || '', data.score ?? '', data.total ?? '',
+      data.accuracy ?? '', data.xp ?? '', data.combo ?? '',
+      (data.movies || []).join(', '), data.timestamp || '',
     ]);
-
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok' }))
       .setMimeType(ContentService.MimeType.JSON);
@@ -109,99 +153,85 @@ function doPost(e) {
   }
 }
 
-// GET 요청 — OTP 이메일 발송 + 상태 확인 (fetch CORS 회피용, GET 파라미터 사용)
+// ── GET (CORS 우회용, 모든 API는 GET 파라미터로) ────────────────────────────
 function doGet(e) {
-  if (e && e.parameter) {
-    // ── OTP 이메일 발송 (GET ?action=sendOtp&email=...&code=...) ──
-    if (e.parameter.action === 'sendOtp') {
-      const toEmail = e.parameter.email || '';
-      const code    = e.parameter.code  || '';
-      if (!toEmail || !code) {
-        return ContentService
-          .createTextOutput(JSON.stringify({ status: 'error', message: 'email or code missing' }))
-          .setMimeType(ContentService.MimeType.JSON);
-      }
-      MailApp.sendEmail({
-        to: toEmail,
-        subject: '[score] 이메일 인증 코드',
-        body:
-          'score 앱 가입 인증 코드입니다.\n\n' +
-          '인증 코드: ' + code + '\n\n' +
-          '이 코드는 5분간 유효합니다.\n' +
-          '본인이 요청하지 않은 경우 이 메일을 무시하세요.',
-        htmlBody:
-          '<div style="font-family:\'Noto Sans KR\',sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;background:#fdfbf7;border:1px solid #e0dbd4;">' +
-          '<p style="font-size:1.6rem;font-weight:700;letter-spacing:3px;margin:0 0 24px;color:#2c2a27;">score<span style="color:#e6b87a;">.</span></p>' +
-          '<p style="color:#4a453f;font-size:0.95rem;margin-bottom:16px;">이메일 인증 코드입니다.</p>' +
-          '<div style="background:#2c2a27;color:#fff;font-size:2rem;font-weight:700;letter-spacing:12px;text-align:center;padding:20px;margin:24px 0;">' + code + '</div>' +
-          '<p style="color:#8a7f78;font-size:0.8rem;margin-top:24px;">이 코드는 5분간 유효합니다. 본인이 요청하지 않은 경우 무시하세요.</p>' +
-          '</div>'
-      });
-      return ContentService
-        .createTextOutput(JSON.stringify({ status: 'ok' }))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-
-    // ── 퀴즈 기록 저장 (GET ?action=saveQuiz&nickname=...&email=...&type=...&score=...&total=...&xp=...&combo=...&accuracy=...&movies=...&date=...) ──
-    if (e.parameter.action === 'saveQuiz') {
-      const ss = SpreadsheetApp.getActiveSpreadsheet();
-      let sheet = ss.getSheetByName(SHEET_NAME);
-      if (!sheet) {
-        sheet = ss.insertSheet(SHEET_NAME);
-        sheet.appendRow([
-          '저장시각(KST)', '닉네임', '이메일', '유저ID', '퀴즈타입',
-          '점수', '전체라운드', '정확도(%)', 'XP', '최대콤보', '영화목록', '원본타임스탬프',
-        ]);
-        const headerRange = sheet.getRange(1, 1, 1, 12);
-        headerRange.setFontWeight('bold');
-        headerRange.setBackground('#2c2a27');
-        headerRange.setFontColor('#ffffff');
-      }
-      const kstNow = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss');
-      sheet.appendRow([
-        kstNow,
-        e.parameter.nickname || '',
-        e.parameter.email || '',
-        e.parameter.userId || '',
-        e.parameter.type || '',
-        e.parameter.score || '',
-        e.parameter.total || '',
-        e.parameter.accuracy || '',
-        e.parameter.xp || '',
-        e.parameter.combo || '',
-        e.parameter.movies || '',
-        e.parameter.timestamp || new Date().toISOString(),
-      ]);
-      return ContentService
-        .createTextOutput(JSON.stringify({ status: 'ok' }))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
+  if (!e || !e.parameter) {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName(SHEET_NAME);
+    var rows = sheet ? sheet.getLastRow() - 1 : 0;
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', records: rows }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
 
-    // ── 단체전 결과 이메일 발송 ───────────────────────────────────────
-    if (e.parameter.action === 'sendGroupResult') {
-      const emails   = (e.parameter.emails || '').split(',');
-      const subject  = e.parameter.subject || '[score] 단체전 예측 결과';
-      const bodyHtml = e.parameter.bodyHtml || '';
-      emails.forEach(toEmail => {
-        if (toEmail) {
-          MailApp.sendEmail({
-            to: toEmail,
-            subject: subject,
-            htmlBody: bodyHtml,
-          });
-        }
-      });
+  var p = e.parameter;
+
+  // ── OTP 발송 (서버에서 코드 생성) ────────────────────────────────────
+  if (p.action === 'sendOtp') {
+    var toEmail = (p.email || '').trim().toLowerCase();
+    if (!toEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(toEmail)) {
       return ContentService
-        .createTextOutput(JSON.stringify({ status: 'ok', sent: emails.length }))
+        .createTextOutput(JSON.stringify({ status: 'error', message: 'invalid email' }))
         .setMimeType(ContentService.MimeType.JSON);
     }
+    var code = _generateOtpCode();
+    _storeOtp(toEmail, code);
+    _sendOtpEmail(toEmail, code);
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // ── OTP 검증 (서버에서 코드 비교) ────────────────────────────────────
+  if (p.action === 'verifyOtp') {
+    var email = (p.email || '').trim().toLowerCase();
+    var inputCode = (p.code || '').trim();
+    if (!email || !inputCode) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'error', message: 'email or code missing' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    var result = _verifyOtpInternal(email, inputCode);
+    return ContentService
+      .createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // ── 퀴즈 기록 저장 ──────────────────────────────────────────────────
+  if (p.action === 'saveQuiz') {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = _ensureSheet(ss.getSheetByName(SHEET_NAME));
+    sheet.appendRow([
+      Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss'),
+      p.nickname || '', p.email || '', p.userId || '',
+      p.type || '', p.score || '', p.total || '',
+      p.accuracy || '', p.xp || '', p.combo || '',
+      p.movies || '', p.timestamp || new Date().toISOString(),
+    ]);
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // ── 단체전 결과 이메일 발송 ─────────────────────────────────────────
+  if (p.action === 'sendGroupResult') {
+    var emails = (p.emails || '').split(',');
+    var subject = p.subject || '[score] 단체전 예측 결과';
+    var bodyHtml = p.bodyHtml || '';
+    emails.forEach(function(toEmail) {
+      if (toEmail) {
+        MailApp.sendEmail({ to: toEmail, subject: subject, htmlBody: bodyHtml });
+      }
+    });
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', sent: emails.length }))
+      .setMimeType(ContentService.MimeType.JSON);
   }
 
   // 기본: 기록 수 반환
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName(SHEET_NAME);
-  const rows = sheet ? sheet.getLastRow() - 1 : 0;
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME);
+  var rows = sheet ? sheet.getLastRow() - 1 : 0;
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', records: rows }))
     .setMimeType(ContentService.MimeType.JSON);

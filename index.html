@@ -10,44 +10,46 @@
   <!-- Font and Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Outfit:wght@100;300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&family=Outfit:wght@100;300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
   
   <!-- Style Sheet -->
   <style>
 /* ==========================================================================
-   score — Soft Romance Style Sheet (2030 Women)
+   score - Monochrome Minimalist Style Sheet (White Theme)
    ========================================================================== */
 
 /* 1. Variables & CSS Reset */
 :root {
-  --bg-primary: #faf5f7;
-  --bg-secondary: #f0e8ec;
-  --bg-card: rgba(255, 248, 250, 0.95);
-  --bg-input: rgba(196, 130, 122, 0.05);
+  /* Sophisticated Beige Tone Palette */
+  --bg-primary: #fdfbf7;
+  --bg-secondary: #f4f1ea;
+  --bg-card: rgba(250, 248, 242, 0.95);
+  --bg-input: rgba(44, 42, 39, 0.04);
   
-  --border-color: rgba(196, 130, 122, 0.18);
-  --border-focus: rgba(196, 130, 122, 0.45);
+  --border-color: rgba(138, 127, 118, 0.25);
+  --border-focus: rgba(138, 127, 118, 0.6);
   
-  --color-primary: #c4827a;
-  --color-secondary: #8b6b7a;
+  --color-primary: #8c7355;
+  --color-secondary: #4a453f;
   
-  --color-success: #7a9a7e;
-  --color-danger: rgba(196, 130, 122, 0.75);
+  --color-success: #6b705c; /* Muted olive for success */
+  --color-danger: rgba(156, 102, 68, 0.8); /* Muted rust for danger */
   
-  --text-main: #3d2c33;
-  --text-muted: rgba(61, 44, 51, 0.5);
-  --text-primary: #3d2c33;
-  --accent: #c4827a;
+  --text-main: #2c2a27;
+  --text-muted: rgba(44, 42, 39, 0.6);
+  /* Aliases for inline styles & AI quiz panel */
+  --text-primary: #2c2a27;
+  --accent: #8c7355;
   
   --font-family-sans: 'Noto Sans KR', sans-serif;
-  --font-family-display: 'Playfair Display', serif;
+  --font-family-display: 'Outfit', sans-serif;
   
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-sm: 0px; /* Sharp minimal edges */
+  --radius-md: 0px;
+  --radius-lg: 0px;
   
-  --shadow-card: 0 2px 16px rgba(139, 107, 122, 0.08);
+  --shadow-card: none; /* Removed heavy shadows */
   
   --transition-fast: 0.2s ease;
   --transition-normal: 0.4s cubic-bezier(0.2, 0, 0, 1);
@@ -64,7 +66,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: linear-gradient(135deg, #c4827a 0%, #8b6b7a 50%, #5e4a5c 100%);
+  background: #0a0a0a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,8 +95,8 @@
   font-family: 'Noto Sans KR', sans-serif;
   font-size: clamp(1.4rem, 5vw, 1.8rem);
   font-weight: 300;
-  color: rgba(255,255,255,0.88);
-  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 0.18em;
   line-height: 1.7;
   opacity: 0;
   transform: translateY(14px);
@@ -134,7 +136,7 @@
 }
 
 .splash-dot {
-  color: #f0c4c0;
+  color: #e6b87a;
 }
 
 @keyframes splashLogoIn {
@@ -158,7 +160,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-main);
   font-family: var(--font-family-sans);
-  font-weight: 350;
+  font-weight: 300;
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
@@ -187,7 +189,7 @@ input[type="radio"] + label, .review-item-edit-btn, .glass-card.hover-lift {
   overflow: hidden;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 30%, #f8ecef 0%, #faf5f7 100%);
+  background: radial-gradient(circle at 50% 50%, #f0f0f0 0%, #ffffff 100%);
 }
 
 /* 로그인 화면이 active일 때 glow-bg 숨김 */
@@ -1016,8 +1018,9 @@ button, .btn {
   text-align: left;
 }
 
-.quiz-option-btn:hover {
+.quiz-option-btn:hover, .quiz-option-btn:focus-visible {
   border-color: var(--text-main);
+  outline: none;
 }
 
 .quiz-option-info {
@@ -1085,9 +1088,10 @@ button, .btn {
   -webkit-tap-highlight-color: transparent;
 }
 
-.movie-card:hover, .movie-card:active {
+.movie-card:hover, .movie-card:active, .movie-card:focus-visible {
   border-color: var(--color-primary);
   background: var(--bg-secondary);
+  outline: none;
 }
 
 .movie-poster {
@@ -1636,7 +1640,7 @@ button, .btn {
   letter-spacing: 0.5px;
 }
 
-.option-item:hover .option-box {
+.option-item:hover .option-box, .option-item input:focus-visible + .option-box {
   border-color: rgba(0, 0, 0, 0.3);
   color: var(--text-main);
 }
@@ -3346,7 +3350,7 @@ html, body, .app-container, .view-section, .glass-card {
             </button>
           </div>
 
-          <p class="login-terms">계속 진행하면 이용약관 및 개인정보 처리방침에 동의하는 것으로 간주됩니다.</p>
+          <p class="login-terms">계속 진행하면 <a href="terms.html" target="_blank" style="color:rgba(255,255,255,0.55);text-decoration:underline;">이용약관</a> 및 <a href="privacy.html" target="_blank" style="color:rgba(255,255,255,0.55);text-decoration:underline;">개인정보 처리방침</a>에 동의하는 것으로 간주됩니다.</p>
         </div>
       </div>
   </section>
@@ -4055,50 +4059,35 @@ html, body, .app-container, .view-section, .glass-card {
           </div>
 
           <div class="quiz-step-wrapper">
-            <!-- Step 1: 주요 관람 대상 (10지선다) -->
+            <!-- Step 1: 개봉일 좌석수 (10지선다) -->
             <div class="step-card active" id="score-step-0">
-              <div class="g-question-title">주요 관람 대상</div>
-              <div class="g-options-list radio-group" id="q-score-audience"></div>
-            </div>
-            <!-- Step 2: 개봉일 좌석수 (10지선다) -->
-            <div class="step-card" id="score-step-1">
               <div class="g-question-title">개봉일 좌석수</div>
               <div class="g-options-list radio-group" id="q-score-seats"></div>
             </div>
-            <!-- Step 3: 개봉일 좌판율 (10지선다) -->
-            <div class="step-card" id="score-step-2">
+            <!-- Step 2: 개봉일 좌판율 (10지선다) -->
+            <div class="step-card" id="score-step-1">
               <div class="g-question-title">개봉일 좌판율</div>
               <div class="g-options-list radio-group" id="q-score-seat-ratio"></div>
             </div>
-            <!-- Step 4: 개봉일 관객수 (10지선다) -->
-            <div class="step-card" id="score-step-3">
+            <!-- Step 3: 개봉일 관객수 (10지선다) -->
+            <div class="step-card" id="score-step-2">
               <div class="g-question-title">개봉일 관객수</div>
               <div class="g-options-list radio-group" id="q-score-opening-day"></div>
             </div>
-            <!-- Step 5: 개봉 1주차 누적 (10지선다) -->
-            <div class="step-card" id="score-step-4">
+            <!-- Step 4: 개봉 1주차 누적 (10지선다) -->
+            <div class="step-card" id="score-step-3">
               <div class="g-question-title">개봉 1주차 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-week1"></div>
             </div>
-            <!-- Step 6: 개봉 2주차 누적 (10지선다) -->
-            <div class="step-card" id="score-step-5">
+            <!-- Step 5: 개봉 2주차 누적 (10지선다) -->
+            <div class="step-card" id="score-step-4">
               <div class="g-question-title">개봉 2주차 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-week2"></div>
             </div>
-            <!-- Step 7: 최종 누적 관객수 (10지선다) -->
-            <div class="step-card" id="score-step-6">
+            <!-- Step 6: 최종 누적 관객수 (10지선다) -->
+            <div class="step-card" id="score-step-5">
               <div class="g-question-title">최종 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-final"></div>
-            </div>
-            <!-- Step 8: VKOBIS 3주간 이용건수 (10지선다) -->
-            <div class="step-card" id="score-step-7">
-              <div class="g-question-title">VKOBIS 3주간 이용건수</div>
-              <div class="g-options-list radio-group" id="q-score-vkobis"></div>
-            </div>
-            <!-- Step 9: 최종 부가 매출 (10지선다) -->
-            <div class="step-card" id="score-step-8">
-              <div class="g-question-title">최종 부가 매출</div>
-              <div class="g-options-list radio-group" id="q-score-revenue"></div>
             </div>
           </div>
 
@@ -4405,14 +4394,14 @@ html, body, .app-container, .view-section, .glass-card {
     <!-- BOTTOM NAVIGATION BAR -->
      <nav class="bottom-nav" id="bottom-nav-bar" style="display: none;">
        <div class="bottom-nav-inner">
-         <button class="nav-item active" onclick="app.switchTab('dashboard')">
-           <span class="nav-letter">P</span>
+         <button class="nav-item active" onclick="app.switchTab('dashboard')" aria-label="대시보드">
+           <span class="nav-letter" aria-hidden="true">P</span>
          </button>
-         <button class="nav-item" onclick="app.switchTab('forum')">
-           <span class="nav-letter">C</span>
+         <button class="nav-item" onclick="app.switchTab('forum')" aria-label="커뮤니티">
+           <span class="nav-letter" aria-hidden="true">C</span>
          </button>
-         <button class="nav-item" onclick="app.switchTab('myroom')">
-           <span class="nav-letter">M</span>
+         <button class="nav-item" onclick="app.switchTab('myroom')" aria-label="MY 공간">
+           <span class="nav-letter" aria-hidden="true">M</span>
          </button>
        </div>
      </nav>
@@ -4420,378 +4409,87 @@ html, body, .app-container, .view-section, .glass-card {
   </div>
 
   <!-- Scripts -->
+  <script src="data/score_data.js"></script>
   <script>
-// score - Movies Database
-// 자동 업데이트: 2026-06-22 09:25 KST
-// 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
-
-// score - Movies Database
-// 자동 업데이트: 2026-08-09 08:00 KST
-// 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
-
-// score - Movies Database
-// 자동 업데이트: 2026-08-09 08:00 KST
-// 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
-
-// score - Movies Database
-// 자동 업데이트: 2026-08-09 08:00 KST
-// 수동 입력 7편 + KOBIS 자동 20편 | 개봉예정 10편
-
-const MOVIES_DATABASE = [
-  // ── 수동 입력 핵심 데이터 (명대사/초성/정답 포함) ──────────────────────────
-  {
-    id: "seoul_spring", title: "서울의 봄", director: "김성수",
-    cast: ["황정민", "정우성", "이성민", "박해준", "김성균"],
-    releaseDate: "2023-11-22", genre: ["드라마", "스릴러"],
-    openingSeats: "71만석 이상", openingDayScore: "11~20만명",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "41억~50억", svodOtt: "디즈니플러스",
-    similarRefs: ["남산의 부장들", "헌트", "변호인"],
-    famousLines: [
-      { line: "실패하면 반역, 성공하면 혁명 아닙니까!", character: "전두광 (황정민)" },
-      { line: "대한민국 육군은 다 같은 편입니다!", character: "이태신 (정우성)" }
-    ],
-    choseong: "ㅅㅇㅇ ㅂ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wjpRNDRqI0KAg95F7HFG0LjdFQX.jpg"
-  },
-  {
-    id: "exhuma", title: "파묘", director: "장재현",
-    cast: ["최민식", "김고은", "유해진", "이도현"],
-    releaseDate: "2024-02-22", genre: ["스릴러", "공포"],
-    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "41억~50억", svodOtt: "넷플릭스",
-    similarRefs: ["곡성", "사바하", "검은 사제들"],
-    famousLines: [
-      { line: "여우가 범의 허리를 끊었다.", character: "상덕 (최민식)" },
-      { line: "얘들아, 굿하자!", character: "화림 (김고은)" }
-    ],
-    choseong: "ㅍㅁ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/sGaKrQpmHmMWyGbBjM9RFD6x9ij.jpg"
-  },
-  {
-    id: "parasite", title: "기생충", director: "봉준호",
-    cast: ["송강호", "이선균", "조여정", "최우식", "박소담"],
-    releaseDate: "2019-05-30", genre: ["드라마", "스릴러"],
-    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "51억 이상", svodOtt: "넷플릭스",
-    similarRefs: ["설국열차", "마더", "괴물"],
-    famousLines: [
-      { line: "아들아, 너는 계획이 다 있구나.", character: "기택 (송강호)" },
-      { line: "가장 완벽한 계획이 뭔지 아냐? 무계획이야.", character: "기택 (송강호)" }
-    ],
-    choseong: "ㄱㅅㅊ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
-  },
-  {
-    id: "extreme_job", title: "극한직업", director: "이병헌",
-    cast: ["류승룡", "이하늬", "진선규", "이동휘", "공명"],
-    releaseDate: "2019-01-23", genre: ["코미디", "액션"],
-    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "51억 이상", svodOtt: "넷플릭스",
-    similarRefs: ["베테랑", "공조", "엑시트"],
-    famousLines: [
-      { line: "지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.", character: "고반장 (류승룡)" },
-      { line: "왜 자꾸 장사가 잘 되는 건데!", character: "마형사 (진선규)" }
-    ],
-    choseong: "ㄱㅎㅈㅇ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aGPHBpBPDlqRIZHHfzE4aXnpZmL.jpg"
-  },
-  {
-    id: "crime_city_4", title: "범죄도시4", director: "허명행",
-    cast: ["마동석", "김무열", "박지환", "이동휘"],
-    releaseDate: "2024-04-24", genre: ["액션", "코미디"],
-    openingSeats: "71만석 이상", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "51억 이상", svodOtt: "넷플릭스",
-    similarRefs: ["범죄도시3", "베테랑", "신세계"],
-    famousLines: [
-      { line: "약속하지. 내가 꼭 잡는다.", character: "마석도 (마동석)" },
-      { line: "이유가 어딨어, 나쁜 놈은 그냥 잡는 거지.", character: "마석도 (마동석)" }
-    ],
-    choseong: "ㅂㅈㄷㅅ4",
-    posterUrl: "https://image.tmdb.org/t/p/w300/vUiUXkDeXAuMCCJLvvhRNTFNxjT.jpg"
-  },
-  {
-    id: "smugglers", title: "밀수", director: "류승완",
-    cast: ["김혜수", "염정아", "조인성", "박정민", "고민시"],
-    releaseDate: "2023-07-26", genre: ["액션", "드라마"],
-    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "501만명 이상",
-    vodSales: "21~30억", svodOtt: "넷플릭스",
-    similarRefs: ["도둑들", "베테랑", "공작"],
-    famousLines: [
-      { line: "바다 밑에는 건지는 사람이 임자야.", character: "춘자 (김혜수)" },
-      { line: "이 판에 의리가 어딨어, 돈만 있으면 그만이지.", character: "권필삼 (조인성)" }
-    ],
-    choseong: "ㅁㅅ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8bKQICnBHPo6eCIcjxRkJfFrAeT.jpg"
-  },
-  {
-    id: "concrete_utopia", title: "콘크리트 유토피아", director: "엄태화",
-    cast: ["이병헌", "박서준", "박보영", "김선영"],
-    releaseDate: "2023-08-09", genre: ["드라마", "스릴러"],
-    openingSeats: "51~70만석", openingDayScore: "21만명 이상",
-    openingWeekScore: "101만명 이상", finalScore: "301~400만명",
-    vodSales: "16~20억", svodOtt: "넷플릭스",
-    similarRefs: ["터널", "부산행", "설국열차"],
-    famousLines: [
-      { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" }
-    ],
-    choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
-  },
-  // ── KOBIS 자동 수집 (2026-08-09 08:00 KST) ─────────────────────────────────────────
-  {
-    id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
-    cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
-    releaseDate: "2026-02-04", genre: ["사극", "드라마"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3131 \u3145\u3134 \u3134\u3148",
-    posterUrl: "https://image.tmdb.org/t/p/w300/kkJB3SeUJp7Y0IXXLkv5QZHJGkH.jpg"
-  },
-  {
-    id: "kobis_20252432", title: "\uc8fc\ud1a0\ud53c\uc544 2", director: "\uc7ac\ub7ec\ub4dc \ubd80\uc2dc",
-    cast: ["지니퍼 굿윈", "제이슨 베이트먼", "키 호이 콴"],
-    releaseDate: "2025-11-26", genre: ["애니메이션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3148\u314c\u314d\u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ib6v6qUXzez1x2qIOLN7C0yJNPQ.jpg"
-  },
-  {
-    id: "kobis_20239670", title: "\ubca0\ud14c\ub7912", director: "\ub958\uc2b9\uc644",
-    cast: ["황정민", "정해인", "장윤주", "정만식", "신승환"],
-    releaseDate: "2024-09-13", genre: ["액션", "범죄"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3142\u314c\u3139",
-    posterUrl: "https://image.tmdb.org/t/p/w300/akqfhtM1Wa1klFi7ijmyNm7Sm1j.jpg"
-  },
-  {
-    id: "kobis_20256396", title: "\uc544\ubc14\ud0c0: \ubd88\uacfc \uc7ac", director: "\uc81c\uc784\uc2a4 \uce74\uba54\ub860",
-    cast: ["샘 워싱턴", "조 샐다나", "시고니 위버", "스티븐 랭", "케이트 윈슬렛"],
-    releaseDate: "2025-12-17", genre: ["SF", "액션", "어드벤처"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3142\u314c \u3142\u3131 \u3148",
-    posterUrl: "https://image.tmdb.org/t/p/w300/l18o0AK18KS118tWeROOKYkF0ng.jpg"
-  },
-  {
-    id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
-    cast: ["전지현", "구교환", "지창욱", "신현빈", "김신록"],
-    releaseDate: "2026-05-21", genre: ["액션", "스릴러"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3131\u314a",
-    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
-  },
-  {
-    id: "kobis_20253289", title: "\uadf9\uc7a5\ud310 \uadc0\uba78\uc758 \uce7c\ub0a0: \ubb34\ud55c\uc131\ud3b8", director: "\uc18c\ud1a0\uc790\ud0a4 \ud558\ub8e8\uc624",
-    cast: ["하나에 나츠키", "키토 아카리", "시모노 히로", "마츠오카 요시츠구", "오카모토 노부히코"],
-    releaseDate: "2025-08-22", genre: ["애니메이션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3131\u3148\u314d \u3131\u3141\u3147 \u314b\u3134 \u3141\u314e\u3145\u314d",
-    posterUrl: "https://image.tmdb.org/t/p/w300/a6wK0b9cIEnpu1og37ZyBah0Bv6.jpg"
-  },
-  {
-    id: "kobis_20241941", title: "\uc880\ube44\ub538", director: "\ud544\uac10\uc131",
-    cast: ["조정석", "이정은", "조여정", "윤경호", "최유리"],
-    releaseDate: "2025-07-30", genre: ["코미디", "드라마"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3148\u3142\u3138",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aASLRiO8p9xLIvG9EHXSyZ71sPl.jpg"
-  },
-  {
-    id: "kobis_20254501", title: "F1 \ub354 \ubb34\ube44", director: "\uc870\uc149 \ucf54\uc2e0\uc2a4\ud0a4",
-    cast: ["브래드 피트", "하비에르 바르뎀", "케리 콘든"],
-    releaseDate: "2025-06-25", genre: ["드라마", "액션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
-    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3137 \u3141\u3142",
-    posterUrl: "https://image.tmdb.org/t/p/w300/bvVoP1t2gNvmE9ccSrqR1zcGHGM.jpg"
-  },
-  {
-    id: "kobis_20262770", title: "\uc2a4\ud30c\uc774\ub354\ub9e8: \ube0c\ub79c\ub4dc \ub274 \ub370\uc774", director: "\ub370\uc2a4\ud2f4 \ub2e4\ub2c8\uc5d8 \ud06c\ub9ac\ud2bc",
-    cast: ["톰 홀랜드", "젠데이아 콜먼", "세이디 싱크", "제이콥 배덜런", "존 번탈"],
-    releaseDate: "2026-07-29", genre: ["액션", "어드벤처", "판타지"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u314d\u3147\u3137\u3141 \u3142\u3139\u3137 \u3134 \u3137\u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8mLepBa5l591xFidRpn65xV7hb4.jpg"
-  },
-  {
-    id: "kobis_20228796", title: "\ud558\uc5bc\ube48", director: "\uc6b0\ubbfc\ud638",
-    cast: ["현빈", "박정민", "조우진", "전여빈", "박훈"],
-    releaseDate: "2024-12-24", genre: ["드라마"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u314e\u3147\u3142",
-    posterUrl: "https://image.tmdb.org/t/p/w300/xrqAcOddbmWfxDxuGHChR4QmscA.jpg"
-  },
-  {
-    id: "kobis_20233219", title: "\ud638\ud504", director: "\ub098\ud64d\uc9c4",
-    cast: ["황정민", "조인성", "정호연", "테일러 러셀", "카메론 브리튼"],
-    releaseDate: "2026-07-15", genre: ["SF", "스릴러", "액션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "401~500\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u314e\u314d",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ptqlN6mDIAqJjVA86J5eOoG82zc.jpg"
-  },
-  {
-    id: "kobis_20200142", title: "\uc18c\ubc29\uad00", director: "\uacfd\uacbd\ud0dd",
-    cast: ["주원", "곽도원", "유재명", "이유영", "김민재"],
-    releaseDate: "2024-12-04", genre: ["드라마"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u3142\u3131",
-    posterUrl: "https://image.tmdb.org/t/p/w300/rizG7S7y1JkXmbYwOYSFIjyydPF.jpg"
-  },
-  {
-    id: "kobis_20240737", title: "\ubaa8\uc544\ub098 2", director: "\ub370\uc774\ube0c \ub370\ub9ad \uc8fc\ub2c8\uc5b4",
-    cast: ["아우이 크라발호", "드웨인 존슨"],
-    releaseDate: "2024-11-27", genre: ["애니메이션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3141\u3147\u3134",
-    posterUrl: "https://image.tmdb.org/t/p/w300/hwmwTFtMbzxAWbIOp1RyyiOCyx0.jpg"
-  },
-  {
-    id: "kobis_20256757", title: "\uadf9\uc7a5\ud310 \uccb4\uc778\uc18c \ub9e8: \ub808\uc81c\ud3b8", director: "-",
-    cast: ["-"],
-    releaseDate: "2025-09-24", genre: ["애니메이션", "액션", "어드벤처"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "31~50\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3131\u3148\u314d \u314a\u3147\u3145 \u3141 \u3139\u3148\u314d",
-    posterUrl: "https://image.tmdb.org/t/p/w300/oTn0PoR8gSMpMqJaT2pUtkkN0Ia.jpg"
-  },
-  {
-    id: "kobis_20246489", title: "\ubbf8\uc158 \uc784\ud30c\uc11c\ube14: \ud30c\uc774\ub110 \ub808\ucf54\ub2dd", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub9e5\ucffc\ub9ac",
-    cast: ["톰 크루즈", "헤일리 앳웰", "빙 라메스", "사이먼 페그", "바네사 커비"],
-    releaseDate: "2025-05-17", genre: ["액션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3141\u3145 \u3147\u314d\u3145\u3142 \u314d\u3147\u3134 \u3139\u314b\u3134",
-    posterUrl: "https://image.tmdb.org/t/p/w300/c5pDU8SW0ZbmO5jHfw7fX6keyyR.jpg"
-  },
-  {
-    id: "kobis_20232394", title: "\uc57c\ub2f9", director: "\ud669\ubcd1\uad6d",
-    cast: ["강하늘", "유해진", "박해준", "류경수", "채원빈"],
-    releaseDate: "2025-04-16", genre: ["범죄", "액션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/k4yTwFqvQDApqaoFdgubsbYcuno.jpg"
-  },
-  {
-    id: "kobis_20254121", title: "\uc0b4\ubaa9\uc9c0", director: "\uc774\uc0c1\ubbfc",
-    cast: ["김혜윤", "이종원", "김준한", "김영성", "오동민"],
-    releaseDate: "2026-04-08", genre: ["공포(호러)", "스릴러"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u3141\u3148",
-    posterUrl: "https://image.tmdb.org/t/p/w300/uVJyWlSPCWftRUXRM6lxTqOzPY6.jpg"
-  },
-  {
-    id: "kobis_20244821", title: "\ubbf8\ud0a4 17", director: "\ubd09\uc900\ud638",
-    cast: ["로버트 패틴슨", "나오미 애키", "스티븐 연", "토니 콜렛", "마크 러팔로"],
-    releaseDate: "2025-02-28", genre: ["어드벤처", "SF", "드라마", "코미디"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3141\u314b",
-    posterUrl: "https://image.tmdb.org/t/p/w300/mH7QnJDxQibVZw0M66IBZbsw2O6.jpg"
-  },
-  {
-    id: "kobis_20259781", title: "\ud1a0\uc774 \uc2a4\ud1a0\ub9ac 5", director: "\uc564\ub4dc\ub958 \uc2a4\ud0e0\ud2bc",
-    cast: ["톰 행크스", "팀 알렌", "조앤 쿠삭", "그레타 리"],
-    releaseDate: "2026-06-17", genre: ["애니메이션", "어드벤처", "코미디"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u314c\u3147 \u3145\u314c\u3139",
-    posterUrl: "https://image.tmdb.org/t/p/w300/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg"
-  },
-  {
-    id: "kobis_20243561", title: "\uc5b4\uca54\uc218\uac00\uc5c6\ub2e4", director: "\ubc15\ucc2c\uc6b1",
-    cast: ["이병헌", "손예진", "박희순", "이성민", "염혜란"],
-    releaseDate: "2025-09-24", genre: ["스릴러", "코미디"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "251~300\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3149\u3145\u3131\u3147\u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/9w7WGjQes0Cs0s4U3Qr09Tg1Sra.jpg"
-  }
-];
-
-const FILMOGRAPHIES = {
-  directors: [
-    { name: "봉준호", movies: ["기생충", "설국열차", "괴물", "마더", "살인의 추억", "옥자"], fake: ["올드보이", "아가씨", "헤어질 결심", "곡성", "부산행"] },
-    { name: "류승완", movies: ["밀수", "모가디슈", "베테랑", "베를린", "부당거래", "군함도"], fake: ["해운대", "도둑들", "아저씨", "범죄도시"] },
-    { name: "장재현", movies: ["파묘", "사바하", "검은 사제들"], fake: ["곡성", "추격자", "신과함께", "부산행"] },
-    { name: "김성수", movies: ["서울의 봄", "아수라", "감기", "무사", "비트"], fake: ["신세계", "내부자들", "범죄도시", "명량"] },
-    { name: "연상호", movies: ["부산행", "반도", "지옥", "염력", "돼지의 왕"], fake: ["파묘", "공조", "베테랑", "밀수"] }
-  ],
-  actors: [
-    { name: "송강호", movies: ["기생충", "택시운전사", "변호인", "설국열차", "괴물", "살인의 추억", "밀정"], fake: ["명량", "범죄도시", "올드보이", "베테랑", "부산행"] },
-    { name: "황정민", movies: ["서울의 봄", "베테랑", "국제시장", "신세계", "곡성", "공작", "다만 악에서 구하소서"], fake: ["기생충", "명량", "도둑들", "공조"] },
-    { name: "정우성", movies: ["서울의 봄", "헌트", "강철비", "아수라", "더 킹", "비트"], fake: ["택시운전사", "신세계", "범죄도시", "괴물"] },
-    { name: "김고은", movies: ["파묘", "영웅", "은교", "차이나타운", "변산"], fake: ["기생충", "아가씨", "밀수", "써니"] },
-    { name: "마동석", movies: ["범죄도시4", "범죄도시3", "범죄도시2", "범죄도시", "부산행", "아이 캔 스피크"], fake: ["베테랑", "서울의 봄", "기생충", "공조"] },
-    { name: "유해진", movies: ["파묘", "택시운전사", "럭키", "베테랑", "완득이", "국제시장"], fake: ["기생충", "서울의 봄", "극한직업", "밀수"] }
-  ]
+const FILMO_POSTERS = {
+  "감기": "https://image.tmdb.org/t/p/w300/7fQlPXebfjEqjysW3rv4RyNplih.jpg",
+  "강철비": "https://image.tmdb.org/t/p/w300/pC3Mcz2TPuXIkTrd8bolUgBm9GV.jpg",
+  "검은 사제들": "https://image.tmdb.org/t/p/w300/3zYZ5hZUNHwgObdqbDYlS8l24FE.jpg",
+  "곡성": "https://image.tmdb.org/t/p/w300/k9AKtgRErXjz14lFHL2IJVCgwOT.jpg",
+  "공작": "https://image.tmdb.org/t/p/w300/uTiYfP9ESTHl1tHw2VJzqdxEtvF.jpg",
+  "공조": "https://image.tmdb.org/t/p/w300/9YNlKVqRs2laZl1sEkwqdadNNPs.jpg",
+  "괴물": "https://image.tmdb.org/t/p/w300/tqDQzYGi1EWHgUZY91YRSJLDJVf.jpg",
+  "국제시장": "https://image.tmdb.org/t/p/w300/rmZ4qkpDVdTgjwliJ84aJ43hStt.jpg",
+  "군함도": "https://image.tmdb.org/t/p/w300/t0rdNh51Rdnxr56vdeHuN8eK9Ig.jpg",
+  "극한직업": "https://image.tmdb.org/t/p/w300/lzzb384pgYyr0GQvu3K2ZW62CEE.jpg",
+  "기생충": "https://image.tmdb.org/t/p/w300/jjHccoFjbqlfr4VGLVLT7yek0Xn.jpg",
+  "내부자들": "https://image.tmdb.org/t/p/w300/zlFp1a9HXpbyDBaNoS1euprLbLs.jpg",
+  "다만 악에서 구하소서": "https://image.tmdb.org/t/p/w300/xYnL0kA0V7aDvg8wupmWQbdgb9a.jpg",
+  "더 킹": "https://image.tmdb.org/t/p/w300/mNC4JtrcGxuWoU6yK5d6rCUI1an.jpg",
+  "도둑들": "https://image.tmdb.org/t/p/w300/ujIHEzt2EEboVzjQoWZBMYdAt1v.jpg",
+  "돼지의 왕": "https://image.tmdb.org/t/p/w300/gmQ3Tv2naL7iwvmSLrs9amN1pmx.jpg",
+  "럭키": "https://image.tmdb.org/t/p/w300/32ZO0IREGvASVhb2XPnlYNgkCtX.jpg",
+  "마더": "https://image.tmdb.org/t/p/w300/lhxVHEkaOH51oazowpdCHJNLIBE.jpg",
+  "명량": "https://image.tmdb.org/t/p/w300/fl3G8TprVzt4icbYyQKqdPmUfIO.jpg",
+  "모가디슈": "https://image.tmdb.org/t/p/w300/oeu5TgAd0MrHplBIvCFpt9AIEBm.jpg",
+  "무사": "https://image.tmdb.org/t/p/w300/ufwFltSgo9KuGRquCnbpdNj7Psk.jpg",
+  "밀수": "https://image.tmdb.org/t/p/w300/ayLXqPZCu3uaLLhXiqvw5NBb7Lw.jpg",
+  "밀정": "https://image.tmdb.org/t/p/w300/3OqkOFlXENLeIMLVBclGejpsaWd.jpg",
+  "반도": "https://image.tmdb.org/t/p/w300/ew1lAU8yV66JbivBU1Zh4Wj4pOB.jpg",
+  "범죄도시": "https://image.tmdb.org/t/p/w300/sVwbHA4nhw389PwpDzkJam4WMoB.jpg",
+  "범죄도시2": "https://image.tmdb.org/t/p/w300/9XkAF2pl2uliiuAORaWTgPmr6zG.jpg",
+  "범죄도시3": "https://image.tmdb.org/t/p/w300/kPtNokhBtgwSp3MHaR3X4O0SPbF.jpg",
+  "범죄도시4": "https://image.tmdb.org/t/p/w300/jucHQwnRSma1O9V2bM007e4eSd7.jpg",
+  "베를린": "https://image.tmdb.org/t/p/w300/rz64x2PLYbcvv4rt41HLfjHSyGC.jpg",
+  "베테랑": "https://image.tmdb.org/t/p/w300/8OJ4VtaddbDDwP1ydCitsYxgzCT.jpg",
+  "변산": "https://image.tmdb.org/t/p/w300/odLMoZQy38CiA97tOPJvPx33NB6.jpg",
+  "변호인": "https://image.tmdb.org/t/p/w300/5tm4Rv24NYdGpuWzA6aF5h1qm0E.jpg",
+  "부당거래": "https://image.tmdb.org/t/p/w300/bcnPMgLfZr5d4VvfG1RYGMtBH9M.jpg",
+  "부산행": "https://image.tmdb.org/t/p/w300/6XvEZVBFFjybvb1yQd1qfOC6F2S.jpg",
+  "비트": "https://image.tmdb.org/t/p/w300/lS0xvJEF5m0uikVe07Bs7mNaSwP.jpg",
+  "사바하": "https://image.tmdb.org/t/p/w300/9NvqPjMwjQ2hGwSEXcZ1VZ4mqVS.jpg",
+  "살인의 추억": "https://image.tmdb.org/t/p/w300/3I1Ng4sxDUyPOdVu3lQ20N14PGE.jpg",
+  "서울의 봄": "https://image.tmdb.org/t/p/w300/ukVVnY9ovwl78WE5KndcpA6SnAm.jpg",
+  "설국열차": "https://image.tmdb.org/t/p/w300/jw66dQvYyXkZNA0bJ7nKvua9jDr.jpg",
+  "신과함께": "https://image.tmdb.org/t/p/w300/2ETx0U2Q5gUHtPJZiQ3hakTqyaR.jpg",
+  "신세계": "https://image.tmdb.org/t/p/w300/6odwPYkgvIlKpIYkvQYlWOfspAn.jpg",
+  "써니": "https://image.tmdb.org/t/p/w300/39fhpu9WfpvaEfE6UhuxaS93wOe.jpg",
+  "아가씨": "https://image.tmdb.org/t/p/w300/pDogzUCSBy0m4ybLKUv3OtGMRNm.jpg",
+  "아수라": "https://image.tmdb.org/t/p/w300/hrkpHTjBeuEaxNJetjCPtNsi5bv.jpg",
+  "아이 캔 스피크": "https://image.tmdb.org/t/p/w300/mGrQx2zffkconsCrxeZ1sHkCBjb.jpg",
+  "아저씨": "https://image.tmdb.org/t/p/w300/14QbjXp8m3LN9l1U4SoBWy441kr.jpg",
+  "염력": "https://image.tmdb.org/t/p/w300/5LRL9cvVQl0Mne8CZslb5VNwY6v.jpg",
+  "영웅": "https://image.tmdb.org/t/p/w300/jqxD0H9a1rg5bXftsm6gsNOjt4n.jpg",
+  "옥자": "https://image.tmdb.org/t/p/w300/miHNA5DcheO7ax2qon9CmC7qa9j.jpg",
+  "올드보이": "https://image.tmdb.org/t/p/w300/xpa9ybm6tYGna5LseqSXvKpSSJn.jpg",
+  "완득이": "https://image.tmdb.org/t/p/w300/f9ycej2SvjdAgIrVCi5u4JudnhP.jpg",
+  "은교": "https://image.tmdb.org/t/p/w300/tyT8i7zOfMvge8cOoYin0wLSHeL.jpg",
+  "지옥": "https://image.tmdb.org/t/p/w300/3faOft1rjJrIahaLHof9AwDth2z.jpg",
+  "차이나타운": "https://image.tmdb.org/t/p/w300/9YX1SdRcqLkDEMhvFMaFZ3b24Dv.jpg",
+  "추격자": "https://image.tmdb.org/t/p/w300/3Y5COpcDL8I9u4GdUl0HskNO8zI.jpg",
+  "택시운전사": "https://image.tmdb.org/t/p/w300/pCdx7X5JLaSJZLNVtpryGSdjvvB.jpg",
+  "파묘": "https://image.tmdb.org/t/p/w300/tw0i3kkmOTjDjGFZTLHKhoeXVvA.jpg",
+  "해운대": "https://image.tmdb.org/t/p/w300/AgWRG68qAT63wDybxNAebnbstts.jpg",
+  "헌트": "https://image.tmdb.org/t/p/w300/Dyc3aCm3F4h8dXr4V5fnIopiyE.jpg",
+  "헤어질 결심": "https://image.tmdb.org/t/p/w300/rXEJ28XDQsogIGqwVEgwM2oDdpl.jpg",
 };
+
 
 const GAME_OPTIONS = {
-  openingSeats: ["5만석 이하","6~10만석","11~20만석","21~30만석","31~40만석","41~50만석","51~70만석","71만석 이상"],
-  openingDayScore: ["0.1만명 이하","0.2~0.3만명","0.4~0.5만명","0.6~1만명","2~3만명","4~5만명","6~7만명","8~10만명","11~20만명","21만명 이상"],
-  openingWeekScore: ["1만명 이하","2~3만명","4~5만명","5~10만명","11~15만명","15~30만명","31~50만명","51~70만명","71~100만명","101만명 이상"],
-  finalScore: ["2만명 이하","3~5만명","6~10만명","11~20만명","21~30만명","31~50만명","51~75만명","75~100만명","100~150만명","151~200만명","201~250만명","251~300만명","301~400만명","401~500만명","501만명 이상"],
-  vodSales: ["0.5억 이하","0.5~1억","1.1~1.5억","1.6~2억","2.1~2.5억","2.6~3억","3.1~4억","4.1~5억","5.1~7.5억","7.6~10억","11~15억","16~20억","21~30억","31~40억","41억~50억","51억 이상"],
-  svodOtt: ["넷플릭스","디즈니플러스","쿠팡플레이","티빙","웨이브","기타","판매 불가"]
+  // ── 스코어 퀴즈 v6 (2026-08-02, 6문항 10지선다, 좌석수+좌판율 추가) ──
+  seatsCat: ["5만석 미만","5~10만석","10~15만석","15~20만석","20~30만석","30~40만석","40~60만석","60~80만석","80~100만석","100만석 이상"],
+  seatRatioCat: ["1% 미만","1~3%","3~5%","5~10%","10~15%","15~20%","20~30%","30~40%","40~50%","50% 이상"],
+  openingDayScore: ["0.5만명 미만","0.5~1만명","2~3만명","4~6만명","7~9만명","10~14만명","15~19만명","20~24만명","25~29만명","30만명 이상"],
+  week1Score: ["2만명 미만","2~4만명","5~9만명","10~19만명","20~29만명","30~45만명","46~59만명","60~79만명","80~99만명","100만명 이상"],
+  week2Score: ["3만명 미만","4~9만명","10~19만명","20~39만명","40~59만명","60~85만명","86~99만명","100~149만명","150~199만명","200만명 이상"],
+  finalScore: ["5만명 미만","6~19만명","20~49만명","50~75만명","76~99만명","100~199만명","200~299만명","300~399만명","400~499만명","500만명 이상"],
+  // ── S섹션(Special) AI 종합퀴즈 전용 오답 풀 (AI_QUIZ_MOVIES 정답과 불일치하도록 의도적) ──
+  dayCat:   ["2천명 미만","2천~5천명","5천~7천명","7천~1.1만명","1.1만~1.9만명","1.9만~3.6만명","3.6만~5.5만명","5.5만~9만명","9만~16.6만명","16.6만명 이상"],
+  weekCat:  ["6천명 미만","6천~1.5만명","1.5만~2.6만명","2.6만~5.1만명","5.1만~9.4만명","9.4만~17.2만명","17.2만~31.1만명","31.1만~47.6만명","47.6만~79.1만명","79.1만명 이상"],
+  finalCat: ["2만명 미만","2만~3만명","3만~6만명","6만~10만명","10만~20만명","20만~38만명","38만~66만명","66만~126만명","126만~260만명","260만명 이상"]
 };
+
+
 
 const FAMOUS_CHARACTERS = [
   "아이언맨","해리포터","엘사","타노스","존윅","잭스패로우","할리퀸","조커","도민준","천송이",
@@ -4804,115 +4502,9 @@ const NICKNAME_MODIFIERS = [
   "무비매니아","엔딩크레딧","영화배급사","시네마키드","오스카","레드카펫","필름메이커","팝콘귀신"
 ];
 
-const UPCOMING_MOVIES_DATABASE = [
-  {
-    id: "upcoming_20255484", title: "\uc624\ucf00\uc774 \ub9c8\ub2f42", director: "\uc774\ucca0\ud558",
-    cast: ["엄정화", "박성웅", "이상윤"],
-    releaseDate: "2026-08-12", genre: ["코미디"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/xDbrWXB9yb5aEdt4peVy8OWNP2Y.jpg",
-    isRevealed: false,
-    overview: "\uc0ac\ucd98\uae30 \ub538\uacfc\uc758 \uc804\uc7c1, \ud5c8\uc138 \ucda9\ub9cc \ubc31\uc218 \ub0a8\ud3b8, \uaf48\ubc30\uae30\uc9d1 \ud3d0\uc5c5 \uc704\uae30\uae4c\uc9c0. \uc9c0\uae0b\uc9c0\uae0b\ud55c \ud604\uc0dd\uc744 \uacac\ub38c\uc624\ub358 \ubbf8\uc601\uc5d0\uac8c \ucd08\ud638\ud654 \ud06c\ub8e8\uc988 \uacb0\ud63c\uc2dd \ucd08\ub300\uc7a5\uc774 \ub3c4\ucc29\ud55c\ub2e4. \u201c\uc6b0\ub9ac, \uc9c4\uc9dc \uc5ec\ud589 \uac00\uc790!\u201d \ud654\ub824\ud55c \ud06c\ub8e8\uc988 \uc5ec\ud589\uc744 \ub9cc\ub07d\ud558\ub358 \uac83\ub3c4 \uc7a0\uc2dc. \ubc94\uc8c4 \uc870\uc9c1\uc758 \ub9ac\ub354 \uc548\uc57c\uc758 \ub4f1\uc7a5\uc5d0 \uc218\ubc31\uba85\uc774 \ud0d1\uc2b9\ud55c \ud06c\ub8e8\uc988\ub294 \uc21c\uc2dd\uac04\uc5d0 \uc0ac\uc0c1 \ucd08\uc720\uc758 \ub0a9\uce58 \uc0ac\uac74 \ud604\uc7a5\uc774 \ub418\uc5b4\ubc84\ub9b0\ub2e4. \ub3c4\ub9dd\uce60 \uacf3 \uc5c6\ub294 \ud478\ub978 \ubc14\ub2e4 \ud55c\ubcf5\ud310, \ub2e4\uc2dc \ud55c\ubc88 \uac01\uc131\ud55c \uc804\uc9c1 \ub808\uc804\ub4dc \uc694\uc6d0 \ubbf8\uc601\uc740 \uc774\uc81c \uac00\uc871\uc744 \uad6c\ud558\uace0 \uc138\uc0c1\uc744 \uc9c0\ucf1c\uc57c \ud560 \uc704\ud5d8\ud55c \uc791\uc804\uc5d0 \ub6f0\uc5b4\ub4e0\ub2e4!"
-  },
-  {
-    id: "upcoming_20248584", title: "\ube48\uc9d1\uc758 \uc5f0\uc778\ub4e4", director: "\uae40\ud0dc\ud718",
-    cast: ["정애화", "기주봉", "김미숙"],
-    releaseDate: "2026-08-12", genre: ["드라마", "코미디", "멜로/로맨스"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ccMh9yIUMP2p5yi7ELp5BtoT1fc.jpg",
-    isRevealed: false,
-    overview: "\uae4c\uce60\ud55c \uc5b8\ud589\uc73c\ub85c \uc2a4\uc2a4\ub85c \ub9c8\uc744 \uacf5\uc2dd \uc678\ud1a8\uc774\uac00 \ub41c \u2018\uc740\uc790\u2019 \uc5b4\ub290 \ub0a0 \uc9d1\uc5d0 \ub4e4\uc774\ub2e5\uce5c \ub3c4\ub451\uc744 \ub54c\ub824\uc7a1\uace0 \ubcf4\ub2c8 \uc804\uad6d\uc744 \uc720\ub791\ud558\uba70 \uc2dc\uace8 \ube48\uc9d1\uc744 \ud130\ub294 \u2018\ud314\ubcf5\u2019\uc774\ub780 \ub188\uc774\ub2e4. \u201c\ub098\ub791 \uac19\uc774 \uac00\uaca0\uc18c?\u201d \ube48\uc9d1\uc740 \ud138\uc5b4\ub3c4 \ud55c\ud0d5\uc740 \uc77c\uc5c6\ub294 \u2018\ud314\ubcf5\u2019\uc758 \ub0ad\ub9cc\uc5d0 \ub04c\ub824 \ub3d9\ud589\ud558\uae30\ub85c \ud55c \u2018\uc740\uc790\u2019\uc758 \uc2ec\uc7a5\uc740 \ud314\ub531\ud314\ub531 \ub6f0\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20262945", title: "\ud37c\ud53c \uad6c\uc870\ub300: \ub354 \ub2e4\uc774\ub178 \ubb34\ube44", director: "\uce98\ub7f0 \ube0c\ub7f0\ucee4",
-    cast: ["은영선", "문남숙", "정선혜"],
-    releaseDate: "2026-08-13", genre: ["애니메이션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/AnG0YQdnIf3mMYEVc2onMeAROzU.jpg",
-    isRevealed: false,
-    overview: "\uc2e0\ube44\ud55c \ud3ed\ud48d\uc5d0 \ud729\uc4f8\ub824 \uacf5\ub8e1\ub4e4\uc774 \uc0b4\uc544 \uc228\uc26c\ub294 \ubbf8\uc9c0\uc758 \uc12c\uc5d0 \ubd88\uc2dc\ucc29\ud55c \ud37c\ud53c \uad6c\uc870\ub300\uc640 \ud3ec\uae30\ub97c \ubaa8\ub974\ub294 \uc6a9\uac10\ud55c \uc18c\ubc29\uacac \u2018\ub9c8\uc15c\u2019! \ub300\uc6d0\ub4e4\uc740 \uc12c\uc758 \ubaa8\ub4e0 \uac83\uc744 \uc544\ub294 \ucc9c\uc7ac \uac15\uc544\uc9c0 \u2018\ub809\uc2a4\u2019\ub97c \ub9cc\ub098 \uc704\ub300\ud55c \ubaa8\ud5d8\uc744 \uc2dc\uc791\ud55c\ub2e4. \uacf5\ub8e1 \uce5c\uad6c\ub4e4\uc774 \uac00\ub4dd\ud55c \uadf8\uacf3\uc5d0\uc11c\uc758 \ud3c9\ud654\ub3c4 \uc7a0\uc2dc, \uc545\ub2f9 \u2018\ud5d8\ub529\uc5b4\u2019\uac00 \uc12c\uc758 \ucc9c\uc5f0 \uc790\uc6d0 \ub2e4\uc774\uc544\ubaac\ub4dc\ub97c \ube7c\uc557\uae30 \uc704\ud574 \uc74c\ubaa8\ub97c \uafb8\ubbf8\uace0, \uc7a0\ub4e4\uc5b4 \uc788\ub358 \uac70\ub300\ud55c \ud654\uc0b0\ub9c8\uc800 \ud3ed\ubc1c\ud560 \uc704\uae30\uc5d0 \ucc98\ud558\ub294\ub370\u00b7\u00b7\u00b7!"
-  },
-  {
-    id: "upcoming_20233757", title: "\ucf58\ud06c\ub9ac\ud2b8 \ub179\uc0c9\uc12c", director: "\uc774\uc131\ubbfc",
-    cast: ["이성민", "우종영"],
-    releaseDate: "2026-08-19", genre: ["다큐멘터리"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/pnZy0mRf0c0PAqBTFdquK4zWeNY.jpg",
-    isRevealed: false,
-    overview: "\uac1c\ud3ec\uc8fc\uacf5 \ud0a4\uc988\uc778 \u2018\ub098\u2019\ub294 \uc5b4\ub9b0 \uc2dc\uc808 \ucd94\uc5b5\uc774 \ub2f4\uae34 \uc544\ud30c\ud2b8\uac00 \uc7ac\uac1c\ubc1c\ub85c \uc0ac\ub77c\uc9c4\ub2e4\ub294 \uc18c\uc2dd\uc744 \ub4e3\uace0 \uadf8\uacf3\uc5d0 \uc5bd\ud78c \uc0ac\ub78c\ub4e4\uc758 \uc774\uc57c\uae30\ub97c \uae30\ub85d\ud558\uae30 \uc2dc\uc791\ud55c\ub2e4. \ubaa8\ub450\uac00 \uc544\ud30c\ud2b8 \ub2e8\uc9c0 \uc18d \ub179\uc0c9\uc12c\uc744 \uae30\uc5b5\ud558\uace0 \uc788\uc74c\uc744 \uc54c\uac8c \ub418\uace0 \ub098\ubb34\uc640 \uadf8 \uc548\uc5d0 \ub2f4\uae34 \uc2dc\uac04\uc744 \uc9c0\ud0a4\uace0\uc790 \ud558\ub294\ub370\u22ef"
-  },
-  {
-    id: "upcoming_20264080", title: "\uc6cc\ud398\uc5b4", director: "\uc54c\ub809\uc2a4 \uac00\ub79c\ub4dc",
-    cast: ["조셉 퀸", "찰스 멜튼", "코스모 자비스"],
-    releaseDate: "2026-08-19", genre: ["액션", "드라마", "전쟁"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8GhjvK3T14yx2CVYCeJuUYfMZUI.jpg",
-    isRevealed: false,
-    overview: "2006\ub144 \uc774\ub77c\ud06c \ub77c\ub9c8\ub514, \ubbf8\uad6d \ub124\uc774\ube44 \uc530 \uc54c\ud30c \uc6d0 \uc18c\ub300\ub294 \uc57c\uac04 \uc815\ucc30 \uc784\ubb34 \uc218\ud589 \uc911 \ud604\uc9c0 2\uce35 \uc8fc\ud0dd\uc744 \uc810\ub839\ud574 OP1\uc73c\ub85c \uc0bc\ub294\ub2e4. \ud1b5\uc2e0\ubcd1 \ub808\uc774 \uba58\ub3c4\uc0ac\ub294 \uacf5\uc911 \uc9c0\uc6d0\ud300\uacfc \uad50\uc2e0\ud558\uba70 \ud300\uc758 \uc704\uce58\ub97c \ubaa8\ub2c8\ud130\ub9c1\ud558\uace0, \uc800\uaca9\uc218\uc778 \uc758\ubb34\ubcd1 \uc5d8\ub9ac\uc5c7\uc740 \ub3d9\ub8cc \uc800\uaca9\uc218 \ud504\ub7ad\ud06c\uc640 \ud568\uaed8 \uac70\ub9ac\ub97c \uac10\uc2dc\ud558\uace0 \uc788\ub2e4. \uc774\ub54c, \ud55c \ubc1c\uc758 \uc218\ub958\ud0c4\uc774 \uc800\uaca9\uc218\uc758 \ubc29\uc73c\ub85c \ub0a0\uc544\ub4e4\uace0 \uc54c\ud30c \uc6d0\uc740 \uc774\ub77c\ud06c \uad70\uc758 \uc9d1\uc911 \uacf5\uaca9\uc744 \ubc1b\ub294\ub2e4. \uae09\uc2b5\uc73c\ub85c \ucd08\ud1a0\ud654\uac00 \ub41c \uc0c1\ud669, \ud3ed\ubc1c\ubb3c\ub85c \uc911\uc0c1\uc744 \uc785\uc740 \uc5d8\ub9ac\uc5c7\uacfc \ubd80\uc0ac\uad00 \uc0d8\uc744 \uc548\uc804\ud558\uac8c \uae30\uc9c0\ub85c \ud6c4\uc1a1\ud574\uc57c\ub9cc \ud55c\ub2e4."
-  },
-  {
-    id: "upcoming_20264035", title: "\uc778\uc2dc\ub514\uc5b4\uc2a4: \uadf8\ub4e4\uc774 \ub118\uc5b4\uc654\ub2e4", director: "\uc81c\uc774\ucf65 \uccb4\uc774\uc2a4",
-    cast: ["브랜든 페레아", "로라 고든", "린 샤예"],
-    releaseDate: "2026-08-20", genre: ["공포(호러)", "미스터리", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg",
-    isRevealed: false,
-    overview: ""
-  },
-  {
-    id: "upcoming_20265331", title: "\uace0\uc591\uc774\ub97c \ub193\uc544\uc918", director: "\uc2dc\uac00\uc57c \ub2e4\uc774\uc2a4\ucf00",
-    cast: ["후지이 소마", "무라카미 유키노", "타니구치 란"],
-    releaseDate: "2026-08-26", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/4dS74FTvHkBzjCdZZSwfjwt4UQZ.jpg",
-    isRevealed: false,
-    overview: "\uc74c\uc545\uc744 \ud558\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \uc0ac\uc9c4\uc744 \ucc0d\ub294 \u2018\ub9c8\uc774\ucf54\u2019. \uc9c0\uce5c \ub9c8\uc74c\uc744 \ub2ec\ub798\uae30 \uc704\ud574 \ud734\uc9c1 \uc911\uc774\uc9c0\ub9cc \uc81c\ub300\ub85c \ub41c \uc74c\uc545 \uc791\uc5c5\ub3c4 \ud558\uc9c0 \ubabb\ud55c \ucc44 \uc2dc\uac04\ub9cc \ubcf4\ub0b4\uace0 \uc788\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \ub2e4\ub974\uac8c \u2018\ub9c8\uc774\ucf54\u2019\ub294 \uac1c\uc778\uc804\uae4c\uc9c0 \uc5f4\uba70 \uc131\uacf5\ud55c \uc0ac\uc9c4\uc791\uac00\uc5d0 \ud55c \ubc1c \ub354 \ub2e4\uac00\uc120\ub2e4. \u2018\ub9c8\uc774\ucf54\u2019\uc758 \uc804\uc2dc\ud68c \ub9c8\uc9c0\ub9c9 \ub0a0, \uc6b0\uc5f0\ud788 \uacfc\uac70\uc5d0 \ub9cc\ub0ac\ub358 \u2018\uc544\uc0ac\ucf54\u2019\uc640 \uc7ac\ud68c\ud558\uace0 \uacfc\uac70\uc758 \uae30\uc5b5\uc744 \ub5a0\uc62c\ub9ac\ub294 \u2018\ubaa8\ub9ac\u2019. \ub354 \uc774\uc0c1 \uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uacfc\uac70\uc640 \ud604\uc7ac \uc0ac\uc774\uc5d0\uc11c \u2018\ubaa8\ub9ac\u2019\ub294 \ubbf8\ucc98 \uc54c\uc544\ubcf4\uc9c0 \ubabb\ud588\ub358 \uc0ac\ub791\uc758 \ud754\uc801\uacfc \ub9c8\uc8fc\ud558\uac8c \ub418\ub294\ub370\u2026 \u201c\ub2e4\uc2dc \uad1c\ucc2e\uc544\uc9c8 \uc218 \uc788\uc744\uae4c?\u201d"
-  },
-  {
-    id: "upcoming_20247458", title: "\uacbd\uc8fc\uae30\ud589", director: "\uae40\ubbf8\uc870",
-    cast: ["이정은", "공효진", "박소담"],
-    releaseDate: "2026-08-26", genre: ["범죄"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/2dAd2APyFUyJ6qEv9VFHdHQtQI6.jpg",
-    isRevealed: false,
-    overview: "\uc5c4\ub9c8 \uc625\uc2e4\uacfc \uc138 \ub538 \uc7a5\uc8fc, \uc601\uc8fc, \ub3d9\uc8fc\ub294 8\ub144 \uc804 \uc218\ud559\uc5ec\ud589\uc744 \ub5a0\ub09c \uc774\ud6c4 \ub2e4\uc2dc\ub294 \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub9c9\ub0b4 \uacbd\uc8fc\uc758 \uc0dd\uc77c\uc744 \ub9de\uc544 \ub2e8\uccb4 \ud2f0\uc154\uce20\uae4c\uc9c0 \ub9de\ucdb0 \uc785\uace0 \uacbd\uc8fc\ub85c \uac00\uc871\uc5ec\ud589\uc744 \ub5a0\ub09c\ub2e4. \uc5bc\ud54f \ub2e8\ub780\ud558\uace0 \ud654\ubaa9\ud55c \uac00\uc871\uc5ec\ud589\ucc98\ub7fc \ubcf4\uc774\uc9c0\ub9cc, \ubd09\uace0\ucc28 \ud2b8\ub801\ud06c\uc5d0\ub294 \ub0af\uc120 \ud55c \ub0a8\uc790\uac00 \uc2e4\ub824 \uc788\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20264715", title: "\ub4dc\ub77c\ud058\ub77c: \ub7ec\ube0c \ud14c\uc77c", director: "\ub93d \ubca0\uc1a1",
-    cast: ["케일럽 랜드리 존스", "크리스토프 왈츠", "조이 블루"],
-    releaseDate: "2026-08-26", genre: ["판타지", "멜로/로맨스", "공포(호러)"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/3mNCAoWAOHUYaY1VxOCqKC3v8n3.jpg",
-    isRevealed: false,
-    overview: "15\uc138\uae30, \uc804\uc7c1\uc73c\ub85c \uc5f0\uc778\uc744 \uc783\uc740 \ub0a8\uc790. \uc2e0\uc744 \ubc84\ub9b0 \uc800\uc8fc\ub85c \ubd88\uba78\uc758 \ub4dc\ub77c\ud058\ub77c\uac00 \ub418\uace0 \uadf8\ub140\ub97c \ub418\ucc3e\uae30 \uc704\ud574 \uc138\uc0c1\uc744 \ub5a0\ub3c8\ub2e4. 400\ub144\uc758 \uae30\ub2e4\ub9bc. \uc8fd\uc74c\ub3c4, \uc2dc\uac04\ub3c4, \uc2e0\uc758 \uc800\uc8fc\ub3c4 \ub05d\ub0b4 \ub9c9\uc9c0 \ubabb\ud55c \uc6b4\uba85\uc744 \ub2e4\uc2dc \ub9cc\ub098\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20250203", title: "\ud2b8\ub8e8\uba3c\uc758 \uc0ac\ub791", director: "\uae40\ub355\uc911",
-    cast: ["배유람", "이주우", "김신비"],
-    releaseDate: "2026-08-26", genre: ["SF", "멜로/로맨스"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8Zb0UIeGV4mIaUbogykkts1L5oT.jpg",
-    isRevealed: false,
-    overview: "\uc18d\uae30\uc0ac \uc9c0\uc5f0\uc740 \uc5b4\ub290 \ub0a0\ubd80\ud130 \uc138\uc0c1\uc774 \uba48\ucd94\ub294 \uc774\uc0c1 \ud604\uc0c1\uc744 \ubaa9\uaca9\ud55c\ub2e4. \uc5d0\ub7ec\uac00 \ubc1c\uc0dd\ud558\uba74 \ubaa8\ub450\uac00 \ud558\ub358 \ud589\ub3d9\uc744 \uba48\ucd94\uace0 \uad73\uc5b4\ubc84\ub9ac\uc9c0\ub9cc, \ud2b8\ub8e8\uba3c\uc778 \uc9c0\uc5f0\ub9cc\uc740 \uadf8 \uc138\uacc4\uc5d0 \uc885\uc18d\ub418\uc9c0 \uc54a\uace0 \uc790\uc720\ub86d\uac8c \uc6c0\uc9c1\uc77c \uc218 \uc788\ub2e4. \ud63c\uc790\uac00 \uc544\ub2c8\ub77c\ub294 \uac78 \ud655\uc778\ud558\uace0 \uc2f6\uc5c8\ub358 \uc9c0\uc5f0\uc740 \ub610\ub2e4\ub978 \ud2b8\ub8e8\uba3c\uc744 \ucc3e\uc544 \ud5e4\ub9e4\ub2e4 \ud604\uc2dd\uacfc \ubb38\uc131\uc744 \ub9cc\ub09c\ub2e4. \uc14b\uc740 \uc774 \uac70\uc9d3 \uc138\uacc4\uc758 \ubc14\uae65\uc744 \ud5a5\ud574 \ud568\uaed8 \ub5a0\ub098\ub824 \ud558\uc9c0\ub9cc, \uc9c0\uc5f0\uc744 \uc0ac\uc774\uc5d0 \ub450\uace0 \ub450 \ub0a8\uc790 \uc0ac\uc774\uc5d0 \uade0\uc5f4\uc774 \uc0dd\uae30\uae30 \uc2dc\uc791\ud558\ub294\ub370\u2026"
-  }
-];
-
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { MOVIES_DATABASE, UPCOMING_MOVIES_DATABASE, FILMOGRAPHIES, GAME_OPTIONS, FAMOUS_CHARACTERS, NICKNAME_MODIFIERS };
+  module.exports = { MOVIES_DATABASE, UPCOMING_MOVIES_DATABASE, FILMOGRAPHIES, GAME_OPTIONS, SCORE_QUIZ_POOL, FAMOUS_CHARACTERS, NICKNAME_MODIFIERS };
 }
-
-
-
 
 // ── MOVIES_DATABASE 중복 ID 제거 (런타임 정규화) ────────────────────────────
 (function() {
@@ -4937,561 +4529,7 @@ if (typeof module !== 'undefined' && module.exports) {
 // ── Google Sheets 연동 설정 ──────────────────────────────────────────────────
 // Apps Script 웹앱 배포 URL을 아래에 입력하세요.
 // 비워두면 기록이 로컬에만 저장됩니다.
-const AI_QUIZ_MOVIES = [
-{"title":"명량","openDt":"2014-07-30","total_audi":17583608,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":682701,"opening_week_audi":6604292,"director":"김한민","actors":["최민식", "류승룡", "조진웅", "김명곤"],"genre":"사극, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"왕과 사는 남자","openDt":"2026-02-04","total_audi":16891135,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":117783,"opening_week_audi":1165295,"director":"장항준","actors":["유해진", "박지훈", "유지태", "전미도"],"genre":"사극, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"극한직업","openDt":"2019-01-23","total_audi":16252575,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":368582,"opening_week_audi":3870746,"director":"이병헌","actors":["류승룡", "이하늬", "진선규", "이동휘"],"genre":"코미디","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"신과함께-죄와 벌","openDt":"2017-12-20","total_audi":14401147,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":406365,"opening_week_audi":5185381,"director":"김용화","actors":["하정우", "차태현", "주지훈", "김향기"],"genre":"판타지, 드라마","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"국제시장","openDt":"2014-12-17","total_audi":14241429,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":184756,"opening_week_audi":1944174,"director":"윤제균","actors":["황정민", "김윤진", "오달수", "정진영"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"어벤져스: 엔드게임","openDt":"2019-04-24","total_audi":13977409,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":1338729,"opening_week_audi":7330341,"director":"조 루소, 안소니 루소","actors":["로버트 다우니 주니어", "크리스 에반스", "마크 러팔로", "크리스 헴스워스"],"genre":"액션, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"겨울왕국 2","openDt":"2019-11-21","total_audi":13766393,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":606618,"opening_week_audi":5709337,"director":"제니퍼 리, 크리스 벅","actors":["크리스틴 벨", "이디나 멘젤", "조시 게드", "조나단 그로프"],"genre":"애니메이션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"베테랑","openDt":"2015-08-05","total_audi":13403414,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":414219,"opening_week_audi":3564608,"director":"류승완","actors":["황정민", "유아인", "유해진", "오달수"],"genre":"액션, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"서울의 봄","openDt":"2023-11-22","total_audi":13119454,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":203813,"opening_week_audi":2349066,"director":"김성수","actors":["황정민", "정우성", "이성민", "박해준"],"genre":"드라마","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"도둑들","openDt":"2012-07-25","total_audi":12976528,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":436596,"opening_week_audi":3842239,"director":"최동훈","actors":["김윤석", "김혜수", "이정재", "전지현"],"genre":"액션, 범죄","nation":"한국, 홍콩","dist":"(주)쇼박스"},
-{"title":"7번방의 선물","openDt":"2013-01-23","total_audi":12801369,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":152808,"opening_week_audi":2312981,"director":"이환경","actors":["류승룡", "박신혜", "갈소원", "오달수"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"알라딘","openDt":"2019-05-23","total_audi":12797927,"finalCat":"501만명 이상","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":72736,"opening_week_audi":1335688,"director":"가이 리치","actors":["메나 마수드", "윌 스미스", "나오미 스콧"],"genre":"어드벤처, 가족, 판타지","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"암살","openDt":"2015-07-22","total_audi":12686446,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":477541,"opening_week_audi":4181432,"director":"최동훈","actors":["전지현", "이정재", "하정우", "오달수"],"genre":"액션, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"범죄도시2","openDt":"2022-05-18","total_audi":12686210,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":467483,"opening_week_audi":3987954,"director":"이상용","actors":["마동석", "손석구", "최귀화", "박지환"],"genre":"범죄, 액션","nation":"한국","dist":"주식회사 에이비오엔터테인먼트, 메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"광해, 왕이 된 남자","openDt":"2012-09-13","total_audi":12291293,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":169516,"opening_week_audi":1843800,"director":"추창민","actors":["이병헌", "류승룡", "한효주", "장광"],"genre":"사극, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"신과함께-인과 연","openDt":"2018-08-01","total_audi":12264813,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":1246603,"opening_week_audi":7317743,"director":"김용화","actors":["하정우", "주지훈", "김향기", "마동석"],"genre":"판타지, 드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"택시운전사","openDt":"2017-08-02","total_audi":12166659,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":698088,"opening_week_audi":5321167,"director":"장훈","actors":["송강호", "토마스 크레취만", "류준열", "유해진"],"genre":"드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"파묘","openDt":"2024-02-22","total_audi":11902097,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":330118,"opening_week_audi":3306929,"director":"장재현","actors":["최민식", "김고은", "유해진", "이도현"],"genre":"미스터리, 공포(호러)","nation":"한국","dist":"(주)쇼박스"},
-{"title":"부산행","openDt":"2016-07-20","total_audi":11551067,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":872673,"opening_week_audi":5671164,"director":"연상호","actors":["공유", "정유미", "마동석", "김수안"],"genre":"액션, 스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"범죄도시4","openDt":"2024-04-24","total_audi":11495435,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":821466,"opening_week_audi":4964920,"director":"허명행","actors":["김무열", "박지환", "이동휘", "마동석"],"genre":"액션, 범죄","nation":"한국","dist":"주식회사 에이비오엔터테인먼트, 메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"변호인","openDt":"2013-12-18","total_audi":11358191,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":119949,"opening_week_audi":2454085,"director":"양우석","actors":["송강호", "김영애", "오달수", "곽도원"],"genre":"드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"어벤져스: 인피니티 워","openDt":"2018-04-25","total_audi":11230721,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":980042,"opening_week_audi":5976982,"director":"조 루소, 안소니 루소","actors":["로버트 다우니 주니어", "조슈 브롤린", "마크 러팔로", "톰 히들스턴"],"genre":"액션, 어드벤처, 판타지, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"아바타: 물의 길","openDt":"2022-12-14","total_audi":10809520,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":359031,"opening_week_audi":3200781,"director":"제임스 카메론","actors":["조 샐다나", "샘 워싱턴", "시고니 위버", "스티븐 랭"],"genre":"액션, 어드벤처, SF, 스릴러","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"범죄도시3","openDt":"2023-05-31","total_audi":10675973,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":740844,"opening_week_audi":5569751,"director":"이상용","actors":["마동석", "이준혁", "아오키 무네타카", "김병탁"],"genre":"범죄, 액션","nation":"한국","dist":"주식회사 에이비오엔터테인먼트, 메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"어벤져스: 에이지 오브 울트론","openDt":"2015-04-23","total_audi":10503764,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":622165,"opening_week_audi":4315988,"director":"조스 웨던","actors":["로버트 다우니 주니어", "크리스 헴스워스", "마크 러팔로", "크리스 에반스"],"genre":"액션, 어드벤처, 판타지, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 월트디즈니컴퍼니코리아(주)"},
-{"title":"인터스텔라","openDt":"2014-11-06","total_audi":10380296,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":227025,"opening_week_audi":2671954,"director":"크리스토퍼 놀란","actors":["매튜 매커너히", "앤 해서웨이", "마이클 케인", "제시카 차스테인"],"genre":"SF","nation":"미국, 영국","dist":"워너브러더스 코리아(주)"},
-{"title":"겨울왕국","openDt":"2014-01-16","total_audi":10324794,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":160592,"opening_week_audi":1703784,"director":"제니퍼 리, 크리스 벅","actors":["이디나 멘젤", "크리스틴 벨", "조나단 그로프", "조시 게드"],"genre":"애니메이션, 어드벤처, 가족, 코미디, 뮤지컬, 판타지","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)"},
-{"title":"기생충","openDt":"2019-05-30","total_audi":10300613,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":568092,"opening_week_audi":4514167,"director":"봉준호","actors":["송강호", "이선균", "조여정", "최우식"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"보헤미안 랩소디","openDt":"2018-10-31","total_audi":9945756,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":110477,"opening_week_audi":864478,"director":"브라이언 싱어","actors":["라미 말렉", "조셉 마젤로", "마이크 마이어스", "루시 보인턴"],"genre":"드라마","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 이십세기폭스코리아(주)"},
-{"title":"검사외전","openDt":"2016-02-03","total_audi":9686269,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":526680,"opening_week_audi":5456375,"director":"이일형","actors":["황정민", "강동원", "이성민", "박성웅"],"genre":"범죄, 코미디","nation":"한국","dist":"(주)쇼박스"},
-{"title":"엑시트","openDt":"2019-07-31","total_audi":9407840,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":489996,"opening_week_audi":3707700,"director":"이상근","actors":["조정석", "임윤아", "설도희", "최재영"],"genre":"코미디, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"설국열차","openDt":"2013-08-01","total_audi":9325679,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":601029,"opening_week_audi":4088542,"director":"봉준호","actors":["크리스 에반스", "송강호", "에드 해리스", "존 허트"],"genre":"SF, 액션","nation":"한국, 체코","dist":"(주)씨제이이엔엠"},
-{"title":"관상","openDt":"2013-09-11","total_audi":9114931,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":373552,"opening_week_audi":3220816,"director":"한재림","actors":["송강호", "이정재", "백윤식", "조정석"],"genre":"사극, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"아이언맨 3","openDt":"2013-04-25","total_audi":8982567,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":422504,"opening_week_audi":3782944,"director":"쉐인 블랙","actors":["로버트 다우니 주니어", "기네스 팰트로우", "벤 킹슬리", "가이 피어스"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)"},
-{"title":"인사이드 아웃 2","openDt":"2024-06-12","total_audi":8760451,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":194831,"opening_week_audi":2351588,"director":"켈시 만","actors":["에이미 포엘러", "토니 헤일"],"genre":"애니메이션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"캡틴 아메리카: 시빌 워","openDt":"2016-04-27","total_audi":8660800,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":727949,"opening_week_audi":4445449,"director":"안소니 루소, 조 루소","actors":["크리스 에반스", "로버트 다우니 주니어", "스칼렛 요한슨", "세바스찬 스탠"],"genre":"액션, SF, 스릴러","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 월트디즈니컴퍼니코리아(주)"},
-{"title":"수상한 그녀","openDt":"2014-01-22","total_audi":8648620,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":142843,"opening_week_audi":1468488,"director":"황동혁","actors":["심은경", "나문희", "박인환", "성동일"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"해적: 바다로 간 산적","openDt":"2014-08-06","total_audi":8614613,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":273445,"opening_week_audi":2294572,"director":"이석훈","actors":["김남길", "손예진", "신정근", "유해진"],"genre":"어드벤처","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"주토피아 2","openDt":"2025-11-26","total_audi":8604180,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":309168,"opening_week_audi":2399114,"director":"재러드 부시, 바이론 하워드","actors":["지니퍼 굿윈", "제이슨 베이트먼", "키 호이 콴"],"genre":"애니메이션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"탑건: 매버릭","openDt":"2022-06-22","total_audi":8275966,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":188312,"opening_week_audi":1764652,"director":"조셉 코신스키","actors":["톰 크루즈", "마일즈 텔러", "제니퍼 코넬리", "존 햄"],"genre":"액션","nation":"미국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"백두산","openDt":"2019-12-19","total_audi":8242478,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":450171,"opening_week_audi":4169431,"director":"김병서, 이해준","actors":["이병헌", "하정우", "마동석", "전혜진"],"genre":"어드벤처, 드라마","nation":"한국","dist":"(주)씨제이이엔엠, (주)덱스터스튜디오"},
-{"title":"스파이더맨: 파 프롬 홈","openDt":"2019-07-02","total_audi":8006860,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":674423,"opening_week_audi":4711600,"director":"존 왓츠","actors":["톰 홀랜드", "사무엘 L. 잭슨", "젠데이아 콜먼", "코비 스멀더스"],"genre":"액션, 어드벤처, 코미디, SF","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"공조","openDt":"2017-01-18","total_audi":7804820,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":151845,"opening_week_audi":1413415,"director":"김성훈","actors":["현빈", "유해진", "김주혁", "장영남"],"genre":"액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"히말라야","openDt":"2015-12-16","total_audi":7755848,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":203173,"opening_week_audi":1869995,"director":"이석훈","actors":["황정민", "정우", "조성하", "김인권"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"트랜스포머 3","openDt":"2011-06-29","total_audi":7749860,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":544995,"opening_week_audi":3825911,"director":"마이클 베이","actors":["조쉬 더하멜", "존 말코비치", "로지 헌팅턴-휘틀리", "샤이아 라보프"],"genre":"액션, 어드벤처","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"스파이더맨: 노 웨이 홈","openDt":"2021-12-15","total_audi":7545831,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":634962,"opening_week_audi":3181811,"director":"존 왓츠","actors":["톰 홀랜드", "젠데이아 콜먼", "베네딕트 컴버배치", "제이콥 배덜런"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"베테랑2","openDt":"2024-09-13","total_audi":7514196,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":497498,"opening_week_audi":4668044,"director":"류승완","actors":["황정민", "정해인", "장윤주", "정만식"],"genre":"액션, 범죄","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"미션임파서블:고스트프로토콜","openDt":"2011-12-15","total_audi":7500194,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":264719,"opening_week_audi":2272599,"director":"브래드 버드","actors":["톰 크루즈", "제레미 레너"],"genre":"액션","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"밀정","openDt":"2016-09-07","total_audi":7483039,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":287228,"opening_week_audi":2659145,"director":"김지운","actors":["송강호", "공유", "한지민", "츠루미 신고"],"genre":"액션","nation":"한국, 미국","dist":"워너브러더스 코리아(주)"},
-{"title":"최종병기 활","openDt":"2011-08-10","total_audi":7466681,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":140127,"opening_week_audi":1912544,"director":"김한민","actors":["박해일", "류승룡", "김무열", "문채원"],"genre":"사극, 액션","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"써니","openDt":"2011-05-04","total_audi":7330305,"finalCat":"501만명 이상","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":55417,"opening_week_audi":949417,"director":"강형철","actors":["유호정", "심은경", "강소라", "고수희"],"genre":"드라마, 코미디","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"한산: 용의 출현","openDt":"2022-07-27","total_audi":7252467,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":386161,"opening_week_audi":2981324,"director":"김한민","actors":["박해일", "변요한", "안성기", "손현주"],"genre":"액션, 드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"스파이더맨: 홈 커밍","openDt":"2017-07-05","total_audi":7249898,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":545302,"opening_week_audi":4079540,"director":"존 왓츠","actors":["톰 홀랜드", "로버트 다우니 주니어", "마이클 키튼", "제이콥 배덜런"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"엘리멘탈","openDt":"2023-06-14","total_audi":7205607,"finalCat":"501만명 이상","openingDayCat":"1~5만명","openingWeekCat":"51~100만명","opening_day_audi":48002,"opening_week_audi":620126,"director":"피터 손","actors":["-"],"genre":"애니메이션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"1987","openDt":"2017-12-27","total_audi":7201087,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":331736,"opening_week_audi":2655462,"director":"장준환","actors":["김윤석", "하정우", "유해진", "김태리"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"베를린","openDt":"2013-01-30","total_audi":7153657,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":273647,"opening_week_audi":2515870,"director":"류승완","actors":["하정우", "한석규", "류승범", "전지현"],"genre":"액션","nation":"한국, 독일","dist":"(주)씨제이이엔엠"},
-{"title":"마스터","openDt":"2016-12-21","total_audi":7138983,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":392856,"opening_week_audi":3502148,"director":"조의석","actors":["이병헌", "강동원", "김우빈", "엄지원"],"genre":"액션, 범죄","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"터널","openDt":"2016-08-10","total_audi":7118946,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":379079,"opening_week_audi":3512572,"director":"김성훈","actors":["하정우", "배두나", "오달수", "김종수"],"genre":"드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"어벤져스","openDt":"2012-04-26","total_audi":7086884,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":214105,"opening_week_audi":2334727,"director":"조스 웨던","actors":["로버트 다우니 주니어", "스칼렛 요한슨", "크리스 헴스워스", "크리스 에반스"],"genre":"액션, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"내부자들","openDt":"2015-11-19","total_audi":7048354,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":230949,"opening_week_audi":2149890,"director":"우민호","actors":["이병헌", "조승우", "백윤식", "이경영"],"genre":"범죄, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"인천상륙작전","openDt":"2016-07-27","total_audi":7043241,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":464460,"opening_week_audi":3571715,"director":"이재한","actors":["이정재", "이범수", "리암 니슨", "진세연"],"genre":"전쟁, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"공조2: 인터내셔날","openDt":"2022-09-07","total_audi":6979189,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":216237,"opening_week_audi":3533687,"director":"이석훈","actors":["현빈", "유해진", "임윤아", "다니엘 헤니"],"genre":"액션, 코미디","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"럭키","openDt":"2016-10-13","total_audi":6973125,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":214065,"opening_week_audi":2539571,"director":"이계벽","actors":["유해진", "이준", "조윤희", "임지연"],"genre":"코미디","nation":"한국","dist":"(주)쇼박스"},
-{"title":"은밀하게 위대하게","openDt":"2013-06-05","total_audi":6951677,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":498158,"opening_week_audi":3864729,"director":"장철수","actors":["김수현", "박기웅", "이현우", "손현주"],"genre":"액션, 코미디, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"범죄도시","openDt":"2017-10-03","total_audi":6871085,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":164399,"opening_week_audi":2179867,"director":"강윤성","actors":["마동석", "윤계상", "조재윤", "최귀화"],"genre":"범죄, 액션","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트, (주)키위미디어그룹"},
-{"title":"곡성","openDt":"2016-05-12","total_audi":6860489,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":310042,"opening_week_audi":2847578,"director":"나홍진","actors":["곽도원", "황정민", "쿠니무라 준", "천우희"],"genre":"미스터리, 스릴러, 드라마","nation":"한국, 미국","dist":"이십세기폭스코리아(주)"},
-{"title":"아바타: 불과 재","openDt":"2025-12-17","total_audi":6731026,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":265031,"opening_week_audi":2042076,"director":"제임스 카메론","actors":["샘 워싱턴", "조 샐다나", "시고니 위버", "스티븐 랭"],"genre":"SF, 액션, 어드벤처","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"늑대소년","openDt":"2012-10-31","total_audi":6610836,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":128787,"opening_week_audi":1631466,"director":"조성희","actors":["송중기", "박보영", "장영남", "유연석"],"genre":"멜로/로맨스, 드라마, 판타지","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"군함도","openDt":"2017-07-26","total_audi":6590337,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":972161,"opening_week_audi":4918685,"director":"류승완","actors":["황정민", "소지섭", "송중기", "이정현"],"genre":"액션, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"미션 임파서블: 폴아웃","openDt":"2018-07-25","total_audi":6573512,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":601935,"opening_week_audi":4132185,"director":"크리스토퍼 맥쿼리","actors":["톰 크루즈", "레베카 퍼거슨", "바네사 커비", "미셸 모나한"],"genre":"액션, 스릴러","nation":"미국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"다크 나이트 라이즈","openDt":"2012-07-19","total_audi":6428134,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":441089,"opening_week_audi":3197131,"director":"크리스토퍼 놀란","actors":["크리스찬 베일", "게리 올드만", "앤 해서웨이", "톰 하디"],"genre":"액션, 범죄, 스릴러","nation":"미국, 영국","dist":"워너브러더스 코리아(주)"},
-{"title":"사도","openDt":"2015-09-16","total_audi":6234631,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":250237,"opening_week_audi":2090977,"director":"이준익","actors":["송강호", "유아인", "문근영", "전혜진"],"genre":"사극","nation":"한국","dist":"(주)쇼박스"},
-{"title":"아저씨","openDt":"2010-08-04","total_audi":6165980,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":130781,"opening_week_audi":1288749,"director":"이정범","actors":["원빈", "김새론", "김희원", "김성오"],"genre":"액션, 드라마","nation":"한국","dist":"씨제이엔터테인먼트"},
-{"title":"킹스맨 : 시크릿 에이전트","openDt":"2015-02-11","total_audi":6126769,"finalCat":"501만명 이상","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":78058,"opening_week_audi":987486,"director":"매튜 본","actors":["콜린 퍼스", "태런 에저튼", "사무엘 L. 잭슨", "마이클 케인"],"genre":"액션, 스릴러","nation":"미국, 영국","dist":"이십세기폭스코리아(주)"},
-{"title":"미션 임파서블: 로그네이션","openDt":"2015-07-30","total_audi":6103081,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":471801,"opening_week_audi":3562086,"director":"크리스토퍼 맥쿼리","actors":["톰 크루즈", "제레미 레너", "사이먼 페그", "알렉 볼드윈"],"genre":"액션, 스릴러, 어드벤처","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"연평해전","openDt":"2015-06-24","total_audi":6032637,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":153400,"opening_week_audi":1863780,"director":"김학순","actors":["김무열", "진구", "이현우", "이완"],"genre":"드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"인셉션","openDt":"2010-07-21","total_audi":6014915,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":149246,"opening_week_audi":1562237,"director":"크리스토퍼 놀란","actors":["레오나르도 디카프리오", "엘렌 페이지", "마리옹 꼬띠아르"],"genre":"드라마, 미스터리","nation":"미국","dist":"(주)디스테이션, 워너브러더스 코리아(주)"},
-{"title":"레미제라블","openDt":"2012-12-19","total_audi":5932514,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":283842,"opening_week_audi":1869952,"director":"톰 후퍼","actors":["휴 잭맨", "러셀 크로우", "앤 해서웨이", "아만다 사이프리드"],"genre":"드라마","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"닥터 스트레인지: 대혼돈의 멀티버스","openDt":"2022-05-04","total_audi":5882489,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":715683,"opening_week_audi":3812556,"director":"샘 레이미","actors":["베네딕트 컴버배치", "엘리자베스 올슨", "베네딕트 웡", "레이첼 맥아담스"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"극장판 귀멸의 칼날: 무한성편","openDt":"2025-08-22","total_audi":5809650,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":517922,"opening_week_audi":2327057,"director":"소토자키 하루오","actors":["하나에 나츠키", "키토 아카리", "시모노 히로", "마츠오카 요시츠구"],"genre":"애니메이션","nation":"일본","dist":"(주)씨제이이엔엠"},
-{"title":"캡틴 마블","openDt":"2019-03-06","total_audi":5797321,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":461134,"opening_week_audi":3344508,"director":"애너 보든, 라이언 플렉","actors":["브리 라슨", "사무엘 L. 잭슨", "벤 멘델슨", "주드 로"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"쥬라기 월드: 폴른 킹덤","openDt":"2018-06-06","total_audi":5648970,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":1183496,"opening_week_audi":3552384,"director":"후안 안토니오 바요나","actors":["크리스 프랫", "브라이스 달라스 하워드", "제프 골드블럼", "저스티스 스미스"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"좀비딸","openDt":"2025-07-30","total_audi":5641601,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":430087,"opening_week_audi":2189309,"director":"필감성","actors":["조정석", "이정은", "조여정", "윤경호"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"청년경찰","openDt":"2017-08-09","total_audi":5638636,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":308298,"opening_week_audi":2698996,"director":"김주환","actors":["박서준", "강하늘", "성동일", "박하선"],"genre":"액션","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"군체","openDt":"2026-05-21","total_audi":5617953,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":199754,"opening_week_audi":2359940,"director":"연상호","actors":["전지현", "구교환", "지창욱", "신현빈"],"genre":"액션, 스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"숨바꼭질","openDt":"2013-08-14","total_audi":5584548,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":293917,"opening_week_audi":2595629,"director":"허정","actors":["손현주", "문정희", "전미선", "백종우"],"genre":"스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"더 테러 라이브","openDt":"2013-07-31","total_audi":5582956,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":215832,"opening_week_audi":2196147,"director":"김병우","actors":["하정우", "이경영", "전혜진", "이다윗"],"genre":"범죄, 기타","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"스즈메의 문단속","openDt":"2023-03-08","total_audi":5570424,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":143507,"opening_week_audi":1038699,"director":"신카이 마코토","actors":["하라 나노카", "마츠무라 호쿠토"],"genre":"애니메이션","nation":"일본","dist":"(주)쇼박스"},
-{"title":"덕혜옹주","openDt":"2016-08-03","total_audi":5568667,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":267112,"opening_week_audi":2194065,"director":"허진호","actors":["손예진", "박해일", "윤제문", "라미란"],"genre":"사극, 드라마","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"쥬라기 월드","openDt":"2015-06-11","total_audi":5545149,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":274719,"opening_week_audi":2228158,"director":"콜린 트레보로우","actors":["크리스 프랫", "주디 그리어", "브라이스 달라스 하워드", "케이티 맥그라스"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"감시자들","openDt":"2013-07-03","total_audi":5507540,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":210052,"opening_week_audi":2162181,"director":"김병서, 조의석","actors":["설경구", "정우성", "한효주", "진경"],"genre":"범죄, 액션","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"앤트맨과 와스프","openDt":"2018-07-04","total_audi":5444801,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":404151,"opening_week_audi":3019933,"director":"페이튼 리드","actors":["폴 러드", "에반젤린 릴리", "마이클 더글라스", "미셀 파이퍼"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"닥터 스트레인지","openDt":"2016-10-26","total_audi":5441786,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":435068,"opening_week_audi":2592801,"director":"스콧 데릭슨","actors":["베네딕트 컴버배치", "레이첼 맥아담스", "틸다 스윈튼", "매즈 미켈슨"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"검은 사제들","openDt":"2015-11-05","total_audi":5436603,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":191090,"opening_week_audi":2175495,"director":"장재현","actors":["김윤석", "강동원", "박소담", "김병옥"],"genre":"미스터리, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"안시성","openDt":"2018-09-19","total_audi":5426621,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":122859,"opening_week_audi":2871930,"director":"김광식","actors":["조인성", "남주혁", "박성웅", "김동진"],"genre":"사극, 액션","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"의형제","openDt":"2010-02-04","total_audi":5410669,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":127542,"opening_week_audi":1221749,"director":"장훈","actors":["송강호", "강동원", "전국환", "박혁권"],"genre":"드라마, 액션","nation":"한국","dist":"(주)쇼박스"},
-{"title":"블랙 팬서","openDt":"2018-02-14","total_audi":5378683,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":630461,"opening_week_audi":3506487,"director":"라이언 쿠글러","actors":["채드윅 보스만", "마이클 B. 조던", "루피타 뇽오", "다네이 거라이라"],"genre":"액션, 드라마, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"완득이","openDt":"2011-10-20","total_audi":5307451,"finalCat":"501만명 이상","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":59965,"opening_week_audi":789834,"director":"이한","actors":["김윤석", "유아인", "조병찬", "조세현"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"더 킹","openDt":"2017-01-18","total_audi":5304371,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":288966,"opening_week_audi":2159127,"director":"한재림","actors":["조인성", "정우성", "배성우", "류준열"],"genre":"범죄, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"트랜스포머: 사라진 시대","openDt":"2014-06-25","total_audi":5295056,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":467419,"opening_week_audi":2963135,"director":"마이클 베이","actors":["마크 월버그", "니콜라 펠츠", "잭 레이너", "스탠리 투치"],"genre":"액션, SF, 어드벤처","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"완벽한 타인","openDt":"2018-10-31","total_audi":5280620,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":274118,"opening_week_audi":1981808,"director":"이재규","actors":["유해진", "조진웅", "이서진", "염정아"],"genre":"드라마, 코미디","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"조커","openDt":"2019-10-02","total_audi":5274455,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":323409,"opening_week_audi":2586786,"director":"토드 필립스","actors":["호아킨 피닉스", "재지 비츠", "로버트 드 니로", "프란시스 콘로이"],"genre":"액션, 드라마, 스릴러","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"F1 더 무비","openDt":"2025-06-25","total_audi":5261209,"finalCat":"501만명 이상","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":82917,"opening_week_audi":577251,"director":"조셉 코신스키","actors":["브래드 피트", "하비에르 바르뎀", "케리 콘든"],"genre":"드라마, 액션","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"월드 워 Z","openDt":"2013-06-20","total_audi":5237119,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":239692,"opening_week_audi":2104625,"director":"마크 포스터","actors":["브래드 피트", "미레유 에노스", "매튜 폭스"],"genre":"드라마, 스릴러, SF, 액션, 어드벤처","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"타워","openDt":"2012-12-25","total_audi":5161459,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":431704,"opening_week_audi":1893057,"director":"김지훈","actors":["설경구", "손예진", "김상경", "차인표"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"미녀와 야수","openDt":"2017-03-16","total_audi":5155465,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":166930,"opening_week_audi":1973539,"director":"빌 콘돈","actors":["엠마 왓슨", "댄 스티븐스", "루크 에반스", "이완 맥그리거"],"genre":"멜로/로맨스, 판타지, 뮤지컬","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"밀수","openDt":"2023-07-26","total_audi":5123219,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":318084,"opening_week_audi":2183082,"director":"류승완","actors":["김혜수", "염정아", "조인성", "박정민"],"genre":"액션","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"독전","openDt":"2018-05-22","total_audi":5061072,"finalCat":"501만명 이상","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":376530,"opening_week_audi":1962720,"director":"이해영","actors":["조진웅", "류준열", "김주혁", "김성령"],"genre":"범죄, 액션","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"쿵푸팬더 2","openDt":"2011-05-26","total_audi":5059204,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":130076,"opening_week_audi":1950979,"director":"여인영","actors":["더스틴 호프만", "잭 블랙", "안젤리나 졸리", "성룡"],"genre":"애니메이션, 액션, 어드벤처, 코미디, 가족","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"아쿠아맨","openDt":"2018-12-19","total_audi":5023929,"finalCat":"501만명 이상","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":145383,"opening_week_audi":2095957,"director":"제임스 완","actors":["제이슨 모모아", "앰버 허드", "니콜 키드먼", "패트릭 윌슨"],"genre":"액션","nation":"미국, 호주","dist":"워너브러더스 코리아(주)"},
-{"title":"공작","openDt":"2018-08-08","total_audi":4966175,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":333316,"opening_week_audi":2608218,"director":"윤종빈","actors":["황정민", "이성민", "조진웅", "주지훈"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"인사이드 아웃","openDt":"2015-07-09","total_audi":4941734,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":68222,"opening_week_audi":1020356,"director":"피트 닥터","actors":["다이안 레인", "에이미 포엘러", "카일 맥라클란", "민디 캘링"],"genre":"애니메이션, 코미디","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"킹스맨: 골든 서클","openDt":"2017-09-27","total_audi":4936333,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":481948,"opening_week_audi":3091316,"director":"매튜 본","actors":["콜린 퍼스", "줄리안 무어", "태런 에저튼", "마크 스트롱"],"genre":"액션, 어드벤처, 코미디","nation":"미국, 영국","dist":"이십세기폭스코리아(주)"},
-{"title":"더 퍼스트 슬램덩크","openDt":"2023-01-04","total_audi":4920836,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"11~50만명","opening_day_audi":62090,"opening_week_audi":495217,"director":"이노우에 다케히코","actors":["-"],"genre":"애니메이션","nation":"일본","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"하얼빈","openDt":"2024-12-24","total_audi":4900863,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":381521,"opening_week_audi":2518158,"director":"우민호","actors":["현빈", "박정민", "조우진", "전여빈"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"마션","openDt":"2015-10-08","total_audi":4875930,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":271226,"opening_week_audi":2174354,"director":"리들리 스콧","actors":["맷 데이먼", "제시카 차스테인", "제프 다니엘스", "케이트 마라"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 이십세기폭스코리아(주)"},
-{"title":"바람과 함께 사라지다","openDt":"2012-08-08","total_audi":4873504,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":172048,"opening_week_audi":1791104,"director":"김주호","actors":["차태현", "오지호", "민효린", "성동일"],"genre":"코미디, 사극","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"어메이징 스파이더맨","openDt":"2012-06-28","total_audi":4850484,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":272155,"opening_week_audi":2152922,"director":"마크 웹","actors":["앤드류 가필드", "엠마 스톤", "마틴 쉰", "샐리 필드"],"genre":"액션","nation":"미국","dist":"한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"토르: 라그나로크","openDt":"2017-10-25","total_audi":4836296,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":415741,"opening_week_audi":2505415,"director":"타이카 와이티티","actors":["크리스 헴스워스", "톰 히들스턴", "케이트 블란쳇", "이드리스 엘바"],"genre":"액션, 어드벤처, 판타지, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"조선명탐정 : 각시투구꽃의 비밀","openDt":"2011-01-27","total_audi":4777463,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":97036,"opening_week_audi":1272218,"director":"김석윤","actors":["김명민", "한지민", "오달수", "김호연"],"genre":"코미디, 액션","nation":"한국","dist":"(주)쇼박스"},
-{"title":"봉오동 전투","openDt":"2019-08-07","total_audi":4774549,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":333867,"opening_week_audi":2436363,"director":"원신연","actors":["유해진", "류준열", "조우진", "키타무라 카즈키"],"genre":"사극, 액션, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"군도: 민란의 시대","openDt":"2014-07-23","total_audi":4763646,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":551841,"opening_week_audi":3629956,"director":"윤종빈","actors":["하정우", "강동원", "조진웅", "마동석"],"genre":"사극, 액션","nation":"한국","dist":"(주)쇼박스"},
-{"title":"님아, 그 강을 건너지 마오","openDt":"2014-11-27","total_audi":4759383,"finalCat":"301~500만명","openingDayCat":"1~5만명","openingWeekCat":"11~50만명","opening_day_audi":8607,"opening_week_audi":100200,"director":"진모영","actors":["조병만", "강계열"],"genre":"다큐멘터리","nation":"한국","dist":"CGV아트하우스, (주)대명문화공장"},
-{"title":"남산의 부장들","openDt":"2020-01-22","total_audi":4748387,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":252058,"opening_week_audi":3407828,"director":"우민호","actors":["이태호", "이병헌", "이성민", "곽도원"],"genre":"드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"범죄와의 전쟁: 나쁜놈들 전성시대","openDt":"2012-02-02","total_audi":4717541,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":166041,"opening_week_audi":1529776,"director":"윤종빈","actors":["최민식", "하정우", "조진웅", "마동석"],"genre":"범죄, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"파일럿","openDt":"2024-07-31","total_audi":4710803,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":373859,"opening_week_audi":1995842,"director":"김한결","actors":["조정석", "이주명", "한선화", "신승호"],"genre":"코미디","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"라이온 킹","openDt":"2019-07-17","total_audi":4705489,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":304793,"opening_week_audi":2602252,"director":"존 파브로","actors":["도날드 글로버", "비욘세 놀즈", "제임스 얼 존스", "치웨텔 에지오포"],"genre":"어드벤처, 드라마, 가족","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"주토피아","openDt":"2016-02-17","total_audi":4697548,"finalCat":"301~500만명","openingDayCat":"1~5만명","openingWeekCat":"51~100만명","opening_day_audi":35604,"opening_week_audi":550744,"director":"리치 무어, 바이론 하워드","actors":["지니퍼 굿윈", "제이슨 베이트먼", "샤키라"],"genre":"애니메이션, 액션, 어드벤처","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"엣지 오브 투모로우","openDt":"2014-06-04","total_audi":4686179,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":377160,"opening_week_audi":2092205,"director":"더그 라이만","actors":["톰 크루즈", "에밀리 블런트", "빌 팩스톤"],"genre":"액션, SF","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"신세계","openDt":"2013-02-21","total_audi":4675881,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":168935,"opening_week_audi":1503510,"director":"박훈정","actors":["이정재", "최민식", "황정민", "박성웅"],"genre":"범죄, 액션","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"신비한 동물사전","openDt":"2016-11-16","total_audi":4668709,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":242775,"opening_week_audi":2236133,"director":"데이빗 예이츠","actors":["에디 레드메인", "콜린 파렐", "캐서린 워터스턴", "앨리슨 수돌"],"genre":"어드벤처, 가족, 판타지","nation":"미국, 영국","dist":"워너브러더스 코리아(주)"},
-{"title":"도가니","openDt":"2011-09-22","total_audi":4650306,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":136094,"opening_week_audi":1360274,"director":"황동혁","actors":["정유미", "공유", "허재호", "임현성"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"내 아내의 모든 것","openDt":"2012-05-17","total_audi":4595036,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":87798,"opening_week_audi":1014967,"director":"민규동","actors":["임수정", "이선균", "류승룡", "박희본"],"genre":"코미디, 멜로/로맨스","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"나쁜 녀석들: 더 무비","openDt":"2019-09-11","total_audi":4570402,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":244335,"opening_week_audi":2990221,"director":"손용호","actors":["마동석", "김상중", "김아중", "장기용"],"genre":"범죄, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"노량: 죽음의 바다","openDt":"2023-12-20","total_audi":4560367,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":216769,"opening_week_audi":2337927,"director":"김한민","actors":["김윤석", "백윤식", "정재영", "허준호"],"genre":"사극, 액션","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트, (주)에이스메이커무비웍스"},
-{"title":"판도라","openDt":"2016-12-07","total_audi":4559238,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":154652,"opening_week_audi":1766999,"director":"박정우","actors":["김남길", "김영애", "문정희", "정진영"],"genre":"드라마, 스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"연가시","openDt":"2012-07-05","total_audi":4509571,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":191274,"opening_week_audi":1912068,"director":"박정우","actors":["김명민", "문정희", "김동완", "이하늬"],"genre":"공포(호러), SF","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"강철비","openDt":"2017-12-14","total_audi":4445387,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":236952,"opening_week_audi":2236940,"director":"양우석","actors":["정우성", "곽도원", "김갑수", "김의성"],"genre":"액션, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"해리 포터와 죽음의 성물2","openDt":"2011-07-13","total_audi":4443440,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":229946,"opening_week_audi":2064081,"director":"데이빗 예이츠","actors":["다니엘 래드클리프", "엠마 왓슨", "루퍼트 그린트"],"genre":"판타지, 미스터리","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"아이언맨 2","openDt":"2010-04-29","total_audi":4417792,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":248798,"opening_week_audi":2623639,"director":"존 파브로","actors":["로버트 다우니 주니어", "기네스 팰트로우", "돈 치들", "스칼렛 요한슨"],"genre":"SF, 액션, 어드벤처","nation":"미국","dist":"씨제이엔터테인먼트"},
-{"title":"다만 악에서 구하소서","openDt":"2020-08-05","total_audi":4353414,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":344910,"opening_week_audi":2405313,"director":"홍원찬","actors":["황정민", "이정재", "박정민", "박소이"],"genre":"범죄, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"헌트","openDt":"2022-08-10","total_audi":4346803,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":210790,"opening_week_audi":2079320,"director":"이정재","actors":["이정재", "정우성", "전혜진", "허성태"],"genre":"액션, 드라마","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"엑스맨: 데이즈 오브 퓨처 패스트","openDt":"2014-05-22","total_audi":4307399,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":213000,"opening_week_audi":2083547,"director":"브라이언 싱어","actors":["휴 잭맨", "제임스 맥어보이", "마이클 패스벤더", "제니퍼 로렌스"],"genre":"액션, 판타지, SF, 어드벤처","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"아가씨","openDt":"2016-06-01","total_audi":4272976,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":290024,"opening_week_audi":2356513,"director":"박찬욱","actors":["김민희", "김태리", "하정우", "조진웅"],"genre":"스릴러, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"가디언즈 오브 갤럭시: Volume 3","openDt":"2023-05-03","total_audi":4204834,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":163314,"opening_week_audi":1828773,"director":"제임스 건","actors":["크리스 프랫", "조 샐다나", "데이브 바티스타", "카렌 길런"],"genre":"액션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"어메이징 스파이더맨 2","openDt":"2014-04-23","total_audi":4157303,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":192229,"opening_week_audi":1886197,"director":"마크 웹","actors":["앤드류 가필드", "엠마 스톤", "제이미 폭스", "데인 드한"],"genre":"액션, 판타지","nation":"미국","dist":"소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)"},
-{"title":"용의자","openDt":"2013-12-24","total_audi":4130782,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":334061,"opening_week_audi":1965450,"director":"원신연","actors":["공유", "박희순", "조성하", "유다인"],"genre":"액션, 스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"건축학개론","openDt":"2012-03-22","total_audi":4101671,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":66580,"opening_week_audi":877765,"director":"이용주","actors":["엄태웅", "한가인", "이제훈", "배수지"],"genre":"멜로/로맨스, 드라마","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"댄싱퀸","openDt":"2012-01-18","total_audi":4053696,"finalCat":"301~500만명","openingDayCat":"1~5만명","openingWeekCat":"101만명 이상","opening_day_audi":46500,"opening_week_audi":1224724,"director":"이석훈","actors":["황정민", "엄정화", "정성화", "오나라"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"미션 임파서블: 데드 레코닝 PART ONE","openDt":"2023-07-12","total_audi":4015548,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":229753,"opening_week_audi":1847994,"director":"크리스토퍼 맥쿼리","actors":["톰 크루즈", "헤일리 앳웰", "빙 라메스", "사이먼 페그"],"genre":"액션, 스릴러, 어드벤처","nation":"미국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"꾼","openDt":"2017-11-22","total_audi":4014411,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":213172,"opening_week_audi":1959673,"director":"장창원","actors":["현빈", "유지태", "배성우", "박성웅"],"genre":"범죄","nation":"한국","dist":"(주)쇼박스"},
-{"title":"타짜-신의 손","openDt":"2014-09-03","total_audi":4008175,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":201749,"opening_week_audi":2060373,"director":"강형철","actors":["최승현", "신세경", "곽도원", "유해진"],"genre":"드라마","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트, (주)싸이더스"},
-{"title":"혹성탈출: 반격의 서막","openDt":"2014-07-10","total_audi":3999733,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":201723,"opening_week_audi":1952535,"director":"맷 리브스","actors":["앤디 서키스", "게리 올드만", "제이슨 클락"],"genre":"액션, 드라마, SF, 스릴러","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"너의 이름은.","openDt":"2017-01-04","total_audi":3962543,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":138028,"opening_week_audi":1413784,"director":"신카이 마코토","actors":["카미키 류노스케", "카미시라이시 모네", "나가사와 마사미", "이치하라 에수코"],"genre":"애니메이션, 드라마, 멜로/로맨스","nation":"일본","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"캡틴 아메리카: 윈터 솔져","openDt":"2014-03-26","total_audi":3961009,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":166787,"opening_week_audi":1682150,"director":"조 루소, 안소니 루소","actors":["크리스 에반스", "스칼렛 요한슨", "사무엘 L. 잭슨", "로버트 레드포드"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)"},
-{"title":"매드 맥스: 분노의 도로","openDt":"2015-05-14","total_audi":3944729,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":89736,"opening_week_audi":1087558,"director":"조지 밀러","actors":["톰 하디", "샤를리즈 테론", "니콜라스 홀트", "휴 키즈 바인"],"genre":"액션, 어드벤처, 스릴러","nation":"미국, 호주","dist":"워너브러더스 코리아(주)"},
-{"title":"쿵푸팬더3","openDt":"2016-01-28","total_audi":3935932,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":222044,"opening_week_audi":1861134,"director":"여인영, 알레산드로 칼로니","actors":["잭 블랙", "안젤리나 졸리", "더스틴 호프만", "성룡"],"genre":"애니메이션, 액션, 어드벤처","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"박수건달","openDt":"2013-01-09","total_audi":3897475,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":106959,"opening_week_audi":1318047,"director":"조진규","actors":["박신양", "김정태", "엄지원", "정혜영"],"genre":"코미디","nation":"한국","dist":"(주)쇼박스"},
-{"title":"베놈","openDt":"2018-10-03","total_audi":3873669,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":740661,"opening_week_audi":2603971,"director":"루벤 플레셔","actors":["톰 하디", "미쉘 윌리엄스", "리즈 아메드", "제니 슬레이트"],"genre":"액션, SF, 스릴러","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"조선명탐정 : 사라진 놉의 딸","openDt":"2015-02-11","total_audi":3855420,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":113443,"opening_week_audi":1199134,"director":"김석윤","actors":["김명민", "오달수", "이연희", "조관우"],"genre":"사극, 코미디, 어드벤처","nation":"한국","dist":"(주)쇼박스"},
-{"title":"콘크리트 유토피아","openDt":"2023-08-09","total_audi":3845091,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":230978,"opening_week_audi":2118874,"director":"엄태화","actors":["이병헌", "박서준", "박보영", "김선영"],"genre":"드라마, 기타","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"역린","openDt":"2014-04-30","total_audi":3841113,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":287855,"opening_week_audi":2455142,"director":"이재규","actors":["현빈", "정재영", "조정석", "한지민"],"genre":"사극","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"남한산성","openDt":"2017-10-03","total_audi":3838167,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":444585,"opening_week_audi":3226956,"director":"황동혁","actors":["이병헌", "김윤석", "박해일", "고수"],"genre":"사극, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"소방관","openDt":"2024-12-04","total_audi":3836189,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":81673,"opening_week_audi":908883,"director":"곽경택","actors":["주원", "곽도원", "유재명", "이유영"],"genre":"드라마","nation":"한국","dist":"(주)바이포엠스튜디오"},
-{"title":"반도","openDt":"2020-07-15","total_audi":3810397,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":353000,"opening_week_audi":2061254,"director":"연상호","actors":["강동원", "이정현", "권해효", "김민재"],"genre":"액션, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"암수살인","openDt":"2018-10-03","total_audi":3782251,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":439309,"opening_week_audi":2079291,"director":"김태균","actors":["김윤석", "주지훈", "문정희", "진선규"],"genre":"범죄, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"데드풀 2","openDt":"2018-05-16","total_audi":3778456,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":356445,"opening_week_audi":2571021,"director":"데이빗 레이치","actors":["라이언 레이놀즈", "조슈 브롤린", "재지 비츠", "모레나 바카린"],"genre":"액션, 어드벤처, 코미디, SF","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"라라랜드","openDt":"2016-12-07","total_audi":3768585,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":62258,"opening_week_audi":715367,"director":"데이미언 셔젤","actors":["엠마 스톤", "라이언 고슬링", "핀 위트록", "J.K. 시몬스"],"genre":"드라마, 뮤지컬, 멜로/로맨스","nation":"미국","dist":"판씨네마(주)"},
-{"title":"비긴 어게인","openDt":"2014-08-13","total_audi":3733473,"finalCat":"301~500만명","openingDayCat":"1~5만명","openingWeekCat":"11~50만명","opening_day_audi":12032,"opening_week_audi":133628,"director":"존 카니","actors":["키이라 나이틀리", "마크 러팔로", "애덤 리바인", "헤일리 스테인펠드"],"genre":"멜로/로맨스","nation":"미국","dist":"판씨네마(주)"},
-{"title":"국가부도의 날","openDt":"2018-11-28","total_audi":3732836,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":301330,"opening_week_audi":1852989,"director":"최국희","actors":["김혜수", "유아인", "허준호", "조우진"],"genre":"드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"미이라","openDt":"2017-06-06","total_audi":3673396,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":873117,"opening_week_audi":2489892,"director":"알렉스 커츠먼","actors":["톰 크루즈", "소피아 부텔라", "애나벨 월리스", "러셀 크로우"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"82년생 김지영","openDt":"2019-10-23","total_audi":3671152,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":138761,"opening_week_audi":1401082,"director":"김도영","actors":["정유미", "공유", "김국희", "김미경"],"genre":"드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"분노의 질주: 더 익스트림","openDt":"2017-04-12","total_audi":3657537,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":208481,"opening_week_audi":1688990,"director":"F. 게리 그레이","actors":["빈 디젤", "드웨인 존슨", "샤를리즈 테론", "제이슨 스타뎀"],"genre":"액션, 범죄, 스릴러","nation":"미국, 일본, 프랑스, 캐나다","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"분노의 질주: 홉스&쇼","openDt":"2019-08-14","total_audi":3654080,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":351556,"opening_week_audi":2289197,"director":"데이빗 레이치","actors":["드웨인 존슨", "제이슨 스타뎀", "이드리스 엘바", "바네사 커비"],"genre":"액션","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"모가디슈","openDt":"2021-07-28","total_audi":3611510,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":126670,"opening_week_audi":1025240,"director":"류승완","actors":["김윤석", "조인성", "허준호", "구교환"],"genre":"액션, 드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"인턴","openDt":"2015-09-24","total_audi":3604186,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":50009,"opening_week_audi":835196,"director":"낸시 마이어스","actors":["앤 해서웨이", "로버트 드 니로", "르네 루소", "냇 울프"],"genre":"코미디","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"귀향","openDt":"2016-02-24","total_audi":3576129,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":158174,"opening_week_audi":1786186,"director":"조정래","actors":["손숙", "강하나", "최리", "임성철"],"genre":"드라마","nation":"한국","dist":"(주)와우픽쳐스"},
-{"title":"리얼 스틸","openDt":"2011-10-12","total_audi":3575557,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":63865,"opening_week_audi":851200,"director":"숀 레비","actors":["휴 잭맨"],"genre":"액션, 드라마, SF","nation":"미국","dist":"한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"신의 한 수","openDt":"2014-07-03","total_audi":3559662,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":181459,"opening_week_audi":1557403,"director":"조범구","actors":["정우성", "안성기", "이범수", "김인권"],"genre":"범죄, 액션","nation":"한국","dist":"(주)쇼박스"},
-{"title":"모아나 2","openDt":"2024-11-27","total_audi":3526383,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":196876,"opening_week_audi":1488724,"director":"데이브 데릭 주니어","actors":["아우이 크라발호", "드웨인 존슨"],"genre":"애니메이션","nation":"미국, 캐나다","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"웡카","openDt":"2024-01-31","total_audi":3526209,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":179783,"opening_week_audi":912985,"director":"폴 킹","actors":["티모시 샬라메", "칼라 레인", "올리비아 콜맨", "톰 데이비스"],"genre":"판타지, 드라마","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"코코","openDt":"2018-01-11","total_audi":3520878,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":106921,"opening_week_audi":1141331,"director":"리 언크리치","actors":["가엘 가르시아 베르날", "앤서니 곤잘레스", "벤자민 브랫"],"genre":"애니메이션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"극장판 체인소 맨: 레제편","openDt":"2025-09-24","total_audi":3453440,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":108722,"opening_week_audi":579237,"director":"-","actors":["-"],"genre":"애니메이션, 액션, 어드벤처","nation":"일본","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"어바웃 타임","openDt":"2013-12-05","total_audi":3448791,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":66278,"opening_week_audi":804573,"director":"리차드 커티스","actors":["레이첼 맥아담스", "도널 글리슨", "빌 나이"],"genre":"멜로/로맨스, 코미디","nation":"영국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"끝까지 간다","openDt":"2014-05-29","total_audi":3448489,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":79698,"opening_week_audi":922391,"director":"김성훈","actors":["이선균", "조진웅", "신정근", "정만식"],"genre":"액션, 스릴러, 범죄","nation":"한국","dist":"(주)쇼박스"},
-{"title":"부러진 화살","openDt":"2012-01-18","total_audi":3442415,"finalCat":"301~500만명","openingDayCat":"1~5만명","openingWeekCat":"51~100만명","opening_day_audi":30872,"opening_week_audi":898718,"director":"정지영","actors":["안성기", "박원상", "나영희", "김지호"],"genre":"드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"스파이","openDt":"2013-09-05","total_audi":3428221,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":133131,"opening_week_audi":1208015,"director":"이승준","actors":["설경구", "문소리", "다니엘 헤니", "고창석"],"genre":"액션","nation":"한국, 태국","dist":"(주)씨제이이엔엠"},
-{"title":"그것만이 내 세상","openDt":"2018-01-17","total_audi":3388214,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":126797,"opening_week_audi":1091541,"director":"최성현","actors":["이병헌", "윤여정", "박정민", "김성령"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"돈","openDt":"2019-03-20","total_audi":3387540,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":165833,"opening_week_audi":1685111,"director":"박누리","actors":["류준열", "유지태", "조우진", "손종학"],"genre":"범죄","nation":"한국","dist":"(주)쇼박스"},
-{"title":"미션 임파서블: 파이널 레코닝","openDt":"2025-05-17","total_audi":3380750,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":423889,"opening_week_audi":1281981,"director":"크리스토퍼 맥쿼리","actors":["톰 크루즈", "헤일리 앳웰", "빙 라메스", "사이먼 페그"],"genre":"액션","nation":"미국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"맨 인 블랙 3","openDt":"2012-05-24","total_audi":3377997,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":141261,"opening_week_audi":1840447,"director":"배리 소넨필드","actors":["윌 스미스", "토미 리 존스", "조슈 브롤린", "제메인 클레멘트"],"genre":"액션, 코미디, SF","nation":"미국","dist":"한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"토이 스토리 4","openDt":"2019-06-20","total_audi":3377381,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":141837,"opening_week_audi":1470785,"director":"조시 쿨리","actors":["톰 행크스", "팀 알렌", "애니 팟츠", "토니 헤일"],"genre":"애니메이션, 어드벤처, 코미디","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"야당","openDt":"2025-04-16","total_audi":3370806,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":85705,"opening_week_audi":943234,"director":"황병국","actors":["강하늘", "유해진", "박해준", "류경수"],"genre":"범죄, 액션","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"악인전","openDt":"2019-05-15","total_audi":3352511,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":175397,"opening_week_audi":1763714,"director":"이원태","actors":["마동석", "김무열", "김성규", "강문봉"],"genre":"범죄, 액션","nation":"한국","dist":"(주)에이스메이커무비웍스, (주)키위미디어그룹"},
-{"title":"이끼","openDt":"2010-07-14","total_audi":3348695,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":136515,"opening_week_audi":1402056,"director":"강우석","actors":["정재영", "박해일", "유준상", "유선"],"genre":"드라마, 스릴러","nation":"한국","dist":"씨제이엔터테인먼트"},
-{"title":"올빼미","openDt":"2022-11-23","total_audi":3321661,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":101581,"opening_week_audi":976666,"director":"안태진","actors":["류준열", "유해진", "최무성", "조성하"],"genre":"스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"포화속으로","openDt":"2010-06-16","total_audi":3318086,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":126749,"opening_week_audi":1185986,"director":"이재한","actors":["차승원", "권상우", "최승현", "김승우"],"genre":"드라마, 전쟁","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"시동","openDt":"2019-12-18","total_audi":3314658,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":233340,"opening_week_audi":1367813,"director":"최정열","actors":["마동석", "박정민", "정해인", "염정아"],"genre":"드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"데드풀","openDt":"2016-02-17","total_audi":3310699,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":252018,"opening_week_audi":1779054,"director":"팀 밀러","actors":["라이언 레이놀즈", "모레나 바카린", "에드 스크레인", "지나 카라노"],"genre":"액션, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 이십세기폭스코리아(주)"},
-{"title":"슈퍼배드 3","openDt":"2017-07-26","total_audi":3307911,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":195774,"opening_week_audi":1731379,"director":"피에르 꼬팽, 카일 발다","actors":["스티브 카렐", "크리스틴 위그", "트레이 파커"],"genre":"애니메이션","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"그래비티","openDt":"2013-10-17","total_audi":3292521,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":110996,"opening_week_audi":1082830,"director":"알폰소 쿠아론","actors":["산드라 블록", "조지 클루니"],"genre":"SF, 드라마","nation":"미국","dist":"(주)스튜디오디에이치엘, 주식회사 해리슨앤컴퍼니, 워너브러더스 코리아(주)"},
-{"title":"아이 캔 스피크","openDt":"2017-09-21","total_audi":3264836,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":87136,"opening_week_audi":996025,"director":"김현석","actors":["나문희", "이제훈", "박철민", "염혜란"],"genre":"코미디","nation":"한국","dist":"(주)마노엔터테인먼트, 롯데쇼핑㈜롯데엔터테인먼트, (주)리틀빅픽쳐스"},
-{"title":"스타워즈: 깨어난 포스","openDt":"2015-12-17","total_audi":3252048,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":167315,"opening_week_audi":1356438,"director":"J.J. 에이브럼스","actors":["해리슨 포드", "마크 해밀", "캐리 피셔", "사이먼 페그"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"영웅","openDt":"2022-12-21","total_audi":3235712,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":105398,"opening_week_audi":956306,"director":"윤제균","actors":["정성화", "김고은", "나문희", "조재윤"],"genre":"드라마, 뮤지컬","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"살목지","openDt":"2026-04-08","total_audi":3232830,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":89911,"opening_week_audi":835403,"director":"이상민","actors":["김혜윤", "이종원", "김준한", "김영성"],"genre":"공포(호러), 스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"터미네이터 제니시스","openDt":"2015-07-02","total_audi":3229800,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":253699,"opening_week_audi":1894340,"director":"앨런 테일러","actors":["아놀드 슈왈제네거", "제이슨 클락", "에밀리아 클라크", "제이 코트니"],"genre":"액션, 어드벤처, SF, 스릴러","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"분노의 질주: 더 세븐","openDt":"2015-04-01","total_audi":3228103,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":135549,"opening_week_audi":1374082,"director":"제임스 완","actors":["빈 디젤", "폴 워커", "드웨인 존슨", "제이슨 스타뎀"],"genre":"액션, 범죄, 스릴러","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"오펜하이머","openDt":"2023-08-15","total_audi":3217162,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":552990,"opening_week_audi":1679523,"director":"크리스토퍼 놀란","actors":["킬리언 머피", "에밀리 블런트", "맷 데이먼", "로버트 다우니 주니어"],"genre":"스릴러, 드라마","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"마녀","openDt":"2018-06-27","total_audi":3186430,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":121990,"opening_week_audi":1191109,"director":"박훈정","actors":["김다미", "조민수", "박희순", "최우식"],"genre":"미스터리, 액션","nation":"한국","dist":"워너브러더스 코리아(주)"},
-{"title":"탐정: 리턴즈","openDt":"2018-06-13","total_audi":3142085,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":235184,"opening_week_audi":1183226,"director":"이언희","actors":["권상우", "성동일", "김수영", "김승필"],"genre":"코미디, 범죄","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"퀵","openDt":"2011-07-20","total_audi":3117298,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":65763,"opening_week_audi":743762,"director":"조범구","actors":["고창석", "강예원", "이민기", "김인권"],"genre":"코미디, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"감기","openDt":"2013-08-14","total_audi":3116112,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":304661,"opening_week_audi":1956884,"director":"김성수","actors":["장혁", "수애", "박민하", "남문철"],"genre":"드라마, 어드벤처, 액션","nation":"한국","dist":"아이러브시네마"},
-{"title":"캐리비안의 해적: 낯선 조류","openDt":"2011-05-19","total_audi":3113960,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":182947,"opening_week_audi":1727708,"director":"롭 마샬","actors":["이안 맥쉐인", "페넬로페 크루즈", "조니 뎁"],"genre":"액션, 판타지","nation":"미국","dist":"한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"나우 유 씨 미 2","openDt":"2016-07-13","total_audi":3088843,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":196279,"opening_week_audi":1760046,"director":"존 추","actors":["제시 아이젠버그", "마크 러팔로", "우디 해럴슨", "데이브 프랭코"],"genre":"범죄, 액션","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"이터널스","openDt":"2021-11-03","total_audi":3048616,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":296286,"opening_week_audi":1801482,"director":"클로이 자오","actors":["안젤리나 졸리", "마동석", "리처드 매든", "쿠마일 난지아니"],"genre":"액션, 어드벤처, 드라마","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"스물","openDt":"2015-03-25","total_audi":3038708,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":151161,"opening_week_audi":1333337,"director":"이병헌","actors":["김우빈", "이준호", "강하늘", "오현경"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"캐리비안의 해적: 죽은 자는 말이 없다","openDt":"2017-05-24","total_audi":3031761,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":206541,"opening_week_audi":1740850,"director":"요아킴 뢰닝, 에스펜 샌버그","actors":["조니 뎁", "카야 스코델라리오", "올랜도 블룸", "하비에르 바르뎀"],"genre":"액션, 어드벤처, 판타지, 코미디","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"토르: 다크 월드","openDt":"2013-10-30","total_audi":3028504,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":114775,"opening_week_audi":1194819,"director":"앨런 테일러","actors":["크리스 헴스워스", "톰 히들스턴", "나탈리 포트만", "스텔란 스카스가드"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)"},
-{"title":"헬로우 고스트","openDt":"2010-12-22","total_audi":3016304,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":58487,"opening_week_audi":1031540,"director":"김영탁","actors":["차태현", "강예원", "이문수", "고창석"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"오싹한 연애","openDt":"2011-12-01","total_audi":3007847,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":60615,"opening_week_audi":712753,"director":"황인호","actors":["손예진", "이민기", "신동훈", "조아라"],"genre":"공포(호러), 멜로/로맨스, 코미디","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"인크레더블 2","openDt":"2018-07-18","total_audi":3006087,"finalCat":"301~500만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":122594,"opening_week_audi":1584166,"director":"브래드 버드","actors":["크레이그 T. 넬슨", "사무엘 L. 잭슨", "홀리 헌터", "김연우"],"genre":"애니메이션, 액션, 어드벤처, 코미디, 가족","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"하모니","openDt":"2010-01-28","total_audi":3004402,"finalCat":"301~500만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":97029,"opening_week_audi":864108,"director":"강대규","actors":["김윤진", "나문희", "강예원", "이다희"],"genre":"드라마","nation":"한국","dist":"씨제이엔터테인먼트"},
-{"title":"미키 17","openDt":"2025-02-28","total_audi":3002495,"finalCat":"301~500만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":248047,"opening_week_audi":1530002,"director":"봉준호","actors":["로버트 패틴슨", "나오미 애키", "스티븐 연", "토니 콜렛"],"genre":"어드벤처, SF, 드라마, 코미디","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"레드: 더 레전드","openDt":"2013-07-18","total_audi":2993649,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":131462,"opening_week_audi":1400816,"director":"딘 패리소트","actors":["브루스 윌리스", "존 말코비치", "메리-루이스 파커", "이병헌"],"genre":"액션, 코미디, 범죄","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"드래곤 길들이기 2","openDt":"2014-07-23","total_audi":2981802,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":72041,"opening_week_audi":1204226,"director":"딘 데블로이스","actors":["제이 바루첼", "제라드 버틀러", "케이트 블란쳇", "아메리카 페레라"],"genre":"애니메이션, 액션, 어드벤처","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"방자전","openDt":"2010-06-02","total_audi":2979820,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":171439,"opening_week_audi":1066268,"director":"김대우","actors":["김주혁", "류승범", "조여정", "박영미"],"genre":"사극, 코미디, 멜로/로맨스","nation":"한국","dist":"씨제이엔터테인먼트"},
-{"title":"형","openDt":"2016-11-23","total_audi":2970583,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":75882,"opening_week_audi":1265294,"director":"권수경","actors":["조정석", "도경수", "박신혜", "이연수"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"친구 2","openDt":"2013-11-14","total_audi":2961159,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":304184,"opening_week_audi":1763330,"director":"곽경택","actors":["유오성", "주진모", "김우빈", "이준혁"],"genre":"액션","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"블랙 위도우","openDt":"2021-07-07","total_audi":2957005,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":196233,"opening_week_audi":1543050,"director":"케이트 쇼트랜드","actors":["스칼렛 요한슨", "플로렌스 퓨", "레이첼 와이즈", "데이빗 하버"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"서치","openDt":"2018-08-29","total_audi":2944333,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":61992,"opening_week_audi":745541,"director":"아니쉬 차간티","actors":["존 조", "데브라 메싱"],"genre":"드라마","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"엑스맨: 아포칼립스","openDt":"2016-05-25","total_audi":2932953,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":298816,"opening_week_audi":1840735,"director":"브라이언 싱어","actors":["제임스 맥어보이", "마이클 패스벤더", "제니퍼 로렌스", "오스카 아이삭"],"genre":"액션, 어드벤처, 판타지, SF","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"고지전","openDt":"2011-07-20","total_audi":2932574,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":98066,"opening_week_audi":923830,"director":"장훈","actors":["신하균", "고수", "이제훈", "류승수"],"genre":"드라마, 전쟁","nation":"한국","dist":"(주)쇼박스"},
-{"title":"프리즌","openDt":"2017-03-23","total_audi":2929585,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":168336,"opening_week_audi":1511416,"director":"나현","actors":["한석규", "김래원", "정웅인", "조재윤"],"genre":"범죄, 액션","nation":"한국","dist":"(주)쇼박스"},
-{"title":"어쩔수가없다","openDt":"2025-09-24","total_audi":2925401,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":331495,"opening_week_audi":1211084,"director":"박찬욱","actors":["이병헌", "손예진", "박희순", "이성민"],"genre":"스릴러, 코미디","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"가장 보통의 연애","openDt":"2019-10-02","total_audi":2920307,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":145572,"opening_week_audi":1280079,"director":"김한결","actors":["김래원", "공효진", "강기영", "정웅인"],"genre":"멜로/로맨스, 코미디","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"26년","openDt":"2012-11-29","total_audi":2897793,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":113921,"opening_week_audi":1083117,"director":"조근현","actors":["진구", "한혜진", "임슬옹", "배수빈"],"genre":"액션, 드라마","nation":"한국","dist":"(주)인벤트스톤, 영화사청어람(주)"},
-{"title":"프로젝트 헤일메리","openDt":"2026-03-18","total_audi":2896776,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":76003,"opening_week_audi":642028,"director":"필 로드","actors":["라이언 고슬링", "산드라 휠러"],"genre":"SF","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"해리 포터와 죽음의 성물1","openDt":"2010-12-15","total_audi":2874043,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":146503,"opening_week_audi":1277010,"director":"데이빗 예이츠","actors":["다니엘 래드클리프", "엠마 왓슨", "루퍼트 그린트"],"genre":"미스터리, 판타지","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"솔트","openDt":"2010-07-29","total_audi":2865534,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":162930,"opening_week_audi":1565340,"director":"필립 노이스","actors":["안젤리나 졸리"],"genre":"스릴러, 액션","nation":"미국","dist":"한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"말모이","openDt":"2019-01-09","total_audi":2853913,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":122458,"opening_week_audi":1246313,"director":"엄유나","actors":["유해진", "윤계상", "차준서", "정원"],"genre":"드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"극비수사","openDt":"2015-06-18","total_audi":2842199,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":181737,"opening_week_audi":1588421,"director":"곽경택","actors":["김윤석", "유해진", "송영창", "장영남"],"genre":"드라마, 범죄","nation":"한국","dist":"(주)쇼박스"},
-{"title":"표적","openDt":"2014-04-30","total_audi":2840916,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":105838,"opening_week_audi":1347553,"director":"창","actors":["류승룡", "유준상", "이진욱", "김성령"],"genre":"액션, 드라마","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"쥬라기 월드: 도미니언","openDt":"2022-06-01","total_audi":2833242,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":763642,"opening_week_audi":2226175,"director":"콜린 트레보로우","actors":["크리스 프랫", "브라이스 달라스 하워드", "드완다 와이즈", "로라 던"],"genre":"액션, 어드벤처","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"호빗: 다섯 군대 전투","openDt":"2014-12-17","total_audi":2829398,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":188655,"opening_week_audi":1507683,"director":"피터 잭슨","actors":["마틴 프리먼", "이안 맥켈런", "리차드 아미티지", "케이트 블란쳇"],"genre":"어드벤처, 판타지","nation":"미국, 뉴질랜드","dist":"워너브러더스 코리아(주)"},
-{"title":"호빗: 뜻밖의 여정","openDt":"2012-12-13","total_audi":2827126,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":158070,"opening_week_audi":1527967,"director":"피터 잭슨","actors":["마틴 프리먼", "이안 맥켈런", "리차드 아미티지", "케이트 블란쳇"],"genre":"어드벤처, 판타지","nation":"미국, 뉴질랜드","dist":"워너브러더스 코리아(주)"},
-{"title":"앤트맨","openDt":"2015-09-03","total_audi":2827038,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":174587,"opening_week_audi":1601905,"director":"페이튼 리드","actors":["폴 러드", "마이클 더글라스", "에반젤린 릴리", "코리 스톨"],"genre":"액션, SF","nation":"미국, 영국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"덩케르크","openDt":"2017-07-20","total_audi":2809062,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":224242,"opening_week_audi":1736648,"director":"크리스토퍼 놀란","actors":["톰 하디", "마크 라이런스", "케네스 브래너", "킬리언 머피"],"genre":"액션, 드라마, 스릴러, 전쟁","nation":"미국, 영국","dist":"워너브러더스 코리아(주)"},
-{"title":"메이즈 러너","openDt":"2014-09-18","total_audi":2807658,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":83355,"opening_week_audi":960793,"director":"웨스 볼","actors":["딜런 오브라이언", "카야 스코델라리오", "윌 폴터", "토마스 생스터"],"genre":"액션, 미스터리, SF, 스릴러","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"너의 결혼식","openDt":"2018-08-22","total_audi":2807586,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":99411,"opening_week_audi":1081555,"director":"이석근","actors":["박보영", "김영광", "강기영", "장성범"],"genre":"멜로/로맨스","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"마녀(魔女) Part2. The Other One","openDt":"2022-06-15","total_audi":2806159,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":266514,"opening_week_audi":1682409,"director":"박훈정","actors":["신시아", "박은빈", "서은수", "진구"],"genre":"액션","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"혹성탈출: 진화의 시작","openDt":"2011-08-17","total_audi":2771012,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":116253,"opening_week_audi":1053107,"director":"루퍼트 와이어트","actors":["브라이언 콕스", "제임스 프랭코", "프리다 핀토"],"genre":"액션, SF, 드라마","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"빅 히어로","openDt":"2015-01-21","total_audi":2734474,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":72487,"opening_week_audi":973943,"director":"크리스 윌리암스, 돈 홀","actors":["라이언 포터", "스콧 애짓", "다니엘 헤니", "제이미 정"],"genre":"애니메이션, 액션, 코미디","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"메이즈 러너: 스코치 트라이얼","openDt":"2015-09-16","total_audi":2730409,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":111026,"opening_week_audi":1225508,"director":"웨스 볼","actors":["딜런 오브라이언", "토마스 생스터", "카야 스코델라리오", "이기홍"],"genre":"액션, SF, 스릴러","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"내가 살인범이다","openDt":"2012-11-08","total_audi":2729333,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":96151,"opening_week_audi":981896,"director":"정병길","actors":["정재영", "박시후", "최원영", "김영애"],"genre":"액션, 스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"가디언즈 오브 갤럭시 VOL. 2","openDt":"2017-05-03","total_audi":2728692,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":422412,"opening_week_audi":1860797,"director":"제임스 건","actors":["크리스 프랫", "조 샐다나", "데이브 바티스타", "빈 디젤"],"genre":"액션, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"부당거래","openDt":"2010-10-28","total_audi":2721653,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":98139,"opening_week_audi":966203,"director":"류승완","actors":["황정민", "류승범", "천호진", "김승훈"],"genre":"범죄, 드라마","nation":"한국","dist":"씨제이엔터테인먼트"},
-{"title":"토르: 러브 앤 썬더","openDt":"2022-07-06","total_audi":2711862,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":382188,"opening_week_audi":1951546,"director":"타이카 와이티티","actors":["크리스 헴스워스", "나탈리 포트만", "테사 톰슨", "크리스찬 베일"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"미스 페레그린과 이상한 아이들의 집","openDt":"2016-09-28","total_audi":2708559,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":80715,"opening_week_audi":1159222,"director":"팀 버튼","actors":["에바 그린", "사무엘 L. 잭슨", "에이사 버터필드", "앨리슨 제니"],"genre":"미스터리, 판타지","nation":"미국, 벨기에, 영국","dist":"이십세기폭스코리아(주)"},
-{"title":"나우 유 씨 미 : 마술사기단","openDt":"2013-08-22","total_audi":2702518,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":146606,"opening_week_audi":1430151,"director":"루이스 리테리어","actors":["제시 아이젠버그", "마크 러팔로", "우디 해럴슨", "멜라니 로랑"],"genre":"범죄, 액션, 스릴러","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"소원","openDt":"2013-10-02","total_audi":2695392,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":91705,"opening_week_audi":951844,"director":"이준익","actors":["설경구", "엄지원", "이레", "김해숙"],"genre":"드라마","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"시라노; 연애조작단","openDt":"2010-09-16","total_audi":2676038,"finalCat":"201~300만명","openingDayCat":"1~5만명","openingWeekCat":"51~100만명","opening_day_audi":29598,"opening_week_audi":642144,"director":"김현석","actors":["엄태웅", "이민정", "최다니엘", "박신혜"],"genre":"멜로/로맨스, 코미디","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"곤지암","openDt":"2018-03-28","total_audi":2672249,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":198365,"opening_week_audi":1496379,"director":"정범식","actors":["위하준", "박지현", "오아연", "문예원"],"genre":"공포(호러), 스릴러","nation":"한국","dist":"(주)쇼박스, 씨제이포디플렉스 주식회사"},
-{"title":"브레이킹 던 part2","openDt":"2012-11-15","total_audi":2651188,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":198302,"opening_week_audi":1393505,"director":"빌 콘돈","actors":["크리스틴 스튜어트", "로버트 패틴슨", "테일러 로트너", "다코타 패닝"],"genre":"드라마, 판타지, 멜로/로맨스","nation":"미국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"살인자의 기억법","openDt":"2017-09-06","total_audi":2648928,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":143580,"opening_week_audi":1412538,"director":"원신연","actors":["설경구", "김남길", "설현", "오달수"],"genre":"범죄, 스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"타이탄","openDt":"2010-04-01","total_audi":2640690,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":148355,"opening_week_audi":1297369,"director":"루이스 리테리어","actors":["랄프 파인즈", "샘 워싱턴", "리암 니슨", "알렉사 다바로스"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"후궁 : 제왕의 첩","openDt":"2012-06-06","total_audi":2630224,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":272166,"opening_week_audi":1080897,"director":"김대승","actors":["조여정", "김동욱", "김민준", "조은지"],"genre":"사극, 멜로/로맨스","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"탐정 : 더 비기닝","openDt":"2015-09-24","total_audi":2622336,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":50533,"opening_week_audi":1414487,"director":"김정훈","actors":["권상우", "성동일", "박해준", "이승준"],"genre":"코미디, 범죄","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"미니언즈","openDt":"2015-07-29","total_audi":2612040,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":193689,"opening_week_audi":1307989,"director":"피에르 꼬팽, 카일 발다","actors":["산드라 블록", "존 햄", "마이클 키튼"],"genre":"애니메이션","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"트랜스포머: 최후의 기사","openDt":"2017-06-21","total_audi":2607123,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":285979,"opening_week_audi":1928967,"director":"마이클 베이","actors":["마크 월버그", "안소니 홉킨스", "로라 하드독", "조쉬 더하멜"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"지금 만나러 갑니다","openDt":"2018-03-14","total_audi":2594517,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":89772,"opening_week_audi":1052456,"director":"이장훈","actors":["소지섭", "손예진", "김선웅", "김지환"],"genre":"멜로/로맨스","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"만약에 우리","openDt":"2025-12-31","total_audi":2594460,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":110325,"opening_week_audi":574140,"director":"김도영","actors":["구교환", "문가영", "신정근", "이상엽"],"genre":"멜로/로맨스","nation":"한국","dist":"(주)쇼박스"},
-{"title":"위험한 상견례","openDt":"2011-03-31","total_audi":2591058,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":64842,"opening_week_audi":726394,"director":"김진영","actors":["송새벽", "이시영", "백윤식", "김수미"],"genre":"코미디, 멜로/로맨스","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"아수라","openDt":"2016-09-28","total_audi":2586217,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":475482,"opening_week_audi":2131782,"director":"김성수","actors":["정우성", "황정민", "주지훈", "김현빈"],"genre":"범죄, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"보안관","openDt":"2017-05-03","total_audi":2582007,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":206706,"opening_week_audi":1629431,"director":"김형주","actors":["이성민", "조진웅", "김성균", "김종수"],"genre":"범죄, 코미디","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"도리를 찾아서","openDt":"2016-07-06","total_audi":2578194,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":76938,"opening_week_audi":1134021,"director":"앤드류 스탠튼","actors":["엘렌 드제너스", "알버트 브룩스", "다이안 키튼"],"genre":"애니메이션, 어드벤처, 코미디","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"제이슨 본","openDt":"2016-07-27","total_audi":2568494,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":308768,"opening_week_audi":1927106,"director":"폴 그린그래스","actors":["맷 데이먼", "줄리아 스타일즈", "토미 리 존스", "뱅상 카셀"],"genre":"액션, 스릴러","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"탈주","openDt":"2024-07-03","total_audi":2554562,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":112667,"opening_week_audi":856905,"director":"이종필","actors":["이제훈", "구교환", "홍사빈", "서현우"],"genre":"액션","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"드래곤 길들이기","openDt":"2010-05-20","total_audi":2550119,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":51928,"opening_week_audi":940027,"director":"딘 데블로이스","actors":["제이 바루첼", "제라드 버틀러"],"genre":"애니메이션, 코미디, 어드벤처, 가족","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유), 씨제이엔터테인먼트"},
-{"title":"기술자들","openDt":"2014-12-24","total_audi":2540957,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":274404,"opening_week_audi":1576367,"director":"김홍선","actors":["김우빈", "김영철", "고창석", "이현우"],"genre":"범죄, 액션","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"라스트 갓파더","openDt":"2010-12-29","total_audi":2536178,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":138687,"opening_week_audi":1485124,"director":"심형래","actors":["심형래", "마이클 리스폴리", "하비 케이틀", "제이슨 미웨스"],"genre":"코미디","nation":"한국, 미국","dist":"씨제이엔터테인먼트"},
-{"title":"히트맨2","openDt":"2025-01-22","total_audi":2535747,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":100621,"opening_week_audi":990971,"director":"최원섭","actors":["권상우", "정준호", "이이경", "황우슬혜"],"genre":"코미디, 액션","nation":"한국","dist":"(주)바이포엠스튜디오"},
-{"title":"퍼시픽 림","openDt":"2013-07-11","total_audi":2534166,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":209975,"opening_week_audi":1690623,"director":"길예르모 델 토로","actors":["찰리 허냄", "론 펄먼", "이드리스 엘바", "찰리 데이"],"genre":"액션, SF, 어드벤처","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"정글북","openDt":"2016-06-09","total_audi":2530983,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":73355,"opening_week_audi":1023642,"director":"존 파브로","actors":["닐 세티", "빌 머레이", "스칼렛 요한슨", "벤 킹슬리"],"genre":"어드벤처, 드라마","nation":"미국","dist":"월트디즈니컴퍼니코리아(주)"},
-{"title":"엑스맨: 퍼스트 클래스","openDt":"2011-06-02","total_audi":2527596,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":98052,"opening_week_audi":1105293,"director":"매튜 본","actors":["로즈 번", "재뉴어리 존스", "마이클 패스벤더", "케빈 베이컨"],"genre":"액션","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"증인","openDt":"2019-02-13","total_audi":2527267,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":81424,"opening_week_audi":911796,"director":"이한","actors":["정우성", "김향기", "정우성", "이규형"],"genre":"드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"목격자","openDt":"2018-08-15","total_audi":2519516,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":368981,"opening_week_audi":1579112,"director":"조규장","actors":["이성민", "김상호", "진경", "곽시양"],"genre":"스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"마이펫의 이중생활","openDt":"2016-08-03","total_audi":2514105,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":182044,"opening_week_audi":1197625,"director":"크리스 리노드","actors":["스티브 쿠건", "엘리 켐퍼", "레이크 벨", "데이너 카비"],"genre":"애니메이션, 코미디, 가족","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"조작된 도시","openDt":"2017-02-09","total_audi":2496209,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":157669,"opening_week_audi":1417165,"director":"박광현","actors":["지창욱", "심은경", "안재홍", "오정세"],"genre":"범죄, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"블랙머니","openDt":"2019-11-13","total_audi":2476402,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":111652,"opening_week_audi":1240203,"director":"정지영","actors":["조진웅", "이하늬", "이경영", "강신일"],"genre":"범죄, 드라마","nation":"한국","dist":"(주)에이스메이커무비웍스"},
-{"title":"반창꼬","openDt":"2012-12-19","total_audi":2469056,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":149211,"opening_week_audi":1020303,"director":"정기훈","actors":["고수", "한효주", "마동석", "김성오"],"genre":"멜로/로맨스","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"보스 베이비","openDt":"2017-05-03","total_audi":2443328,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":237463,"opening_week_audi":1515009,"director":"톰 맥그라스","actors":["알렉 볼드윈", "리사 쿠드로", "스티브 부세미", "토비 맥과이어"],"genre":"애니메이션, 코미디, 가족","nation":"미국","dist":"(주)씨제이이엔엠"},
-{"title":"이웃사람","openDt":"2012-08-22","total_audi":2429905,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":140700,"opening_week_audi":1289393,"director":"김휘","actors":["김윤진", "마동석", "천호진", "김성균"],"genre":"스릴러","nation":"한국","dist":"롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"조선명탐정: 흡혈괴마의 비밀","openDt":"2018-02-08","total_audi":2427324,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":142796,"opening_week_audi":1182912,"director":"김석윤","actors":["김명민", "오달수", "김지원", "김범"],"genre":"사극, 어드벤처, 코미디","nation":"한국","dist":"(주)쇼박스"},
-{"title":"화차","openDt":"2012-03-08","total_audi":2426824,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":74855,"opening_week_audi":943709,"director":"변영주","actors":["이선균", "김민희", "조성하", "송하윤"],"genre":"미스터리","nation":"한국","dist":"필라멘트픽쳐스"},
-{"title":"보스","openDt":"2025-10-03","total_audi":2424803,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":238887,"opening_week_audi":1724128,"director":"라희찬","actors":["조우진", "정경호", "박지환", "이규형"],"genre":"코미디, 액션","nation":"한국","dist":"(주)하이브미디어코프, (주)마인드마크"},
-{"title":"재심","openDt":"2017-02-15","total_audi":2418627,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":121122,"opening_week_audi":1229495,"director":"김태윤","actors":["정우", "강하늘", "김해숙", "이동휘"],"genre":"드라마","nation":"한국","dist":"오퍼스픽쳐스(유), CGV아트하우스"},
-{"title":"히트맨","openDt":"2020-01-22","total_audi":2404799,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":81509,"opening_week_audi":1564503,"director":"최원섭","actors":["권상우", "정준호", "황우슬혜", "이이경"],"genre":"코미디, 액션","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"터미네이터: 다크 페이트","openDt":"2019-10-30","total_audi":2400137,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":269270,"opening_week_audi":1543006,"director":"팀 밀러","actors":["맥켄지 데이비스", "아놀드 슈왈제네거", "린다 해밀턴", "나탈리아 레이즈"],"genre":"액션, 어드벤처, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"사바하","openDt":"2019-02-20","total_audi":2394285,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":184517,"opening_week_audi":1395580,"director":"장재현","actors":["이정재", "박정민", "이재인", "유지태"],"genre":"미스터리, 스릴러","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"슈퍼 마리오 브라더스","openDt":"2023-04-26","total_audi":2387766,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":89690,"opening_week_audi":967319,"director":"-","actors":["크리스 프랫", "안야 테일러 조이", "잭 블랙", "찰리 데이"],"genre":"애니메이션, 어드벤처, 코미디","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"화이: 괴물을 삼킨 아이","openDt":"2013-10-09","total_audi":2387508,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":360280,"opening_week_audi":1392517,"director":"장준환","actors":["여진구", "김윤석", "조진웅", "장현성"],"genre":"액션, 스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"의뢰인","openDt":"2011-09-29","total_audi":2385908,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":93065,"opening_week_audi":959224,"director":"손영성","actors":["박희순", "장혁", "하정우", "허재호"],"genre":"스릴러","nation":"한국","dist":"(주)쇼박스"},
-{"title":"신비한 동물들과 그린델왈드의 범죄","openDt":"2018-11-14","total_audi":2384642,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":272339,"opening_week_audi":1677886,"director":"데이빗 예이츠","actors":["에디 레드메인", "캐서린 워터스턴", "앨리슨 수돌", "댄 포글러"],"genre":"판타지","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"가문의 영광4 - 가문의 수난","openDt":"2011-09-07","total_audi":2364675,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":62553,"opening_week_audi":1567788,"director":"정태원","actors":["김수미", "신현준", "임형준", "정준하"],"genre":"코미디","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"007 스카이폴","openDt":"2012-10-26","total_audi":2363508,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":201303,"opening_week_audi":1234336,"director":"샘 멘데스","actors":["다니엘 크레이그", "하비에르 바르뎀", "주디 덴치", "랄프 파인즈"],"genre":"액션","nation":"미국, 영국","dist":"소니픽쳐스릴리징월트디즈니스튜디오스코리아(주)"},
-{"title":"블라인드","openDt":"2011-08-10","total_audi":2356944,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":65555,"opening_week_audi":856405,"director":"안상훈","actors":["김하늘", "유승호", "조희봉", "양영조"],"genre":"스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"박열","openDt":"2017-06-28","total_audi":2352497,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":201987,"opening_week_audi":1378892,"director":"이준익","actors":["이제훈", "최희서", "김인우", "권율"],"genre":"드라마","nation":"한국","dist":"메가박스중앙(주) 플러스엠 엔터테인먼트"},
-{"title":"스파이","openDt":"2015-05-21","total_audi":2315066,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":75330,"opening_week_audi":1025806,"director":"폴 페이그","actors":["주드 로", "제이슨 스타뎀", "멜리사 맥카시"],"genre":"액션, 코미디","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"테이큰 2","openDt":"2012-09-27","total_audi":2299490,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":182891,"opening_week_audi":1759771,"director":"올리비에 메가턴","actors":["리암 니슨", "매기 그레이스", "팜케 얀센", "라드 세르베드지야"],"genre":"액션, 범죄, 드라마","nation":"프랑스","dist":"이십세기폭스코리아(주)"},
-{"title":"메이즈 러너: 데스 큐어","openDt":"2018-01-17","total_audi":2296694,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":225510,"opening_week_audi":1455618,"director":"웨스 볼","actors":["딜런 오브라이언", "토마스 생스터", "카야 스코델라리오", "이기홍"],"genre":"액션, SF, 스릴러","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"분노의 질주: 더 얼티메이트","openDt":"2021-05-19","total_audi":2290975,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":400372,"opening_week_audi":1264793,"director":"저스틴 린","actors":["빈 디젤", "존 시나", "성 강", "샤를리즈 테론"],"genre":"액션","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"맘마미아!2","openDt":"2018-08-08","total_audi":2285688,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":145931,"opening_week_audi":1011228,"director":"올 파커","actors":["아만다 사이프리드", "릴리 제임스", "메릴 스트립", "피어스 브로스넌"],"genre":"뮤지컬","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"호빗: 스마우그의 폐허","openDt":"2013-12-12","total_audi":2284568,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":139601,"opening_week_audi":1205242,"director":"피터 잭슨","actors":["마틴 프리먼", "베네딕트 컴버배치", "케이트 블란쳇", "올랜도 블룸"],"genre":"어드벤처, 드라마, 판타지","nation":"미국, 뉴질랜드","dist":"워너브러더스 코리아(주)"},
-{"title":"위키드","openDt":"2024-11-20","total_audi":2280997,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":84925,"opening_week_audi":756569,"director":"존 추","actors":["신시아 에리보", "아리아나 그란데", "조나단 베일리", "양자경"],"genre":"판타지, 뮤지컬","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"모아나","openDt":"2017-01-12","total_audi":2276667,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":84797,"opening_week_audi":857483,"director":"존 머스커, 론 클레멘츠","actors":["드웨인 존슨", "아우이 크라발호", "알란 터딕", "제메인 클레멘트"],"genre":"애니메이션","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"하녀","openDt":"2010-05-13","total_audi":2264527,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":153013,"opening_week_audi":1128896,"director":"임상수","actors":["전도연", "이정재", "윤여정", "서우"],"genre":"스릴러, 멜로/로맨스","nation":"한국","dist":"(주)싸이더스"},
-{"title":"미니언즈2","openDt":"2022-07-20","total_audi":2263349,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":146908,"opening_week_audi":991121,"director":"카일 발다","actors":["피에르 꼬팽", "스티브 카렐", "타라지 P. 헨슨"],"genre":"애니메이션, 어드벤처, 코미디","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"컨저링","openDt":"2013-09-17","total_audi":2259289,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":81130,"opening_week_audi":891544,"director":"제임스 완","actors":["베라 파미가", "패트릭 윌슨", "릴리 테일러"],"genre":"공포(호러), 스릴러","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"황해","openDt":"2010-12-22","total_audi":2256519,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":120482,"opening_week_audi":1234908,"director":"나홍진","actors":["김윤석", "하정우", "조성하", "이철민"],"genre":"스릴러, 액션, 범죄","nation":"한국, 미국, 중국","dist":"(주)쇼박스, 이십세기폭스코리아(주)"},
-{"title":"배트맨 대 슈퍼맨: 저스티스의 시작","openDt":"2016-03-24","total_audi":2244521,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":219794,"opening_week_audi":1581012,"director":"잭 스나이더","actors":["헨리 카빌", "벤 애플렉", "에이미 아담스", "로렌스 피쉬번"],"genre":"액션, 어드벤처, 판타지","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"레디 플레이어 원","openDt":"2018-03-28","total_audi":2242447,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":149784,"opening_week_audi":1120524,"director":"스티븐 스필버그","actors":["마크 라이런스", "사이먼 페그", "올리비아 쿡", "타이 쉐리던"],"genre":"액션, SF, 어드벤처","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"나잇&데이","openDt":"2010-06-24","total_audi":2241590,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":96580,"opening_week_audi":814651,"director":"제임스 맨골드","actors":["톰 크루즈", "카메론 디아즈"],"genre":"액션, 코미디","nation":"미국","dist":"이십세기폭스코리아(주)"},
-{"title":"7광구","openDt":"2011-08-04","total_audi":2238760,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":201006,"opening_week_audi":1716312,"director":"김지훈","actors":["하지원", "박철민", "이한위", "오지호"],"genre":"SF, 액션, 스릴러","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"배틀쉽","openDt":"2012-04-11","total_audi":2238357,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":387879,"opening_week_audi":1278825,"director":"피터 버그","actors":["리암 니슨", "테일러 키취", "알렉산더 스카스가드", "브룩클린 데커"],"genre":"SF, 액션","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"타짜: 원 아이드 잭","openDt":"2019-09-11","total_audi":2224338,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":332290,"opening_week_audi":1810432,"director":"권오광","actors":["박정민", "류승범", "최유화", "우현"],"genre":"범죄, 드라마","nation":"한국","dist":"롯데컬처웍스(주)롯데엔터테인먼트"},
-{"title":"슈렉 포에버","openDt":"2010-07-01","total_audi":2218973,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":71648,"opening_week_audi":905646,"director":"마이크 미첼","actors":["마이크 마이어스", "카메론 디아즈", "에디 머피", "안토니오 반데라스"],"genre":"애니메이션, 코미디, 가족","nation":"미국","dist":"씨제이엔터테인먼트"},
-{"title":"극장판 귀멸의 칼날: 무한열차편","openDt":"2021-01-27","total_audi":2213329,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"11~50만명","opening_day_audi":66581,"opening_week_audi":217086,"director":"소토자키 하루오","actors":["하나에 나츠키", "키토 아카리", "시모노 히로", "마츠오카 요시츠구"],"genre":"애니메이션","nation":"일본","dist":"(주)넥스트엔터테인먼트월드(NEW), 워터홀컴퍼니(주)"},
-{"title":"셜록홈즈 : 그림자 게임","openDt":"2011-12-21","total_audi":2199709,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":71772,"opening_week_audi":824737,"director":"가이 리치","actors":["로버트 다우니 주니어", "주드 로"],"genre":"액션, 미스터리","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"쥬라기 월드: 새로운 시작","openDt":"2025-07-02","total_audi":2194112,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":151106,"opening_week_audi":1182841,"director":"가렛 에드워즈","actors":["스칼렛 요한슨", "마허샬라 알리", "조나단 베일리", "루퍼트 프렌드"],"genre":"어드벤처, 액션, 스릴러, 공포(호러)","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"싱크홀","openDt":"2021-08-11","total_audi":2194102,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":147297,"opening_week_audi":1213946,"director":"김지훈","actors":["차승원", "김성균", "이광수", "권소현"],"genre":"코미디","nation":"한국","dist":"(주)쇼박스"},
-{"title":"악의 연대기","openDt":"2015-05-14","total_audi":2190711,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":114540,"opening_week_audi":1109907,"director":"백운학","actors":["손현주", "마동석", "최다니엘", "박서준"],"genre":"스릴러","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"맨 오브 스틸","openDt":"2013-06-13","total_audi":2179376,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":178949,"opening_week_audi":1497207,"director":"잭 스나이더","actors":["헨리 카빌", "에이미 아담스", "러셀 크로우", "케빈 코스트너"],"genre":"SF","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"로건","openDt":"2017-03-01","total_audi":2175541,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":256255,"opening_week_audi":1147122,"director":"제임스 맨골드","actors":["휴 잭맨", "패트릭 스튜어트", "보이드 홀브룩", "스테판 머천트"],"genre":"액션, SF","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사, 이십세기폭스코리아(주)"},
-{"title":"강남 1970","openDt":"2015-01-21","total_audi":2172480,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":152329,"opening_week_audi":1181820,"director":"유하","actors":["이민호", "김래원", "정진영", "설현"],"genre":"액션, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"30일","openDt":"2023-10-03","total_audi":2163199,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"51~100만명","opening_day_audi":171979,"opening_week_audi":754105,"director":"남대중","actors":["강하늘", "정소민", "조민수", "김선영"],"genre":"코미디","nation":"한국","dist":"(주)마인드마크"},
-{"title":"신의 한 수: 귀수편","openDt":"2019-11-07","total_audi":2159081,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":176063,"opening_week_audi":1379501,"director":"리건","actors":["권상우", "김희원", "김성균", "허성태"],"genre":"범죄, 액션","nation":"한국","dist":"(주)씨제이이엔엠"},
-{"title":"원더 우먼","openDt":"2017-05-31","total_audi":2149915,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":206944,"opening_week_audi":1541718,"director":"팻티 젠킨스","actors":["갤 가돗", "로빈 라이트", "크리스 파인", "데이빗 듈리스"],"genre":"액션, 어드벤처, 판타지, SF","nation":"미국","dist":"워너브러더스 코리아(주)"},
-{"title":"이상한 나라의 앨리스","openDt":"2010-03-04","total_audi":2138986,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":62730,"opening_week_audi":749998,"director":"팀 버튼","actors":["조니 뎁", "앤 해서웨이", "헬레나 본햄 카터", "크리스핀 글로버"],"genre":"판타지, 어드벤처, 가족","nation":"미국","dist":"한국소니픽쳐스릴리징브에나비스타영화㈜"},
-{"title":"나의 사랑 나의 신부","openDt":"2014-10-08","total_audi":2135006,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":88406,"opening_week_audi":902368,"director":"임찬상","actors":["조정석", "신민아", "윤정희", "김은비"],"genre":"멜로/로맨스, 코미디","nation":"한국","dist":"씨네그루(주)다우기술"},
-{"title":"마이 웨이","openDt":"2011-12-21","total_audi":2134268,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":110253,"opening_week_audi":1170188,"director":"강제규","actors":["장동건", "오다기리 죠", "판빙빙", "강남현"],"genre":"전쟁, 액션, 드라마","nation":"한국, 일본, 중국","dist":"에스케이플래닛(주), (주)씨제이이엔엠"},
-{"title":"승부","openDt":"2025-03-26","total_audi":2127984,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":91471,"opening_week_audi":822790,"director":"김형주","actors":["이병헌", "유아인", "고창석", "현봉식"],"genre":"드라마","nation":"한국","dist":"(주)바이포엠스튜디오"},
-{"title":"마당을 나온 암탉","openDt":"2011-07-28","total_audi":2124047,"finalCat":"201~300만명","openingDayCat":"1~5만명","openingWeekCat":"51~100만명","opening_day_audi":46338,"opening_week_audi":510549,"director":"오성윤","actors":["문소리", "박철민", "최민식", "유승호"],"genre":"애니메이션","nation":"한국","dist":"메가박스중앙(주), 롯데쇼핑㈜롯데엔터테인먼트"},
-{"title":"초능력자","openDt":"2010-11-10","total_audi":2123861,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":115986,"opening_week_audi":1106083,"director":"김민석","actors":["강동원", "고수", "김수남", "정은채"],"genre":"SF, 드라마","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"베놈 2: 렛 데어 비 카니지","openDt":"2021-10-13","total_audi":2121625,"finalCat":"201~300만명","openingDayCat":"21만명 이상","openingWeekCat":"101만명 이상","opening_day_audi":203254,"opening_week_audi":1216668,"director":"앤디 서키스","actors":["톰 하디", "미쉘 윌리엄스", "나오미 해리스", "레이드 스콧"],"genre":"액션, SF, 스릴러","nation":"미국","dist":"소니픽쳐스엔터테인먼트코리아주식회사극장배급지점"},
-{"title":"겟 아웃","openDt":"2017-05-17","total_audi":2116245,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"101만명 이상","opening_day_audi":92124,"opening_week_audi":1189275,"director":"조던 필","actors":["다니엘 칼루야", "앨리슨 윌리암스", "브래들리 휘트포드", "캐서린 키너"],"genre":"공포(호러), 미스터리, 스릴러, 드라마","nation":"미국","dist":"유니버설픽쳐스인터내셔널 코리아(유)"},
-{"title":"블랙 팬서: 와칸다 포에버","openDt":"2022-11-09","total_audi":2102015,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":184034,"opening_week_audi":1223048,"director":"라이언 쿠글러","actors":["레티티아 라이트", "루피타 뇽오", "다네이 거라이라", "마틴 프리먼"],"genre":"액션, 어드벤처, 드라마","nation":"미국","dist":"월트디즈니컴퍼니코리아 유한책임회사"},
-{"title":"굿바이 싱글","openDt":"2016-06-29","total_audi":2098486,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":122543,"opening_week_audi":1119441,"director":"김태곤","actors":["김혜수", "마동석", "김현수", "김용건"],"genre":"코미디, 드라마","nation":"한국","dist":"(주)쇼박스"},
-{"title":"몽타주","openDt":"2013-05-16","total_audi":2093530,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":83490,"opening_week_audi":862021,"director":"정근섭","actors":["엄정화", "김상경", "송영창", "조희봉"],"genre":"스릴러","nation":"한국","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"논스톱","openDt":"2014-02-27","total_audi":2080989,"finalCat":"201~300만명","openingDayCat":"11~20만명","openingWeekCat":"101만명 이상","opening_day_audi":115832,"opening_week_audi":1017157,"director":"자움 콜렛 세라","actors":["리암 니슨", "줄리안 무어", "미쉘 독커리", "앤슨 마운트"],"genre":"액션","nation":"미국, 프랑스","dist":"(주)넥스트엔터테인먼트월드(NEW)"},
-{"title":"인투 더 스톰","openDt":"2014-08-28","total_audi":2077544,"finalCat":"201~300만명","openingDayCat":"5~10만명","openingWeekCat":"51~100만명","opening_day_audi":97234,"opening_week_audi":881343,"director":"스티븐 쿼일","actors":["리차드 아미티지", "사라 웨인 콜리스", "제레미 섬터"],"genre":"액션, 스릴러","nation":"미국","dist":"워너브러더스 코리아(주)"}
-];
 
-const SAME_DAY_QUIZ = [
-{"t":"왕과 사는 남자","dt":"2026-02-04","sd":["2024.12.03 그날 조작된 내란, 감춰진 진실", "노 머시: 90분", "아이엠스타!X프리파라 더 무비 -만남의 기적!-"]},
-{"t":"신과함께-죄와 벌","dt":"2017-12-20","sd":["위대한 쇼맨"]},
-{"t":"국제시장","dt":"2014-12-17","sd":["호빗: 다섯 군대 전투"]},
-{"t":"베테랑","dt":"2015-08-05","sd":["명탐정 코난 : 화염의 해바라기"]},
-{"t":"도둑들","dt":"2012-07-25","sd":["아이스 에이지 4: 대륙 이동설", "무서운 이야기", "극장판 도라에몽: 진구와 기적의 섬 애니멀 어드벤처"]},
-{"t":"7번방의 선물","dt":"2013-01-23","sd":["뽀로로 극장판 슈퍼썰매 대모험", "마마"]},
-{"t":"알라딘","dt":"2019-05-23","sd":["더 보이"]},
-{"t":"암살","dt":"2015-07-22","sd":["극장판 요괴워치: 탄생의 비밀이다냥!"]},
-{"t":"광해, 왕이 된 남자","dt":"2012-09-13","sd":["레지던트 이블 5 : 최후의 심판", "늑대아이"]},
-{"t":"신과함께-인과 연","dt":"2018-08-01","sd":["극장판 헬로카봇 : 백악기 시대"]},
-{"t":"택시운전사","dt":"2017-08-02","sd":["명탐정 코난:진홍의 연가"]},
-{"t":"부산행","dt":"2016-07-20","sd":["아이스 에이지: 지구 대충돌", "극장판 요괴워치: 염라대왕과 5개의 이야기다냥!"]},
-{"t":"범죄도시4","dt":"2024-04-24","sd":["챌린저스"]},
-{"t":"변호인","dt":"2013-12-18","sd":["캐치미"]},
-{"t":"어벤져스: 인피니티 워","dt":"2018-04-25","sd":["당갈"]},
-{"t":"아바타: 물의 길","dt":"2022-12-14","sd":["신비아파트 극장판 차원도깨비와 7개의 세계"]},
-{"t":"어벤져스: 에이지 오브 울트론","dt":"2015-04-23","sd":["짱구는 못말려 극장판 : 정면승부! 로봇아빠의 역습"]},
-{"t":"인터스텔라","dt":"2014-11-06","sd":["패션왕", "박스트롤"]},
-{"t":"겨울왕국","dt":"2014-01-16","sd":["잭 라이언 : 코드네임 쉐도우"]},
-{"t":"보헤미안 랩소디","dt":"2018-10-31","sd":["완벽한 타인", "벽 속에 숨은 마법시계", "할로윈"]},
-{"t":"엑시트","dt":"2019-07-31","sd":["사자", "마이펫의 이중생활 2"]},
-{"t":"설국열차","dt":"2013-08-01","sd":["개구쟁이 스머프 2"]},
-{"t":"아이언맨 3","dt":"2013-04-25","sd":["피노키오: 당나귀 섬의 비밀", "에반게리온: Q", "짱구는 못말려 극장판:태풍을 부르는 나와 우주의 프린세스"]},
-{"t":"인사이드 아웃 2","dt":"2024-06-12","sd":["드라이브"]},
-{"t":"수상한 그녀","dt":"2014-01-22","sd":["피끓는 청춘", "남자가 사랑할 때"]},
-{"t":"해적: 바다로 간 산적","dt":"2014-08-06","sd":["명탐정 코난 : 이차원의 저격수", "허큘리스"]},
-{"t":"백두산","dt":"2019-12-19","sd":["신비아파트 극장판 하늘도깨비 대 요르문간드"]},
-{"t":"공조","dt":"2017-01-18","sd":["더 킹", "터닝메카드W: 블랙미러의 부활"]},
-{"t":"히말라야","dt":"2015-12-16","sd":["대호"]},
-{"t":"미션임파서블:고스트프로토콜","dt":"2011-12-15","sd":["앨빈과 슈퍼밴드3"]},
-{"t":"밀정","dt":"2016-09-07","sd":["고산자, 대동여지도", "거울나라의 앨리스", "장난감이 살아있다"]},
-{"t":"최종병기 활","dt":"2011-08-10","sd":["블라인드"]},
-{"t":"써니","dt":"2011-05-04","sd":["체포왕", "소스 코드"]},
-{"t":"엘리멘탈","dt":"2023-06-14","sd":["플래시"]},
-{"t":"1987","dt":"2017-12-27","sd":["원더"]},
-{"t":"마스터","dt":"2016-12-21","sd":["씽", "극장판 도라에몽: 신 진구의 버스 오브 재팬"]},
-{"t":"터널","dt":"2016-08-10","sd":["국가대표 2", "마이 리틀 자이언트"]},
-{"t":"어벤져스","dt":"2012-04-26","sd":["짱구는 못말려 극장판: 태풍을 부르는 황금스파이 대작전"]},
-{"t":"내부자들","dt":"2015-11-19","sd":["프리덤"]},
-{"t":"인천상륙작전","dt":"2016-07-27","sd":["제이슨 본", "빅", "태풍이 지나가고"]},
-{"t":"공조2: 인터내셔날","dt":"2022-09-07","sd":["블랙폰", "인생은 뷰티풀: 비타돌체"]},
-{"t":"럭키","dt":"2016-10-13","sd":["자백", "바스티유 데이", "어카운턴트"]},
-{"t":"은밀하게 위대하게","dt":"2013-06-05","sd":["무서운 이야기 2", "백악관 최후의 날"]},
-{"t":"범죄도시","dt":"2017-10-03","sd":["남한산성", "넛잡 2", "딥"]},
-{"t":"곡성","dt":"2016-05-12","sd":["다이버전트 시리즈: 얼리전트", "나의 소녀시대", "엽기적인 그녀 2"]},
-{"t":"늑대소년","dt":"2012-10-31","sd":["아르고"]},
-{"t":"군함도","dt":"2017-07-26","sd":["슈퍼배드 3"]},
-{"t":"미션 임파서블: 폴아웃","dt":"2018-07-25","sd":["인랑", "신비아파트: 금빛 도깨비와 비밀의 동굴"]},
-{"t":"다크 나이트 라이즈","dt":"2012-07-19","sd":["5백만불의 사나이", "명탐정 코난: 11번째 스트라이커"]},
-{"t":"사도","dt":"2015-09-16","sd":["메이즈 러너: 스코치 트라이얼"]},
-{"t":"킹스맨 : 시크릿 에이전트","dt":"2015-02-11","sd":["조선명탐정 : 사라진 놉의 딸", "7번째 아들"]},
-{"t":"연평해전","dt":"2015-06-24","sd":["소수의견"]},
-{"t":"인셉션","dt":"2010-07-21","sd":["마음이2", "명탐정 코난: 천공의 난파선", "마법사의 제자"]},
-{"t":"레미제라블","dt":"2012-12-19","sd":["반창꼬", "주먹왕 랄프", "가문의 영광5 - 가문의 귀환"]},
-{"t":"닥터 스트레인지: 대혼돈의 멀티버스","dt":"2022-05-04","sd":["배드 가이즈"]},
-{"t":"쥬라기 월드: 폴른 킹덤","dt":"2018-06-06","sd":["극장판 포켓몬스터DP - 디아루가 VS 펄기아 VS 다크라이", "아이 필 프리티"]},
-{"t":"좀비딸","dt":"2025-07-30","sd":["배드 가이즈 2"]},
-{"t":"청년경찰","dt":"2017-08-09","sd":["빅풋 주니어"]},
-{"t":"숨바꼭질","dt":"2013-08-14","sd":["감기", "언어의 정원"]},
-{"t":"덕혜옹주","dt":"2016-08-03","sd":["마이펫의 이중생활", "수어사이드 스쿼드", "명탐정 코난: 순흑의 악몽"]},
-{"t":"앤트맨과 와스프","dt":"2018-07-04","sd":["변산"]},
-{"t":"닥터 스트레인지","dt":"2016-10-26","sd":["무현, 두 도시 이야기", "혼숨"]},
-{"t":"검은 사제들","dt":"2015-11-05","sd":["스파이 브릿지", "더 셰프", "아더와 미니모이 3: 두 세계의 전쟁"]},
-{"t":"안시성","dt":"2018-09-19","sd":["협상", "명당", "더 넌"]},
-{"t":"블랙 팬서","dt":"2018-02-14","sd":["골든슬럼버", "흥부: 글로 세상을 바꾼 자", "명탐정 코난:감벽의 관"]},
-{"t":"완득이","dt":"2011-10-20","sd":["오직 그대만", "파라노말 액티비티 3"]},
-{"t":"조커","dt":"2019-10-02","sd":["퍼펙트맨", "가장 보통의 연애", "소피와 드래곤: 마법책의 비밀"]},
-{"t":"F1 더 무비","dt":"2025-06-25","sd":["노이즈", "무명 無名"]},
-{"t":"월드 워 Z","dt":"2013-06-20","sd":["더 콜", "닥터", "토토의 움직이는 숲"]},
-{"t":"타워","dt":"2012-12-25","sd":["니코: 산타비행단의 모험", "잠베지아: 신비한 나무섬의 비밀"]},
-{"t":"미녀와 야수","dt":"2014-06-18","sd":["그레이스 오브 모나코", "창문 넘어 도망친 100세 노인"]},
-{"t":"미녀와 야수","dt":"2017-03-16","sd":["비정규직 특수요원"]},
-{"t":"독전","dt":"2018-05-22","sd":["트루스 오어 데어"]},
-{"t":"쿵푸팬더 2","dt":"2011-05-26","sd":["헤드"]},
-{"t":"아쿠아맨","dt":"2018-12-19","sd":["스윙키즈", "마약왕", "그린치"]},
-{"t":"공작","dt":"2018-08-08","sd":["맘마미아!2", "명탐정 코난 : 제로의 집행인", "몬스터 호텔 3"]},
-{"t":"인사이드 아웃","dt":"2015-07-09","sd":["손님", "인시디어스 3", "우먼 인 골드"]},
-{"t":"킹스맨: 골든 서클","dt":"2017-09-27","sd":["극장판 요괴워치: 하늘을 나는 고래와 더블세계다냥!"]},
-{"t":"더 퍼스트 슬램덩크","dt":"2023-01-04","sd":["스위치", "장화신은 고양이: 끝내주는 모험"]},
-{"t":"마션","dt":"2015-10-08","sd":["성난 변호사", "팬"]},
-{"t":"바람과 함께 사라지다","dt":"2012-08-08","sd":["나는 왕이로소이다", "빌리와 용감한 녀석들 3D"]},
-{"t":"어메이징 스파이더맨","dt":"2012-06-28","sd":["캐빈 인 더 우즈"]},
-{"t":"토르: 라그나로크","dt":"2017-10-25","sd":["너의 췌장을 먹고 싶어"]},
-{"t":"조선명탐정 : 각시투구꽃의 비밀","dt":"2011-01-27","sd":["평양성", "걸리버 여행기", "상하이"]},
-{"t":"봉오동 전투","dt":"2019-08-07","sd":["앵그리 버드 2: 독수리 왕국의 침공", "브링 더 소울 : 더 무비"]},
-{"t":"군도: 민란의 시대","dt":"2014-07-23","sd":["드래곤 길들이기 2"]},
-{"t":"님아, 그 강을 건너지 마오","dt":"2014-11-27","sd":["꾸뻬씨의 행복여행", "빅매치", "덤 앤 더머 투"]},
-{"t":"남산의 부장들","dt":"2020-01-22","sd":["스파이 지니어스 ", "히트맨", "미스터 주: 사라진 VIP"]},
-{"t":"범죄와의 전쟁: 나쁜놈들 전성시대","dt":"2012-02-02","sd":["해피 피트 2", "하이힐을 신고 달리는 여자"]},
-{"t":"라이온 킹","dt":"2019-07-17","sd":["사일런스"]},
-{"t":"주토피아","dt":"2016-02-17","sd":["좋아해줘", "데드풀", "동주"]},
-{"t":"엣지 오브 투모로우","dt":"2014-06-04","sd":["우는 남자"]},
-{"t":"신세계","dt":"2013-02-21","sd":["라스트 스탠드", "분노의 윤리학", "빌리와 용감한 녀석들 2 "]},
-{"t":"신비한 동물사전","dt":"2016-11-16","sd":["가려진 시간", "하이큐!! 끝과 시작"]},
-{"t":"도가니","dt":"2011-09-22","sd":["컨테이젼", "킬러 엘리트"]},
-{"t":"내 아내의 모든 것","dt":"2012-05-17","sd":["돈의 맛", "콜드 라잇 오브 데이"]},
-{"t":"나쁜 녀석들: 더 무비","dt":"2019-09-11","sd":["힘을 내요, 미스터 리", "타짜: 원 아이드 잭", "극장판 반지의 비밀일기"]},
-{"t":"노량: 죽음의 바다","dt":"2023-12-20","sd":["트롤: 밴드 투게더", "아쿠아맨과 로스트 킹덤"]},
-{"t":"판도라","dt":"2016-12-07","sd":["라라랜드", "아기배달부 스토크"]},
-{"t":"연가시","dt":"2012-07-05","sd":["모모와 다락방의 수상한 요괴들", "더 레이븐", "미드나잇 인 파리"]},
-{"t":"강철비","dt":"2017-12-14","sd":["스타워즈: 라스트 제다이"]},
-{"t":"해리 포터와 죽음의 성물2","dt":"2011-07-13","sd":["빨간모자의 진실 2"]},
-{"t":"아이언맨 2","dt":"2010-04-29","sd":["케로로 더 무비 5: 기적의 사차원섬"]},
-{"t":"다만 악에서 구하소서","dt":"2020-08-05","sd":["애니멀 크래커"]},
-{"t":"헌트","dt":"2022-08-10","sd":["DC 리그 오브 슈퍼-펫"]},
-{"t":"엑스맨: 데이즈 오브 퓨처 패스트","dt":"2014-05-22","sd":["도희야", "더 바디", "그녀"]},
-{"t":"아가씨","dt":"2016-06-01","sd":["미 비포 유", "무서운 이야기 3 : 화성에서 온 소녀", "더 보이"]},
-{"t":"용의자","dt":"2013-12-24","sd":["썬더와 마법저택"]},
-{"t":"건축학개론","dt":"2012-03-22","sd":["언터처블: 1%의 우정"]},
-{"t":"댄싱퀸","dt":"2012-01-18","sd":["부러진 화살", "네버엔딩 스토리", "페이스메이커"]},
-{"t":"타짜-신의 손","dt":"2014-09-03","sd":["두근두근 내 인생", "루시", "스텝 업: 올 인"]},
-{"t":"혹성탈출: 반격의 서막","dt":"2014-07-10","sd":["좋은 친구들"]},
-{"t":"너의 이름은.","dt":"2017-01-04","sd":["사랑하기 때문에", "패신저스", "눈의 여왕 3: 눈과 불의 마법대결"]},
-{"t":"매드 맥스: 분노의 도로","dt":"2015-05-14","sd":["악의 연대기", "위아영"]},
-{"t":"박수건달","dt":"2013-01-09","sd":["클라우드 아틀라스", "마이 리틀 히어로"]},
-{"t":"베놈","dt":"2018-10-03","sd":["암수살인", "셜록 놈즈", "곰돌이 푸 다시 만나 행복해"]},
-{"t":"역린","dt":"2014-04-30","sd":["표적"]},
-{"t":"소방관","dt":"2024-12-04","sd":["1승"]},
-{"t":"데드풀 2","dt":"2018-05-16","sd":["피터 래빗", "안녕, 나의 소녀"]},
-{"t":"비긴 어게인","dt":"2014-08-13","sd":["해무(海霧)", "안녕, 헤이즐", "비행기 2: 소방구조대"]},
-{"t":"국가부도의 날","dt":"2018-11-28","sd":["후드"]},
-{"t":"82년생 김지영","dt":"2019-10-23","sd":["람보 : 라스트 워"]},
-{"t":"분노의 질주: 더 익스트림","dt":"2017-04-12","sd":["아빠는 딸"]},
-{"t":"분노의 질주: 홉스&쇼","dt":"2019-08-14","sd":["안녕, 티라노: 영원히, 함께", "원더랜드"]},
-{"t":"모가디슈","dt":"2021-07-28","sd":["방법: 재차의", "정글 크루즈"]},
-{"t":"인턴","dt":"2015-09-24","sd":["탐정 : 더 비기닝", "서부전선", "에베레스트"]},
-{"t":"귀향","dt":"2016-02-24","sd":["순정", "스포트라이트"]},
-{"t":"리얼 스틸","dt":"2011-10-12","sd":["삼총사 3D"]},
-{"t":"웡카","dt":"2024-01-31","sd":["추락의 해부"]},
-{"t":"코코","dt":"2018-01-11","sd":["다운사이징"]},
-{"t":"극장판 체인소 맨: 레제편","dt":"2025-09-24","sd":["어쩔수가없다"]},
-{"t":"어바웃 타임","dt":"2013-12-05","sd":["오싱", "인시디어스: 두번째 집", "이스케이프 플랜"]},
-{"t":"끝까지 간다","dt":"2014-05-29","sd":["오큘러스", "말레피센트", "극장판 루팡 3세 VS 명탐정 코난"]},
-{"t":"그것만이 내 세상","dt":"2018-01-17","sd":["메이즈 러너: 데스 큐어"]},
-{"t":"돈","dt":"2019-03-20","sd":["우상", "악질경찰"]},
-{"t":"맨 인 블랙 3","dt":"2012-05-24","sd":["극장판 썬더일레븐GO : 궁극의 우정 그리폰"]},
-{"t":"토이 스토리 4","dt":"2019-06-20","sd":["사탄의 인형"]},
-{"t":"악인전","dt":"2019-05-15","sd":["배심원들"]},
-{"t":"올빼미","dt":"2022-11-23","sd":["스트레인지 월드"]},
-{"t":"포화속으로","dt":"2010-06-16","sd":["스트리트댄스"]},
-{"t":"그래비티","dt":"2013-10-17","sd":["밤의 여왕", "롤러코스터"]},
-{"t":"아이 캔 스피크","dt":"2017-09-21","sd":["인비저블 게스트"]},
-{"t":"오펜하이머","dt":"2023-08-15","sd":["달짝지근해: 7510", "보호자", "메가로돈 2"]},
-{"t":"마녀","dt":"2018-06-27","sd":["허스토리", "시카리오: 데이 오브 솔다도", "빅샤크: 매직체인지"]},
-{"t":"탐정: 리턴즈","dt":"2018-06-13","sd":["오션스8"]},
-{"t":"퀵","dt":"2011-07-20","sd":["고지전", "카 2", "바니버디"]},
-{"t":"캐리비안의 해적: 낯선 조류","dt":"2011-05-19","sd":["회초리", "삼국지: 명장 관우"]},
-{"t":"나우 유 씨 미 2","dt":"2016-07-13","sd":["언더 워터"]},
-{"t":"스물","dt":"2015-03-25","sd":["인서전트"]},
-{"t":"토르: 다크 월드","dt":"2013-10-30","sd":["응징자", "노브레싱"]},
-{"t":"헬로우 고스트","dt":"2010-12-22","sd":["쓰리 데이즈", "황해"]},
-{"t":"인크레더블 2","dt":"2018-07-18","sd":["독전: 익스텐디드 컷", "호텔 아르테미스"]},
-{"t":"하모니","dt":"2010-01-28","sd":["유희왕", "식객2 : 김치전쟁", "꼬마 니콜라"]},
-{"t":"레드: 더 레전드","dt":"2013-07-18","sd":["토니 스토리: 깡통제국의 비밀"]},
-{"t":"방자전","dt":"2010-06-02","sd":["유령작가", "엣지 오브 다크니스"]},
-{"t":"친구 2","dt":"2013-11-14","sd":["더 파이브", "카운슬러"]},
-{"t":"서치","dt":"2018-08-29","sd":["상류사회"]},
-{"t":"엑스맨: 아포칼립스","dt":"2016-05-25","sd":["오베라는 남자"]},
-{"t":"프리즌","dt":"2017-03-23","sd":["히든 피겨스", "보통사람"]},
-{"t":"26년","dt":"2012-11-29","sd":["음치 클리닉 ", "가디언즈"]},
-{"t":"프로젝트 헤일메리","dt":"2026-03-18","sd":["메소드연기"]},
-{"t":"해리 포터와 죽음의 성물1","dt":"2010-12-15","sd":["새미의 어드벤쳐"]},
-{"t":"말모이","dt":"2019-01-09","sd":["내안의 그놈", "그린 북"]},
-{"t":"극비수사","dt":"2015-06-18","sd":["경성학교: 사라진 소녀들", "심야식당"]},
-{"t":"쥬라기 월드: 도미니언","dt":"2022-06-01","sd":["극장판 포켓몬스터DP: 기라티나와 하늘의 꽃다발 쉐이미"]},
-{"t":"호빗: 뜻밖의 여정","dt":"2012-12-13","sd":["원 데이", "극장판 파워레인저: 캡틴포스 VS 미라클포스 199 히어로 대결전 "]},
-{"t":"앤트맨","dt":"2015-09-03","sd":["오피스", "갤로우즈", "히트맨: 에이전트 47"]},
-{"t":"덩케르크","dt":"2017-07-20","sd":["오즈: 신기한 마법가루", "극장판 짱구는 못말려 : 습격!! 외계인 덩덩이"]},
-{"t":"메이즈 러너","dt":"2014-09-18","sd":["툼스톤"]},
-{"t":"너의 결혼식","dt":"2018-08-22","sd":["나를 차버린 스파이"]},
-{"t":"마녀(魔女) Part2. The Other One","dt":"2022-06-15","sd":["버즈 라이트이어"]},
-{"t":"혹성탈출: 진화의 시작","dt":"2011-08-17","sd":["로맨틱 크라운"]},
-{"t":"빅 히어로","dt":"2015-01-21","sd":["강남 1970", "존 윅", "엑스 마키나"]},
-{"t":"내가 살인범이다","dt":"2012-11-08","sd":["업사이드 다운", "나우이즈굿 "]},
-{"t":"가디언즈 오브 갤럭시 VOL. 2","dt":"2017-05-03","sd":["보안관", "보스 베이비", "슈퍼 빼꼼: 스파이 대작전"]},
-{"t":"부당거래","dt":"2010-10-28","sd":["가디언의 전설", "나탈리"]},
-{"t":"토르: 러브 앤 썬더","dt":"2022-07-06","sd":["빅샤크4: 바다공룡 대모험"]},
-{"t":"미스 페레그린과 이상한 아이들의 집","dt":"2016-09-28","sd":["브리짓 존스의 베이비", "아수라", "설리: 허드슨강의 기적"]},
-{"t":"나우 유 씨 미 : 마술사기단","dt":"2013-08-22","sd":["R.I.P.D. : 알.아이.피.디.", "투 마더스", "일대종사"]},
-{"t":"소원","dt":"2013-10-02","sd":["깡철이", "프리즈너스", "로덴시아: 마법왕국의 전설"]},
-{"t":"시라노; 연애조작단","dt":"2010-09-16","sd":["퀴즈왕", "레지던트 이블 4: 끝나지 않은 전쟁 3D", "무적자"]},
-{"t":"곤지암","dt":"2018-03-28","sd":["7년의 밤", "레디 플레이어 원"]},
-{"t":"브레이킹 던 part2","dt":"2012-11-15","sd":["자칼이 온다", "살인소설"]},
-{"t":"살인자의 기억법","dt":"2017-09-06","sd":["그것"]},
-{"t":"후궁 : 제왕의 첩","dt":"2012-06-06","sd":["마다가스카3 : 이번엔 서커스다!", "프로메테우스"]},
-{"t":"미니언즈","dt":"2015-07-29","sd":["고녀석 맛나겠다2 : 함께라서 행복해"]},
-{"t":"지금 만나러 갑니다","dt":"2018-03-14","sd":["치즈인더트랩", "허리케인 하이스트"]},
-{"t":"만약에 우리","dt":"2025-12-31","sd":["신의악단"]},
-{"t":"위험한 상견례","dt":"2011-03-31","sd":["줄리아의 눈", "미트 페어런츠 3", "베니싱"]},
-{"t":"도리를 찾아서","dt":"2016-07-06","sd":["봉이 김선달"]},
-{"t":"탈주","dt":"2024-07-03","sd":["퍼펙트 데이즈"]},
-{"t":"드래곤 길들이기","dt":"2010-05-20","sd":["내 깡패 같은 애인", "나이트메어"]},
-{"t":"드래곤 길들이기","dt":"2025-06-06","sd":["브링 허 백"]},
-{"t":"기술자들","dt":"2014-12-24","sd":["상의원", "숲속으로", "눈의 여왕 2: 트롤의 마법거울"]},
-{"t":"라스트 갓파더","dt":"2010-12-29","sd":["트론: 새로운 시작", "아메리칸"]},
-{"t":"히트맨2","dt":"2025-01-22","sd":["극장판 포켓몬스터 AG: 뮤와 파동의 용사 루카리오"]},
-{"t":"정글북","dt":"2016-06-09","sd":["컨저링 2", "워크래프트: 전쟁의 서막", "본 투 비 블루"]},
-{"t":"엑스맨: 퍼스트 클래스","dt":"2011-06-02","sd":["레지던트"]},
-{"t":"증인","dt":"2019-02-13","sd":["기묘한 가족"]},
-{"t":"목격자","dt":"2018-08-15","sd":["메가로돈", "극장판 도라에몽: 진구의 보물섬"]}
-];
 
 const SCORE_SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyVl_9H-axF2BPzAjH28T92tD_bLzvmfbpYTvd4Nq_0ObhesNDnsWn1_E6Mnp3g4F5n6g/exec';
 
@@ -5535,8 +4573,7 @@ class CineMasterApp {
       roundHistory: [],
     };
 
-    // OTP 보안 상태 (constructor에서 초기화 — 미초기화로 인한 undefined 버그 방지)
-    this._otpCode     = null;
+    // OTP 인증 상태 (constructor에서 초기화 — 서버 검증 방식, 클라이언트는 코드 알 수 없음)
     this._otpEmail    = '';
     this._otpExpiry   = 0;
     this._otpTimerId  = null;
@@ -5794,18 +4831,15 @@ class CineMasterApp {
     }
     this._otpLastSentAt = now;
 
-    // 6자리 랜덤 코드 생성
-    const code = String(Math.floor(100000 + Math.random() * 900000));
-    this._otpCode      = code;
+    // 서버(GAS)에서 OTP 코드 생성 → 이메일 발송 (클라이언트는 코드를 알 수 없음)
     this._otpEmail     = email;
-    this._otpExpiry    = Date.now() + 5 * 60 * 1000; // 5분
-    this._otpAttempts  = 0;  // 새 코드 발송 시 시도 횟수 리셋
+    this._otpExpiry    = Date.now() + 5 * 60 * 1000; // 타이머 표시용 (5분)
+    this._otpAttempts  = 0;
 
-    // Apps Script로 OTP 전송 (GET 방식 — fetch + POST + no-cors는 body 전달 불가)
     const btn = document.getElementById('btn-send-otp');
     if (btn) { btn.disabled = true; btn.textContent = '전송 중…'; }
 
-    const otpUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=sendOtp&email=${encodeURIComponent(email)}&code=${encodeURIComponent(code)}`;
+    const otpUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=sendOtp&email=${encodeURIComponent(email)}`;
     fetch(otpUrl)
     .then(r => {
       if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -5849,45 +4883,56 @@ class CineMasterApp {
       return;
     }
 
-    // 만료 검사 (초기화 전 호출 방지: _otpExpiry = 0이면 항상 만료)
-    if (!this._otpCode || Date.now() > this._otpExpiry) {
+    // 만료 검사
+    if (Date.now() > this._otpExpiry) {
       showToast('인증 코드가 만료되었습니다. 재전송해 주세요.', 'warn'); return;
     }
 
     this._otpAttempts++;
 
-    if (entered !== this._otpCode) {
-      const remaining = this._otpMaxAttempts - this._otpAttempts;
-      if (remaining > 0) {
-        showToast(`인증 코드가 일치하지 않습니다. (남은 시도: ${remaining}회)`, 'warn');
+    // 서버(GAS)에 코드 검증 요청
+    const email = this._otpEmail;
+    const verifyUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=verifyOtp&email=${encodeURIComponent(email)}&code=${encodeURIComponent(entered)}`;
+
+    fetch(verifyUrl)
+    .then(r => r.json())
+    .then(data => {
+      if (data.valid) {
+        clearInterval(this._otpTimerId);
+        this._otpExpiry  = 0;
+        this._otpAttempts = 0;
+        showToast('이메일 인증이 완료되었습니다!', 'success', 2500);
+        this.currentUser = {
+          uid: 'otp_' + Date.now().toString(36),
+          email: email,
+          realName: "",
+          nickname: "",
+          age: "",
+          gender: "",
+          xp: 0,
+          level: 1,
+          stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
+        };
+        setTimeout(() => {
+          this.switchView('register');
+          this.generateNickname();
+        }, 800);
       } else {
-        showToast('시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.', 'error');
+        const reasonMap = {
+          'mismatch': '인증 코드가 일치하지 않습니다.',
+          'expired': '인증 코드가 만료되었습니다. 재전송해 주세요.',
+          'max_attempts': '시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.',
+          'no_code': '인증 코드가 만료되었거나 존재하지 않습니다. 재전송해 주세요.'
+        };
+        showToast(reasonMap[data.reason] || '인증에 실패했습니다.', 'warn');
+        if (data.reason === 'expired' || data.reason === 'max_attempts' || data.reason === 'no_code') {
+          this.resendOtp();
+        }
       }
-      return;
-    }
-
-    clearInterval(this._otpTimerId);
-    this._otpCode    = null;   // 인증 완료 후 즉시 코드 폐기
-    this._otpExpiry  = 0;
-    this._otpAttempts = 0;
-    showToast('이메일 인증이 완료되었습니다!', 'success', 2500);
-
-    // 인증 완료 → 가입 화면으로 이동
-    this.currentUser = {
-      uid: 'otp_' + Date.now().toString(36),
-      email: this._otpEmail,
-      realName: "",
-      nickname: "",
-      age: "",
-      gender: "",
-      xp: 0,
-      level: 1,
-      stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
-    };
-    setTimeout(() => {
-      this.switchView('register');
-      this.generateNickname();
-    }, 800);
+    })
+    .catch(() => {
+      showToast('인증 서버 연결에 실패했습니다. 다시 시도해 주세요.', 'warn');
+    });
   }
 
   resendOtp() {
@@ -5951,7 +4996,6 @@ class CineMasterApp {
       localStorage.removeItem('cinemaster_user');
       
       // OTP 상태 초기화
-      this._otpCode = null;
       this._otpEmail = null;
       this._otpExpiry = 0;
       clearInterval(this._otpTimerId);
@@ -6320,8 +5364,8 @@ class CineMasterApp {
         : `background: var(--bg-secondary)`;
       const castStr = (m.cast || []).slice(0, 3).join(', ');
       return `
-        <div class="movie-card" ${action}>
-          <div class="movie-poster" style="${posterStyle}"></div>
+         <div class="movie-card" ${action} tabindex="0" role="button" aria-label="${m.title}">
+          <div class="movie-poster" style="${posterStyle}" aria-hidden="true"></div>
           <div class="movie-info">
             <div class="movie-title">${m.title}</div>
             <div class="movie-meta">감독: ${m.director || '미정'}</div>
@@ -6458,8 +5502,8 @@ class CineMasterApp {
         : `background: var(--bg-secondary)`;
       const safeTitle = m.title.replace(/'/g, "\\'");
       return `
-        <div class="movie-card" onclick="app.startSpecificQuiz('${safeTitle}', false, '${mode}')">
-          <div class="movie-poster" style="${posterStyle}"></div>
+         <div class="movie-card" onclick="app.startSpecificQuiz('${safeTitle}', false, '${mode}')" tabindex="0" role="button" aria-label="${safeTitle}">
+          <div class="movie-poster" style="${posterStyle}" aria-hidden="true"></div>
           <div class="movie-info">
             <div class="movie-title">${m.title}</div>
             <div class="movie-meta">감독: ${m.director || '—'} | ${m.releaseDate || ''}</div>
@@ -7176,23 +6220,20 @@ class CineMasterApp {
       poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
     }
 
-    // 9문제 10지선다 통일 (개봉작·개봉예정작 모두 동일)
-    this.currentQuiz.scoreStepCount = 9;
+    // 6문제 10지선다 통일 (개봉작·개봉예정작 모두 동일)
+    this.currentQuiz.scoreStepCount = 6;
 
-    document.getElementById('q-score-audience').innerHTML = this.renderRadioOptions('quiz-audience', GAME_OPTIONS.audienceTarget);
-    document.getElementById('q-score-seats').innerHTML = this.renderRadioOptions('quiz-seats', GAME_OPTIONS.openingSeats);
-    document.getElementById('q-score-seat-ratio').innerHTML = this.renderRadioOptions('quiz-seat-ratio', GAME_OPTIONS.openingSeatRate);
-    document.getElementById('q-score-opening-day').innerHTML = this.renderRadioOptions('quiz-opday', GAME_OPTIONS.openingDay);
-    document.getElementById('q-score-week1').innerHTML = this.renderRadioOptions('quiz-week1', GAME_OPTIONS.firstWeek);
-    document.getElementById('q-score-week2').innerHTML = this.renderRadioOptions('quiz-week2', GAME_OPTIONS.secondWeek);
+    document.getElementById('q-score-seats').innerHTML = this.renderRadioOptions('quiz-seats', GAME_OPTIONS.seatsCat);
+    document.getElementById('q-score-seat-ratio').innerHTML = this.renderRadioOptions('quiz-seat-ratio', GAME_OPTIONS.seatRatioCat);
+    document.getElementById('q-score-opening-day').innerHTML = this.renderRadioOptions('quiz-opday', GAME_OPTIONS.openingDayScore);
+    document.getElementById('q-score-week1').innerHTML = this.renderRadioOptions('quiz-week1', GAME_OPTIONS.week1Score);
+    document.getElementById('q-score-week2').innerHTML = this.renderRadioOptions('quiz-week2', GAME_OPTIONS.week2Score);
     document.getElementById('q-score-final').innerHTML = this.renderRadioOptions('quiz-final', GAME_OPTIONS.finalScore);
-    document.getElementById('q-score-vkobis').innerHTML = this.renderRadioOptions('quiz-vkobis', GAME_OPTIONS.vkobisUsage);
-    document.getElementById('q-score-revenue').innerHTML = this.renderRadioOptions('quiz-revenue', GAME_OPTIONS.finalRevenue);
 
-    // Step indicator dots: 9개
+    // Step indicator dots: 4개 고정
     const stepsBar = document.getElementById('score-quiz-steps-bar');
     if (stepsBar) {
-      stepsBar.innerHTML = Array.from({ length: 9 }, (_, i) =>
+      stepsBar.innerHTML = Array.from({ length: 6 }, (_, i) =>
         `<span class="step-dot${i === 0 ? ' active' : ''}" data-step="${i}">${i + 1}</span>`
       ).join('');
     }
@@ -7233,7 +6274,7 @@ class CineMasterApp {
     // 이전에 이 라운드에서 선택했던 값이 있으면 복원 (리뷰→수정 흐름 대응)
     const savedVal = this.currentQuiz.stepUserValues && this.currentQuiz.stepUserValues[step];
     if (savedVal) {
-      const groupNames = ['quiz-audience', 'quiz-seats', 'quiz-seat-ratio', 'quiz-opday', 'quiz-week1', 'quiz-week2', 'quiz-final', 'quiz-vkobis', 'quiz-revenue'];
+      const groupNames = ['quiz-seats', 'quiz-seat-ratio', 'quiz-opday', 'quiz-week1', 'quiz-week2', 'quiz-final'];
       const input = document.querySelector(`input[name="${groupNames[step]}"][value="${CSS.escape(savedVal)}"]`);
       if (input) input.checked = true;
     }
@@ -7349,15 +6390,12 @@ class CineMasterApp {
     if (this.currentQuiz.isUpcoming) {
       this.playSynthSound('correct');
       this.currentQuiz.upcomingAnswers = {
-        audienceTarget: values[0],
-        seatsCat: values[1],
-        seatRatioCat: values[2],
-        openingDayScore: values[3],
-        week1Score: values[4],
-        week2Score: values[5],
-        finalScore: values[6],
-        vkobisUsage: values[7],
-        finalRevenue: values[8]
+        seatsCat: values[0],
+        seatRatioCat: values[1],
+        openingDayScore: values[2],
+        week1Score: values[3],
+        week2Score: values[4],
+        finalScore: values[5]
       };
       if (movie) {
         this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
@@ -7365,7 +6403,7 @@ class CineMasterApp {
           type: 'score_upcoming',
           movies: [movie.title],
           score: 0,
-          total: 9,
+          total: 4,
           xp: 0,
           combo: 0,
           accuracy: 0,
@@ -7383,15 +6421,10 @@ class CineMasterApp {
           email: this.currentUser?.email || '',
           movie: movie?.title || '',
           predictions: {
-            audienceTarget: values[0] || '—',
-            seatsCat: values[1] || '—',
-            seatRatioCat: values[2] || '—',
-            openingDayScore: values[3] || '—',
-            week1Score: values[4] || '—',
-            week2Score: values[5] || '—',
-            finalScore: values[6] || '—',
-            vkobisUsage: values[7] || '—',
-            finalRevenue: values[8] || '—',
+            openingDayScore: values[0] || '—',
+            week1Score: values[1] || '—',
+            week2Score: values[2] || '—',
+            finalScore: values[3] || '—',
           },
           locked: true,
           date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
@@ -7405,9 +6438,9 @@ class CineMasterApp {
       return;
     }
 
-    // ── 개봉작: 문제별 정답/오답 채점 (9문항) ──────────────────────────
-    const realValues = [movie.audienceTarget, movie.seatsCat, movie.seatRatioCat, movie.openingDayScore, movie.week1Score, movie.week2Score, movie.finalScore, movie.vkobisUsage, movie.finalRevenue];
-    const labels = ['주요 관람 대상', '개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 관객수', 'VKOBIS 3주간 이용건수', '최종 부가 매출'];
+    // ── 개봉작: 문제별 정답/오답 채점 (4문항) ──────────────────────────
+    const realValues = [movie.seatsCat, movie.seatRatioCat, movie.openingDayScore, movie.week1Score, movie.week2Score, movie.finalScore];
+    const labels = ['개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 관객수'];
 
     const stepResults = values.map((v, idx) => ({
       label: labels[idx],
@@ -7420,12 +6453,12 @@ class CineMasterApp {
     this.currentQuiz.stepAnswers = stepResults.map(r => r.isCorrect);
     this.currentQuiz.correctAnswersCount = correctCount;
 
-    const xpPerCorrect = 10;
+    const xpPerCorrect = 14;
     const xpGain = correctCount * xpPerCorrect;
     this.currentQuiz.totalXpEarned += xpGain;
     if (xpGain > 0) this.addXp(xpGain, `${movie.title} 흥행 분석 ${correctCount}문항 적중`);
 
-    const isRoundSuccess = correctCount >= 6; // 9문제 중 6개 이상 성공 기준
+    const isRoundSuccess = correctCount >= 5; // 6문제 중 5개 이상 성공 기준
     if (isRoundSuccess) {
       this.currentQuiz.score++;
       this.currentQuiz.combo++;
@@ -9599,7 +8632,9 @@ function showToast(msg, type = 'info', duration = 2800) {
   const toast = document.createElement('div');
   toast.id = 'global-toast';
   toast.className = `global-toast toast-${type}`;
-  toast.innerHTML = msg;
+  toast.setAttribute('role', 'status');
+  toast.setAttribute('aria-live', 'polite');
+  toast.textContent = msg;
   document.body.appendChild(toast);
 
   requestAnimationFrame(() => toast.classList.add('visible'));
