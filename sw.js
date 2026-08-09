@@ -1,5 +1,5 @@
 // score Service Worker — 오프라인 캐싱 (2026-08-09)
-const CACHE_NAME = 'score-v1';
+const CACHE_NAME = 'score-v2';
 const ASSETS = [
   '/score/',
   '/score/index.html',
