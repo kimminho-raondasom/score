@@ -3534,7 +3534,7 @@ html, body, .app-container, .view-section, .glass-card {
             <!-- Main Modes Container -->
             <div id="main-modes-container" style="display: flex; flex-direction: column; gap: 16px;">
 
-              <!-- Mode S: Special (AI 퀴즈) -->
+              <!-- Mode S: Special (종합 퀴즈) -->
               <div class="mode-card glass-card">
                 <div class="mode-card-header">
                   <div class="mode-card-title-row">
@@ -3630,7 +3630,7 @@ html, body, .app-container, .view-section, .glass-card {
               </div>
             </div>
 
-            <!-- Special 서브메뉴: AI 퀴즈 (시트 데이터 기반) -->
+            <!-- Special 서브메뉴: 종합 퀴즈 -->
             <div class="quiz-options-container" id="score-quiz-options" style="display: none;">
               <button class="btn-icon-text p-0 text-muted mb-2 flex-center" style="gap:4px;" onclick="app.backToMainModes()">
                 <span class="material-symbols-outlined">arrow_back</span> 뒤로 가기
@@ -3640,7 +3640,7 @@ html, body, .app-container, .view-section, .glass-card {
                 <div class="battle-option-btn solo-btn" onclick="app.startSpecialAiQuiz('solo')">
                   <div class="battle-option-info">
                     <span class="material-symbols-outlined battle-option-icon">person</span>
-                    <div class="battle-option-text"><h4>개인전</h4><p>AI 생성 10문제</p></div>
+                    <div class="battle-option-text"><h4>개인전</h4><p>종합 10문제</p></div>
                   </div>
                   <div class="battle-option-footer">START <span class="material-symbols-outlined" style="font-size:0.9rem;">arrow_forward</span></div>
                 </div>
@@ -4032,7 +4032,7 @@ html, body, .app-container, .view-section, .glass-card {
         <!-- 로딩 상태 -->
         <div id="special-ai-loading" style="text-align:center;padding:60px 0;display:block;">
           <span class="material-symbols-outlined" style="font-size:2.5rem;color:var(--accent);animation:spin 1s linear infinite;">autorenew</span>
-          <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">AI가 문제를 생성하고 있습니다...</p>
+          <p style="margin-top:12px;color:var(--text-muted);font-size:0.85rem;">문제를 준비하고 있습니다...</p>
         </div>
         <!-- 퀴즈 본문 (로딩 후 표시) -->
         <div id="special-ai-quiz-body" style="display:none;">
@@ -4092,35 +4092,50 @@ html, body, .app-container, .view-section, .glass-card {
           </div>
 
           <div class="quiz-step-wrapper">
-            <!-- Step 1: 개봉일 좌석수 (10지선다) -->
+            <!-- Step 1: 주요 관람 대상 (10지선다, 개봉예정작 전용) -->
             <div class="step-card active" id="score-step-0">
+              <div class="g-question-title">주요 관람 대상</div>
+              <div class="g-options-list radio-group" id="q-score-audience"></div>
+            </div>
+            <!-- Step 2: 개봉일 좌석수 (10지선다) -->
+            <div class="step-card" id="score-step-1">
               <div class="g-question-title">개봉일 좌석수</div>
               <div class="g-options-list radio-group" id="q-score-seats"></div>
             </div>
-            <!-- Step 2: 개봉일 좌판율 (10지선다) -->
-            <div class="step-card" id="score-step-1">
+            <!-- Step 3: 개봉일 좌판율 (10지선다) -->
+            <div class="step-card" id="score-step-2">
               <div class="g-question-title">개봉일 좌판율</div>
               <div class="g-options-list radio-group" id="q-score-seat-ratio"></div>
             </div>
-            <!-- Step 3: 개봉일 관객수 (10지선다) -->
-            <div class="step-card" id="score-step-2">
+            <!-- Step 4: 개봉일 관객수 (10지선다) -->
+            <div class="step-card" id="score-step-3">
               <div class="g-question-title">개봉일 관객수</div>
               <div class="g-options-list radio-group" id="q-score-opening-day"></div>
             </div>
-            <!-- Step 4: 개봉 1주차 누적 (10지선다) -->
-            <div class="step-card" id="score-step-3">
+            <!-- Step 5: 개봉 1주차 누적 (10지선다) -->
+            <div class="step-card" id="score-step-4">
               <div class="g-question-title">개봉 1주차 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-week1"></div>
             </div>
-            <!-- Step 5: 개봉 2주차 누적 (10지선다) -->
-            <div class="step-card" id="score-step-4">
+            <!-- Step 6: 개봉 2주차 누적 (10지선다) -->
+            <div class="step-card" id="score-step-5">
               <div class="g-question-title">개봉 2주차 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-week2"></div>
             </div>
-            <!-- Step 6: 최종 누적 관객수 (10지선다) -->
-            <div class="step-card" id="score-step-5">
+            <!-- Step 7: 최종 누적 관객수 (10지선다) -->
+            <div class="step-card" id="score-step-6">
               <div class="g-question-title">최종 누적 관객수</div>
               <div class="g-options-list radio-group" id="q-score-final"></div>
+            </div>
+            <!-- Step 8: VKOBIS 3주 이용건수 (10지선다, 개봉예정작 전용) -->
+            <div class="step-card" id="score-step-7">
+              <div class="g-question-title">VKOBIS 3주간 이용건수</div>
+              <div class="g-options-list radio-group" id="q-score-vkobis-usage"></div>
+            </div>
+            <!-- Step 9: 최종 부가 매출 (10지선다, 개봉예정작 전용) -->
+            <div class="step-card" id="score-step-8">
+              <div class="g-question-title">최종 부가 매출</div>
+              <div class="g-options-list radio-group" id="q-score-vkobis-revenue"></div>
             </div>
           </div>
 
@@ -4278,7 +4293,7 @@ html, body, .app-container, .view-section, .glass-card {
             <span class="score-value" id="finale-correct-count">0 / 5</span>
           </div>
           <div class="score-row" id="finale-score-row">
-            <span>AI 퀴즈 점수:</span>
+            <span>종합 퀴즈 점수:</span>
             <span class="score-value" id="finale-score">—</span>
           </div>
           <div class="score-row">
@@ -4510,12 +4525,15 @@ const FILMO_POSTERS = {
 
 const GAME_OPTIONS = {
   // ── 스코어 퀴즈 v6 (2026-08-02, 6문항 10지선다, 좌석수+좌판율 추가) ──
+  audienceCat: ["10대 여성","10대 남성","20대 여성","20대 남성","30대 여성","30대 남성","40대 여성","40대 남성","50대 여성","50대 남성"],
   seatsCat: ["5만석 미만","5~10만석","10~15만석","15~20만석","20~30만석","30~40만석","40~60만석","60~80만석","80~100만석","100만석 이상"],
   seatRatioCat: ["1% 미만","1~3%","3~5%","5~10%","10~15%","15~20%","20~30%","30~40%","40~50%","50% 이상"],
   openingDayScore: ["0.5만명 미만","0.5~1만명","2~3만명","4~6만명","7~9만명","10~14만명","15~19만명","20~24만명","25~29만명","30만명 이상"],
   week1Score: ["2만명 미만","2~4만명","5~9만명","10~19만명","20~29만명","30~45만명","46~59만명","60~79만명","80~99만명","100만명 이상"],
   week2Score: ["3만명 미만","4~9만명","10~19만명","20~39만명","40~59만명","60~85만명","86~99만명","100~149만명","150~199만명","200만명 이상"],
   finalScore: ["5만명 미만","6~19만명","20~49만명","50~75만명","76~99만명","100~199만명","200~299만명","300~399만명","400~499만명","500만명 이상"],
+  vkobisUsageCat: ["5천건 미만","5~1만건","1~2만건","2~3만건","3~5만건","5~10만건","10~20만건","20~30만건","30~40만건","40만건 이상"],
+  vkobisRevenueCat: ["0.5억 미만","0.5~1억","1~2억","2~3억","3~5억","5~10억","10~20억","20~30억","30~40억","40억 이상"],
   // ── S섹션(Special) AI 종합퀴즈 전용 오답 풀 (AI_QUIZ_MOVIES 정답과 불일치하도록 의도적) ──
   dayCat:   ["2천명 미만","2천~5천명","5천~7천명","7천~1.1만명","1.1만~1.9만명","1.9만~3.6만명","3.6만~5.5만명","5.5만~9만명","9만~16.6만명","16.6만명 이상"],
   weekCat:  ["6천명 미만","6천~1.5만명","1.5만~2.6만명","2.6만~5.1만명","5.1만~9.4만명","9.4만~17.2만명","17.2만~31.1만명","31.1만~47.6만명","47.6만~79.1만명","79.1만명 이상"],
@@ -5450,10 +5468,15 @@ class CineMasterApp {
     let predRows = '';
     // 정답 비교 가능 항목(개봉 후 실측 확정값 존재) — UPCOMING_MOVIES_DATABASE 필드명 기준
     const fields = [
+      { label: "주요 관람 대상",    key: "audienceCat",       predKey: "audienceCat" },
+      { label: "개봉일 좌석수",      key: "seatsCat",          predKey: "seatsCat" },
+      { label: "개봉일 좌판율",      key: "seatRatioCat",      predKey: "seatRatioCat" },
       { label: "개봉일 관객수",     key: "openingDayScore",  predKey: "openingDayScore" },
       { label: "개봉 1주차 누적",   key: "openingWeekScore", predKey: "week1Score" },
       { label: "개봉 2주차 누적",   key: "week2Score",        predKey: "week2Score" },
-      { label: "최종 관객수",       key: "finalScore",       predKey: "finalScore" }
+      { label: "최종 관객수",       key: "finalScore",       predKey: "finalScore" },
+      { label: "VKOBIS 3주 이용",   key: "vkobisUsageCat",    predKey: "vkobisUsageCat" },
+      { label: "최종 부가 매출",    key: "vkobisRevenueCat",  predKey: "vkobisRevenueCat" }
     ];
     fields.forEach(f => {
       const correct = movie[f.key];
@@ -6286,20 +6309,35 @@ class CineMasterApp {
       poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
     }
 
-    // 6문제 10지선다 통일 (개봉작·개봉예정작 모두 동일)
-    this.currentQuiz.scoreStepCount = 6;
+    // 개봉예정작 9문항, 개봉작 6문항 (개봉작은 관람대상·VKOBIS·매출 단계 숨김)
+    const isUpcoming = this.currentQuiz.isUpcoming;
+    const stepCount = isUpcoming ? 9 : 6;
+    this.currentQuiz.scoreStepCount = stepCount;
 
+    // 관람대상(step-0), VKOBIS(step-7/8)는 개봉예정작 전용 — 개봉작일 때 숨김
+    ['score-step-0','score-step-7','score-step-8'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = isUpcoming ? '' : 'none';
+    });
+
+    if (isUpcoming) {
+      document.getElementById('q-score-audience').innerHTML = this.renderRadioOptions('quiz-audience', GAME_OPTIONS.audienceCat);
+    }
     document.getElementById('q-score-seats').innerHTML = this.renderRadioOptions('quiz-seats', GAME_OPTIONS.seatsCat);
     document.getElementById('q-score-seat-ratio').innerHTML = this.renderRadioOptions('quiz-seat-ratio', GAME_OPTIONS.seatRatioCat);
     document.getElementById('q-score-opening-day').innerHTML = this.renderRadioOptions('quiz-opday', GAME_OPTIONS.openingDayScore);
     document.getElementById('q-score-week1').innerHTML = this.renderRadioOptions('quiz-week1', GAME_OPTIONS.week1Score);
     document.getElementById('q-score-week2').innerHTML = this.renderRadioOptions('quiz-week2', GAME_OPTIONS.week2Score);
     document.getElementById('q-score-final').innerHTML = this.renderRadioOptions('quiz-final', GAME_OPTIONS.finalScore);
+    if (isUpcoming) {
+      document.getElementById('q-score-vkobis-usage').innerHTML = this.renderRadioOptions('quiz-vkobis-usage', GAME_OPTIONS.vkobisUsageCat);
+      document.getElementById('q-score-vkobis-revenue').innerHTML = this.renderRadioOptions('quiz-vkobis-revenue', GAME_OPTIONS.vkobisRevenueCat);
+    }
 
-    // Step indicator dots: 4개 고정
+    // Step indicator dots
     const stepsBar = document.getElementById('score-quiz-steps-bar');
     if (stepsBar) {
-      stepsBar.innerHTML = Array.from({ length: 6 }, (_, i) =>
+      stepsBar.innerHTML = Array.from({ length: stepCount }, (_, i) =>
         `<span class="step-dot${i === 0 ? ' active' : ''}" data-step="${i}">${i + 1}</span>`
       ).join('');
     }
@@ -6327,21 +6365,22 @@ class CineMasterApp {
   renderScoreQuizStepUI() {
     const step = this.currentQuiz.currentStep;
     const lastStep = (this.currentQuiz.scoreStepCount || 4) - 1;
+    // 개봉작: audience(step-0) 건너뜀, step→card idx = step + 1
+    const cardOffset = this.currentQuiz.isUpcoming ? 0 : 1;
 
-    // Show step cards active toggle
     document.querySelectorAll('.step-card').forEach((c, idx) => {
-      if (idx === step) {
+      if (idx === step + cardOffset) {
         c.classList.add('active');
       } else {
         c.classList.remove('active');
       }
     });
 
-    // 이전에 이 라운드에서 선택했던 값이 있으면 복원 (리뷰→수정 흐름 대응)
     const savedVal = this.currentQuiz.stepUserValues && this.currentQuiz.stepUserValues[step];
     if (savedVal) {
-      const groupNames = ['quiz-seats', 'quiz-seat-ratio', 'quiz-opday', 'quiz-week1', 'quiz-week2', 'quiz-final'];
-      const input = document.querySelector(`input[name="${groupNames[step]}"][value="${CSS.escape(savedVal)}"]`);
+      const allGroupNames = ['quiz-audience', 'quiz-seats', 'quiz-seat-ratio', 'quiz-opday', 'quiz-week1', 'quiz-week2', 'quiz-final', 'quiz-vkobis-usage', 'quiz-vkobis-revenue'];
+      const groupName = allGroupNames[step + cardOffset];
+      const input = document.querySelector(`input[name="${groupName}"][value="${CSS.escape(savedVal)}"]`);
       if (input) input.checked = true;
     }
 
@@ -6375,11 +6414,13 @@ class CineMasterApp {
     clearInterval(this.currentQuiz.timerId);
     const step = this.currentQuiz.currentStep;
     const lastStep = (this.currentQuiz.scoreStepCount || 4) - 1;
-    const groupNames = ['quiz-seats', 'quiz-seat-ratio', 'quiz-opday', 'quiz-week1', 'quiz-week2', 'quiz-final'];
-    const warnMsgs = ['개봉일 좌석수를 선택해 주세요.', '개봉일 좌판율을 선택해 주세요.', '개봉일 관객수를 선택해 주세요.', '개봉 1주차 누적 관객수를 선택해 주세요.', '개봉 2주차 누적 관객수를 선택해 주세요.', '최종 관객수를 선택해 주세요.'];
+    const allGroupNames = ['quiz-audience', 'quiz-seats', 'quiz-seat-ratio', 'quiz-opday', 'quiz-week1', 'quiz-week2', 'quiz-final', 'quiz-vkobis-usage', 'quiz-vkobis-revenue'];
+    const allWarnMsgs = ['주요 관람 대상을 선택해 주세요.', '개봉일 좌석수를 선택해 주세요.', '개봉일 좌판율을 선택해 주세요.', '개봉일 관객수를 선택해 주세요.', '개봉 1주차 누적 관객수를 선택해 주세요.', '개봉 2주차 누적 관객수를 선택해 주세요.', '최종 관객수를 선택해 주세요.', 'VKOBIS 3주 이용건수를 선택해 주세요.', '최종 부가 매출을 선택해 주세요.'];
+    const cardOffset = this.currentQuiz.isUpcoming ? 0 : 1;
+    const nameIdx = step + cardOffset;
 
-    const val = document.querySelector(`input[name="${groupNames[step]}"]:checked`)?.value;
-    if (!val) { showToast(warnMsgs[step], "warn"); this.startTimer(); return; }
+    const val = document.querySelector(`input[name="${allGroupNames[nameIdx]}"]:checked`)?.value;
+    if (!val) { showToast(allWarnMsgs[nameIdx], "warn"); this.startTimer(); return; }
 
     if (!this.currentQuiz.stepUserValues) this.currentQuiz.stepUserValues = [];
     this.currentQuiz.stepUserValues[step] = val;
@@ -6402,7 +6443,10 @@ class CineMasterApp {
   // ── 문제 입력 완료 후 리뷰(답안 최종 확인) 화면 ──────────────────────────
   showScoreReview() {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
-    const labels = ['개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 누적 관객수'];
+    const isUpcoming = this.currentQuiz.isUpcoming;
+    const labels = isUpcoming
+      ? ['주요 관람 대상', '개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 누적 관객수', 'VKOBIS 3주 이용건수', '최종 부가 매출']
+      : ['개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 누적 관객수'];
     const values = this.currentQuiz.stepUserValues || [];
 
     const titleEl = document.getElementById('score-review-movie-title');
@@ -6456,12 +6500,15 @@ class CineMasterApp {
     if (this.currentQuiz.isUpcoming) {
       this.playSynthSound('correct');
       this.currentQuiz.upcomingAnswers = {
-        seatsCat: values[0],
-        seatRatioCat: values[1],
-        openingDayScore: values[2],
-        week1Score: values[3],
-        week2Score: values[4],
-        finalScore: values[5]
+        audienceCat: values[0],
+        seatsCat: values[1],
+        seatRatioCat: values[2],
+        openingDayScore: values[3],
+        week1Score: values[4],
+        week2Score: values[5],
+        finalScore: values[6],
+        vkobisUsageCat: values[7],
+        vkobisRevenueCat: values[8]
       };
       if (movie) {
         this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
@@ -6487,12 +6534,15 @@ class CineMasterApp {
           email: this.currentUser?.email || '',
           movie: movie?.title || '',
           predictions: {
-            seatsCat: values[0] || '—',
-            seatRatioCat: values[1] || '—',
-            openingDayScore: values[2] || '—',
-            week1Score: values[3] || '—',
-            week2Score: values[4] || '—',
-            finalScore: values[5] || '—',
+            audienceCat: values[0] || '—',
+            seatsCat: values[1] || '—',
+            seatRatioCat: values[2] || '—',
+            openingDayScore: values[3] || '—',
+            week1Score: values[4] || '—',
+            week2Score: values[5] || '—',
+            finalScore: values[6] || '—',
+            vkobisUsageCat: values[7] || '—',
+            vkobisRevenueCat: values[8] || '—',
           },
           locked: true,
           date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
@@ -6506,9 +6556,10 @@ class CineMasterApp {
       return;
     }
 
-    // ── 개봉작: 문제별 정답/오답 채점 (4문항) ──────────────────────────
+    // ── 개봉작: 문제별 정답/오답 채점 (6문항) ──────────────────────────
     const realValues = [movie.seatsCat, movie.seatRatioCat, movie.openingDayScore, movie.week1Score, movie.week2Score, movie.finalScore];
     const labels = ['개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 관객수'];
+    // 개봉작 values는 6개만 사용 (step index 조정 불필요)
 
     const stepResults = values.map((v, idx) => ({
       label: labels[idx],
@@ -7110,12 +7161,15 @@ class CineMasterApp {
               <div class="group-rank-date">${a.date || ''}</div>
             </div>
             <div style="font-size:0.72rem;color:var(--text-muted);line-height:1.5;">
+              <div>관람대상: ${p.audienceCat || '—'}</div>
               <div>좌석수: ${p.seatsCat || '—'}</div>
               <div>좌판율: ${p.seatRatioCat || '—'}</div>
               <div>개봉일: ${p.openingDayScore || '—'}</div>
               <div>1주차: ${p.week1Score || '—'}</div>
               <div>2주차: ${p.week2Score || '—'}</div>
               <div>최종: ${p.finalScore || '—'}</div>
+              <div>VKOBIS: ${p.vkobisUsageCat || '—'}</div>
+              <div>매출: ${p.vkobisRevenueCat || '—'}</div>
             </div>
           </div>`;
       }
@@ -7572,7 +7626,7 @@ class CineMasterApp {
       dot.className = 'notify-dot';
       badge.parentElement.appendChild(dot);
       setTimeout(() => {
-        showToast('개봉예정작 예측 결과를 확인할 수 있습니다! Special 섹션을 확인하세요.', 'info', 4500);
+        // 알림 도트만 표시 (팝업 없음)
       }, 600);
     } else if (!hasNotification && existingDot) {
       existingDot.remove();
