@@ -1,0 +1,24 @@
+{
+  "name": "score — 프리미엄 영화 퀴즈 & 흥행 예측 리그",
+  "short_name": "score",
+  "description": "박스오피스 스코어 예측 · 필모그래피 매칭 · 명대사 초성 퀴즈 — 대한민국 시네마 흥행 데이터 기반",
+  "start_url": "/score/",
+  "scope": "/score/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#faf5f7",
+  "background_color": "#faf5f7",
+  "lang": "ko",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
