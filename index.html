@@ -4043,7 +4043,7 @@ html, body, .app-container, .view-section, .glass-card {
             </div>
             <div class="movie-meta-details" style="flex:1;min-width:0;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-                <span style="font-size:0.68rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Special AI Quiz</span>
+                <span style="font-size:0.68rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Special 종합 퀴즈</span>
                 <span style="font-size:0.75rem;color:var(--accent);font-weight:700;" id="special-ai-score-label">정답 0</span>
               </div>
               <div id="special-ai-question" style="font-size:0.92rem;font-weight:600;line-height:1.5;color:var(--text-primary);word-break:keep-all;"></div>
@@ -5479,7 +5479,7 @@ class CineMasterApp {
       { label: "최종 부가 매출",    key: "vkobisRevenueCat",  predKey: "vkobisRevenueCat" }
     ];
     fields.forEach(f => {
-      const correct = movie[f.key];
+      const correct = movie[f.key] || '데이터 없음';
       const userAns = savedPrediction ? savedPrediction[f.predKey] : null;
       const isRight = userAns && userAns === correct;
       const icon = userAns ? (isRight ? '✅' : '❌') : '—';
@@ -6516,7 +6516,7 @@ class CineMasterApp {
           type: 'score_upcoming',
           movies: [movie.title],
           score: 0,
-          total: 6,
+          total: 9,
           xp: 0,
           combo: 0,
           accuracy: 0,
@@ -7226,24 +7226,30 @@ class CineMasterApp {
     const headerRow = `
       <tr style="background:#f4f1ea;font-size:0.8rem;font-weight:600;color:#4a453f;">
         <td style="padding:8px 12px;">참가자</td>
+        <td style="padding:8px 12px;">관람대상</td>
         <td style="padding:8px 12px;">좌석수</td>
         <td style="padding:8px 12px;">좌판율</td>
         <td style="padding:8px 12px;">개봉일</td>
         <td style="padding:8px 12px;">1주차</td>
         <td style="padding:8px 12px;">2주차</td>
         <td style="padding:8px 12px;">최종</td>
+        <td style="padding:8px 12px;">VKOBIS</td>
+        <td style="padding:8px 12px;">매출</td>
       </tr>`;
     const dataRows = answers.map(a => {
       const p = a.predictions || {};
       return `
         <tr style="border-bottom:1px solid #e0dbd4;">
           <td style="padding:8px 12px;font-weight:500;">${a.nickname}</td>
+          <td style="padding:8px 12px;">${p.audienceCat || '—'}</td>
           <td style="padding:8px 12px;">${p.seatsCat || '—'}</td>
           <td style="padding:8px 12px;">${p.seatRatioCat || '—'}</td>
           <td style="padding:8px 12px;">${p.openingDayScore || '—'}</td>
           <td style="padding:8px 12px;">${p.week1Score || '—'}</td>
           <td style="padding:8px 12px;">${p.week2Score || '—'}</td>
           <td style="padding:8px 12px;">${p.finalScore || '—'}</td>
+          <td style="padding:8px 12px;">${p.vkobisUsageCat || '—'}</td>
+          <td style="padding:8px 12px;">${p.vkobisRevenueCat || '—'}</td>
         </tr>`;
     }).join('');
 
@@ -7625,9 +7631,6 @@ class CineMasterApp {
       const dot = document.createElement('span');
       dot.className = 'notify-dot';
       badge.parentElement.appendChild(dot);
-      setTimeout(() => {
-        // 알림 도트만 표시 (팝업 없음)
-      }, 600);
     } else if (!hasNotification && existingDot) {
       existingDot.remove();
     }
@@ -8314,7 +8317,7 @@ class CineMasterApp {
         this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
       }
       this.currentQuiz.totalXpEarned += xp;
-      this.addXp(xp, 'Special AI 퀴즈 정답');
+      this.addXp(xp, 'Special 종합 퀴즈 정답');
       this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
       this.showAnswerOverlay(true, '정답입니다!',
         `<b>${q.answer}</b><br><span style="font-size:0.8rem;color:var(--text-muted)">${q.explanation || ''}</span>`);
@@ -8364,8 +8367,8 @@ class CineMasterApp {
     // 피날레 화면 업데이트
     const nameEl = document.getElementById('finale-player-name');
     if (nameEl) nameEl.textContent = this.currentUser
-      ? `${this.currentUser.nickname}님의 Special AI 퀴즈 결과`
-      : 'Special AI 퀴즈 결과';
+      ? `${this.currentUser.nickname}님의 Special 종합 퀴즈 결과`
+      : 'Special 종합 퀴즈 결과';
 
     const scoreRowEl = document.getElementById('finale-score-row');
     const scoreEl    = document.getElementById('finale-score');
@@ -8386,7 +8389,7 @@ class CineMasterApp {
 
     if (feedbackEl) {
       if (correct === total && total > 0) {
-        feedbackEl.textContent = '⭐ 완벽합니다! AI가 생성한 모든 문제를 맞혔습니다. 진정한 영화 전문가입니다!';
+        feedbackEl.textContent = '⭐ 완벽합니다! 모든 문제를 맞혔습니다. 진정한 영화 전문가입니다!';
       } else if (correct >= Math.ceil(total * 0.7)) {
         feedbackEl.textContent = `👍 훌륭합니다! ${total}문제 중 ${correct}개를 맞혔습니다. 영화 흥행 트렌드를 꿰뚫고 있군요.`;
       } else {
