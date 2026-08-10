@@ -374,52 +374,8 @@ body.login-active .glow-bg { opacity: 0; }
   letter-spacing: 0.2px;
 }
 
-/* ── 구글 로그인 버튼 ────────────────────────────────────────────────── */
+/* ── 로그인 폼 ──────────────────────────────────────────────────── */
 .login-btn-area { width: 100%; max-width: 360px; }
-
-.login-google-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  padding: 16px 20px;
-  background: #fff;
-  color: #1a1a1a;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  font-family: 'Noto Sans KR', sans-serif;
-  cursor: pointer;
-  letter-spacing: 0.2px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.45);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.login-google-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.55);
-}
-.login-google-btn:active {
-  transform: scale(0.97);
-}
-.login-google-btn:disabled {
-  opacity: 0.6;
-  cursor: default;
-  transform: none;
-}
-.login-google-btn .login-spinner {
-  width: 18px; height: 18px;
-  border: 2px solid rgba(26,26,26,0.2);
-  border-top-color: #1a1a1a;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  flex-shrink: 0;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.login-google-svg { flex-shrink: 0; }
 
 .login-terms {
   margin-top: 14px;
@@ -580,27 +536,6 @@ button, .btn {
 
 .icon-btn-danger:hover {
   color: var(--text-main);
-}
-
-/* Google Sign-in Button styling */
-.google-login-btn {
-  background: transparent;
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  padding: 14px 20px;
-  font-weight: 300;
-  width: 100%;
-  max-width: 320px;
-}
-
-.google-login-btn:hover {
-  border-color: var(--text-main);
-}
-
-.google-icon {
-  margin-right: 12px;
-  filter: grayscale(1); /* Monochrome Google Icon */
 }
 
 /* 7. Forms and Inputs */
@@ -3044,34 +2979,6 @@ html, body, .app-container, .view-section, .glass-card {
   margin-top: 16px;
 }
 
-.otp-input-row {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
-.otp-input-row input {
-  flex: 1;
-}
-
-.otp-input-row button {
-  flex-shrink: 0;
-  padding: 14px 16px;
-  font-size: 0.82rem;
-  white-space: nowrap;
-}
-
-.otp-timer-text {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 6px;
-  letter-spacing: 0.3px;
-}
-
-.otp-timer-text.expired {
-  color: var(--color-danger);
-}
-
 /* ── Challenge 퀴즈 ─────────────────────────────────────────────────────── */
 #quiz-panel-challenge {
   display: none;
@@ -3368,43 +3275,24 @@ html, body, .app-container, .view-section, .glass-card {
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">campaign</span> 명대사 퀴즈</span>
         </div>
         <div class="login-btn-area">
-          <!-- Step 1: 이메일 입력 + 인증코드 받기 -->
-          <div id="otp-step-email" class="otp-step">
-            <div style="display:flex;gap:10px;align-items:flex-start;">
-              <input type="email" id="otp-email-input" class="form-control" placeholder="이메일 주소 입력"
-                aria-label="이메일 주소"
-                style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;flex:1;"
-                autocomplete="email" autocapitalize="none" spellcheck="false">
-              <button id="btn-send-otp" onclick="app.sendOtp()"
-                style="background:#fff;color:#1a1a1a;border:none;padding:14px 14px;font-size:0.82rem;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Noto Sans KR',sans-serif;">
-                인증코드 받기
-              </button>
-            </div>
-            <p style="margin-top:10px;font-size:0.7rem;color:rgba(255,255,255,0.4);line-height:1.5;">
-              입력한 이메일로 6자리 인증 코드를 전송합니다.<br>신규 가입 시 이메일 인증이 필요합니다.
-            </p>
-          </div>
-
-          <!-- Step 2: 인증코드 입력 (hidden until sent) -->
-          <div id="otp-step-code" class="otp-step" style="display:none;">
-            <div style="display:flex;gap:10px;align-items:flex-start;">
-              <input type="text" id="otp-code-input" class="form-control" placeholder="인증코드 6자리"
-                aria-label="인증코드 6자리"
-                maxlength="6" inputmode="numeric" pattern="[0-9]*"
-                style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:1.2rem;letter-spacing:8px;text-align:center;padding:14px 16px;flex:1;"
-                autocomplete="one-time-code">
-              <button id="btn-verify-otp" onclick="app.verifyOtp()"
-                style="background:#fff;color:#1a1a1a;border:none;padding:14px 14px;font-size:0.82rem;font-weight:600;cursor:pointer;white-space:nowrap;flex-shrink:0;font-family:'Noto Sans KR',sans-serif;">
-                인증 확인
-              </button>
-            </div>
-            <p id="otp-timer-display" class="otp-timer-text" style="color:rgba(255,255,255,0.5);margin-top:8px;font-size:0.72rem;">
-              유효 시간: 5:00
-            </p>
-            <button onclick="app.resendOtp()"
-              style="background:transparent;border:none;color:rgba(255,255,255,0.45);font-size:0.72rem;cursor:pointer;margin-top:4px;padding:0;font-family:'Noto Sans KR',sans-serif;">
-              코드 재전송
+          <div id="login-form">
+            <input type="email" id="login-email" class="form-control" placeholder="이메일 주소 입력"
+              aria-label="이메일 주소"
+              style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;"
+              autocomplete="email" autocapitalize="none" spellcheck="false">
+            <input type="password" id="login-password" class="form-control" placeholder="비밀번호 입력"
+              aria-label="비밀번호"
+              style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;margin-top:10px;"
+              autocomplete="current-password">
+            <button id="btn-login" onclick="app.loginWithPassword()"
+              style="background:#fff;color:#1a1a1a;border:none;padding:14px 24px;font-size:0.92rem;font-weight:600;cursor:pointer;width:100%;margin-top:10px;font-family:'Noto Sans KR',sans-serif;">
+              로그인
             </button>
+            <div style="text-align:center;margin-top:14px;">
+              <span style="color:rgba(255,255,255,0.45);font-size:0.8rem;">계정이 없으신가요? </span>
+              <a href="javascript:void(0)" onclick="app.switchView('register')"
+                style="color:var(--rose);font-size:0.8rem;text-decoration:underline;cursor:pointer;">회원가입</a>
+            </div>
           </div>
 
           <p class="login-terms">계속 진행하면 <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">이용약관</a> 및 <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">개인정보 처리방침</a>에 동의하는 것으로 간주됩니다.</p>
@@ -3453,10 +3341,23 @@ html, body, .app-container, .view-section, .glass-card {
         <p class="section-subtitle">score 활동을 위한 정보를 입력해 주세요.</p>
         
         <form id="form-register" class="register-form">
-          <!-- 인증 이메일 표시 -->
+          <!-- 이메일 -->
           <div class="form-group">
-            <label for="reg-email">인증 이메일</label>
-            <input type="email" id="reg-email" class="form-control" readonly disabled style="opacity:0.6;">
+            <label for="reg-email">이메일 <span class="required">*</span></label>
+            <input type="email" id="reg-email" class="form-control" placeholder="이메일 주소를 입력하세요"
+              autocomplete="email" autocapitalize="none" spellcheck="false" required>
+          </div>
+
+          <!-- 비밀번호 -->
+          <div class="form-group login-form-row">
+            <label for="reg-password">비밀번호 <span class="required">*</span></label>
+            <input type="password" id="reg-password" class="form-control" placeholder="비밀번호 (4자 이상)"
+              autocomplete="new-password" required minlength="4">
+          </div>
+          <div class="form-group login-form-row">
+            <label for="reg-password-confirm">비밀번호 확인 <span class="required">*</span></label>
+            <input type="password" id="reg-password-confirm" class="form-control" placeholder="비밀번호를 다시 입력하세요"
+              autocomplete="new-password" required minlength="4">
           </div>
 
           <!-- 본인 이름 기입 -->
@@ -4658,14 +4559,6 @@ class CineMasterApp {
       roundHistory: [],
     };
 
-    // OTP 인증 상태 (constructor에서 초기화 — 서버 검증 방식, 클라이언트는 코드 알 수 없음)
-    this._otpEmail    = '';
-    this._otpExpiry   = 0;
-    this._otpLastSentAt = 0;
-    this._otpTimerId  = null;
-    this._otpAttempts = 0;   // 브루트포스 방지용 시도 횟수 카운터
-    this._otpMaxAttempts = 5; // 최대 5회 시도
-
     // System Settings
     this.soundEnabled = true;
     this.audioCtx = null;
@@ -4769,8 +4662,6 @@ class CineMasterApp {
       const el = document.getElementById(id);
       if (el) el.addEventListener(event, fn);
     };
-
-    // Google Login 버튼은 현재 OTP 방식으로 대체되어 사용하지 않음
 
     // Registration Form
     on('form-register', 'submit', (e) => { e.preventDefault(); this.submitRegistration(); });
@@ -4900,142 +4791,66 @@ class CineMasterApp {
     }
   }
 
-  // ── 이메일 OTP 인증 ───────────────────────────────────────────────────────
-  sendOtp() {
-    const emailInput = document.getElementById('otp-email-input');
-    const email = (emailInput?.value || '').trim();
+  // ── 비밀번호 인증 ───────────────────────────────────────────────────────
+  async hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async loginWithPassword() {
+    this.playSynthSound('click');
+    const email = (document.getElementById('login-email')?.value || '').trim();
+    const password = (document.getElementById('login-password')?.value || '').trim();
+
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showToast('유효한 이메일 주소를 입력해 주세요.', 'warn'); return;
     }
-
-    // 남용 방지: 30초 이내 재요청 차단 (MailApp 일일 발송 한도 보호)
-    const now = Date.now();
-    if (this._otpLastSentAt && now - this._otpLastSentAt < 30 * 1000) {
-      const waitSec = Math.ceil((30 * 1000 - (now - this._otpLastSentAt)) / 1000);
-      showToast(`잠시 후 다시 시도해 주세요. (${waitSec}초 남음)`, 'warn');
-      return;
-    }
-    this._otpLastSentAt = now;
-
-    // 서버(GAS)에서 OTP 코드 생성 → 이메일 발송 (클라이언트는 코드를 알 수 없음)
-    this._otpEmail     = email;
-    this._otpExpiry    = Date.now() + 5 * 60 * 1000; // 타이머 표시용 (5분)
-    this._otpAttempts  = 0;
-
-    const btn = document.getElementById('btn-send-otp');
-    if (btn) { btn.disabled = true; btn.textContent = '전송 중…'; }
-
-    const otpUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=sendOtp&email=${encodeURIComponent(email)}`;
-    fetch(otpUrl)
-    .then(r => {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
-      document.getElementById('otp-step-email').style.display = 'none';
-      document.getElementById('otp-step-code').style.display = 'block';
-      this._startOtpTimer();
-    })
-    .catch(() => {
-      showToast('인증 코드 전송에 실패했습니다. 다시 시도해 주세요.', 'warn');
-    })
-    .finally(() => {
-      if (btn) { btn.disabled = false; btn.textContent = '인증코드 받기'; }
-    });
-  }
-
-  _startOtpTimer() {
-    clearInterval(this._otpTimerId);
-    const display = document.getElementById('otp-timer-display');
-    const update = () => {
-      const remaining = Math.max(0, this._otpExpiry - Date.now());
-      const m = Math.floor(remaining / 60000);
-      const s = Math.floor((remaining % 60000) / 1000);
-      if (display) {
-        display.textContent = `유효 시간: ${m}:${String(s).padStart(2,'0')}`;
-        display.classList.toggle('expired', remaining === 0);
-      }
-      if (remaining === 0) clearInterval(this._otpTimerId);
-    };
-    update();
-    this._otpTimerId = setInterval(update, 1000);
-  }
-
-  verifyOtp() {
-    const entered = (document.getElementById('otp-code-input')?.value || '').trim();
-    if (!entered) { showToast('인증 코드를 입력해 주세요.', 'warn'); return; }
-
-    // 브루트포스 방지: 최대 시도 횟수 초과 시 차단
-    if (this._otpAttempts >= this._otpMaxAttempts) {
-      showToast('시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.', 'error');
-      return;
+    if (!password || password.length < 4) {
+      showToast('비밀번호는 4자 이상이어야 합니다.', 'warn'); return;
     }
 
-    // 만료 검사
-    if (Date.now() > this._otpExpiry) {
-      showToast('인증 코드가 만료되었습니다. 재전송해 주세요.', 'warn'); return;
-    }
+    const btn = document.getElementById('btn-login');
+    if (btn) { btn.disabled = true; btn.textContent = '로그인 중…'; }
 
-    // 연속 클릭 방지
-    const vrBtn = document.getElementById('btn-verify-otp');
-    if (vrBtn) vrBtn.disabled = true;
+    try {
+      const hash = await this.hashPassword(password);
+      const response = await fetch(SCORE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', email: email, passwordHash: hash })
+      });
+      const data = await response.json();
 
-    this._otpAttempts++;
-
-    // 서버(GAS)에 코드 검증 요청
-    const email = this._otpEmail;
-    const verifyUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=verifyOtp&email=${encodeURIComponent(email)}&code=${encodeURIComponent(entered)}`;
-
-    fetch(verifyUrl)
-    .then(r => r.json())
-    .then(data => {
-      if (data.valid) {
-        clearInterval(this._otpTimerId);
-        this._otpExpiry  = 0;
-        this._otpAttempts = 0;
-        showToast('이메일 인증이 완료되었습니다!', 'success', 2500);
+      if (data.status === 'ok') {
         this.currentUser = {
-          uid: 'otp_' + Date.now().toString(36),
-          email: email,
-          realName: "",
-          nickname: "",
-          age: "",
-          gender: "",
-          xp: 0,
-          level: 1,
+          uid: data.user.uid,
+          email: data.user.email,
+          realName: data.user.realName || '',
+          nickname: data.user.nickname || '',
+          age: data.user.age || '',
+          gender: data.user.gender || '',
+          xp: data.user.xp || 0,
+          level: data.user.level || 1,
           stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
         };
+        this.saveProfile();
+        showToast('로그인되었습니다!', 'success', 2000);
         setTimeout(() => {
-          this.switchView('register');
-          this.generateNickname();
-        }, 800);
+          this.renderDashboard();
+          this.switchView('dashboard');
+          this.switchTab('dashboard');
+        }, 600);
       } else {
-        const reasonMap = {
-          'mismatch': '인증 코드가 일치하지 않습니다.',
-          'expired': '인증 코드가 만료되었습니다. 재전송해 주세요.',
-          'max_attempts': '시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.',
-          'no_code': '인증 코드가 만료되었거나 존재하지 않습니다. 재전송해 주세요.',
-          'invalid_data': '인증 정보가 올바르지 않습니다. 재전송해 주세요.'
-        };
-        const reasonText = reasonMap[data.reason] || '인증에 실패했습니다.';
-        const remaining = data.attemptsLeft;
-        showToast(reasonText + (remaining > 0 ? ` (남은 시도: ${remaining}회)` : ''), 'warn');
+        showToast(data.message || '로그인에 실패했습니다.', 'warn');
       }
-    })
-    .catch(() => {
-      this._otpAttempts--;
-      showToast('인증 서버 연결에 실패했습니다. 다시 시도해 주세요.', 'warn');
-    })
-    .finally(() => {
-      if (vrBtn) vrBtn.disabled = false;
-    });
-  }
-
-  resendOtp() {
-    document.getElementById('otp-step-email').style.display = 'block';
-    document.getElementById('otp-step-code').style.display = 'none';
-    const codeInput = document.getElementById('otp-code-input');
-    if (codeInput) codeInput.value = '';
-    clearInterval(this._otpTimerId);
-    this._otpExpiry = 0;
+    } catch (e) {
+      console.error('login error:', e);
+      showToast('서버 연결에 실패했습니다. 다시 시도해 주세요.', 'warn');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '로그인'; }
+    }
   }
 
   // Random nickname generator - returns just one character word
@@ -5045,43 +4860,9 @@ class CineMasterApp {
     if (el) el.value = randChar;
   }
 
-  // Submit registration form
+  // Submit registration form — delegates to registerWithPassword
   submitRegistration() {
-    this.playSynthSound('click');
-    const realName = document.getElementById('reg-realname').value.trim();
-    const age = document.getElementById('reg-age').value;
-    const gender = document.querySelector('input[name="reg-gender"]:checked')?.value;
-    const nickname = document.getElementById('reg-nickname').value.trim();
-    const privacyConsent = document.getElementById('consent-privacy').checked;
-
-    if (!realName) {
-      showToast("⚠️ 이름을 기입해 주세요.", "warn");
-      return;
-    }
-
-    if (!age || !gender || !nickname) {
-      showToast("⚠️ 모든 프로필 설정 항목을 완료해 주세요.", "warn");
-      return;
-    }
-
-    if (!privacyConsent) {
-      showToast("⚠️ 개인정보 수집 및 이용에 동의하셔야 플레이할 수 있습니다.", "warn");
-      return;
-    }
-
-    // Set user properties
-    this.currentUser.realName = realName;
-    this.currentUser.age = age;
-    this.currentUser.gender = gender;
-    this.currentUser.nickname = nickname;
-    if (!this.currentUser.xp) this.currentUser.xp = 0;
-    if (!this.currentUser.level) this.currentUser.level = 1;
-
-    this.saveProfile();
-
-    this.renderDashboard();
-    this.switchView('dashboard');
-    this.switchTab('dashboard');
+    this.registerWithPassword();
   }
 
   logout() {
@@ -5090,23 +4871,12 @@ class CineMasterApp {
       this.currentUser = null;
       localStorage.removeItem('cinemaster_user');
       
-      // OTP 상태 초기화
-      this._otpEmail = null;
-      this._otpExpiry = 0;
-      this._otpAttempts = 0;
-      this._otpLastSentAt = 0;
-      clearInterval(this._otpTimerId);
-      this._otpTimerId = null;
-      const emailStep = document.getElementById('otp-step-email');
-      const codeStep  = document.getElementById('otp-step-code');
-      if (emailStep) emailStep.style.display = 'block';
-      if (codeStep)  codeStep.style.display  = 'none';
-      const emailInput = document.getElementById('otp-email-input');
-      const codeInput  = document.getElementById('otp-code-input');
-      if (emailInput) emailInput.value = '';
-      if (codeInput)  codeInput.value  = '';
+      const loginForm = document.getElementById('login-form');
+      if (loginForm) loginForm.reset();
 
-      document.getElementById('form-register').reset();
+      const regForm = document.getElementById('form-register');
+      if (regForm) regForm.reset();
+
       this.switchView('login');
     }
   }
@@ -5240,10 +5010,19 @@ class CineMasterApp {
       appContainer.style.visibility = viewId === 'login' ? 'hidden' : 'visible';
     }
 
-    // 회원가입 화면 진입 시 인증된 이메일 표시
+    // 회원가입 화면 진입 시 로그인 화면의 이메일을 자동 입력, 닉네임 생성
     if (viewId === 'register') {
-      const emailInput = document.getElementById('reg-email');
-      if (emailInput) emailInput.value = this.currentUser?.email || '';
+      const regEmail = document.getElementById('reg-email');
+      const loginEmail = document.getElementById('login-email');
+      if (regEmail && loginEmail && loginEmail.value) {
+        regEmail.value = loginEmail.value;
+      }
+      this.generateNickname();
+    }
+    // 로그인 화면 진입 시 비밀번호 필드 초기화
+    if (viewId === 'login') {
+      const pwField = document.getElementById('login-password');
+      if (pwField) pwField.value = '';
     }
   }
 
