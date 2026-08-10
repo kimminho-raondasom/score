@@ -3277,7 +3277,7 @@ html, body, .app-container, .view-section, .glass-card {
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">campaign</span> 명대사 퀴즈</span>
         </div>
         <div class="login-btn-area">
-          <div id="login-form">
+          <form id="login-form" onsubmit="app.loginWithPassword(); return false;">
             <input type="email" id="login-email" class="form-control" placeholder="이메일 주소 입력"
               aria-label="이메일 주소"
               style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;"
@@ -3286,16 +3286,16 @@ html, body, .app-container, .view-section, .glass-card {
               aria-label="비밀번호"
               style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;margin-top:10px;"
               autocomplete="current-password">
-            <button id="btn-login" onclick="app.loginWithPassword()"
+            <button type="submit" id="btn-login"
               style="background:#fff;color:#1a1a1a;border:none;padding:14px 24px;font-size:0.92rem;font-weight:600;cursor:pointer;width:100%;margin-top:10px;font-family:'Noto Sans KR',sans-serif;">
               로그인
             </button>
             <div style="text-align:center;margin-top:14px;">
               <span style="color:rgba(255,255,255,0.45);font-size:0.8rem;">계정이 없으신가요? </span>
-              <a href="javascript:void(0)" onclick="app.switchView('register')"
+                             <a href="javascript:void(0)" onclick="app.switchView('register')"
                 style="color:var(--rose);font-size:0.8rem;text-decoration:underline;cursor:pointer;">회원가입</a>
             </div>
-          </div>
+          </form>
 
           <p class="login-terms">계속 진행하면 <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">이용약관</a> 및 <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">개인정보 처리방침</a>에 동의하는 것으로 간주됩니다.</p>
         </div>
@@ -4657,7 +4657,7 @@ class CineMasterApp {
   }
 
   saveProfile() {
-    if (this.currentUser && !this.currentQuiz?.groupMode) {
+    if (this.currentUser) {
       try { localStorage.setItem('cinemaster_user', JSON.stringify(this.currentUser)); } catch(e) {}
     }
   }
@@ -4807,6 +4807,9 @@ class CineMasterApp {
 
   // ── 비밀번호 인증 ───────────────────────────────────────────────────────
   async hashPassword(password) {
+    if (!window.crypto || !window.crypto.subtle) {
+      throw new Error('이 브라우저는 보안 로그인을 지원하지 않습니다. 최신 브라우저를 이용해 주세요.');
+    }
     const encoder = new TextEncoder();
     const data = encoder.encode(password);
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
@@ -4847,7 +4850,7 @@ class CineMasterApp {
           gender: data.user.gender || '',
           xp: data.user.xp || 0,
           level: data.user.level || 1,
-          stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
+          stats: data.user.stats || { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
         };
         this.saveProfile();
         showToast('로그인되었습니다!', 'success', 2000);
@@ -4922,7 +4925,7 @@ class CineMasterApp {
           gender: data.user.gender || '',
           xp: data.user.xp || 0,
           level: data.user.level || 1,
-          stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
+          stats: data.user.stats || { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
         };
         this.saveProfile();
         showToast('가입이 완료되었습니다!', 'success', 2500);
@@ -4963,7 +4966,8 @@ class CineMasterApp {
     this.playSynthSound('click');
     if (confirm("로그아웃 하시겠습니까?")) {
       this.currentUser = null;
-      localStorage.removeItem('cinemaster_user');
+      try { localStorage.removeItem('cinemaster_user'); } catch(e) {}
+      try { localStorage.removeItem('cinemaster_achievements'); } catch(e) {}
       
       const loginForm = document.getElementById('login-form');
       if (loginForm) loginForm.reset();
@@ -4971,6 +4975,7 @@ class CineMasterApp {
       const regForm = document.getElementById('form-register');
       if (regForm) regForm.reset();
 
+      history.replaceState(null, '', '#login');
       this.switchView('login');
     }
   }
@@ -5119,6 +5124,10 @@ class CineMasterApp {
       if (regEmail && loginEmail && loginEmail.value) {
         regEmail.value = loginEmail.value;
       }
+      const regPass = document.getElementById('reg-password');
+      const regPassConfirm = document.getElementById('reg-password-confirm');
+      if (regPass) regPass.value = '';
+      if (regPassConfirm) regPassConfirm.value = '';
       this.generateNickname();
     }
     // 로그인 화면 진입 시 비밀번호 필드 초기화
@@ -5153,6 +5162,7 @@ class CineMasterApp {
       this.renderForumFeed();
     } else if (tabId === 'dashboard') {
       // Hide sub-sections when returning to dashboard
+      this.renderDashboard();
       const scoreOpts = document.getElementById('score-quiz-options');
       if (scoreOpts) scoreOpts.style.display = 'none';
       const mainModes = document.getElementById('main-modes-container');
@@ -5350,7 +5360,7 @@ class CineMasterApp {
       const badge = isRevealed
         ? `<span class="movie-badge badge-revealed">정답 공개됨</span>`
         : `<span class="movie-badge badge-upcoming">D-${dDay}일 (${m.releaseDate})</span>`;
-      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const action = isRevealed
         ? `onclick="app.showRevealedResult('${safeTitle}')"`
         : `onclick="app.startSpecificQuiz('${safeTitle}', true, '${mode}')"`;
@@ -5500,7 +5510,7 @@ class CineMasterApp {
       const posterStyle = m.posterUrl
         ? `background-image: url('${m.posterUrl}')`
         : `background: var(--bg-secondary)`;
-      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       return `
          <div class="movie-card" onclick="app.startSpecificQuiz('${safeTitle}', false, '${mode}')" tabindex="0" role="button" aria-label="${safeTitle}">
           <div class="movie-poster" style="${posterStyle}" aria-hidden="true"></div>
@@ -5516,6 +5526,8 @@ class CineMasterApp {
 
   startSpecificQuiz(movieTitle, isUpcoming, mode = 'solo') {
     this.playSynthSound('click');
+
+    movieTitle = movieTitle.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 
     let selectedMovie;
     if (isUpcoming) {
@@ -5812,9 +5824,9 @@ class CineMasterApp {
     } else if (alreadyWrote) {
       inputArea = `<div class="comment-locked-msg">이미 한줄평을 남기셨습니다.</div>`;
     } else {
-      const safeKey = key.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeKey = key.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const safeMovieId = this.sanitizeId(movie.id || movie.title);
-      const safeMovieIdAttr = safeMovieId.replace(/'/g, "\\'");
+      const safeMovieIdAttr = safeMovieId.replace(/'/g, "&#39;");
       inputArea = `
         <div class="comment-input-area">
           <div style="font-size:0.68rem;color:var(--text-muted);margin-bottom:5px;letter-spacing:0.5px;">10자 이내 작성 가능</div>
@@ -6290,7 +6302,8 @@ class CineMasterApp {
     });
 
     if (isUpcoming) {
-      document.getElementById('q-score-audience').innerHTML = this.renderRadioOptions('quiz-audience', GAME_OPTIONS.audienceCat);
+      const audienceEl = document.getElementById('q-score-audience');
+      if (audienceEl) audienceEl.innerHTML = this.renderRadioOptions('quiz-audience', GAME_OPTIONS.audienceCat);
     }
     document.getElementById('q-score-seats').innerHTML = this.renderRadioOptions('quiz-seats', GAME_OPTIONS.seatsCat);
     document.getElementById('q-score-seat-ratio').innerHTML = this.renderRadioOptions('quiz-seat-ratio', GAME_OPTIONS.seatRatioCat);
@@ -6671,8 +6684,8 @@ class CineMasterApp {
       const posterStyle = posterUrl
         ? `background-image:url('${posterUrl}');background-size:cover;background-position:center;`
         : `background:var(--bg-secondary);`;
-      const safeTitle = c.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      const safeAnswer = correctAnswerTitle.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeTitle = c.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeAnswer = correctAnswerTitle.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       return `
         <div class="filmo-choice-card hover-lift" onclick="app.gradeFilmoQuiz('${safeTitle}', ${c.correct}, '${safeAnswer}', ${isNegativeQuestion})">
           <div class="filmo-choice-poster" style="${posterStyle}">
@@ -6783,8 +6796,8 @@ class CineMasterApp {
            const posterStyle = found
              ? `background-image:url('${found.posterUrl}');background-size:cover;background-position:center;`
              : `background:var(--bg-secondary);`;
-           const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
-           const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+           const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+           const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
            return `
              <div class="filmo-choice-card hover-lift" onclick="app.gradeLinesQuoteQuiz('${safeTitle}', '${safeCorrect}')">
                <div class="filmo-choice-poster" style="${posterStyle}">
@@ -7845,9 +7858,9 @@ class CineMasterApp {
         wrongTitles = [...wrongTitles, ...extra];
       }
       const options = this.shuffleArray([movie.title, ...wrongTitles]);
-      const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       choicesEl.innerHTML = options.map(title => {
-        const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
         return `
           <div class="filmo-choice-card hover-lift" onclick="app.gradeOrdinaryQuiz('${safeTitle}', '${safeCorrect}')">
             <div class="filmo-choice-label" style="padding:14px 8px;">${title}</div>
@@ -8525,7 +8538,7 @@ class CineMasterApp {
       : []);
     this._buildPosterTrack('poster-track-special', specialMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "\\'");
+        const t = movie.title.replace(/'/g, "&#39;");
         return `app.startSpecificAiQuizForMovie('${t}')`;
       }
     );
@@ -8544,7 +8557,7 @@ class CineMasterApp {
     }
     this._buildPosterTrack('poster-track-challenge', challengeMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "\\'");
+        const t = movie.title.replace(/'/g, "&#39;");
         return `app.startSpecificChallengeQuiz('${t}')`;
       }
     );
@@ -8566,7 +8579,7 @@ class CineMasterApp {
     }
     this._buildPosterTrack('poster-track-ordinary', ordinaryMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "\\'");
+        const t = movie.title.replace(/'/g, "&#39;");
         return `app.startSpecificOrdinaryQuiz('${t}')`;
       }
     );
@@ -8588,7 +8601,7 @@ class CineMasterApp {
     }
     this._buildPosterTrack('poster-track-regular', regularMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "\\'");
+        const t = movie.title.replace(/'/g, "&#39;");
         return `app.startSpecificFilmoQuiz('${t}')`;
       }
     );
@@ -8603,7 +8616,7 @@ class CineMasterApp {
       : []);
     this._buildPosterTrack('poster-track-easy', easyMovies,
       (movie) => {
-        const t = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        const t = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "&#39;");
         return `app._startLinesWithMovie('${t}')`;
       }
     );
