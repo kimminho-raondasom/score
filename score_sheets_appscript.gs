@@ -66,22 +66,16 @@ function _verifyOtpInternal(email, inputCode) {
 
 // ── 이메일 전송 헬퍼 ────────────────────────────────────────────────────────
 function _sendOtpEmail(toEmail, code) {
+  console.log('[sendOtp] Sending to:', toEmail, 'code:', code);
   MailApp.sendEmail({
     to: toEmail,
-    subject: '[score] 이메일 인증 코드',
+    subject: '[score] Email Verification',
     body:
-      'score 앱 가입 인증 코드입니다.\n\n' +
-      '인증 코드: ' + code + '\n\n' +
-      '이 코드는 5분간 유효합니다.\n' +
-      '본인이 요청하지 않은 경우 이 메일을 무시하세요.',
-    htmlBody:
-      '<div style="font-family:\'Noto Sans KR\',sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;background:#fdfbf7;border:1px solid #e0dbd4;">' +
-      '<p style="font-size:1.6rem;font-weight:700;letter-spacing:3px;margin:0 0 24px;color:#2c2a27;">score<span style="color:#e6b87a;">.</span></p>' +
-      '<p style="color:#4a453f;font-size:0.95rem;margin-bottom:16px;">이메일 인증 코드입니다.</p>' +
-      '<div style="background:#2c2a27;color:#fff;font-size:2rem;font-weight:700;letter-spacing:12px;text-align:center;padding:20px;margin:24px 0;">' + code + '</div>' +
-      '<p style="color:#8a7f78;font-size:0.8rem;margin-top:24px;">이 코드는 5분간 유효합니다. 본인이 요청하지 않은 경우 무시하세요.</p>' +
-      '</div>'
+      'Your verification code: ' + code + '\n\n' +
+      'This code is valid for 5 minutes.\n' +
+      'If you did not request this, please ignore this email.'
   });
+  console.log('[sendOtp] Sent OK to:', toEmail);
 }
 
 function _ensureSheet(sheet) {
