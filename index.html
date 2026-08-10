@@ -4827,73 +4827,8 @@ class CineMasterApp {
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       showToast('유효한 이메일 주소를 입력해 주세요.', 'warn'); return;
     }
-<<<<<<< HEAD
     if (!password || password.length < 4) {
       showToast('비밀번호는 4자 이상이어야 합니다.', 'warn'); return;
-=======
-
-    // 남용 방지: 30초 이내 재요청 차단 (MailApp 일일 발송 한도 보호)
-    const now = Date.now();
-    if (this._otpLastSentAt && now - this._otpLastSentAt < 30 * 1000) {
-      const waitSec = Math.ceil((30 * 1000 - (now - this._otpLastSentAt)) / 1000);
-      showToast(`잠시 후 다시 시도해 주세요. (${waitSec}초 남음)`, 'warn');
-      return;
-    }
-    this._otpLastSentAt = now;
-
-    // 서버(GAS)에서 OTP 코드 생성 → 이메일 발송 (클라이언트는 코드를 알 수 없음)
-    this._otpEmail     = email;
-    this._otpExpiry    = Date.now() + 5 * 60 * 1000; // 타이머 표시용 (5분)
-    this._otpAttempts  = 0;
-
-    const btn = document.getElementById('btn-send-otp');
-    if (btn) { btn.disabled = true; btn.textContent = '전송 중…'; }
-
-    const otpUrl = `${SCORE_SHEET_WEBHOOK_URL}?action=sendOtp&email=${encodeURIComponent(email)}`;
-    fetch(otpUrl)
-    .then(r => r.json())
-    .then(data => {
-      if (data.status !== 'ok') throw new Error(data.message || 'send failed');
-      showToast(`${email} 으로 인증 코드를 전송했습니다.`, 'info', 3500);
-      document.getElementById('otp-step-email').style.display = 'none';
-      document.getElementById('otp-step-code').style.display = 'block';
-      this._startOtpTimer();
-    })
-    .catch(err => {
-      console.error('OTP send error:', err);
-      showToast(`인증 코드 전송에 실패했습니다: ${err.message}`, 'warn', 4000);
-    })
-    .finally(() => {
-      if (btn) { btn.disabled = false; btn.textContent = '인증코드 받기'; }
-    });
-  }
-
-  _startOtpTimer() {
-    clearInterval(this._otpTimerId);
-    const display = document.getElementById('otp-timer-display');
-    const update = () => {
-      const remaining = Math.max(0, this._otpExpiry - Date.now());
-      const m = Math.floor(remaining / 60000);
-      const s = Math.floor((remaining % 60000) / 1000);
-      if (display) {
-        display.textContent = `유효 시간: ${m}:${String(s).padStart(2,'0')}`;
-        display.classList.toggle('expired', remaining === 0);
-      }
-      if (remaining === 0) clearInterval(this._otpTimerId);
-    };
-    update();
-    this._otpTimerId = setInterval(update, 1000);
-  }
-
-  verifyOtp() {
-    const entered = (document.getElementById('otp-code-input')?.value || '').trim();
-    if (!entered) { showToast('인증 코드를 입력해 주세요.', 'warn'); return; }
-
-    // 브루트포스 방지: 최대 시도 횟수 초과 시 차단
-    if (this._otpAttempts >= this._otpMaxAttempts) {
-      showToast('시도 횟수를 초과했습니다. 인증 코드를 재전송해 주세요.', 'error');
-      return;
->>>>>>> a50727bf9189c969bfb209bc258856954adf884a
     }
 
     const btn = document.getElementById('btn-login');
@@ -4935,6 +4870,84 @@ class CineMasterApp {
       showToast('서버 연결에 실패했습니다. 다시 시도해 주세요.', 'warn');
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = '로그인'; }
+    }
+  }
+
+  async registerWithPassword() {
+    this.playSynthSound('click');
+    const email = (document.getElementById('reg-email')?.value || '').trim();
+    const password = (document.getElementById('reg-password')?.value || '').trim();
+    const passwordConfirm = (document.getElementById('reg-password-confirm')?.value || '').trim();
+    const realName = document.getElementById('reg-realname').value.trim();
+    const age = document.getElementById('reg-age').value;
+    const gender = document.querySelector('input[name="reg-gender"]:checked')?.value;
+    const nickname = document.getElementById('reg-nickname').value.trim();
+    const privacyConsent = document.getElementById('consent-privacy').checked;
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('유효한 이메일 주소를 입력해 주세요.', 'warn'); return;
+    }
+    if (!password || password.length < 4) {
+      showToast('비밀번호는 4자 이상이어야 합니다.', 'warn'); return;
+    }
+    if (password !== passwordConfirm) {
+      showToast('비밀번호가 일치하지 않습니다.', 'warn'); return;
+    }
+    if (!realName) {
+      showToast('본인 이름을 기입해 주세요.', 'warn'); return;
+    }
+    if (!age || !gender || !nickname) {
+      showToast('모든 프로필 설정 항목을 완료해 주세요.', 'warn'); return;
+    }
+    if (!privacyConsent) {
+      showToast('개인정보 수집 및 이용에 동의하셔야 가입할 수 있습니다.', 'warn'); return;
+    }
+
+    const btn = document.getElementById('btn-submit-register');
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = '<span>가입 중…</span><span class="material-symbols-outlined">hourglass_top</span>';
+    }
+
+    try {
+      const hash = await this.hashPassword(password);
+      const response = await fetch(SCORE_SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'register', email: email, passwordHash: hash, nickname: nickname, realName: realName, age: age, gender: gender })
+      });
+      const data = await response.json();
+
+      if (data.status === 'ok') {
+        this.currentUser = {
+          uid: data.user.uid,
+          email: data.user.email,
+          realName: data.user.realName || '',
+          nickname: data.user.nickname || '',
+          age: data.user.age || '',
+          gender: data.user.gender || '',
+          xp: data.user.xp || 0,
+          level: data.user.level || 1,
+          stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
+        };
+        this.saveProfile();
+        showToast('가입이 완료되었습니다!', 'success', 2500);
+        setTimeout(() => {
+          this.renderDashboard();
+          this.switchView('dashboard');
+          this.switchTab('dashboard');
+        }, 800);
+      } else {
+        showToast(data.message || '가입에 실패했습니다.', 'warn');
+      }
+    } catch (e) {
+      console.error('register error:', e);
+      showToast('서버 연결에 실패했습니다. 다시 시도해 주세요.', 'warn');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<span>score 리그 입장하기</span><span class="material-symbols-outlined">rocket_launch</span>';
+      }
     }
   }
 
@@ -5086,9 +5099,11 @@ class CineMasterApp {
     }
 
     // ── 히스토리 스택에 현재 화면 상태 push (뒤로가기 지원) ──────────────
-    const currentState = history.state;
-    if (!currentState || currentState.viewId !== viewId) {
-      history.pushState({ viewId }, '', '#' + viewId);
+    if (target) {
+      const currentState = history.state;
+      if (!currentState || currentState.viewId !== viewId) {
+        history.pushState({ viewId }, '', '#' + viewId);
+      }
     }
 
     // 바텀 내비 표시/숨김
@@ -5195,32 +5210,32 @@ class CineMasterApp {
   // ── Challenge 서브메뉴 ──────────────────────────────────────────────────
   showChallengeOptions() {
     this.playSynthSound('click');
-    document.getElementById('main-modes-container').style.display = 'none';
+    const mm = document.getElementById('main-modes-container'); if (mm) mm.style.display = 'none';
     ['score-quiz-options','filmo-quiz-options','filmo-battle-options',
      'lines-quiz-options','lines-battle-options','ordinary-quiz-options'].forEach(id => {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
-    document.getElementById('challenge-quiz-options').style.display = 'block';
+    const cqo = document.getElementById('challenge-quiz-options'); if (cqo) cqo.style.display = 'block';
   }
 
   // ── Ordinary 서브메뉴 ────────────────────────────────────────────────────
   showOrdinaryOptions() {
     this.playSynthSound('click');
-    document.getElementById('main-modes-container').style.display = 'none';
+    const mm = document.getElementById('main-modes-container'); if (mm) mm.style.display = 'none';
     ['score-quiz-options','filmo-quiz-options','filmo-battle-options',
      'lines-quiz-options','lines-battle-options','challenge-quiz-options'].forEach(id => {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
-    document.getElementById('ordinary-quiz-options').style.display = 'block';
+    const oqo = document.getElementById('ordinary-quiz-options'); if (oqo) oqo.style.display = 'block';
   }
 
   // ── Regular (필모그래피) 서브메뉴 ────────────────────────────────────────
   showFilmoOptions() {
     this.playSynthSound('click');
-    document.getElementById('main-modes-container').style.display = 'none';
-    document.getElementById('score-quiz-options').style.display = 'none';
-    document.getElementById('upcoming-list-section').style.display = 'none';
-    document.getElementById('released-search-section').style.display = 'none';
+    const mm = document.getElementById('main-modes-container'); if (mm) mm.style.display = 'none';
+    const sqo = document.getElementById('score-quiz-options'); if (sqo) sqo.style.display = 'none';
+    const uls = document.getElementById('upcoming-list-section'); if (uls) uls.style.display = 'none';
+    const rss = document.getElementById('released-search-section'); if (rss) rss.style.display = 'none';
     const filmoBattle = document.getElementById('filmo-battle-options');
     if (filmoBattle) filmoBattle.style.display = 'none';
     const linesOpts = document.getElementById('lines-quiz-options');
@@ -5231,13 +5246,13 @@ class CineMasterApp {
       const el = document.getElementById(id); if (el) el.style.display = 'none';
     });
 
-    document.getElementById('filmo-quiz-options').style.display = 'block';
+    const fqo = document.getElementById('filmo-quiz-options'); if (fqo) fqo.style.display = 'block';
   }
 
   showFilmoBattleOptions(subType) {
     this.playSynthSound('click');
     this._filmoSubType = subType; // 'director' | 'actor_kr' | 'actor_foreign'
-    document.getElementById('filmo-quiz-options').style.display = 'none';
+    const fqo = document.getElementById('filmo-quiz-options'); if (fqo) fqo.style.display = 'none';
 
     const titleEl = document.getElementById('filmo-battle-title');
     if (titleEl) {
@@ -5250,16 +5265,16 @@ class CineMasterApp {
     if (soloBtn) soloBtn.onclick = () => this.startQuiz('filmo', subType, 'solo');
     if (groupBtn) groupBtn.onclick = () => this.startQuiz('filmo', subType, 'group');
 
-    document.getElementById('filmo-battle-options').style.display = 'block';
+    const fbo = document.getElementById('filmo-battle-options'); if (fbo) fbo.style.display = 'block';
   }
 
   // ── Light (명대사/초성) 서브메뉴 ────────────────────────────────────────
   showLinesOptions() {
     this.playSynthSound('click');
-    document.getElementById('main-modes-container').style.display = 'none';
-    document.getElementById('score-quiz-options').style.display = 'none';
-    document.getElementById('upcoming-list-section').style.display = 'none';
-    document.getElementById('released-search-section').style.display = 'none';
+    const mm = document.getElementById('main-modes-container'); if (mm) mm.style.display = 'none';
+    const sqo = document.getElementById('score-quiz-options'); if (sqo) sqo.style.display = 'none';
+    const uls = document.getElementById('upcoming-list-section'); if (uls) uls.style.display = 'none';
+    const rss = document.getElementById('released-search-section'); if (rss) rss.style.display = 'none';
     const linesOpts = document.getElementById('lines-quiz-options');
     const linesBattle = document.getElementById('lines-battle-options');
     if (linesBattle) linesBattle.style.display = 'none';
@@ -6734,10 +6749,10 @@ class CineMasterApp {
      const choseongAnswerCard = document.getElementById('lines-choseong-answer-card');
 
      // subType 우선 처리, 해당 데이터 없으면 fallback
-     const showQuote = (subType === 'quote' && hasLines) ||
+     let showQuote = (subType === 'quote' && hasLines) ||
                        (subType !== 'choseong' && hasLines && !hasChoseong) ||
                        (subType === null && hasLines);
-     const showChoseong = (subType === 'choseong' && hasChoseong) ||
+     let showChoseong = (subType === 'choseong' && hasChoseong) ||
                           (subType !== 'quote' && hasChoseong && !hasLines) ||
                           (subType === null && hasChoseong && !hasLines);
 
