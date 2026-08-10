@@ -176,10 +176,16 @@ function doGet(e) {
     }
     var code = _generateOtpCode();
     _storeOtp(toEmail, code);
-    _sendOtpEmail(toEmail, code);
-    return ContentService
-      .createTextOutput(JSON.stringify({ status: 'ok' }))
-      .setMimeType(ContentService.MimeType.JSON);
+    try {
+      _sendOtpEmail(toEmail, code);
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', sentTo: toEmail }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } catch (mailErr) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'error', message: 'mail_send_failed: ' + mailErr.message }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
   }
 
   // ── OTP 검증 (서버에서 코드 비교) ────────────────────────────────────
