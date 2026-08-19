@@ -1,4 +1,7 @@
-// score 데이터베이스 — 자동 갱신 (2026-08-14 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-08-20 08:00 KST)
+// MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
+// SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
+
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -121,7 +124,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-08-14 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-08-20 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -145,6 +148,17 @@ const MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/ib6v6qUXzez1x2qIOLN7C0yJNPQ.jpg"
   },
   {
+    id: "kobis_20262770", title: "\uc2a4\ud30c\uc774\ub354\ub9e8: \ube0c\ub79c\ub4dc \ub274 \ub370\uc774", director: "\ub370\uc2a4\ud2f4 \ub2e4\ub2c8\uc5d8 \ud06c\ub9ac\ud2bc",
+    cast: ["톰 홀랜드", "젠데이아 콜먼", "세이디 싱크", "제이콥 배덜런", "존 번탈"],
+    releaseDate: "2026-07-29", genre: ["액션", "어드벤처", "판타지"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3145\u314d\u3147\u3137\u3141 \u3142\u3139\u3137 \u3134 \u3137\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/78eMFkcvlPcfWCe1GNgNiBpFIDz.jpg"
+  },
+  {
     id: "kobis_20239670", title: "\ubca0\ud14c\ub7912", director: "\ub958\uc2b9\uc644",
     cast: ["황정민", "정해인", "장윤주", "정만식", "신승환"],
     releaseDate: "2024-09-13", genre: ["액션", "범죄"],
@@ -165,17 +179,6 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u3147\u3142\u314c \u3142\u3131 \u3148",
     posterUrl: "https://image.tmdb.org/t/p/w300/l18o0AK18KS118tWeROOKYkF0ng.jpg"
-  },
-  {
-    id: "kobis_20262770", title: "\uc2a4\ud30c\uc774\ub354\ub9e8: \ube0c\ub79c\ub4dc \ub274 \ub370\uc774", director: "\ub370\uc2a4\ud2f4 \ub2e4\ub2c8\uc5d8 \ud06c\ub9ac\ud2bc",
-    cast: ["톰 홀랜드", "젠데이아 콜먼", "세이디 싱크", "제이콥 배덜런", "존 번탈"],
-    releaseDate: "2026-07-29", genre: ["액션", "어드벤처", "판타지"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3145\u314d\u3147\u3137\u3141 \u3142\u3139\u3137 \u3134 \u3137\u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/78eMFkcvlPcfWCe1GNgNiBpFIDz.jpg"
   },
   {
     id: "kobis_20252402", title: "\uad70\uccb4", director: "\uc5f0\uc0c1\ud638",
@@ -209,6 +212,17 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u3148\u3142\u3138",
     posterUrl: "https://image.tmdb.org/t/p/w300/aASLRiO8p9xLIvG9EHXSyZ71sPl.jpg"
+  },
+  {
+    id: "kobis_20250654", title: "\uc624\ub514\uc138\uc774", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub180\ub780",
+    cast: ["맷 데이먼", "톰 홀랜드", "앤 해서웨이", "로버트 패틴슨", "젠데이아 콜먼"],
+    releaseDate: "2026-08-05", genre: ["액션", "드라마", "어드벤처"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3137\u3145\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/8ze9OcVuFiy94s6FFPvsn4oC2e1.jpg"
   },
   {
     id: "kobis_20254501", title: "F1 \ub354 \ubb34\ube44", director: "\uc870\uc149 \ucf54\uc2e0\uc2a4\ud0a4",
@@ -330,42 +344,11 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u314c\u3147 \u3145\u314c\u3139",
     posterUrl: "https://image.tmdb.org/t/p/w300/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg"
-  },
-  {
-    id: "kobis_20243561", title: "\uc5b4\uca54\uc218\uac00\uc5c6\ub2e4", director: "\ubc15\ucc2c\uc6b1",
-    cast: ["이병헌", "손예진", "박희순", "이성민", "염혜란"],
-    releaseDate: "2025-09-24", genre: ["스릴러", "코미디"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "251~300\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3149\u3145\u3131\u3147\u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/9w7WGjQes0Cs0s4U3Qr09Tg1Sra.jpg"
   }
 ];
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
-  {
-    id: "upcoming_20264080", title: "\uc6cc\ud398\uc5b4", director: "\uc54c\ub809\uc2a4 \uac00\ub79c\ub4dc",
-    cast: ["조셉 퀸", "찰스 멜튼", "코스모 자비스"],
-    releaseDate: "2026-08-19", genre: ["액션", "드라마", "전쟁"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8GhjvK3T14yx2CVYCeJuUYfMZUI.jpg",
-    isRevealed: false,
-    overview: "2006\ub144 \uc774\ub77c\ud06c \ub77c\ub9c8\ub514, \ubbf8\uad6d \ub124\uc774\ube44 \uc530 \uc54c\ud30c \uc6d0 \uc18c\ub300\ub294 \uc57c\uac04 \uc815\ucc30 \uc784\ubb34 \uc218\ud589 \uc911 \ud604\uc9c0 2\uce35 \uc8fc\ud0dd\uc744 \uc810\ub839\ud574 OP1\uc73c\ub85c \uc0bc\ub294\ub2e4. \ud1b5\uc2e0\ubcd1 \ub808\uc774 \uba58\ub3c4\uc0ac\ub294 \uacf5\uc911 \uc9c0\uc6d0\ud300\uacfc \uad50\uc2e0\ud558\uba70 \ud300\uc758 \uc704\uce58\ub97c \ubaa8\ub2c8\ud130\ub9c1\ud558\uace0, \uc800\uaca9\uc218\uc778 \uc758\ubb34\ubcd1 \uc5d8\ub9ac\uc5c7\uc740 \ub3d9\ub8cc \uc800\uaca9\uc218 \ud504\ub7ad\ud06c\uc640 \ud568\uaed8 \uac70\ub9ac\ub97c \uac10\uc2dc\ud558\uace0 \uc788\ub2e4. \uc774\ub54c, \ud55c \ubc1c\uc758 \uc218\ub958\ud0c4\uc774 \uc800\uaca9\uc218\uc758 \ubc29\uc73c\ub85c \ub0a0\uc544\ub4e4\uace0 \uc54c\ud30c \uc6d0\uc740 \uc774\ub77c\ud06c \uad70\uc758 \uc9d1\uc911 \uacf5\uaca9\uc744 \ubc1b\ub294\ub2e4. \uae09\uc2b5\uc73c\ub85c \ucd08\ud1a0\ud654\uac00 \ub41c \uc0c1\ud669, \ud3ed\ubc1c\ubb3c\ub85c \uc911\uc0c1\uc744 \uc785\uc740 \uc5d8\ub9ac\uc5c7\uacfc \ubd80\uc0ac\uad00 \uc0d8\uc744 \uc548\uc804\ud558\uac8c \uae30\uc9c0\ub85c \ud6c4\uc1a1\ud574\uc57c\ub9cc \ud55c\ub2e4."
-  },
-  {
-    id: "upcoming_20233757", title: "\ucf58\ud06c\ub9ac\ud2b8 \ub179\uc0c9\uc12c", director: "\uc774\uc131\ubbfc",
-    cast: ["이성민", "우종영"],
-    releaseDate: "2026-08-19", genre: ["다큐멘터리"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/pnZy0mRf0c0PAqBTFdquK4zWeNY.jpg",
-    isRevealed: false,
-    overview: "\uac1c\ud3ec\uc8fc\uacf5 \ud0a4\uc988\uc778 \u2018\ub098\u2019\ub294 \uc5b4\ub9b0 \uc2dc\uc808 \ucd94\uc5b5\uc774 \ub2f4\uae34 \uc544\ud30c\ud2b8\uac00 \uc7ac\uac1c\ubc1c\ub85c \uc0ac\ub77c\uc9c4\ub2e4\ub294 \uc18c\uc2dd\uc744 \ub4e3\uace0 \uadf8\uacf3\uc5d0 \uc5bd\ud78c \uc0ac\ub78c\ub4e4\uc758 \uc774\uc57c\uae30\ub97c \uae30\ub85d\ud558\uae30 \uc2dc\uc791\ud55c\ub2e4. \ubaa8\ub450\uac00 \uc544\ud30c\ud2b8 \ub2e8\uc9c0 \uc18d \ub179\uc0c9\uc12c\uc744 \uae30\uc5b5\ud558\uace0 \uc788\uc74c\uc744 \uc54c\uac8c \ub418\uace0 \ub098\ubb34\uc640 \uadf8 \uc548\uc5d0 \ub2f4\uae34 \uc2dc\uac04\uc744 \uc9c0\ud0a4\uace0\uc790 \ud558\ub294\ub370\u22ef"
-  },
   {
     id: "upcoming_20264035", title: "\uc778\uc2dc\ub514\uc5b4\uc2a4: \uadf8\ub4e4\uc774 \ub118\uc5b4\uc654\ub2e4", director: "\uc81c\uc774\ucf65 \uccb4\uc774\uc2a4",
     cast: ["브랜든 페레아", "로라 고든", "린 샤예"],
@@ -375,6 +358,46 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/aKkPEqUtbEtCB5WWJWanHJPFsnZ.jpg",
     isRevealed: false,
     overview: "\uc0ac\ud6c4\uc138\uacc4\uc758 \uc545\ub839\ub4e4\ub85c\ubd80\ud130 \ub538\uacfc \uc77c\uc0c1\uc744 \uc9c0\ud0a4\uae30 \uc704\ud574 \uc0ac\ud22c\ub97c \ubc8c\uc774\ub294 \uc774\uc57c\uae30"
+  },
+  {
+    id: "upcoming_20265838", title: "\ud0ac\ub9c1 AI", director: "\ud53c\ud130 \uc6e8\ubc84",
+    cast: [],
+    releaseDate: "2026-08-21", genre: ["액션", "스릴러", "공포(호러)", "SF"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/7JWt4B4KN29ITY2CDTVxCqViMEv.jpg",
+    isRevealed: false,
+    overview: "\ud300\uc6cc\ud06c \uac15\ud654\ub97c \uc704\ud55c \uc6cc\ud06c\uc20d\uc5d0 \ucc38\uac00\ud55c \uc9c1\uc7a5\uc778\ub4e4\uc774 \uc138\ub974\ube44\uc544\uc758 \uc678\ub534 \uc232\uc73c\ub85c \ud5a5\ud55c\ub2e4. \ud558\uc9c0\ub9cc \uadf8\ub4e4\uc744 \uae30\ub2e4\ub9ac\uace0 \uc788\ub358 \uac83\uc740 \ud1b5\uc81c\ub97c \ubc97\uc5b4\ub09c \ucca8\ub2e8 AI \ub4dc\ub860. \uc678\ubd80\uc640\uc758 \ud1b5\uc2e0\ub9c8\uc800 \uc644\uc804\ud788 \ub04a\uae34 \ucc44 \ud0c8\ucd9c\uad6c \uc5c6\ub294 \uc232\uc5d0 \uace0\ub9bd\ub41c \uc0ac\ub78c\ub4e4\uc740 \uc21c\uc2dd\uac04\uc5d0 \uc0ac\ub0e5\uac10\uc73c\ub85c \uc804\ub77d\ud558\uace0, \uc644\ubcbd\ud55c \uc0b4\uc0c1 \ub2a5\ub825\uc744 \uc9c0\ub2cc AI \ub4dc\ub860\uc744 \ud53c\ud574 \uac00\uc7a5 \uc6d0\ucd08\uc801\uc774\uace0 \ucc98\uc808\ud55c \uc0dd\uc874 \uc0ac\ud22c\ub97c \uc2dc\uc791\ud55c\ub2e4."
+  },
+  {
+    id: "upcoming_20247458", title: "\uacbd\uc8fc\uae30\ud589", director: "\uae40\ubbf8\uc870",
+    cast: ["이정은", "공효진", "박소담"],
+    releaseDate: "2026-08-26", genre: ["범죄"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2dAd2APyFUyJ6qEv9VFHdHQtQI6.jpg",
+    isRevealed: false,
+    overview: "\uc5c4\ub9c8 \uc625\uc2e4\uacfc \uc138 \ub538 \uc7a5\uc8fc, \uc601\uc8fc, \ub3d9\uc8fc\ub294 8\ub144 \uc804 \uc218\ud559\uc5ec\ud589\uc744 \ub5a0\ub09c \uc774\ud6c4 \ub2e4\uc2dc\ub294 \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub9c9\ub0b4 \uacbd\uc8fc\uc758 \uc0dd\uc77c\uc744 \ub9de\uc544 \ub2e8\uccb4 \ud2f0\uc154\uce20\uae4c\uc9c0 \ub9de\ucdb0 \uc785\uace0 \uacbd\uc8fc\ub85c \uac00\uc871\uc5ec\ud589\uc744 \ub5a0\ub09c\ub2e4. \uc5bc\ud54f \ub2e8\ub780\ud558\uace0 \ud654\ubaa9\ud55c \uac00\uc871\uc5ec\ud589\ucc98\ub7fc \ubcf4\uc774\uc9c0\ub9cc, \ubd09\uace0\ucc28 \ud2b8\ub801\ud06c\uc5d0\ub294 \ub0af\uc120 \ud55c \ub0a8\uc790\uac00 \uc2e4\ub824 \uc788\ub294\ub370\u2026"
+  },
+  {
+    id: "upcoming_20265331", title: "\uace0\uc591\uc774\ub97c \ub193\uc544\uc918", director: "\uc2dc\uac00\uc57c \ub2e4\uc774\uc2a4\ucf00",
+    cast: ["후지이 소마", "무라카미 유키노", "타니구치 란"],
+    releaseDate: "2026-08-26", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/4dS74FTvHkBzjCdZZSwfjwt4UQZ.jpg",
+    isRevealed: false,
+    overview: "\uc74c\uc545\uc744 \ud558\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \uc0ac\uc9c4\uc744 \ucc0d\ub294 \u2018\ub9c8\uc774\ucf54\u2019. \uc9c0\uce5c \ub9c8\uc74c\uc744 \ub2ec\ub798\uae30 \uc704\ud574 \ud734\uc9c1 \uc911\uc774\uc9c0\ub9cc \uc81c\ub300\ub85c \ub41c \uc74c\uc545 \uc791\uc5c5\ub3c4 \ud558\uc9c0 \ubabb\ud55c \ucc44 \uc2dc\uac04\ub9cc \ubcf4\ub0b4\uace0 \uc788\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \ub2e4\ub974\uac8c \u2018\ub9c8\uc774\ucf54\u2019\ub294 \uac1c\uc778\uc804\uae4c\uc9c0 \uc5f4\uba70 \uc131\uacf5\ud55c \uc0ac\uc9c4\uc791\uac00\uc5d0 \ud55c \ubc1c \ub354 \ub2e4\uac00\uc120\ub2e4. \u2018\ub9c8\uc774\ucf54\u2019\uc758 \uc804\uc2dc\ud68c \ub9c8\uc9c0\ub9c9 \ub0a0, \uc6b0\uc5f0\ud788 \uacfc\uac70\uc5d0 \ub9cc\ub0ac\ub358 \u2018\uc544\uc0ac\ucf54\u2019\uc640 \uc7ac\ud68c\ud558\uace0 \uacfc\uac70\uc758 \uae30\uc5b5\uc744 \ub5a0\uc62c\ub9ac\ub294 \u2018\ubaa8\ub9ac\u2019. \ub354 \uc774\uc0c1 \uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uacfc\uac70\uc640 \ud604\uc7ac \uc0ac\uc774\uc5d0\uc11c \u2018\ubaa8\ub9ac\u2019\ub294 \ubbf8\ucc98 \uc54c\uc544\ubcf4\uc9c0 \ubabb\ud588\ub358 \uc0ac\ub791\uc758 \ud754\uc801\uacfc \ub9c8\uc8fc\ud558\uac8c \ub418\ub294\ub370\u2026 \u201c\ub2e4\uc2dc \uad1c\ucc2e\uc544\uc9c8 \uc218 \uc788\uc744\uae4c?\u201d"
+  },
+  {
+    id: "upcoming_20250203", title: "\ud2b8\ub8e8\uba3c\uc758 \uc0ac\ub791", director: "\uae40\ub355\uc911",
+    cast: ["배유람", "이주우", "김신비"],
+    releaseDate: "2026-08-26", genre: ["SF", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/8Zb0UIeGV4mIaUbogykkts1L5oT.jpg",
+    isRevealed: false,
+    overview: "\uc18d\uae30\uc0ac \uc9c0\uc5f0\uc740 \uc5b4\ub290 \ub0a0\ubd80\ud130 \uc138\uc0c1\uc774 \uba48\ucd94\ub294 \uc774\uc0c1 \ud604\uc0c1\uc744 \ubaa9\uaca9\ud55c\ub2e4. \uc5d0\ub7ec\uac00 \ubc1c\uc0dd\ud558\uba74 \ubaa8\ub450\uac00 \ud558\ub358 \ud589\ub3d9\uc744 \uba48\ucd94\uace0 \uad73\uc5b4\ubc84\ub9ac\uc9c0\ub9cc, \ud2b8\ub8e8\uba3c\uc778 \uc9c0\uc5f0\ub9cc\uc740 \uadf8 \uc138\uacc4\uc5d0 \uc885\uc18d\ub418\uc9c0 \uc54a\uace0 \uc790\uc720\ub86d\uac8c \uc6c0\uc9c1\uc77c \uc218 \uc788\ub2e4. \ud63c\uc790\uac00 \uc544\ub2c8\ub77c\ub294 \uac78 \ud655\uc778\ud558\uace0 \uc2f6\uc5c8\ub358 \uc9c0\uc5f0\uc740 \ub610\ub2e4\ub978 \ud2b8\ub8e8\uba3c\uc744 \ucc3e\uc544 \ud5e4\ub9e4\ub2e4 \ud604\uc2dd\uacfc \ubb38\uc131\uc744 \ub9cc\ub09c\ub2e4. \uc14b\uc740 \uc774 \uac70\uc9d3 \uc138\uacc4\uc758 \ubc14\uae65\uc744 \ud5a5\ud574 \ud568\uaed8 \ub5a0\ub098\ub824 \ud558\uc9c0\ub9cc, \uc9c0\uc5f0\uc744 \uc0ac\uc774\uc5d0 \ub450\uace0 \ub450 \ub0a8\uc790 \uc0ac\uc774\uc5d0 \uade0\uc5f4\uc774 \uc0dd\uae30\uae30 \uc2dc\uc791\ud558\ub294\ub370\u2026"
   },
   {
     id: "upcoming_20263307", title: "\ub3c4\uadf8 \uc2a4\ud0c0: \ub9c8\uc9c0\ub9c9 \ud76c\ub9dd", director: "\ub9ac\ub4e4\ub9ac \uc2a4\ucf67",
@@ -407,16 +430,6 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "1982\ub144, \ud3c9\ud654\ub86d\ub358 \u2018\uc624\ud06c \uc2a4\ud2b8\ub9ac\ud2b8\u2019 \ub9c8\uc744\uc774 \ud558\ub8e8\uc544\uce68\uc5d0 \ud1b5\uc9f8\ub85c \uc120\uc0ac\uc2dc\ub300\ub85c \uc62e\uaca8\uc84c\ub2e4. \uc775\uc219\ud588\ub358 \uc9d1\uacfc \uace8\ubaa9\uc740 \uc21c\uc2dd\uac04\uc5d0 \uacf5\ub8e1\ub4e4\uc758 \uc0ac\ub0e5\ud130\ub85c \ubcc0\ud558\uace0, \uc721\uc9c0\uc640 \ud558\ub298, \ubb3c\uc18d\uae4c\uc9c0 \uc810\ub839\ud55c \uac70\ub300 \ud3ec\uc2dd\uc790\ub4e4\uc758 \ubb34\ucc28\ubcc4 \uacf5\uaca9\uc774 \uc2dc\uc791\ub41c\ub2e4! \uacfc\uc5f0 \u2018\ud50c\ub7ab\u2019 \uac00\uc871\uc740 \ubb34\uc0ac\ud788 \uc0b4\uc544\ub0a8\uc544 \uc6d0\ub798\uc758 \uc77c\uc0c1\uc73c\ub85c \ub3cc\uc544\uac08 \uc218 \uc788\uc744\uae4c?"
   },
   {
-    id: "upcoming_20265331", title: "\uace0\uc591\uc774\ub97c \ub193\uc544\uc918", director: "\uc2dc\uac00\uc57c \ub2e4\uc774\uc2a4\ucf00",
-    cast: ["후지이 소마", "무라카미 유키노", "타니구치 란"],
-    releaseDate: "2026-08-26", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/4dS74FTvHkBzjCdZZSwfjwt4UQZ.jpg",
-    isRevealed: false,
-    overview: "\uc74c\uc545\uc744 \ud558\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \uc0ac\uc9c4\uc744 \ucc0d\ub294 \u2018\ub9c8\uc774\ucf54\u2019. \uc9c0\uce5c \ub9c8\uc74c\uc744 \ub2ec\ub798\uae30 \uc704\ud574 \ud734\uc9c1 \uc911\uc774\uc9c0\ub9cc \uc81c\ub300\ub85c \ub41c \uc74c\uc545 \uc791\uc5c5\ub3c4 \ud558\uc9c0 \ubabb\ud55c \ucc44 \uc2dc\uac04\ub9cc \ubcf4\ub0b4\uace0 \uc788\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \ub2e4\ub974\uac8c \u2018\ub9c8\uc774\ucf54\u2019\ub294 \uac1c\uc778\uc804\uae4c\uc9c0 \uc5f4\uba70 \uc131\uacf5\ud55c \uc0ac\uc9c4\uc791\uac00\uc5d0 \ud55c \ubc1c \ub354 \ub2e4\uac00\uc120\ub2e4. \u2018\ub9c8\uc774\ucf54\u2019\uc758 \uc804\uc2dc\ud68c \ub9c8\uc9c0\ub9c9 \ub0a0, \uc6b0\uc5f0\ud788 \uacfc\uac70\uc5d0 \ub9cc\ub0ac\ub358 \u2018\uc544\uc0ac\ucf54\u2019\uc640 \uc7ac\ud68c\ud558\uace0 \uacfc\uac70\uc758 \uae30\uc5b5\uc744 \ub5a0\uc62c\ub9ac\ub294 \u2018\ubaa8\ub9ac\u2019. \ub354 \uc774\uc0c1 \uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uacfc\uac70\uc640 \ud604\uc7ac \uc0ac\uc774\uc5d0\uc11c \u2018\ubaa8\ub9ac\u2019\ub294 \ubbf8\ucc98 \uc54c\uc544\ubcf4\uc9c0 \ubabb\ud588\ub358 \uc0ac\ub791\uc758 \ud754\uc801\uacfc \ub9c8\uc8fc\ud558\uac8c \ub418\ub294\ub370\u2026 \u201c\ub2e4\uc2dc \uad1c\ucc2e\uc544\uc9c8 \uc218 \uc788\uc744\uae4c?\u201d"
-  },
-  {
     id: "upcoming_20265388", title: "\uace0\uc2a4\ud2b8\ubc34\ub4dc", director: "\uae08\ub3d9\ud638",
     cast: ["김연우", "엄상현", "이용신"],
     releaseDate: "2026-08-26", genre: ["애니메이션"],
@@ -427,24 +440,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "\uc601\ud63c\uc744 \ubcf4\ub294 \uc2f1\uc5b4\uc1a1\ub77c\uc774\ud130 '\ubbf8\ud0c0'. \uc5b4\ub290 \ub0a0 \uac1c\uc131\ub9cc\uc810 \uace0\uc2a4\ud2b8 4\uc778\ubc29\uacfc \uce5c\uad6c\uac00 \ub418\uc5b4 '\uace0\uc2a4\ud2b8\ubc34\ub4dc'\ub97c \uacb0\uc131\ud558\uace0 \ubcf4\uceec\uc744 \ub9e1\uc544 \ub09c\uc0dd\ucc98\uc74c \ub204\uad70\uac00\uc758 \uc55e\uc5d0\uc11c \ud568\uaed8 \ub178\ub798\ud558\ub294 \uae30\uc068\uc744 \uc54c\uac8c \ub41c\ub2e4. '\ubbf8\ud0c0'\uc640 \uace0\uc2a4\ud2b8\ubc34\ub4dc\uc758 \uacf5\uc5f0 \uc601\uc0c1\uc774 SNS\ub97c \uac15\ud0c0\ud558\uba70 \ub9c8\uce68\ub0b4 \uafc8\uafb8\ub358 \ubb34\ub300\ub97c \ub208\uc55e\uc5d0 \ub454 \uc21c\uac04, \ub300\ud615 \uae30\ud68d\uc0ac\uc758 \uac70\ub300\ud55c \ubc29\ud574 \uacf5\uc791\uc73c\ub85c \uc704\uae30\ub97c \ub9de\uac8c \ub418\ub294\ub370..."
   },
   {
-    id: "upcoming_20250203", title: "\ud2b8\ub8e8\uba3c\uc758 \uc0ac\ub791", director: "\uae40\ub355\uc911",
-    cast: ["배유람", "이주우", "김신비"],
-    releaseDate: "2026-08-26", genre: ["SF", "멜로/로맨스"],
+    id: "upcoming_20249080", title: "\uce90\ub9ac\uc5b4\ub97c \ub044\ub294 \uc18c\ub140", director: "\uc724\uc2ec\uacbd",
+    cast: ["최명빈", "문승아", "김태훈"],
+    releaseDate: "2026-09-02", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8Zb0UIeGV4mIaUbogykkts1L5oT.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/owXQAokJPjvM2FKX4ctAfKpCUhD.jpg",
     isRevealed: false,
-    overview: "\uc18d\uae30\uc0ac \uc9c0\uc5f0\uc740 \uc5b4\ub290 \ub0a0\ubd80\ud130 \uc138\uc0c1\uc774 \uba48\ucd94\ub294 \uc774\uc0c1 \ud604\uc0c1\uc744 \ubaa9\uaca9\ud55c\ub2e4. \uc5d0\ub7ec\uac00 \ubc1c\uc0dd\ud558\uba74 \ubaa8\ub450\uac00 \ud558\ub358 \ud589\ub3d9\uc744 \uba48\ucd94\uace0 \uad73\uc5b4\ubc84\ub9ac\uc9c0\ub9cc, \ud2b8\ub8e8\uba3c\uc778 \uc9c0\uc5f0\ub9cc\uc740 \uadf8 \uc138\uacc4\uc5d0 \uc885\uc18d\ub418\uc9c0 \uc54a\uace0 \uc790\uc720\ub86d\uac8c \uc6c0\uc9c1\uc77c \uc218 \uc788\ub2e4. \ud63c\uc790\uac00 \uc544\ub2c8\ub77c\ub294 \uac78 \ud655\uc778\ud558\uace0 \uc2f6\uc5c8\ub358 \uc9c0\uc5f0\uc740 \ub610\ub2e4\ub978 \ud2b8\ub8e8\uba3c\uc744 \ucc3e\uc544 \ud5e4\ub9e4\ub2e4 \ud604\uc2dd\uacfc \ubb38\uc131\uc744 \ub9cc\ub09c\ub2e4. \uc14b\uc740 \uc774 \uac70\uc9d3 \uc138\uacc4\uc758 \ubc14\uae65\uc744 \ud5a5\ud574 \ud568\uaed8 \ub5a0\ub098\ub824 \ud558\uc9c0\ub9cc, \uc9c0\uc5f0\uc744 \uc0ac\uc774\uc5d0 \ub450\uace0 \ub450 \ub0a8\uc790 \uc0ac\uc774\uc5d0 \uade0\uc5f4\uc774 \uc0dd\uae30\uae30 \uc2dc\uc791\ud558\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20247458", title: "\uacbd\uc8fc\uae30\ud589", director: "\uae40\ubbf8\uc870",
-    cast: ["이정은", "공효진", "박소담"],
-    releaseDate: "2026-08-26", genre: ["범죄"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/2dAd2APyFUyJ6qEv9VFHdHQtQI6.jpg",
-    isRevealed: false,
-    overview: "\uc5c4\ub9c8 \uc625\uc2e4\uacfc \uc138 \ub538 \uc7a5\uc8fc, \uc601\uc8fc, \ub3d9\uc8fc\ub294 8\ub144 \uc804 \uc218\ud559\uc5ec\ud589\uc744 \ub5a0\ub09c \uc774\ud6c4 \ub2e4\uc2dc\ub294 \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub9c9\ub0b4 \uacbd\uc8fc\uc758 \uc0dd\uc77c\uc744 \ub9de\uc544 \ub2e8\uccb4 \ud2f0\uc154\uce20\uae4c\uc9c0 \ub9de\ucdb0 \uc785\uace0 \uacbd\uc8fc\ub85c \uac00\uc871\uc5ec\ud589\uc744 \ub5a0\ub09c\ub2e4. \uc5bc\ud54f \ub2e8\ub780\ud558\uace0 \ud654\ubaa9\ud55c \uac00\uc871\uc5ec\ud589\ucc98\ub7fc \ubcf4\uc774\uc9c0\ub9cc, \ubd09\uace0\ucc28 \ud2b8\ub801\ud06c\uc5d0\ub294 \ub0af\uc120 \ud55c \ub0a8\uc790\uac00 \uc2e4\ub824 \uc788\ub294\ub370\u2026"
+    overview: "\uc591\ubd80\ubaa8\uc5d0\uac8c \ubc84\ub824\uc9c4 15\uc0b4 \u2018\uc601\uc120\u2019\uc740 \ub610\ub798 \u2018\uc218\uc544\u2019\uc758 \ud14c\ub2c8\uc2a4 \ud6c8\ub828 \ud30c\ud2b8\ub108\ub85c \uc218\uc544\ub124 \uc9d1\uc5d0 \uba38\ubb3c\uac8c \ub41c\ub2e4. \uac08 \uacf3\uc774 \uc5c6\ub358 \u2018\uc601\uc120\u2019\uc740 \uc774 \uc9d1\uc758 \uc77c\uc6d0\uc774 \ub418\uace0 \uc2f6\ub2e4\ub294 \ub9c8\uc74c\uc744 \ud488\uace0, \uc870\uc6a9\ud558\uc9c0\ub9cc \uce58\uc5f4\ud558\uac8c \u2018\uc218\uc544\u2019\ub124 \uac00\uc871 \uc548\uc73c\ub85c \uc2a4\uba70\ub4e4\uae30 \uc704\ud574 \uc560\uc4f4\ub2e4. \ud558\uc9c0\ub9cc \uac01\uc790\uc758 \uacb0\ud54d\uc744 \uc548\uace0 \uc788\ub294 \uadf8\ub4e4 \uc548\uc73c\ub85c \ub4e4\uc5b4\uac00\uae30\ub294 \uc27d\uc9c0 \uc54a\uc740\ub370\u2026"
   }
 ];
 
