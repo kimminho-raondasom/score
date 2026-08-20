@@ -1,4 +1,7 @@
-// score 데이터베이스 — 자동 갱신 (2026-08-20 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-08-21 08:00 KST)
+// MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
+// SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
+
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -124,7 +127,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-08-20 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-08-21 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -350,16 +353,6 @@ const MOVIES_DATABASE = [
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
   {
-    id: "upcoming_20264035", title: "\uc778\uc2dc\ub514\uc5b4\uc2a4: \uadf8\ub4e4\uc774 \ub118\uc5b4\uc654\ub2e4", director: "\uc81c\uc774\ucf65 \uccb4\uc774\uc2a4",
-    cast: ["브랜든 페레아", "로라 고든", "린 샤예"],
-    releaseDate: "2026-08-20", genre: ["공포(호러)", "미스터리", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aKkPEqUtbEtCB5WWJWanHJPFsnZ.jpg",
-    isRevealed: false,
-    overview: "\uc0ac\ud6c4\uc138\uacc4\uc758 \uc545\ub839\ub4e4\ub85c\ubd80\ud130 \ub538\uacfc \uc77c\uc0c1\uc744 \uc9c0\ud0a4\uae30 \uc704\ud574 \uc0ac\ud22c\ub97c \ubc8c\uc774\ub294 \uc774\uc57c\uae30"
-  },
-  {
     id: "upcoming_20265838", title: "\ud0ac\ub9c1 AI", director: "\ud53c\ud130 \uc6e8\ubc84",
     cast: [],
     releaseDate: "2026-08-21", genre: ["액션", "스릴러", "공포(호러)", "SF"],
@@ -438,6 +431,16 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/iDYPfIKR263Srm33hrNc4m6ILja.jpg",
     isRevealed: false,
     overview: "\uc601\ud63c\uc744 \ubcf4\ub294 \uc2f1\uc5b4\uc1a1\ub77c\uc774\ud130 '\ubbf8\ud0c0'. \uc5b4\ub290 \ub0a0 \uac1c\uc131\ub9cc\uc810 \uace0\uc2a4\ud2b8 4\uc778\ubc29\uacfc \uce5c\uad6c\uac00 \ub418\uc5b4 '\uace0\uc2a4\ud2b8\ubc34\ub4dc'\ub97c \uacb0\uc131\ud558\uace0 \ubcf4\uceec\uc744 \ub9e1\uc544 \ub09c\uc0dd\ucc98\uc74c \ub204\uad70\uac00\uc758 \uc55e\uc5d0\uc11c \ud568\uaed8 \ub178\ub798\ud558\ub294 \uae30\uc068\uc744 \uc54c\uac8c \ub41c\ub2e4. '\ubbf8\ud0c0'\uc640 \uace0\uc2a4\ud2b8\ubc34\ub4dc\uc758 \uacf5\uc5f0 \uc601\uc0c1\uc774 SNS\ub97c \uac15\ud0c0\ud558\uba70 \ub9c8\uce68\ub0b4 \uafc8\uafb8\ub358 \ubb34\ub300\ub97c \ub208\uc55e\uc5d0 \ub454 \uc21c\uac04, \ub300\ud615 \uae30\ud68d\uc0ac\uc758 \uac70\ub300\ud55c \ubc29\ud574 \uacf5\uc791\uc73c\ub85c \uc704\uae30\ub97c \ub9de\uac8c \ub418\ub294\ub370..."
+  },
+  {
+    id: "upcoming_20204641", title: "\ube44\uad11", director: "\uc774\uc9c0\uc6d0",
+    cast: ["류승룡", "하지원", "김시아"],
+    releaseDate: "2026-09-02", genre: ["드라마", "가족"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/4JpwwQLDIXOYt3YwRszR3rkcwtk.jpg",
+    isRevealed: false,
+    overview: "\ud1b1\uc2a4\ud0c0 \ubd80\ubd80 \uc911\uad6c\uc640 \ub0a8\ubbf8\uac00 \uac11\uc790\uae30 \ub098\ud0c0\ub09c \uc911\uad6c\uc758 \ub538 \ub3d9\uc8fc\ub85c \uc778\ud574 \ud30c\uacbd\uc744 \ub9de\uc740 \ub4a4 8\ub144 \ud6c4 \ucda9\uaca9\uc801\uc778 \uc0ac\uac74\uc5d0 \ud718\ub9d0\ub9b0 \ub3d9\uc8fc\ub97c \uad6c\ud558\uae30 \uc704\ud574 \ub9c8\uc9c0\ub9c9 \ub0a8\uc740 \ubaa8\ub4e0 \uac83\uc744 \uac78\uace0 \uc9c4\uc2e4\uc744 \ud30c\ud5e4\uce58\ub294 \u2018\ubbf8\uc4f0\ubc31\u2019 \uc774\uc9c0\uc6d0 \uac10\ub3c5\uc758 \ucc10\ud55c \uac00\uc871 \uc5f0\ub300\uae30"
   },
   {
     id: "upcoming_20249080", title: "\uce90\ub9ac\uc5b4\ub97c \ub044\ub294 \uc18c\ub140", director: "\uc724\uc2ec\uacbd",
