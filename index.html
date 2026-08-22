@@ -3276,28 +3276,19 @@ html, body, .app-container, .view-section, .glass-card {
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">recent_actors</span> 필모그래피</span>
           <span class="login-badge"><span class="material-symbols-outlined" style="font-size:1rem;vertical-align:-3px;">campaign</span> 명대사 퀴즈</span>
         </div>
-        <div class="login-btn-area">
-          <form id="login-form" onsubmit="app.loginWithPassword(); return false;">
-            <input type="email" id="login-email" class="form-control" placeholder="이메일 주소 입력"
-              aria-label="이메일 주소"
-              style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;"
-              autocomplete="email" autocapitalize="none" spellcheck="false">
-            <input type="password" id="login-password" class="form-control" placeholder="비밀번호 입력"
-              aria-label="비밀번호"
-              style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;margin-top:10px;"
-              autocomplete="current-password">
-            <button type="submit" id="btn-login"
-              style="background:#fff;color:#1a1a1a;border:none;padding:14px 24px;font-size:0.92rem;font-weight:600;cursor:pointer;width:100%;margin-top:10px;font-family:'Noto Sans KR',sans-serif;">
-              로그인
-            </button>
-            <div style="text-align:center;margin-top:14px;">
-              <span style="color:rgba(255,255,255,0.45);font-size:0.8rem;">계정이 없으신가요? </span>
-                             <a href="javascript:void(0)" onclick="app.switchView('register')"
-                style="color:var(--rose);font-size:0.8rem;text-decoration:underline;cursor:pointer;">회원가입</a>
-            </div>
-          </form>
+         <div class="login-btn-area">
+           <form id="login-form" onsubmit="app.loginSimple(); return false;">
+             <input type="text" id="login-nickname" class="form-control" placeholder="닉네임을 입력하세요"
+               aria-label="닉네임"
+               style="background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3);color:#fff;font-size:0.92rem;padding:14px 16px;width:100%;"
+               autocomplete="off" maxlength="20">
+             <button type="submit" id="btn-login"
+               style="background:#fff;color:#1a1a1a;border:none;padding:14px 24px;font-size:0.92rem;font-weight:600;cursor:pointer;width:100%;margin-top:10px;font-family:'Noto Sans KR',sans-serif;">
+               입장하기
+             </button>
+           </form>
 
-          <p class="login-terms">계속 진행하면 <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">이용약관</a> 및 <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">개인정보 처리방침</a>에 동의하는 것으로 간주됩니다.</p>
+           <p class="login-terms">계속 진행하면 <a href="terms.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">이용약관</a> 및 <a href="privacy.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.55);text-decoration:underline;">개인정보 처리방침</a>에 동의하는 것으로 간주됩니다.<br>퀴즈 결과는 통계 목적으로 저장됩니다.</p>
         </div>
       </div>
   </section>
@@ -4677,8 +4668,8 @@ class CineMasterApp {
       if (el) el.addEventListener(event, fn);
     };
 
-    // Registration Form
-    on('form-register', 'submit', (e) => { e.preventDefault(); this.submitRegistration(); });
+    // Registration Form (deprecated, no longer used)
+    // on('form-register', 'submit', ...);
     on('btn-generate-nickname', 'click', () => this.generateNickname());
     on('form-group-register', 'submit', (e) => { e.preventDefault(); this.submitGroupRegistration(); });
 
@@ -4814,6 +4805,26 @@ class CineMasterApp {
     const data = encoder.encode(password);
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
     return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  loginSimple() {
+    this.playSynthSound('click');
+    const nickname = (document.getElementById('login-nickname')?.value || '').trim();
+    if (!nickname || nickname.length < 2) { showToast('닉네임은 2자 이상 입력해주세요.', 'warn'); return; }
+    if (!/^[가-힣a-zA-Z0-9]+$/.test(nickname)) { showToast('한글, 영문, 숫자만 사용 가능합니다.', 'warn'); return; }
+
+    this.currentUser = {
+      nickname,
+      xp: 0, level: 1,
+      stats: { games: 0, accuracy: 0, maxCombo: 0, refsGuessed: 0 }
+    };
+    this.saveProfile();
+    showToast(`${nickname}님, 환영합니다!`, 'success', 2000);
+    setTimeout(() => {
+      this.renderDashboard();
+      this.switchView('dashboard');
+      this.switchTab('dashboard');
+    }, 400);
   }
 
   async loginWithPassword() {
