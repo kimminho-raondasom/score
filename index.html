@@ -5620,7 +5620,7 @@ class CineMasterApp {
     this.setupScoreQuizLayout();
     this.switchView('quiz');
     this.activateQuizPanel('challenge');
-    document.getElementById('quiz-round-container').style.display = 'none';
+    (document.getElementById('quiz-round-container')||{}).style.display = 'none';
     this.startTimer();
   }
 
@@ -5946,38 +5946,15 @@ class CineMasterApp {
       this.currentQuiz.groupSessionId = null;
     }
 
-    // Load questions based on type (setup 함수는 switchView 이후에 호출)
+    // ├─ score 타입은 showChallengeOptions() 서브메뉴에서 showReleasedSearch /
+    // │  showUpcomingList → startSpecificQuiz 경로만 사용.
+    // │  startQuiz('score') 직접 호출은 더 이상 지원하지 않음.
+    // └────────────────────────────────────────────────────────────
     if (type === 'score') {
-      this.currentQuiz.isUpcoming = false;
-      this.currentQuiz.totalXpEarned = 0;
-      // SCORE_QUIZ_POOL (442편, 구글시트 '영화 상세' 탭 실측 데이터) 기반으로 풀 구성
-      // 데이터 없는 영화도 포함 (채점은 showScoreReview에서 처리)
-      const rawPool = (typeof SCORE_QUIZ_POOL !== 'undefined' ? SCORE_QUIZ_POOL : [])
-        .filter(m => m.title);
-      const pool = this._deduplicatePool(
-        rawPool.map(m => ({
-          id: 'score_' + m.title,
-          title: m.title,
-          releaseDate: m.releaseDate,
-          director: m.director,
-          cast: m.cast || [],
-          posterUrl: m.posterUrl || '',
-          seatsCat: m.seatsCat || null,
-          seatRatioCat: m.seatRatioCat || null,
-          openingDayScore: m.openingDayScore || null,
-          week1Score: m.week1Score || null,
-          week2Score: m.week2Score || null,
-          finalScore: m.finalScore || null
-        }))
-      );
-      const movies = this.shuffleArray([...pool]).slice(0, 5);
-      if (!movies.length) { showToast('퀴즈 가능한 영화 데이터가 없습니다.', 'warn'); this.switchView('dashboard'); return; }
-      this.currentQuiz.movies = movies;
-      this._recordShownMovies(movies);
-      this.currentQuiz.currentStep = 0;
-      this.currentQuiz.stepAnswers = [];
-      this.currentQuiz.correctAnswersCount = 0;
-    } 
+      showToast('영화를 먼저 선택해주세요.', 'warn');
+      this.switchView('dashboard');
+      return;
+    }
 
     else if (type === 'filmo') {
       if (typeof FILMOGRAPHIES === 'undefined') { showToast('필모그래피 데이터를 불러올 수 없습니다.', 'warn'); this.switchView('dashboard'); return; }
@@ -6057,7 +6034,7 @@ class CineMasterApp {
 
     // 각 타입별 레이아웃 초기화 (DOM 가시화 이후 실행해야 포스터 등이 정상 표시됨)
     if (type === 'score') {
-      document.getElementById('quiz-round-container').style.display = 'block';
+      (document.getElementById('quiz-round-container')||{}).style.display = 'block';
       this.setupScoreQuizLayout();
     } else if (type === 'filmo') {
       this.setupFilmoQuizLayout();
@@ -7397,7 +7374,7 @@ class CineMasterApp {
       this.currentQuiz.currentStep = 0;
       this.currentQuiz.stepAnswers = [];
       this.currentQuiz.correctAnswersCount = 0;
-      document.getElementById('quiz-round-container').style.display = isUpcoming ? 'none' : 'block';
+      (document.getElementById('quiz-round-container')||{}).style.display = isUpcoming ? 'none' : 'block';
       this.setupScoreQuizLayout();
     } else if (type === 'challenge') {
       this.setupChallengeQuizLayout();
@@ -7911,7 +7888,7 @@ class CineMasterApp {
 
     this.switchView('quiz');
     this.activateQuizPanel('score');
-    document.getElementById('quiz-round-container').style.display = 'none';
+    (document.getElementById('quiz-round-container')||{}).style.display = 'none';
 
     const loading = document.getElementById('special-ai-loading');
     const body    = document.getElementById('special-ai-quiz-body');
@@ -8632,7 +8609,7 @@ class CineMasterApp {
     this.switchView('quiz');
     this.activateQuizPanel('ordinary');
     this.setupOrdinaryQuizLayout();
-    document.getElementById('quiz-round-container').style.display = 'none';
+    (document.getElementById('quiz-round-container')||{}).style.display = 'none';
     this.startTimer();
   }
 
@@ -8786,7 +8763,7 @@ class CineMasterApp {
     this.switchView('quiz');
     this.activateQuizPanel('lines');
     this.setupLinesQuizLayout();
-    document.getElementById('quiz-round-container').style.display = 'none';
+    (document.getElementById('quiz-round-container')||{}).style.display = 'none';
     this.startTimer();
   }
 
