@@ -4361,7 +4361,7 @@ html, body, .app-container, .view-section, .glass-card {
           <span class="material-symbols-outlined" style="font-size:4rem;">how_to_vote</span>
         </div>
         <h2 style="margin-bottom:12px;">예측 접수 완료!</h2>
-        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px; line-height:1.5;">해당 개봉예정작의 스코어 예측이<br>안전하게 접수되었습니다.<br><br>영화 개봉 후 실제 스코어가 집계되면<br>정답이 공개되며, 보상이 지급됩니다.</p>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:24px; line-height:1.5;">스코어 예측이<br>안전하게 접수되었습니다.<br><br>실제 스코어는 영화 개봉 후<br>공개될 예정입니다.</p>
         <button class="btn-primary" onclick="app.finishUpcomingQuiz()">
           <span>대시보드로 복귀</span>
           <span class="material-symbols-outlined">dashboard</span>
@@ -6545,82 +6545,56 @@ class CineMasterApp {
       return;
     }
 
-    // ── 개봉작: 문제별 정답/오답 채점 (6문항) ──────────────────────────
-    const realValues = [movie.seatsCat, movie.seatRatioCat, movie.openingDayScore, movie.week1Score, movie.week2Score, movie.finalScore];
-    const labels = ['개봉일 좌석수', '개봉일 좌판율', '개봉일 관객수', '개봉 1주차 누적', '개봉 2주차 누적', '최종 관객수'];
-
-    const stepResults = values.map((v, idx) => {
-      const hasData = realValues[idx] != null && realValues[idx] !== undefined;
-      return {
-        label: labels[idx],
-        userValue: v,
-        realValue: hasData ? realValues[idx] : '데이터 없음',
-        isCorrect: hasData ? v === realValues[idx] : null, // null = 채점 불가
-        hasData: hasData
+    // ── 개봉작: 채점 없이 예측 저장만 (개봉예정작과 동일하게) ──────────
+    if (movie) {
+      this.currentQuiz.upcomingAnswers = {
+        seatsCat: values[0],
+        seatRatioCat: values[1],
+        openingDayScore: values[2],
+        week1Score: values[3],
+        week2Score: values[4],
+        finalScore: values[5]
       };
-    });
-
-    const correctCount = stepResults.filter(r => r.isCorrect === true).length;
-    this.currentQuiz.stepAnswers = stepResults.map(r => r.isCorrect);
-    this.currentQuiz.correctAnswersCount = correctCount;
-
-    const xpPerCorrect = 14;
-    const xpGain = correctCount * xpPerCorrect;
-    this.currentQuiz.totalXpEarned += xpGain;
-    if (xpGain > 0) this.addXp(xpGain, `${movie.title} 흥행 분석 ${correctCount}문항 적중`);
-
-    const answerableCount = stepResults.filter(r => r.hasData).length;
-    const threshold = Math.max(3, Math.min(5, answerableCount)); // 데이터 있는 항목 기준
-    const isRoundSuccess = correctCount >= threshold;
-    if (isRoundSuccess) {
-      this.currentQuiz.score++;
-      this.currentQuiz.combo++;
-      if (this.currentQuiz.combo > this.currentQuiz.maxComboThisRun) {
-        this.currentQuiz.maxComboThisRun = this.currentQuiz.combo;
-      }
-      this.playSynthSound(this.currentQuiz.combo >= 3 ? 'combo' : 'correct');
-    } else {
-      this.currentQuiz.combo = 0;
-      this.playSynthSound('incorrect');
+      this.savePrediction(movie.title, this.currentQuiz.upcomingAnswers);
+      this.saveQuizHistory({
+        type: 'score_released',
+        movies: [movie.title],
+        score: 0, total: 6, xp: 0, combo: 0, accuracy: 0,
+        date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+        nickname: this.currentUser?.nickname || '',
+        prediction: this.currentQuiz.upcomingAnswers,
+        moviesStr: [movie.title].concat(values.filter(v => v).map(v => `  ${v}`)).join('\n'),
+      });
     }
 
-    // 문제별 정답/오답 비교 결과 화면 렌더
-    this._renderScoreResultScreen(movie, stepResults, correctCount, isRoundSuccess);
-  }
-
-  // ── 개봉작 문제별(1~4) 정답/오답 비교 결과 화면 ───────────────────────────
-  _renderScoreResultScreen(movie, stepResults, correctCount, isRoundSuccess) {
-    const titleEl = document.getElementById('score-result-movie-title');
-    if (titleEl) {
-      titleEl.innerHTML = `<b>${this.escapeHtml(movie.title)}</b> — ${stepResults.length}문항 중 <b>${correctCount}개</b> 적중 ${isRoundSuccess ? '(성공)' : '(실패)'}`;
+    // ── 단체전: 공유 세션에 답안 저장 + 결과 이메일 발송 ──────────
+    if (this.currentQuiz.groupMode && this.currentQuiz.groupSessionId) {
+      this.saveGroupAnswer(this.currentQuiz.groupSessionId, {
+        nickname: this.currentUser?.nickname || '?',
+        email: this.currentUser?.email || '',
+        movie: movie?.title || '',
+        predictions: {
+          seatsCat: values[0] || '—',
+          seatRatioCat: values[1] || '—',
+          openingDayScore: values[2] || '—',
+          week1Score: values[3] || '—',
+          week2Score: values[4] || '—',
+          finalScore: values[5] || '—',
+        },
+        locked: true,
+        date: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+      });
+      this.renderGroupResults(this.currentQuiz.groupSessionId);
+      this.sendGroupResultEmail(this.currentQuiz.groupSessionId);
     }
 
-    const listEl = document.getElementById('score-result-list');
-    if (listEl) {
-      listEl.innerHTML = stepResults.map((r, idx) => {
-        const isCorrect = r.isCorrect;
-        const hasData = r.hasData;
-        const cls = !hasData ? 'nodata' : (isCorrect ? 'correct' : 'incorrect');
-        const badge = !hasData ? '데이터 없음' : (isCorrect ? '정답' : '오답');
-        return `
-        <div class="review-item ${cls}">
-          <div>
-            <div class="review-item-q">Q${idx + 1}. ${r.label}</div>
-            <div class="review-item-a">내 답변: ${r.userValue}</div>
-            ${!isCorrect ? `<div class="review-item-real">실제 정답: <b>${r.realValue}</b></div>` : ''}
-          </div>
-          <span class="review-item-badge ${cls}">${badge}</span>
-        </div>
-      `}).join('');
+    if (this.currentUser) {
+      this.currentUser.stats.games = (this.currentUser.stats.games || 0) + 1;
+      this.saveProfile();
     }
-
-    this.switchView('score-result');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // "다음 문제(다음 영화)" 버튼 — 결과 화면에서 다음 라운드로 진행
-  proceedAfterScoreResult() {
-    this.nextRound();
+    this.playSynthSound('correct');
+    const overlay = document.getElementById('prediction-overlay');
+    if (overlay) { overlay.style.display = 'flex'; overlay.classList.add('active'); }
   }
 
 
