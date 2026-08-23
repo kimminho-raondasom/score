@@ -5486,10 +5486,9 @@ class CineMasterApp {
 
   renderReleasedMoviesSearch(query) {
     const grid = document.getElementById('search-movies-grid');
-    if (!grid) { showToast('검색 그리드 누락 — HTML 오류', 'error'); return; }
+    if (!grid) return;
     const lowerQuery = query.toLowerCase().trim();
     const mode = this._quizMode || 'solo';
-    if (lowerQuery) showToast(`검색: "${lowerQuery}"`, 'info', 1200);
 
     let results;
     if (lowerQuery) {
@@ -5512,7 +5511,6 @@ class CineMasterApp {
     }
 
     if (results.length === 0) {
-      if (lowerQuery) showToast(`결과 0건 — 데이터 없음`, 'warn', 1500);
       grid.innerHTML = `<p class="text-muted text-center py-4">검색 결과가 없습니다.</p>`;
       return;
     }
@@ -5550,46 +5548,27 @@ class CineMasterApp {
     if (isUpcoming) {
       selectedMovie = (typeof UPCOMING_MOVIES_DATABASE !== 'undefined' ? UPCOMING_MOVIES_DATABASE : []).find(m => m.title === movieTitle);
     } else {
-      // 스코어 퀴즈는 SCORE_QUIZ_POOL(442편, 실측 데이터 6/8지선다 카테고리)에서 조회
-      const poolMovie = (typeof SCORE_QUIZ_POOL !== 'undefined' ? SCORE_QUIZ_POOL : []).find(m => m.title === movieTitle);
-      if (poolMovie) {
+      // 개봉작: MOVIES_DATABASE에서 직접 조회 (채점 없이 예측만)
+      const dbMovie = (typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : []).find(m => m.title === movieTitle);
+      if (dbMovie) {
         selectedMovie = {
-          id: 'score_' + poolMovie.title,
-          title: poolMovie.title,
-          releaseDate: poolMovie.releaseDate,
-          director: poolMovie.director,
-          cast: poolMovie.cast || [],
-          posterUrl: poolMovie.posterUrl || '',
-          seatsCat: poolMovie.seatsCat || '데이터 없음',
-          seatRatioCat: poolMovie.seatRatioCat || '데이터 없음',
-          openingDayScore: poolMovie.openingDayScore || '데이터 없음',
-          week1Score: poolMovie.week1Score || '데이터 없음',
-          week2Score: poolMovie.week2Score || '데이터 없음',
-          finalScore: poolMovie.finalScore || '데이터 없음'
+          id: dbMovie.id || 'db_' + dbMovie.title,
+          title: dbMovie.title,
+          releaseDate: dbMovie.releaseDate || '',
+          director: dbMovie.director || '',
+          cast: dbMovie.cast || [],
+          posterUrl: dbMovie.posterUrl || '',
+          seatsCat: '데이터 없음',
+          seatRatioCat: '데이터 없음',
+          openingDayScore: '데이터 없음',
+          week1Score: '데이터 없음',
+          week2Score: '데이터 없음',
+          finalScore: '데이터 없음'
         };
       } else {
-        // SCORE_QUIZ_POOL에 없으면 MOVIES_DATABASE에서 기본 데이터로 진행 (데이터 없음 표시)
-        const dbMovie = (typeof MOVIES_DATABASE !== 'undefined' ? MOVIES_DATABASE : []).find(m => m.title === movieTitle);
-        if (dbMovie) {
-          selectedMovie = {
-            id: dbMovie.id || 'db_' + dbMovie.title,
-            title: dbMovie.title,
-            releaseDate: dbMovie.releaseDate || '',
-            director: dbMovie.director || '',
-            cast: dbMovie.cast || [],
-            posterUrl: dbMovie.posterUrl || '',
-            seatsCat: '데이터 없음',
-            seatRatioCat: '데이터 없음',
-            openingDayScore: '데이터 없음',
-            week1Score: '데이터 없음',
-            week2Score: '데이터 없음',
-            finalScore: '데이터 없음'
-          };
-        } else {
-          showToast('해당 영화 정보를 찾을 수 없습니다.', 'warn');
-          this.switchView('dashboard');
-          return;
-        }
+        showToast('해당 영화 정보를 찾을 수 없습니다.', 'warn');
+        this.switchView('dashboard');
+        return;
       }
     }
 
