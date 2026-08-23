@@ -4105,7 +4105,7 @@ html, body, .app-container, .view-section, .glass-card {
       <!-- QUIZ MODE 3: FAMOUS LINES & CHOSEONG -->
       <div id="quiz-panel-lines" class="quiz-mode-panel flex-center-col">
         <!-- E모드 포스터 -->
-        <div id="lines-movie-poster" style="width:72px;height:100px;background-size:cover;background-position:center;background-color:var(--bg-secondary);border-radius:4px;margin-bottom:12px;flex-shrink:0;"></div>
+        <div id="lines-movie-poster" style="display:none;"></div>
         <div class="quote-card glass-card text-center fade-in">
           <span class="material-symbols-outlined quote-icon">format_quote</span>
           <div class="quote-text" id="quote-display">“지금까지 이런 맛은 없었다. 이것은 갈비인가 통닭인가.”</div>
@@ -5477,7 +5477,12 @@ class CineMasterApp {
     this.renderReleasedMoviesSearch('');
     setTimeout(() => {
       const inp = document.getElementById('movie-search-input');
-      if (inp) inp.focus();
+      if (inp) {
+        inp.focus();
+        inp.removeEventListener('input', this._boundSearchHandler);
+        this._boundSearchHandler = (e) => this.renderReleasedMoviesSearch(e.target.value);
+        inp.addEventListener('input', this._boundSearchHandler);
+      }
     }, 100);
   }
 
@@ -6649,14 +6654,11 @@ class CineMasterApp {
         : `background:var(--bg-secondary);`;
       const safeTitle = c.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const safeAnswer = correctAnswerTitle.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      return `
-        <div class="filmo-choice-card hover-lift" onclick="app.gradeFilmoQuiz('${safeTitle}', ${c.correct}, '${safeAnswer}', ${isNegativeQuestion})">
-          <div class="filmo-choice-poster" style="${posterStyle}">
-            ${!posterUrl ? '<span class="material-symbols-outlined" style="font-size:1.4rem;color:var(--text-muted);">movie</span>' : ''}
-          </div>
-          <div class="filmo-choice-label">${this.escapeHtml(c.title)}</div>
-        </div>
-      `;
+       return `
+         <div class="filmo-choice-card hover-lift" onclick="app.gradeFilmoQuiz('${safeTitle}', ${c.correct}, '${safeAnswer}', ${isNegativeQuestion})" style="padding:12px;">
+           <div class="filmo-choice-label">${this.escapeHtml(c.title)}</div>
+         </div>
+       `;
     }).join('');
   }
 
@@ -6761,14 +6763,11 @@ class CineMasterApp {
              : `background:var(--bg-secondary);`;
            const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
            const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
-           return `
-             <div class="filmo-choice-card hover-lift" onclick="app.gradeLinesQuoteQuiz('${safeTitle}', '${safeCorrect}')">
-               <div class="filmo-choice-poster" style="${posterStyle}">
-                 ${!found ? '<span class="material-symbols-outlined" style="font-size:1.4rem;color:var(--text-muted);">movie</span>' : ''}
-               </div>
-               <div class="filmo-choice-label">${this.escapeHtml(title)}</div>
-             </div>
-           `;
+            return `
+              <div class="filmo-choice-card hover-lift" onclick="app.gradeLinesQuoteQuiz('${safeTitle}', '${safeCorrect}')" style="padding:12px;">
+                <div class="filmo-choice-label">${this.escapeHtml(title)}</div>
+              </div>
+            `;
          }).join('');
        }
      } else if (showChoseong) {
@@ -8247,45 +8246,10 @@ class CineMasterApp {
     if (scoreEl) scoreEl.textContent = `정답 ${this.currentQuiz.aiCorrect}`;
     if (questionEl) questionEl.innerHTML = q.question; // <b> 태그 지원
 
-    // 포스터: 사용자가 선택한 영화 우선, 없으면 질문의 movieTitle로 검색
+    // 포스터: S모드에서는 사용 안 함 (숨김)
     if (posterEl) {
-      const targetTitle = this.currentQuiz._aiTargetMovie;
-      const keyword = (idx === 0 && targetTitle) ? targetTitle
-        : (q.movieTitle || q.posterKeyword || '').trim();
-      let posterUrl = '';
-      if (keyword && typeof MOVIES_DATABASE !== 'undefined') {
-        // 1) 정확 매칭
-        let found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && m.title === keyword);
-        // 2) 포함 매칭
-        if (!found) found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && m.title.includes(keyword));
-        // 3) 역포함 매칭 (키워드가 DB 제목의 앞 4글자 포함)
-        if (!found) found = MOVIES_DATABASE.find(m => m.title && m.posterUrl && keyword.includes(m.title.slice(0, 4)));
-        // 4) AI_QUIZ_MOVIES에서 검색 (title 기준)
-        if (!found && typeof AI_QUIZ_MOVIES !== 'undefined') {
-          const aiM = AI_QUIZ_MOVIES.find(m => m.title === keyword || m.title.includes(keyword));
-          if (aiM) {
-            // AI_QUIZ_MOVIES에는 posterUrl이 없으므로 MOVIES_DATABASE에서 제목으로 재검색
-            found = MOVIES_DATABASE.find(m => m.posterUrl && m.title.includes(aiM.title.slice(0, 4)));
-          }
-        }
-        if (found) posterUrl = found.posterUrl;
-      }
-      if (posterUrl) {
-        if (q.posterCropOnly) {
-          // [O] 포스터 조각 문제: 정중앙만 확대해서 보여줌(Ordinary 퀴즈와 동일한 크롭 방식)
-          posterEl.style.backgroundImage = `url('${posterUrl}')`;
-          posterEl.style.backgroundSize = '300% 300%';
-          posterEl.style.backgroundPosition = '50% 50%';
-        } else {
-          posterEl.style.backgroundImage = `url('${posterUrl}')`;
-          posterEl.style.backgroundSize = 'cover';
-          posterEl.style.backgroundPosition = 'center';
-        }
-        posterEl.innerHTML = '';
-      } else {
-        posterEl.style.backgroundImage = 'none';
-        posterEl.innerHTML = '<span class="material-symbols-outlined" style="font-size:2rem;color:var(--text-muted)">quiz</span>';
-      }
+      posterEl.style.backgroundImage = 'none';
+      posterEl.innerHTML = '';
     }
 
     // 4지선다: 기존 .option-item / .option-box CSS 구조 사용
@@ -8505,7 +8469,7 @@ class CineMasterApp {
     this._buildPosterTrack('poster-track-special', specialMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "&#39;");
-        return `app.startSpecificAiQuizForMovie('${t}')`;
+        return `app.showScoreOptions()`;
       }
     );
 
@@ -8524,7 +8488,7 @@ class CineMasterApp {
     this._buildPosterTrack('poster-track-challenge', challengeMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "&#39;");
-        return `app.startSpecificChallengeQuiz('${t}')`;
+        return `app.showChallengeOptions()`;
       }
     );
 
@@ -8546,7 +8510,7 @@ class CineMasterApp {
     this._buildPosterTrack('poster-track-ordinary', ordinaryMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "&#39;");
-        return `app.startSpecificOrdinaryQuiz('${t}')`;
+        return `app.showOrdinaryOptions()`;
       }
     );
 
@@ -8568,7 +8532,7 @@ class CineMasterApp {
     this._buildPosterTrack('poster-track-regular', regularMovies,
       (movie) => {
         const t = movie.title.replace(/'/g, "&#39;");
-        return `app.startSpecificFilmoQuiz('${t}')`;
+        return `app.showFilmoOptions()`;
       }
     );
 
@@ -8583,7 +8547,7 @@ class CineMasterApp {
     this._buildPosterTrack('poster-track-easy', easyMovies,
       (movie) => {
         const t = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "&#39;");
-        return `app._startLinesWithMovie('${t}')`;
+        return `app.showLinesOptions()`;
       }
     );
 
