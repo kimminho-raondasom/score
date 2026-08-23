@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>score | 프리미엄 영화 퀴즈 & 흥행 예측 리그</title>
+  <title>score</title>
   <!-- SEO Meta Tags -->
-  <meta name="description" content="score에서 영화 관객수 예측, 감독과 배우의 필모그래피 매칭, 명대사와 초성 퀴즈를 즐겨보세요! 무채색 미니멀 스타일의 영화 퀴즈 어플리케이션.">
+  <meta name="description" content="score — 영화 관객수 예측, 필모그래피 매칭, 명대사·초성 퀴즈">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" href="icon-192.png">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="score | 프리미엄 영화 퀴즈 & 흥행 예측 리그">
+  <meta property="og:title" content="score">
   <meta property="og:description" content="박스오피스 스코어 예측 · 필모그래피 매칭 · 명대사 초성 퀴즈 — 대한민국 시네마 흥행 데이터 기반">
   <meta property="og:url" content="https://kimminho-raondasom.github.io/score/">
   <meta property="og:type" content="website">
@@ -24,8 +24,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="score | 프리미엄 영화 퀴즈">
-  <meta name="twitter:description" content="대한민국 시네마 흥행 데이터 기반 영화 퀴즈">
+ <meta name="twitter:title" content="score">
+ <meta name="twitter:description" content="영화 데이터 기반 퀴즈">
   <meta name="twitter:image" content="https://kimminho-raondasom.github.io/score/og-image.png">
 
   <!-- Font and Icons -->
@@ -5483,6 +5483,7 @@ class CineMasterApp {
 
   renderReleasedMoviesSearch(query) {
     const grid = document.getElementById('search-movies-grid');
+    if (!grid) return;
     const lowerQuery = query.toLowerCase().trim();
     const mode = this._quizMode || 'solo';
 
@@ -7909,6 +7910,7 @@ class CineMasterApp {
     // 로컬 CSV 데이터로 즉시 문제 생성 (AI/GAS 불필요)
     const targetMovieTitle = this._pendingAiQuizMovieTitle || null;
     this._pendingAiQuizMovieTitle = null;
+    this.currentQuiz._aiTargetMovie = targetMovieTitle;
     const questions = this._generateLocalQuiz(targetMovieTitle);
     if (!questions || questions.length === 0) {
       showToast('문제 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.', 'error');
@@ -8245,9 +8247,11 @@ class CineMasterApp {
     if (scoreEl) scoreEl.textContent = `정답 ${this.currentQuiz.aiCorrect}`;
     if (questionEl) questionEl.innerHTML = q.question; // <b> 태그 지원
 
-    // 포스터: movieTitle(GAS 응답) 또는 posterKeyword로 MOVIES_DATABASE 검색
+    // 포스터: 사용자가 선택한 영화 우선, 없으면 질문의 movieTitle로 검색
     if (posterEl) {
-      const keyword = (q.movieTitle || q.posterKeyword || '').trim();
+      const targetTitle = this.currentQuiz._aiTargetMovie;
+      const keyword = (idx === 0 && targetTitle) ? targetTitle
+        : (q.movieTitle || q.posterKeyword || '').trim();
       let posterUrl = '';
       if (keyword && typeof MOVIES_DATABASE !== 'undefined') {
         // 1) 정확 매칭
