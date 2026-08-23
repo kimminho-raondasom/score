@@ -361,106 +361,157 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
+  // ── KOBIS(영진위) API 자동 수집 (2026-08-24 08:35 KST, 실행 시점 기준 1개월 이내) ──
   {
-    id: "upcoming_20264715", title: "\ub4dc\ub77c\ud058\ub77c: \ub7ec\ube0c \ud14c\uc77c", director: "\ub93d \ubca0\uc1a1",
+    id: "upcoming_20264715", title: "드라큘라: 러브 테일", director: "뤽 베송",
     cast: ["케일럽 랜드리 존스", "크리스토프 왈츠", "조이 블루"],
     releaseDate: "2026-08-26", genre: ["판타지", "멜로/로맨스", "공포(호러)"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/3mNCAoWAOHUYaY1VxOCqKC3v8n3.jpg",
     isRevealed: false,
-    overview: "15\uc138\uae30, \uc804\uc7c1\uc73c\ub85c \uc5f0\uc778\uc744 \uc783\uc740 \ub0a8\uc790. \uc2e0\uc744 \ubc84\ub9b0 \uc800\uc8fc\ub85c \ubd88\uba78\uc758 \ub4dc\ub77c\ud058\ub77c\uac00 \ub418\uace0 \uadf8\ub140\ub97c \ub418\ucc3e\uae30 \uc704\ud574 \uc138\uc0c1\uc744 \ub5a0\ub3c8\ub2e4. 400\ub144\uc758 \uae30\ub2e4\ub9bc. \uc8fd\uc74c\ub3c4, \uc2dc\uac04\ub3c4, \uc2e0\uc758 \uc800\uc8fc\ub3c4 \ub05d\ub0b4 \ub9c9\uc9c0 \ubabb\ud55c \uc6b4\uba85\uc744 \ub2e4\uc2dc \ub9cc\ub098\ub294\ub370\u2026"
+    overview: "15세기, 전쟁으로 연인을 잃은 남자. 신을 버린 저주로 불멸의 드라큘라가 되고 그녀를 되찾기 위해 세상을 떠돈다. 400년의 기다림. 죽음도, 시간도, 신의 저주도 끝내 막지 못한 운명을 다시 만나는데…"
   },
   {
-    id: "upcoming_20247458", title: "\uacbd\uc8fc\uae30\ud589", director: "\uae40\ubbf8\uc870",
+    id: "upcoming_20247458", title: "경주기행", director: "김미조",
     cast: ["이정은", "공효진", "박소담"],
     releaseDate: "2026-08-26", genre: ["범죄"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/2dAd2APyFUyJ6qEv9VFHdHQtQI6.jpg",
     isRevealed: false,
-    overview: "\uc5c4\ub9c8 \uc625\uc2e4\uacfc \uc138 \ub538 \uc7a5\uc8fc, \uc601\uc8fc, \ub3d9\uc8fc\ub294 8\ub144 \uc804 \uc218\ud559\uc5ec\ud589\uc744 \ub5a0\ub09c \uc774\ud6c4 \ub2e4\uc2dc\ub294 \ub3cc\uc544\uc624\uc9c0 \ubabb\ud55c \ub9c9\ub0b4 \uacbd\uc8fc\uc758 \uc0dd\uc77c\uc744 \ub9de\uc544 \ub2e8\uccb4 \ud2f0\uc154\uce20\uae4c\uc9c0 \ub9de\ucdb0 \uc785\uace0 \uacbd\uc8fc\ub85c \uac00\uc871\uc5ec\ud589\uc744 \ub5a0\ub09c\ub2e4. \uc5bc\ud54f \ub2e8\ub780\ud558\uace0 \ud654\ubaa9\ud55c \uac00\uc871\uc5ec\ud589\ucc98\ub7fc \ubcf4\uc774\uc9c0\ub9cc, \ubd09\uace0\ucc28 \ud2b8\ub801\ud06c\uc5d0\ub294 \ub0af\uc120 \ud55c \ub0a8\uc790\uac00 \uc2e4\ub824 \uc788\ub294\ub370\u2026"
+    overview: "엄마 옥실과 세 딸 장주, 영주, 동주는 8년 전 수학여행을 떠난 이후 다시는 돌아오지 못한 막내 경주의 생일을 맞아 단체 티셔츠까지 맞춰 입고 경주로 가족여행을 떠난다. 얼핏 단란하고 화목한 가족여행처럼 보이지만, 봉고차 트렁크에는 낯선 한 남자가 실려 있는데…"
   },
   {
-    id: "upcoming_20265331", title: "\uace0\uc591\uc774\ub97c \ub193\uc544\uc918", director: "\uc2dc\uac00\uc57c \ub2e4\uc774\uc2a4\ucf00",
+    id: "upcoming_20265331", title: "고양이를 놓아줘", director: "시가야 다이스케",
     cast: ["후지이 소마", "무라카미 유키노", "타니구치 란"],
     releaseDate: "2026-08-26", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/4dS74FTvHkBzjCdZZSwfjwt4UQZ.jpg",
     isRevealed: false,
-    overview: "\uc74c\uc545\uc744 \ud558\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \uc0ac\uc9c4\uc744 \ucc0d\ub294 \u2018\ub9c8\uc774\ucf54\u2019. \uc9c0\uce5c \ub9c8\uc74c\uc744 \ub2ec\ub798\uae30 \uc704\ud574 \ud734\uc9c1 \uc911\uc774\uc9c0\ub9cc \uc81c\ub300\ub85c \ub41c \uc74c\uc545 \uc791\uc5c5\ub3c4 \ud558\uc9c0 \ubabb\ud55c \ucc44 \uc2dc\uac04\ub9cc \ubcf4\ub0b4\uace0 \uc788\ub294 \u2018\ubaa8\ub9ac\u2019\uc640 \ub2e4\ub974\uac8c \u2018\ub9c8\uc774\ucf54\u2019\ub294 \uac1c\uc778\uc804\uae4c\uc9c0 \uc5f4\uba70 \uc131\uacf5\ud55c \uc0ac\uc9c4\uc791\uac00\uc5d0 \ud55c \ubc1c \ub354 \ub2e4\uac00\uc120\ub2e4. \u2018\ub9c8\uc774\ucf54\u2019\uc758 \uc804\uc2dc\ud68c \ub9c8\uc9c0\ub9c9 \ub0a0, \uc6b0\uc5f0\ud788 \uacfc\uac70\uc5d0 \ub9cc\ub0ac\ub358 \u2018\uc544\uc0ac\ucf54\u2019\uc640 \uc7ac\ud68c\ud558\uace0 \uacfc\uac70\uc758 \uae30\uc5b5\uc744 \ub5a0\uc62c\ub9ac\ub294 \u2018\ubaa8\ub9ac\u2019. \ub354 \uc774\uc0c1 \uc874\uc7ac\ud558\uc9c0 \uc54a\ub294 \uacfc\uac70\uc640 \ud604\uc7ac \uc0ac\uc774\uc5d0\uc11c \u2018\ubaa8\ub9ac\u2019\ub294 \ubbf8\ucc98 \uc54c\uc544\ubcf4\uc9c0 \ubabb\ud588\ub358 \uc0ac\ub791\uc758 \ud754\uc801\uacfc \ub9c8\uc8fc\ud558\uac8c \ub418\ub294\ub370\u2026 \u201c\ub2e4\uc2dc \uad1c\ucc2e\uc544\uc9c8 \uc218 \uc788\uc744\uae4c?\u201d"
+    overview: "음악을 하는 ‘모리’와 사진을 찍는 ‘마이코’. 지친 마음을 달래기 위해 휴직 중이지만 제대로 된 음악 작업도 하지 못한 채 시간만 보내고 있는 ‘모리’와 다르게 ‘마이코’는 개인전까지 열며 성공한 사진작가에 한 발 더 다가선다. ‘마이코’의 전시회 마지막 날, 우연히 과거에 만났던 ‘아사코’와 재회하고 과거의 기억을 떠올리는 ‘모리’. 더 이상 존재하지 않는 과거와 현재 사이에서 ‘모리’는 미처 알아보지 못했던 사랑의 흔적과 마주하게 되는데… “다시 괜찮아질 수 있을까?”"
   },
   {
-    id: "upcoming_20250203", title: "\ud2b8\ub8e8\uba3c\uc758 \uc0ac\ub791", director: "\uae40\ub355\uc911",
+    id: "upcoming_20250203", title: "트루먼의 사랑", director: "김덕중",
     cast: ["배유람", "이주우", "김신비"],
     releaseDate: "2026-08-26", genre: ["SF", "멜로/로맨스"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/8Zb0UIeGV4mIaUbogykkts1L5oT.jpg",
     isRevealed: false,
-    overview: "\uc18d\uae30\uc0ac \uc9c0\uc5f0\uc740 \uc5b4\ub290 \ub0a0\ubd80\ud130 \uc138\uc0c1\uc774 \uba48\ucd94\ub294 \uc774\uc0c1 \ud604\uc0c1\uc744 \ubaa9\uaca9\ud55c\ub2e4. \uc5d0\ub7ec\uac00 \ubc1c\uc0dd\ud558\uba74 \ubaa8\ub450\uac00 \ud558\ub358 \ud589\ub3d9\uc744 \uba48\ucd94\uace0 \uad73\uc5b4\ubc84\ub9ac\uc9c0\ub9cc, \ud2b8\ub8e8\uba3c\uc778 \uc9c0\uc5f0\ub9cc\uc740 \uadf8 \uc138\uacc4\uc5d0 \uc885\uc18d\ub418\uc9c0 \uc54a\uace0 \uc790\uc720\ub86d\uac8c \uc6c0\uc9c1\uc77c \uc218 \uc788\ub2e4. \ud63c\uc790\uac00 \uc544\ub2c8\ub77c\ub294 \uac78 \ud655\uc778\ud558\uace0 \uc2f6\uc5c8\ub358 \uc9c0\uc5f0\uc740 \ub610\ub2e4\ub978 \ud2b8\ub8e8\uba3c\uc744 \ucc3e\uc544 \ud5e4\ub9e4\ub2e4 \ud604\uc2dd\uacfc \ubb38\uc131\uc744 \ub9cc\ub09c\ub2e4. \uc14b\uc740 \uc774 \uac70\uc9d3 \uc138\uacc4\uc758 \ubc14\uae65\uc744 \ud5a5\ud574 \ud568\uaed8 \ub5a0\ub098\ub824 \ud558\uc9c0\ub9cc, \uc9c0\uc5f0\uc744 \uc0ac\uc774\uc5d0 \ub450\uace0 \ub450 \ub0a8\uc790 \uc0ac\uc774\uc5d0 \uade0\uc5f4\uc774 \uc0dd\uae30\uae30 \uc2dc\uc791\ud558\ub294\ub370\u2026"
+    overview: "속기사 지연은 어느 날부터 세상이 멈추는 이상 현상을 목격한다. 에러가 발생하면 모두가 하던 행동을 멈추고 굳어버리지만, 트루먼인 지연만은 그 세계에 종속되지 않고 자유롭게 움직일 수 있다. 혼자가 아니라는 걸 확인하고 싶었던 지연은 또다른 트루먼을 찾아 헤매다 현식과 문성을 만난다. 셋은 이 거짓 세계의 바깥을 향해 함께 떠나려 하지만, 지연을 사이에 두고 두 남자 사이에 균열이 생기기 시작하는데…"
   },
   {
-    id: "upcoming_20263307", title: "\ub3c4\uadf8 \uc2a4\ud0c0: \ub9c8\uc9c0\ub9c9 \ud76c\ub9dd", director: "\ub9ac\ub4e4\ub9ac \uc2a4\ucf67",
+    id: "upcoming_20263307", title: "도그 스타: 마지막 희망", director: "리들리 스콧",
     cast: ["제이콥 엘로디", "조슈 브롤린", "마가렛 퀄리"],
     releaseDate: "2026-08-26", genre: ["액션", "SF"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/cttXvh438Mqp55loQMDofsd4yiC.jpg",
     isRevealed: false,
-    overview: "\uc778\ub958\ub97c \ud729\uc4f4 \ub300\uc7ac\uc559\uc73c\ub85c \ubb38\uba85\uc774 \ubb34\ub108\uc9c0\uace0 \ud3d0\ud5c8\uac00 \ub41c \uc138\uc0c1. \uc784\uc2e0\ud55c \uc544\ub0b4\ub97c \uc783\uc740 \ud30c\uc77c\ub7ff \ud789\uc740 \ubc18\ub824\uacac \uc7ac\uc2a4\ud37c\uc640 \ud568\uaed8 \uc0b4\uc544\ub0a8\uae30 \uc704\ud574 \ub9e4\uc77c \ubaa9\uc228\uc744 \uac74 \uc0ac\ud22c\ub97c \ubc8c\uc774\uace0, \uc0dd\uc874\uc744 \uc704\ud574\uc11c\ub294 \ub204\uad70\uac00\ub97c \uc8fd\uc5ec\uc57c\ub9cc \ud558\ub294 \ub0c9\ud639\ud55c \ud604\uc2e4 \uc18d\uc5d0\uc11c \uc810\uc810 \uc0b6\uc758 \ud76c\ub9dd\ub9c8\uc800 \uc783\uc5b4\uac04\ub2e4. \uc5b4\ub290 \ub0a0, \ub2e4\ub978 \uad6c\uc5ed\uc5d0\uc11c \ub4e4\ub824\uc628 \uc758\ubb38\uc758 \ub77c\ub514\uc624 \ubb34\uc804\uc740 \ud789\uc5d0\uac8c \uc0c8\ub85c\uc6b4 \ub545\uacfc \uc0b6\uc5d0 \ub300\ud55c \ud76c\ub9dd\uc744 \uc548\uaca8\uc900\ub2e4. \uc720\uc77c\ud55c \uc774\uc6c3\uc778 \ubc45\ub9ac\uc758 \uc5fc\uc138\uc801\uc778 \ub9cc\ub958\uc5d0\ub3c4 \ubd88\uad6c\ud558\uace0 \ubb34\uc804\uc758 \ubc1c\uc2e0\uc9c0\ub97c \ucc3e\uc544 \uae38\uc744 \ub5a0\ub09c \ud789\uc740 \ub2e4\ub978 \uad6c\uc5ed\uc758 \uc0dd\uc874\uc790 \uc2dc\ub9c8\uc640 \ud31d\uc2a4\ub97c \ub9cc\ub098 \uc624\ub79c\ub9cc\uc5d0 \uc778\uac04\ub2e4\uc6b4 \uc628\uae30\uc640 \ud76c\ub9dd\uc744 \ub418\ucc3e\ub294\ub2e4. \uadf8\ub7ec\ub098 \ud3c9\ud654\ub3c4 \uc7a0\uc2dc, \uc57c\ub9cc\uc801\uc778 \uc0dd\uc874\uc790\ub4e4\uc758 \uc704\ud611\uc774 \uadf8\ub4e4\uc744 \ub36e\uce58\uace0 \ud789\uacfc \ub3d9\ub8cc\ub4e4\uc740 \uc0b4\uc544\ub0a8\uae30 \uc704\ud55c \ub9c8\uc9c0\ub9c9 \uc0ac\ud22c\uc5d0 \ub6f0\uc5b4\ub4e0\ub2e4."
+    overview: "인류를 휩쓴 대재앙으로 문명이 무너지고 폐허가 된 세상. 임신한 아내를 잃은 파일럿 힉은 반려견 재스퍼와 함께 살아남기 위해 매일 목숨을 건 사투를 벌이고, 생존을 위해서는 누군가를 죽여야만 하는 냉혹한 현실 속에서 점점 삶의 희망마저 잃어간다. 어느 날, 다른 구역에서 들려온 의문의 라디오 무전은 힉에게 새로운 땅과 삶에 대한 희망을 안겨준다. 유일한 이웃인 뱅리의 염세적인 만류에도 불구하고 무전의 발신지를 찾아 길을 떠난 힉은 다른 구역의 생존자 시마와 팝스를 만나 오랜만에 인간다운 온기와 희망을 되찾는다. 그러나 평화도 잠시, 야만적인 생존자들의 위협이 그들을 덮치고 힉과 동료들은 살아남기 위한 마지막 사투에 뛰어든다."
   },
   {
-    id: "upcoming_20264557", title: "\uc624\ud06c \uc2a4\ud2b8\ub9ac\ud2b8\uc758 \ub9c8\uc9c0\ub9c9 \ub0a0", director: "\ub370\uc774\ube57 \ub85c\ubc84\ud2b8 \ubc0b\uccbc",
+    id: "upcoming_20264557", title: "오크 스트리트의 마지막 날", director: "데이빗 로버트 밋첼",
     cast: ["앤 해서웨이", "이완 맥그리거"],
     releaseDate: "2026-08-26", genre: ["액션", "어드벤처", "미스터리", "SF", "스릴러"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/oGqJr59UAwZfpmSkEkaW02o0ZLC.jpg",
     isRevealed: false,
-    overview: "1982\ub144, \ud3c9\ud654\ub86d\ub358 \u2018\uc624\ud06c \uc2a4\ud2b8\ub9ac\ud2b8\u2019 \ub9c8\uc744\uc774 \ud558\ub8e8\uc544\uce68\uc5d0 \ud1b5\uc9f8\ub85c \uc120\uc0ac\uc2dc\ub300\ub85c \uc62e\uaca8\uc84c\ub2e4. \uc775\uc219\ud588\ub358 \uc9d1\uacfc \uace8\ubaa9\uc740 \uc21c\uc2dd\uac04\uc5d0 \uacf5\ub8e1\ub4e4\uc758 \uc0ac\ub0e5\ud130\ub85c \ubcc0\ud558\uace0, \uc721\uc9c0\uc640 \ud558\ub298, \ubb3c\uc18d\uae4c\uc9c0 \uc810\ub839\ud55c \uac70\ub300 \ud3ec\uc2dd\uc790\ub4e4\uc758 \ubb34\ucc28\ubcc4 \uacf5\uaca9\uc774 \uc2dc\uc791\ub41c\ub2e4! \uacfc\uc5f0 \u2018\ud50c\ub7ab\u2019 \uac00\uc871\uc740 \ubb34\uc0ac\ud788 \uc0b4\uc544\ub0a8\uc544 \uc6d0\ub798\uc758 \uc77c\uc0c1\uc73c\ub85c \ub3cc\uc544\uac08 \uc218 \uc788\uc744\uae4c?"
+    overview: "1982년, 평화롭던 ‘오크 스트리트’ 마을이 하루아침에 통째로 선사시대로 옮겨졌다. 익숙했던 집과 골목은 순식간에 공룡들의 사냥터로 변하고, 육지와 하늘, 물속까지 점령한 거대 포식자들의 무차별 공격이 시작된다! 과연 ‘플랫’ 가족은 무사히 살아남아 원래의 일상으로 돌아갈 수 있을까?"
   },
   {
-    id: "upcoming_20265388", title: "\uace0\uc2a4\ud2b8\ubc34\ub4dc", director: "\uae08\ub3d9\ud638",
+    id: "upcoming_20265388", title: "고스트밴드", director: "금동호",
     cast: ["김연우", "엄상현", "이용신"],
     releaseDate: "2026-08-26", genre: ["애니메이션"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/iDYPfIKR263Srm33hrNc4m6ILja.jpg",
     isRevealed: false,
-    overview: "\uc601\ud63c\uc744 \ubcf4\ub294 \uc2f1\uc5b4\uc1a1\ub77c\uc774\ud130 '\ubbf8\ud0c0'. \uc5b4\ub290 \ub0a0 \uac1c\uc131\ub9cc\uc810 \uace0\uc2a4\ud2b8 4\uc778\ubc29\uacfc \uce5c\uad6c\uac00 \ub418\uc5b4 '\uace0\uc2a4\ud2b8\ubc34\ub4dc'\ub97c \uacb0\uc131\ud558\uace0 \ubcf4\uceec\uc744 \ub9e1\uc544 \ub09c\uc0dd\ucc98\uc74c \ub204\uad70\uac00\uc758 \uc55e\uc5d0\uc11c \ud568\uaed8 \ub178\ub798\ud558\ub294 \uae30\uc068\uc744 \uc54c\uac8c \ub41c\ub2e4. '\ubbf8\ud0c0'\uc640 \uace0\uc2a4\ud2b8\ubc34\ub4dc\uc758 \uacf5\uc5f0 \uc601\uc0c1\uc774 SNS\ub97c \uac15\ud0c0\ud558\uba70 \ub9c8\uce68\ub0b4 \uafc8\uafb8\ub358 \ubb34\ub300\ub97c \ub208\uc55e\uc5d0 \ub454 \uc21c\uac04, \ub300\ud615 \uae30\ud68d\uc0ac\uc758 \uac70\ub300\ud55c \ubc29\ud574 \uacf5\uc791\uc73c\ub85c \uc704\uae30\ub97c \ub9de\uac8c \ub418\ub294\ub370..."
+    overview: "영혼을 보는 싱어송라이터 '미타'. 어느 날 개성만점 고스트 4인방과 친구가 되어 '고스트밴드'를 결성하고 보컬을 맡아 난생처음 누군가의 앞에서 함께 노래하는 기쁨을 알게 된다. '미타'와 고스트밴드의 공연 영상이 SNS를 강타하며 마침내 꿈꾸던 무대를 눈앞에 둔 순간, 대형 기획사의 거대한 방해 공작으로 위기를 맞게 되는데..."
   },
   {
-    id: "upcoming_20264918", title: "\uc2f1 \uc5b4\uac8c\uc778", director: "\uc874 \uce74\ub2c8",
+    id: "upcoming_20264918", title: "싱 어게인", director: "존 카니",
     cast: ["폴 러드", "닉 조나스"],
     releaseDate: "2026-09-02", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/19BfIkDHgbgLcHVbi9rKx7KUCgi.jpg",
     isRevealed: false,
-    overview: "\ud31d\uc2a4\ud0c0\uc758 \uafc8\uc740 \uc811\uc5c8\uc9c0\ub9cc \uc74c\uc545\ub9cc\uc740 \ub193\uc9c0 \ubabb\ud55c \ubb34\uba85 \ucd95\uac00 \uac00\uc218, \ub9ad. \ud55c\ub550 \uc798\ub098\uac14\uc9c0\ub9cc \uc9c0\uae08\uc740 \ub098\ub77d \uc9c1\uc804\uc778 \ud31d\uc2a4\ud0c0, \ub300\ub2c8. \uc6b0\uc5f0\ud788 \ub9cc\ub09c \ub450 \uc0ac\ub78c, \uadf8\ub4e4\uc774 \uc644\uc131\ud55c \ub2e8 \ud558\ub098\uc758 \ub178\ub798. \ud558\uc9c0\ub9cc \uadf8 \uace1\uc740 \uc624\uc9c1 \ub300\ub2c8\uc758 \uc774\ub984\uc73c\ub85c\ub9cc \uc138\uc0c1\uc5d0 \uc54c\ub824\uc9c0\ub294\ub370\u2026"
+    overview: "팝스타의 꿈은 접었지만 음악만은 놓지 못한 무명 축가 가수, 릭. 한땐 잘나갔지만 지금은 나락 직전인 팝스타, 대니. 우연히 만난 두 사람, 그들이 완성한 단 하나의 노래. 하지만 그 곡은 오직 대니의 이름으로만 세상에 알려지는데…"
   },
   {
-    id: "upcoming_20265146", title: "\uc635\uc138\uc158", director: "\ucee4\ub9ac \ubc14\ucee4",
+    id: "upcoming_20265146", title: "옵세션", director: "커리 바커",
     cast: ["마이클 존스턴", "인디 네버레티", "쿠퍼 톰린슨"],
     releaseDate: "2026-09-02", genre: ["공포(호러)"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/df4rpubfWy0g7HCzBNtPLLKnoMH.jpg",
     isRevealed: false,
-    overview: "\u2018\ub2c8\ud0a4\u2019\ub97c \uc9dd\uc0ac\ub791\ud558\ub358 \u2018\ubca0\uc5b4\u2019\ub294 \uace8\ub3d9\ud488 \uc0c1\uc810\uc5d0\uc11c \uad6c\uc785\ud55c \u2018\uc6d0 \uc704\uc2dc \uc70c\ub85c\uc6b0\u2019\uc5d0 \u2018\ub2c8\ud0a4\u2019\uac00 \uc790\uc2e0\uc744 \uac00\uc7a5 \uc0ac\ub791\ud558\uac8c \ud574\ub2ec\ub77c\uace0 \uc18c\uc6d0\uc744 \ube48\ub2e4. \uadf8\ub0a0 \ubc24, \ub450 \uc0ac\ub78c\uc740 \uc5f0\uc778\uc774 \ub418\uc9c0\ub9cc \ubc97\uc5b4\ub0a0 \uc218 \uc5c6\ub294 \ub054\ucc0d\ud55c \uc77c\uacfc \ub9c8\uc8fc\ud558\uac8c \ub418\ub294\ub370..."
+    overview: "‘니키’를 짝사랑하던 ‘베어’는 골동품 상점에서 구입한 ‘원 위시 윌로우’에 ‘니키’가 자신을 가장 사랑하게 해달라고 소원을 빈다. 그날 밤, 두 사람은 연인이 되지만 벗어날 수 없는 끔찍한 일과 마주하게 되는데..."
   },
   {
-    id: "upcoming_20265579", title: "\ub9d0\ud558\uc9c0 \uc54a\uc740 \uac83\ub4e4", director: "\uac00\ube0c\ub9ac\uc5d8\ub808 \ubb34\uce58\ub178",
+    id: "upcoming_20265579", title: "말하지 않은 것들", director: "가브리엘레 무치노",
     cast: ["스테파노 아코르시"],
     releaseDate: "2026-09-02", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/jhAimZ4vUrq4zEAWgT0yBff1ooh.jpg",
     isRevealed: false,
-    overview: "\uce74\ub97c\ub85c\ub294 \ub300\ud559\uad50\uc218\uc774\uace0, \uc5d8\ub9ac\uc0ac\ub294 \uae30\uc790\ub2e4. \uadf8\ub4e4\uc740 \uc548\ub098\uc640 \ud30c\uc62c\ub85c, \uadf8\ub9ac\uace0 \uadf8\ub4e4\uc758 \ub538 \ube44\ud1a0\ub9ac\uc544\uc640 \ud568\uaed8 \ubaa8\ub85c\ucf54\uc758 \ud0d5\ud5e4\ub974\ub85c \uc5ec\ud589\uc744 \ub5a0\ub09c\ub2e4. \uba40\ub9ac \ub5a8\uc5b4\uc9c4 \ub530\ub73b\ud558\uace0 \uace0\uc694\ud55c \ud48d\uacbd \uc18d\uc5d0\uc11c, \uad00\uacc4\ub294 \uae34\uc7a5\uc744 \uace0\uc870\uc2dc\ud0a4\uace0, \ubcf8\ubaa8\uc2b5\uc744 \ub4dc\ub7ec\ub0b4\uba70, \ubcc0\ud654\ud55c\ub2e4."
-  }
+    overview: "카를로는 대학교수이고, 엘리사는 기자다. 그들은 안나와 파올로, 그리고 그들의 딸 비토리아와 함께 모로코의 탕헤르로 여행을 떠난다. 멀리 떨어진 따뜻하고 고요한 풍경 속에서, 관계는 긴장을 고조시키고, 본모습을 드러내며, 변화한다."
+  },
+  {
+    id: "upcoming_20204641", title: "비광", director: "이지원",
+    cast: ["류승룡", "하지원", "김시아"],
+    releaseDate: "2026-09-02", genre: ["드라마", "가족"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/4JpwwQLDIXOYt3YwRszR3rkcwtk.jpg",
+    isRevealed: false,
+    overview: "톱스타 부부 중구와 남미가 갑자기 나타난 중구의 딸 동주로 인해 파경을 맞은 뒤 8년 후 충격적인 사건에 휘말린 동주를 구하기 위해 마지막 남은 모든 것을 걸고 진실을 파헤치는 ‘미쓰백’ 이지원 감독의 찐한 가족 연대기"
+  },
+  {
+    id: "upcoming_20249080", title: "캐리어를 끄는 소녀", director: "윤심경",
+    cast: ["최명빈", "문승아", "김태훈"],
+    releaseDate: "2026-09-02", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/owXQAokJPjvM2FKX4ctAfKpCUhD.jpg",
+    isRevealed: false,
+    overview: "양부모에게 버려진 15살 ‘영선’은 또래 ‘수아’의 테니스 훈련 파트너로 수아네 집에 머물게 된다. 갈 곳이 없던 ‘영선’은 이 집의 일원이 되고 싶다는 마음을 품고, 조용하지만 치열하게 ‘수아’네 가족 안으로 스며들기 위해 애쓴다. 하지만 각자의 결핍을 안고 있는 그들 안으로 들어가기는 쉽지 않은데…"
+  },
+  {
+    id: "upcoming_20265302", title: "파파조라 더 무비", director: "니잠 라작",
+    cast: ["홍범기", "양정화", "엄상현"],
+    releaseDate: "2026-09-02", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/x71IGbvjUSeqrTtslrMnwylidYf.jpg",
+    isRevealed: false,
+    overview: "외계인 침공으로부터 지구를 지키는 비밀 조직 ‘파파’! 일명 ‘파’멸 저지 ‘파’견팀, 파파의 팀장 ‘카착스 칸’, 정보 분석 요원 ‘질러’, 행동 요원 ‘조라’, 기술 지원 요원 ‘욘비’는 외계인 침공으로부터 지구를 지키기 위해 활약하며 임무를 완수했지만 조라와 질러는 기억을 잃게 된다. 그로부터 몇 년 후, 기억을 잃은 비밀 조직 파파 요원인 조라는 허세만렙 딸 바보, 가족 바라기 ‘극F’ 아빠로 아내 질러, 딸 피피와 소박하고 행복한 일상을 꾸려나간다. 가족 여행 자금을 모으기 위해 배달, 운전 등 투잡, 쓰리잡도 불사하던 중 사랑하는 딸 피피가 외계인에 납치되고, 외계인의 위협으로 지구가 다시 위험에 빠지게 되자 조라와 질러 앞에 파파 요원들이 다시 나타나는데!"
+  },
+  {
+    id: "upcoming_20265573", title: "인 더 그레이", director: "가이 리치",
+    cast: ["헨리 카빌", "제이크 질렌할", "에이사 곤잘레스"],
+    releaseDate: "2026-09-02", genre: ["액션", "범죄"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2PIph5fGpL7xsNsRRjHOx1rkpYa.jpg",
+    isRevealed: false,
+    overview: "악질 채무 청산을 전담하는 변호사 ‘레이첼’은 스펜서 골드스타인 투자가 '보비’를 찾아가 부패한 거물 ‘매니’에게 받지 못한 채무 10억 달러를 되찾아 주겠다고 제안한다. ‘레이첼’은 시스템의 빈틈을 교묘히 이용해, ‘살라사르’를 공략할 계획을 세우고, 전직 특수부대 요원 '시드’와 ‘브롱코'를 임무에 끌어들여 기상천외한 작전을 세우는데!"
+  },
+  {
+    id: "upcoming_20255509", title: "사진의 얼굴", director: "고희영",
+    cast: [],
+    releaseDate: "2026-09-02", genre: ["다큐멘터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/53yTiV0XOIQ0tUaqToO6yUfZFNA.jpg",
+    isRevealed: false,
+    overview: "\\"왜 일본놈이 한국을 찍는가!” 90세 일본 포토저널리즘의 거장 구와바라 시세이. 지난 60년간 100여 차례 한국을 오간 그는 청계천 서민들의 삶부터 민주화 운동, 동두천 기지촌, 베트남 파병, 평양의 일상 등 한반도를 관통한 크고 작은 사건들을 10만 컷의 사진으로 기록해 왔다. “그는 무엇을 보았는가?” ‘남한에서의 국외 추방, 북한에서의 입국 금지 등 갖은 고난을 당하면서도 그가 끝내 놓지 못했던 생생한 얼굴들. 2026년 바로 오늘, 스크린에서 거장의 뷰파인더를 통해 본 ‘사진의 얼굴’을 만난다."
+  },
 ];
 
 // FILMOGRAPHIES
