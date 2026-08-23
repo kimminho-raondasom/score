@@ -3966,9 +3966,7 @@ html, body, .app-container, .view-section, .glass-card {
         <div id="special-ai-quiz-body" style="display:none;">
           <!-- 포스터 + 진행 정보 -->
           <div class="movie-presenter-card glass-card" style="margin-bottom:14px;">
-            <div class="movie-poster-placeholder" id="special-ai-poster" style="background-size:cover;background-position:center;min-width:72px;height:100px;border-radius:8px;overflow:hidden;flex-shrink:0;">
-              <span class="material-symbols-outlined">quiz</span>
-            </div>
+            <div class="movie-poster-placeholder" id="special-ai-poster" style="display:none;"></div>
             <div class="movie-meta-details" style="flex:1;min-width:0;">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
                 <span style="font-size:0.68rem;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;">Special 종합 퀴즈</span>
@@ -5371,7 +5369,7 @@ class CineMasterApp {
       const badge = isRevealed
         ? `<span class="movie-badge badge-revealed">정답 공개됨</span>`
         : `<span class="movie-badge badge-upcoming">D-${dDay}일 (${m.releaseDate})</span>`;
-      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const action = isRevealed
         ? `onclick="app.showRevealedResult('${safeTitle}')"`
         : `onclick="app.startSpecificQuiz('${safeTitle}', true, '${mode}')"`;
@@ -5527,7 +5525,7 @@ class CineMasterApp {
       const posterStyle = m.posterUrl
         ? `background-image: url('${m.posterUrl}')`
         : `background: var(--bg-secondary)`;
-      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeTitle = m.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       return `
          <div class="movie-card" onclick="app.startSpecificQuiz('${safeTitle}', false, '${mode}')" tabindex="0" role="button" aria-label="${safeTitle}">
           <div class="movie-poster" style="${posterStyle}" aria-hidden="true"></div>
@@ -5841,9 +5839,9 @@ class CineMasterApp {
     } else if (alreadyWrote) {
       inputArea = `<div class="comment-locked-msg">이미 한줄평을 남기셨습니다.</div>`;
     } else {
-      const safeKey = key.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeKey = key.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       const safeMovieId = this.sanitizeId(movie.id || movie.title);
-      const safeMovieIdAttr = safeMovieId.replace(/'/g, "&#39;");
+      const safeMovieIdAttr = safeMovieId.replace(/'/g, "\\'");
       inputArea = `
         <div class="comment-input-area">
           <div style="font-size:0.68rem;color:var(--text-muted);margin-bottom:5px;letter-spacing:0.5px;">10자 이내 작성 가능</div>
@@ -6652,8 +6650,8 @@ class CineMasterApp {
       const posterStyle = posterUrl
         ? `background-image:url('${posterUrl}');background-size:cover;background-position:center;`
         : `background:var(--bg-secondary);`;
-      const safeTitle = c.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      const safeAnswer = correctAnswerTitle.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeTitle = c.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeAnswer = correctAnswerTitle.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
        return `
          <div class="filmo-choice-card hover-lift" onclick="app.gradeFilmoQuiz('${safeTitle}', ${c.correct}, '${safeAnswer}', ${isNegativeQuestion})" style="padding:12px;">
            <div class="filmo-choice-label">${this.escapeHtml(c.title)}</div>
@@ -6761,8 +6759,8 @@ class CineMasterApp {
            const posterStyle = found
              ? `background-image:url('${found.posterUrl}');background-size:cover;background-position:center;`
              : `background:var(--bg-secondary);`;
-           const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
-           const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+           const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+           const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
             return `
               <div class="filmo-choice-card hover-lift" onclick="app.gradeLinesQuoteQuiz('${safeTitle}', '${safeCorrect}')" style="padding:12px;">
                 <div class="filmo-choice-label">${this.escapeHtml(title)}</div>
@@ -6789,29 +6787,6 @@ class CineMasterApp {
         }
       }
      
-      // E모드 포스터 설정 (이미지 preload + fallback)
-      const linesPosterEl = document.getElementById('lines-movie-poster');
-      if (linesPosterEl && movie.posterUrl) {
-        const img = new Image();
-        img.onload = () => {
-          linesPosterEl.style.backgroundImage = `url('${movie.posterUrl}')`;
-          linesPosterEl.style.backgroundSize = 'cover';
-          linesPosterEl.style.backgroundPosition = 'center';
-          linesPosterEl.style.display = 'block';
-        };
-        img.onerror = () => {
-          linesPosterEl.style.backgroundImage = 'none';
-          linesPosterEl.style.background = '';
-          linesPosterEl.style.backgroundColor = 'var(--bg-secondary)';
-          linesPosterEl.style.display = 'block';
-        };
-        img.src = movie.posterUrl;
-      } else if (linesPosterEl) {
-        linesPosterEl.style.backgroundImage = 'none';
-        linesPosterEl.style.background = '';
-        linesPosterEl.style.backgroundColor = 'var(--bg-secondary)';
-      }
-
      if (showChoseong) {
        const inputEl = document.getElementById('input-lines-answer');
        if (inputEl) {
@@ -7820,9 +7795,9 @@ class CineMasterApp {
         wrongTitles = [...wrongTitles, ...extra];
       }
       const options = this.shuffleArray([movie.title, ...wrongTitles]);
-      const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      const safeCorrect = movie.title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
       choicesEl.innerHTML = options.map(title => {
-        const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "&#39;").replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeTitle = title.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;');
         return `
           <div class="filmo-choice-card hover-lift" onclick="app.gradeOrdinaryQuiz('${safeTitle}', '${safeCorrect}')">
             <div class="filmo-choice-label" style="padding:14px 8px;">${title}</div>
@@ -8468,7 +8443,7 @@ class CineMasterApp {
       : []);
     this._buildPosterTrack('poster-track-special', specialMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "&#39;");
+        const t = movie.title.replace(/'/g, "\\'");
         return `app.showScoreOptions()`;
       }
     );
@@ -8487,7 +8462,7 @@ class CineMasterApp {
     }
     this._buildPosterTrack('poster-track-challenge', challengeMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "&#39;");
+        const t = movie.title.replace(/'/g, "\\'");
         return `app.showChallengeOptions()`;
       }
     );
@@ -8509,7 +8484,7 @@ class CineMasterApp {
     }
     this._buildPosterTrack('poster-track-ordinary', ordinaryMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "&#39;");
+        const t = movie.title.replace(/'/g, "\\'");
         return `app.showOrdinaryOptions()`;
       }
     );
@@ -8531,7 +8506,7 @@ class CineMasterApp {
     }
     this._buildPosterTrack('poster-track-regular', regularMovies,
       (movie) => {
-        const t = movie.title.replace(/'/g, "&#39;");
+        const t = movie.title.replace(/'/g, "\\'");
         return `app.showFilmoOptions()`;
       }
     );
@@ -8546,7 +8521,7 @@ class CineMasterApp {
       : []);
     this._buildPosterTrack('poster-track-easy', easyMovies,
       (movie) => {
-        const t = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "&#39;");
+        const t = movie.title.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
         return `app.showLinesOptions()`;
       }
     );
