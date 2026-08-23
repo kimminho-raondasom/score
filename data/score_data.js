@@ -361,7 +361,7 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
-  // ── KOBIS(영진위) API 자동 수집 (2026-08-24 08:35 KST, 실행 시점 기준 1개월 이내) ──
+  // ── KOBIS(영진위) API 자동 수집 (2026-08-24 08:44 KST, 실행 시점 기준 1개월 이내) ──
   {
     id: "upcoming_20264715", title: "드라큘라: 러브 테일", director: "뤽 베송",
     cast: ["케일럽 랜드리 존스", "크리스토프 왈츠", "조이 블루"],
@@ -433,6 +433,16 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "영혼을 보는 싱어송라이터 '미타'. 어느 날 개성만점 고스트 4인방과 친구가 되어 '고스트밴드'를 결성하고 보컬을 맡아 난생처음 누군가의 앞에서 함께 노래하는 기쁨을 알게 된다. '미타'와 고스트밴드의 공연 영상이 SNS를 강타하며 마침내 꿈꾸던 무대를 눈앞에 둔 순간, 대형 기획사의 거대한 방해 공작으로 위기를 맞게 되는데..."
   },
   {
+    id: "upcoming_20265505", title: "터치드 콘서트 [하이라이트 포] : 더 무비", director: "손석",
+    cast: [],
+    releaseDate: "2026-08-26", genre: ["공연"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/x1WK0GpVz8sYL6CjGnRIyNG0hSC.jpg",
+    isRevealed: false,
+    overview: "밴드 터치드(TOUCHED)의 찬란했던 1년의 기록이 스크린에 펼쳐진다! 2026년 1월 티켓링크 라이브 아레나를 뜨겁게 물들였던 <터치드(TOUCHED) 단독 콘서트 'HIGHLIGHT IV'>가 영화로 팬들의 곁을 다시 찾는다. 폭발적인 가창력과 파워풀한 연주, 객석을 압도하는 강렬한 퍼포먼스가 담긴 공연 실황은 물론, 최초로 공개되는 콘서트 기획 회의부터 합주실과 리허설 현장 메이킹, 그리고 멤버들의 진솔한 인터뷰까지 더해져 공연의 감동을 더욱 깊게 만든다. 그날의 전율을 함께했던 이들에게는 현장의 열기를 다시 떠올리는 시간이 되고 아쉽게 함께하지 못했던 이들에게는 그 자리에 함께한 듯한 생생한 몰입감을 선사할 예정이다."
+  },
+  {
     id: "upcoming_20264918", title: "싱 어게인", director: "존 카니",
     cast: ["폴 러드", "닉 조나스"],
     releaseDate: "2026-09-02", genre: ["드라마"],
@@ -501,16 +511,6 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/2PIph5fGpL7xsNsRRjHOx1rkpYa.jpg",
     isRevealed: false,
     overview: "악질 채무 청산을 전담하는 변호사 ‘레이첼’은 스펜서 골드스타인 투자가 '보비’를 찾아가 부패한 거물 ‘매니’에게 받지 못한 채무 10억 달러를 되찾아 주겠다고 제안한다. ‘레이첼’은 시스템의 빈틈을 교묘히 이용해, ‘살라사르’를 공략할 계획을 세우고, 전직 특수부대 요원 '시드’와 ‘브롱코'를 임무에 끌어들여 기상천외한 작전을 세우는데!"
-  },
-  {
-    id: "upcoming_20255509", title: "사진의 얼굴", director: "고희영",
-    cast: [],
-    releaseDate: "2026-09-02", genre: ["다큐멘터리"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/53yTiV0XOIQ0tUaqToO6yUfZFNA.jpg",
-    isRevealed: false,
-    overview: "\\"왜 일본놈이 한국을 찍는가!” 90세 일본 포토저널리즘의 거장 구와바라 시세이. 지난 60년간 100여 차례 한국을 오간 그는 청계천 서민들의 삶부터 민주화 운동, 동두천 기지촌, 베트남 파병, 평양의 일상 등 한반도를 관통한 크고 작은 사건들을 10만 컷의 사진으로 기록해 왔다. “그는 무엇을 보았는가?” ‘남한에서의 국외 추방, 북한에서의 입국 금지 등 갖은 고난을 당하면서도 그가 끝내 놓지 못했던 생생한 얼굴들. 2026년 바로 오늘, 스크린에서 거장의 뷰파인더를 통해 본 ‘사진의 얼굴’을 만난다."
   },
 ];
 
