@@ -361,7 +361,7 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
-  // ── KOBIS(영진위) API 자동 수집 (2026-08-24 08:44 KST, 실행 시점 기준 1개월 이내) ──
+  // ── KOBIS(영진위) API 자동 수집 (2026-08-24 08:46 KST, 실행 시점 기준 1개월 이내) ──
   {
     id: "upcoming_20264715", title: "드라큘라: 러브 테일", director: "뤽 베송",
     cast: ["케일럽 랜드리 존스", "크리스토프 왈츠", "조이 블루"],
@@ -443,6 +443,16 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "밴드 터치드(TOUCHED)의 찬란했던 1년의 기록이 스크린에 펼쳐진다! 2026년 1월 티켓링크 라이브 아레나를 뜨겁게 물들였던 <터치드(TOUCHED) 단독 콘서트 'HIGHLIGHT IV'>가 영화로 팬들의 곁을 다시 찾는다. 폭발적인 가창력과 파워풀한 연주, 객석을 압도하는 강렬한 퍼포먼스가 담긴 공연 실황은 물론, 최초로 공개되는 콘서트 기획 회의부터 합주실과 리허설 현장 메이킹, 그리고 멤버들의 진솔한 인터뷰까지 더해져 공연의 감동을 더욱 깊게 만든다. 그날의 전율을 함께했던 이들에게는 현장의 열기를 다시 떠올리는 시간이 되고 아쉽게 함께하지 못했던 이들에게는 그 자리에 함께한 듯한 생생한 몰입감을 선사할 예정이다."
   },
   {
+    id: "upcoming_20204641", title: "비광", director: "이지원",
+    cast: ["류승룡", "하지원", "김시아"],
+    releaseDate: "2026-09-02", genre: ["드라마", "가족"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/4JpwwQLDIXOYt3YwRszR3rkcwtk.jpg",
+    isRevealed: false,
+    overview: "톱스타 부부 중구와 남미가 갑자기 나타난 중구의 딸 동주로 인해 파경을 맞은 뒤 8년 후 충격적인 사건에 휘말린 동주를 구하기 위해 마지막 남은 모든 것을 걸고 진실을 파헤치는 ‘미쓰백’ 이지원 감독의 찐한 가족 연대기"
+  },
+  {
     id: "upcoming_20264918", title: "싱 어게인", director: "존 카니",
     cast: ["폴 러드", "닉 조나스"],
     releaseDate: "2026-09-02", genre: ["드라마"],
@@ -473,16 +483,6 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "카를로는 대학교수이고, 엘리사는 기자다. 그들은 안나와 파올로, 그리고 그들의 딸 비토리아와 함께 모로코의 탕헤르로 여행을 떠난다. 멀리 떨어진 따뜻하고 고요한 풍경 속에서, 관계는 긴장을 고조시키고, 본모습을 드러내며, 변화한다."
   },
   {
-    id: "upcoming_20204641", title: "비광", director: "이지원",
-    cast: ["류승룡", "하지원", "김시아"],
-    releaseDate: "2026-09-02", genre: ["드라마", "가족"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/4JpwwQLDIXOYt3YwRszR3rkcwtk.jpg",
-    isRevealed: false,
-    overview: "톱스타 부부 중구와 남미가 갑자기 나타난 중구의 딸 동주로 인해 파경을 맞은 뒤 8년 후 충격적인 사건에 휘말린 동주를 구하기 위해 마지막 남은 모든 것을 걸고 진실을 파헤치는 ‘미쓰백’ 이지원 감독의 찐한 가족 연대기"
-  },
-  {
     id: "upcoming_20249080", title: "캐리어를 끄는 소녀", director: "윤심경",
     cast: ["최명빈", "문승아", "김태훈"],
     releaseDate: "2026-09-02", genre: ["드라마"],
@@ -511,6 +511,116 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/2PIph5fGpL7xsNsRRjHOx1rkpYa.jpg",
     isRevealed: false,
     overview: "악질 채무 청산을 전담하는 변호사 ‘레이첼’은 스펜서 골드스타인 투자가 '보비’를 찾아가 부패한 거물 ‘매니’에게 받지 못한 채무 10억 달러를 되찾아 주겠다고 제안한다. ‘레이첼’은 시스템의 빈틈을 교묘히 이용해, ‘살라사르’를 공략할 계획을 세우고, 전직 특수부대 요원 '시드’와 ‘브롱코'를 임무에 끌어들여 기상천외한 작전을 세우는데!"
+  },
+  {
+    id: "upcoming_20255509", title: "사진의 얼굴", director: "고희영",
+    cast: [],
+    releaseDate: "2026-09-02", genre: ["다큐멘터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/53yTiV0XOIQ0tUaqToO6yUfZFNA.jpg",
+    isRevealed: false,
+    overview: "\\"왜 일본놈이 한국을 찍는가!” 90세 일본 포토저널리즘의 거장 구와바라 시세이. 지난 60년간 100여 차례 한국을 오간 그는 청계천 서민들의 삶부터 민주화 운동, 동두천 기지촌, 베트남 파병, 평양의 일상 등 한반도를 관통한 크고 작은 사건들을 10만 컷의 사진으로 기록해 왔다. “그는 무엇을 보았는가?” ‘남한에서의 국외 추방, 북한에서의 입국 금지 등 갖은 고난을 당하면서도 그가 끝내 놓지 못했던 생생한 얼굴들. 2026년 바로 오늘, 스크린에서 거장의 뷰파인더를 통해 본 ‘사진의 얼굴’을 만난다."
+  },
+  {
+    id: "upcoming_20255100", title: "97 혜자, 표류기", director: "정기혁",
+    cast: ["정은지", "이혜", "우주영"],
+    releaseDate: "2026-09-09", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/j8vHULJmFuZPCQu4WhSxV4A5MGk.jpg",
+    isRevealed: false,
+    overview: "서울에 취직하여 고군분투 중인 혜자는 반지하에서 오피스텔로 올라가기를 꿈꾼다. 보험사 콜센터에서 일하는 혜자는 거친 사투리와 불같은 성격 때문에 회사에서 어려움이 많다. 며칠 뒤, 오피스텔로 가기로 결심한 혜자는 엄마에게 돈을 빌리기 위해 부산행 기차를 탄다. 부산에 도착한 혜자는 아무리 문을 두드려도 엄마가 나오지 않자, 엄마의 친구 희숙에게 전화를 건다."
+  },
+  {
+    id: "upcoming_20261707", title: "연옥: 살인마들의 자치구역", director: "이현명",
+    cast: ["브루스 칸", "이채영", "김재현"],
+    releaseDate: "2026-09-09", genre: ["액션", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/Aw2oCnLMoMiWA8r9LfdCK94JnaT.jpg",
+    isRevealed: false,
+    overview: "1급 흉악범들조차 살아남기 힘든 수용소 '연옥'. 법도 질서도 존재하지 않는 이곳에서는 오직 힘만이 살아남는다. 모든 죄수들이 두려워하는 연옥의 절대 권력자 ‘염왕’. 어느 날, 그를 제거해 달라는 위험한 제안을 받은 한 남자 ‘유성'. 생존과 자유를 걸고 연옥의 절대 권력에 맞서기 시작한다. 끝없는 폭력과 배신, 예측할 수 없는 함정 속에서 목숨을 건 마지막 사투가 시작된다!"
+  },
+  {
+    id: "upcoming_20262005", title: "카를로비바리", director: "이용석",
+    cast: ["이제연", "오지호", "신지원"],
+    releaseDate: "2026-09-09", genre: ["코미디", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/kK5KblzoMJUU4DVjKouOQMrahF3.jpg",
+    isRevealed: false,
+    overview: "체코 서부에 위치한 아름다운 도시, 카를로비바리. 영화감독 ‘성재’는 카를로비바리를 배경으로 대본을 완성하고, 이후 그의 작품은 각종 공모전 수상, 그리고 영화제작까지 투자를 받게 된다! 국내 세트장 촬영을 모두 마치고, 드디어 현지 촬영만을 남겨 둔 상황. 그런데… 투자받은 제작비가 모두 사라져 버린다! 투자금을 토해내지 않기 위해서는 무슨 일을 써서라도 반드시 영화를 완성해야 하는 상황! 과연 성재와 친구들은 카를로비바리를 가지 않고 무사히 영화를 완성할 수 있을까?"
+  },
+  {
+    id: "upcoming_20265423", title: "더 드라마", director: "크리스토퍼 보글리",
+    cast: ["젠데이아 콜먼", "로버트 패틴슨"],
+    releaseDate: "2026-09-09", genre: ["드라마", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/lar1IXK8gwVYvS2uJKzxn3H7Ba2.jpg",
+    isRevealed: false,
+    overview: "결혼식을 일주일 앞둔 행복한 커플 엠마와 찰리. 우연히 알게 된 상대방의 비밀로 인해 단단했던 믿음이 흔들린다. 첫만남부터 서로를 완벽히 안다고 생각했던 두 사람, 작은 균열은 걷잡을 수 없이 커진 채 모두의 모습을 비추고…"
+  },
+  {
+    id: "upcoming_20264915", title: "딥 워터", director: "레니 할린",
+    cast: ["아론 에크하트", "벤 킹슬리"],
+    releaseDate: "2026-09-09", genre: ["스릴러", "공포(호러)"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/zhJcsxOxqm9W6YQpquZw6TZDa06.jpg",
+    isRevealed: false,
+    overview: "로스앤젤레스발 상하이행 여객기가 화재로 폭발하며 태평양 한복판에 추락한다. 기적적으로 살아남은 승객들. 그러나 침몰하는 기체, 굶주린 식인 상어 떼 속에서 이제부터는 진짜 기적을 바라야 하는데..."
+  },
+  {
+    id: "upcoming_20265275", title: "네 얼굴로는 울 수 없어", director: "사카시타 유이치로",
+    cast: ["요시네 쿄코", "타카하시 카이토"],
+    releaseDate: "2026-09-09", genre: ["드라마", "판타지"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/53R2XdofnpfR723dwplqXXZddND.jpg",
+    isRevealed: false,
+    overview: "열다섯 살 여름, ‘리쿠’와 ‘마나미’는 우연한 사고로 몸이 뒤바뀐다. 하루면 끝날 줄 알았던 시간은 어느새 15년이 되고, 첫사랑과 꿈, 취업과 연애까지 가장 소중한 순간들을 서로의 삶으로 살아가게 된다. 내 얼굴로 웃을 수도, 네 얼굴로 울 수도 없었던 시간. 그리고 15년 후, 다시 찾아온 여름은 두 사람의 운명을 다시 흔들기 시작하는데…."
+  },
+  {
+    id: "upcoming_20264879", title: "청년 조용기", director: "권혁만",
+    cast: ["유열", "양동근"],
+    releaseDate: "2026-09-11", genre: ["다큐멘터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/1mwNRH82JwIkT5bfIypNmshejDn.jpg",
+    isRevealed: false,
+    overview: "1955년, 폐결핵으로 6개월 시한부 선고를 받은 열아홉 살 소년 조용기. 매일 밤 피를 토하며 세상과 신을 향한 저주를 일기장에 쏟아내던 그는, 죽음의 문턱에서 운명처럼 성경을 마주하며 삶의 놀라운 전환점을 맞이한다. 기적적으로 살아난 청년 조용기는 성전 대신 대조동 공동묘지 옆, 비바람에 흔들리는 24평의 낡은 천막 교회를 선택한다. 가난하고 소외된 이들의 벗이 되어 그들의 삶을 함께하며 복음을 전하지만, 차가운 세상의 시선 속에서 그의 개척은 매 순간 고난의 연속이다. 그럼에도 \\"꿈꾸는 자에게는 끝이 없다\\"라는 확신 하나로 걸음을 멈추지 않았던 한 청년. 그의 작은 시작은 마침내 전 세계를 향한 믿음의 여정으로 이어진다. 성공 신화 뒤에 가려져 있던 '인간 조용기'의 진짜 시작. 70년 만에 발굴된 일기장과 미공개 아카이브를 통해 한 청년이 절망을 딛고 시대의 목소리가 되기까지의 여정이 스크린 최초로 펼쳐진다."
+  },
+  {
+    id: "upcoming_20265587", title: "디지몬 어드벤처 : 운명적 만남 & 우리들의 워 게임!", director: "호소다 마모루",
+    cast: [],
+    releaseDate: "2026-09-16", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/p0SmmqmDvgpTg75hc0wPxTdsAlS.jpg",
+    isRevealed: false,
+    overview: "디지몬 어드벤쳐, 그보다 좀 더 이전의 이야기. 야가미 타이치(신태일)와 그의 여동생인 히카리(신나리)가 어릴 적 코로몬과 운명적인 만남을 가졌던 때를 그리고 있다."
+  },
+  {
+    id: "upcoming_20255033", title: "암살자(들)", director: "허진호",
+    cast: ["유해진", "박해일", "이민호"],
+    releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/c55ijsOdntj6P25vDwHLdgsBpmV.jpg",
+    isRevealed: false,
+    overview: "대한민국을 충격에 빠뜨린 8.15 저격 사건의 의혹과 배후를 추적하는 이야기를 그린 영화"
+  },
+  {
+    id: "upcoming_20254904", title: "가능한 사랑", director: "이창동",
+    cast: ["전도연", "설경구", "조인성"],
+    releaseDate: "2026-09-23", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/fCjmdRjpaJdjmUkTFYWe62omR8j.jpg",
+    isRevealed: false,
+    overview: "해고 노동자와 그의 아내 그리고 다큐멘터리 감독과 그녀의 남편. 두 부부가 다큐멘터리 제작을 계기로 만나, 서로의 다른 삶과 숨은 욕망을 마주한다."
   },
 ];
 
