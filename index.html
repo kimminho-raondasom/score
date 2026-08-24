@@ -6258,9 +6258,16 @@ class CineMasterApp {
      const poster = document.getElementById('challenge-movie-poster');
      if (poster) {
        poster.style.backgroundImage = 'none';
-       poster.innerHTML = movie.posterUrl
-         ? `<img src="${movie.posterUrl}" style="width:90px;height:130px;object-fit:cover;border-radius:10px;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\\'material-symbols-outlined\\'>movie</span>'">`
-         : '<span class="material-symbols-outlined">movie</span>';
+       poster.innerHTML = '';
+       if (movie.posterUrl) {
+         const img = document.createElement('img');
+         img.src = movie.posterUrl;
+         img.style.cssText = 'width:90px;height:130px;object-fit:cover;border-radius:10px;display:block';
+         img.onerror = () => { img.remove(); };
+         poster.appendChild(img);
+       } else {
+         poster.innerHTML = '<span class="material-symbols-outlined">movie</span>';
+       }
      }
 
      // 개봉예정작 9문항, 개봉작 6문항 (개봉작은 관람대상·VKOBIS·매출 단계 숨김)
@@ -7604,7 +7611,16 @@ class CineMasterApp {
      const poster = document.getElementById('challenge-movie-poster');
      if (poster) {
        poster.style.backgroundImage = 'none';
-       poster.innerHTML = movie.posterUrl ? `<img src="${movie.posterUrl}" style="width:90px;height:130px;object-fit:cover;border-radius:10px;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\\'material-symbols-outlined\\'>movie</span>'">` : '<span class="material-symbols-outlined">movie</span>';
+       poster.innerHTML = '';
+       if (movie.posterUrl) {
+         const img = document.createElement('img');
+         img.src = movie.posterUrl;
+         img.style.cssText = 'width:90px;height:130px;object-fit:cover;border-radius:10px;display:block';
+         img.onerror = () => { img.remove(); };
+         poster.appendChild(img);
+       } else {
+         poster.innerHTML = '<span class="material-symbols-outlined">movie</span>';
+       }
      }
 
      const tEl = document.getElementById('challenge-movie-title');
