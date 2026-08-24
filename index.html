@@ -8659,7 +8659,7 @@ class CineMasterApp {
       if (!el) return;
       const img = new Image();
       img.onload = () => { /* 정상 — 그대로 유지 */ };
-      img.onerror = () => { el.remove(); };
+      img.onerror = () => { el.style.backgroundImage = 'none'; };
       img.src = m.posterUrl;
     });
 
