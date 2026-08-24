@@ -6255,15 +6255,15 @@ class CineMasterApp {
      if (mDir) mDir.innerText = `감독: ${movie.director || '—'}`;
      if (mCast) mCast.innerText = `주연: ${(movie.cast || []).slice(0, 2).join(', ') || '—'}`;
     
-    const poster = document.getElementById('challenge-movie-poster');
-    if (poster) {
-      poster.style.backgroundImage = movie.posterUrl
-        ? `url('${movie.posterUrl}')`
-        : '';
-      poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
-    }
+     const poster = document.getElementById('challenge-movie-poster');
+     if (poster) {
+       poster.style.backgroundImage = 'none';
+       poster.innerHTML = movie.posterUrl
+         ? `<img src="${movie.posterUrl}" style="width:90px;height:130px;object-fit:cover;border-radius:10px;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\\'material-symbols-outlined\\'>movie</span>'">`
+         : '<span class="material-symbols-outlined">movie</span>';
+     }
 
-    // 개봉예정작 9문항, 개봉작 6문항 (개봉작은 관람대상·VKOBIS·매출 단계 숨김)
+     // 개봉예정작 9문항, 개봉작 6문항 (개봉작은 관람대상·VKOBIS·매출 단계 숨김)
     const isUpcoming = this.currentQuiz.isUpcoming;
     const stepCount = isUpcoming ? 9 : 6;
     this.currentQuiz.scoreStepCount = stepCount;
@@ -7600,14 +7600,14 @@ class CineMasterApp {
     const movie = this.currentQuiz.movies[this.currentQuiz.currentIndex];
     if (!movie) return;
 
-    // 포스터
-    const poster = document.getElementById('challenge-movie-poster');
-    if (poster) {
-      poster.style.backgroundImage = movie.posterUrl ? `url('${movie.posterUrl}')` : '';
-      poster.innerHTML = movie.posterUrl ? '' : '<span class="material-symbols-outlined">movie</span>';
-    }
+     // 포스터
+     const poster = document.getElementById('challenge-movie-poster');
+     if (poster) {
+       poster.style.backgroundImage = 'none';
+       poster.innerHTML = movie.posterUrl ? `<img src="${movie.posterUrl}" style="width:90px;height:130px;object-fit:cover;border-radius:10px;display:block" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\\'material-symbols-outlined\\'>movie</span>'">` : '<span class="material-symbols-outlined">movie</span>';
+     }
 
-    const tEl = document.getElementById('challenge-movie-title');
+     const tEl = document.getElementById('challenge-movie-title');
     const dEl = document.getElementById('challenge-movie-director');
     const cEl = document.getElementById('challenge-movie-cast');
     if (tEl) tEl.innerText = movie.title;
