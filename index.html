@@ -8421,7 +8421,6 @@ class CineMasterApp {
 
   // ── 포스터 롤링 배너 초기화 (5개 섹션) ────────────────────────────────────
    initPosterBanners() {
-     console.log('[poster] initPosterBanners, MOVIES_DB:', typeof MOVIES_DATABASE, MOVIES_DATABASE?.length);
      const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
      const today  = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
 
@@ -8637,7 +8636,6 @@ class CineMasterApp {
 
    _buildPosterTrack(trackId, movies, getOnclick) {
      const track = document.getElementById(trackId);
-     console.log('[poster] track', trackId, 'movies:', movies?.length, 'el:', !!track);
      if (!track || !movies || movies.length === 0) return;
 
     // posterUrl 있는 영화만 렌더링 후, 실제 이미지 로드 실패 시 해당 아이템 제거
@@ -8652,18 +8650,6 @@ class CineMasterApp {
           <div class="poster-item-title">${this.escapeHtml(m.title)}</div>
         </div>`;
     }).join('');
-
-    // 실제 이미지 로드 확인 — 404 등 실패 시 DOM에서 제거
-    movies.forEach(m => {
-      if (!m.posterUrl) return;
-      const safeId = (m.id || m.title).replace(/[^a-zA-Z0-9가-힣_-]/g, '_');
-      const el = document.getElementById(`pitem-${trackId}-${safeId}`);
-      if (!el) return;
-      const img = new Image();
-      img.onload = () => { /* 정상 — 그대로 유지 */ };
-      img.onerror = () => { console.log('[poster] load fail:', m.title); el.style.backgroundImage = 'none'; };
-      img.src = m.posterUrl;
-    });
 
     // 터치 드래그 스크롤 지원
     this._enableDragScroll(track.parentElement);
