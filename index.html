@@ -5345,11 +5345,11 @@ class CineMasterApp {
     // KST(한국 시간) 기준 오늘 이후 ~ 1개월(30일) 이내 개봉 예정작 중 포스터가 있는 것만 표시
     const nowKST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Seoul' }));
     const todayKST = new Date(nowKST.getFullYear(), nowKST.getMonth(), nowKST.getDate());
-    const in1Month = new Date(todayKST); in1Month.setMonth(todayKST.getMonth() + 1);
+    const in1Month = new Date(todayKST); in1Month.setDate(todayKST.getDate() + 30);
 
     const filtered = UPCOMING_MOVIES_DATABASE
       .filter(m => {
-        if (!m.releaseDate || !m.posterUrl) return false;
+        if (!m.releaseDate) return false;
         // 'YYYY-MM-DD'를 로컬 자정으로 파싱 (UTC midnight 방지)
         const [yr, mo, dy] = m.releaseDate.split('-').map(Number);
         const relDate = new Date(yr, mo - 1, dy);
