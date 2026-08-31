@@ -1,4 +1,7 @@
-// score 데이터베이스 — 자동 갱신 (2026-08-31 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-09-01 08:00 KST)
+// MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
+// SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
+
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -157,7 +160,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-08-31 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-09-01 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -170,6 +173,17 @@ const MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/kkJB3SeUJp7Y0IXXLkv5QZHJGkH.jpg"
   },
   {
+    id: "kobis_20250654", title: "\uc624\ub514\uc138\uc774", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub180\ub780",
+    cast: ["맷 데이먼", "톰 홀랜드", "앤 해서웨이", "로버트 패틴슨", "젠데이아 콜먼"],
+    releaseDate: "2026-08-05", genre: ["액션", "드라마", "어드벤처"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3137\u3145\u3147",
+    posterUrl: "https://image.tmdb.org/t/p/w300/8ze9OcVuFiy94s6FFPvsn4oC2e1.jpg"
+  },
+  {
     id: "kobis_20252432", title: "\uc8fc\ud1a0\ud53c\uc544 2", director: "\uc7ac\ub7ec\ub4dc \ubd80\uc2dc",
     cast: ["지니퍼 굿윈", "제이슨 베이트먼", "키 호이 콴"],
     releaseDate: "2025-11-26", genre: ["애니메이션"],
@@ -179,17 +193,6 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u3148\u314c\u314d\u3147",
     posterUrl: "https://image.tmdb.org/t/p/w300/ib6v6qUXzez1x2qIOLN7C0yJNPQ.jpg"
-  },
-  {
-    id: "kobis_20250654", title: "\uc624\ub514\uc138\uc774", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub180\ub780",
-    cast: ["맷 데이먼", "톰 홀랜드", "앤 해서웨이", "로버트 패틴슨", "젠데이아 콜먼"],
-    releaseDate: "2026-08-05", genre: ["액션", "드라마", "어드벤처"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "21\ub9cc\uba85 \uc774\uc0c1",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "501\ub9cc\uba85 \uc774\uc0c1",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3137\u3145\u3147",
-    posterUrl: "https://image.tmdb.org/t/p/w300/k0pJYRAWMacnhY93IikTmXaiR1B.jpg"
   },
   {
     id: "kobis_20262770", title: "\uc2a4\ud30c\uc774\ub354\ub9e8: \ube0c\ub79c\ub4dc \ub274 \ub370\uc774", director: "\ub370\uc2a4\ud2f4 \ub2e4\ub2c8\uc5d8 \ud06c\ub9ac\ud2bc",
