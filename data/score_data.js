@@ -1,4 +1,7 @@
-// score 데이터베이스 — 자동 갱신 (2026-09-05 08:01 KST)
+// score 데이터베이스 — 자동 갱신 (2026-09-06 08:00 KST)
+// MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
+// SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
+
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -172,7 +175,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-09-05 08:01 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-09-06 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -403,7 +406,7 @@ const UPCOMING_MOVIES_DATABASE = [
     releaseDate: "2026-09-09", genre: ["다큐멘터리"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/nuNfPuFZKtkrglYnz2F9weQm3Ng.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/pRMOGMnTKZO7P0J65UNORcXAU8G.jpg",
     isRevealed: false,
     overview: "\ub9ac\uc554 \uac24\ub7ec\uac70\uc640 \ub178\uc5d8 \uac24\ub7ec\uac70\uc758 \uc7ac\uacb0\ud569 \uc18c\uc2dd \uc774\ud6c4 \uc804 \uc138\uacc4\uac00 \uac00\uc7a5 \uae30\ub2e4\ub824\uc654\ub358 \uacf5\uc5f0 \u2018Oasis Live \u201925 Tour\u2019\uc758 \uc5ec\uc815\uc744 \ub530\ub77c\uac00\ub294 \ub2e4\ud050\uba58\ud130\ub9ac \uc601\ud654"
   },
