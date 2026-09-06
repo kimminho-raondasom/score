@@ -400,88 +400,179 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
+  // ── KOBIS(영진위) API 자동 수집 (2026-09-07 00:02 KST, 실행 시점 기준 1개월 이내) ──
   {
-    id: "upcoming_20265344", title: "\uc624\uc544\uc2dc\uc2a4: \ub3c8 \ub8e9 \ubc31 \uc778 \uc575\uac70", director: "\ub51c\ub9ac\uc548 \uc11c\ub358",
+    id: "upcoming_20265344", title: "오아시스: 돈 룩 백 인 앵거", director: "딜리안 서던",
     cast: ["노엘 갤러거", "리암 갤러거"],
     releaseDate: "2026-09-09", genre: ["다큐멘터리"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/pRMOGMnTKZO7P0J65UNORcXAU8G.jpg",
     isRevealed: false,
-    overview: "\ub9ac\uc554 \uac24\ub7ec\uac70\uc640 \ub178\uc5d8 \uac24\ub7ec\uac70\uc758 \uc7ac\uacb0\ud569 \uc18c\uc2dd \uc774\ud6c4 \uc804 \uc138\uacc4\uac00 \uac00\uc7a5 \uae30\ub2e4\ub824\uc654\ub358 \uacf5\uc5f0 \u2018Oasis Live \u201925 Tour\u2019\uc758 \uc5ec\uc815\uc744 \ub530\ub77c\uac00\ub294 \ub2e4\ud050\uba58\ud130\ub9ac \uc601\ud654"
+    overview: "리암 갤러거와 노엘 갤러거의 재결합 소식 이후 전 세계가 가장 기다려왔던 공연 ‘Oasis Live ’25 Tour’의 여정을 따라가는 다큐멘터리 영화"
   },
   {
-    id: "upcoming_20264915", title: "\ub525 \uc6cc\ud130", director: "\ub808\ub2c8 \ud560\ub9b0",
+    id: "upcoming_20264915", title: "딥 워터", director: "레니 할린",
     cast: ["아론 에크하트", "벤 킹슬리"],
     releaseDate: "2026-09-09", genre: ["스릴러", "공포(호러)"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/zhJcsxOxqm9W6YQpquZw6TZDa06.jpg",
     isRevealed: false,
-    overview: "\ub85c\uc2a4\uc564\uc824\ub808\uc2a4\ubc1c \uc0c1\ud558\uc774\ud589 \uc5ec\uac1d\uae30\uac00 \ud654\uc7ac\ub85c \ud3ed\ubc1c\ud558\uba70 \ud0dc\ud3c9\uc591 \ud55c\ubcf5\ud310\uc5d0 \ucd94\ub77d\ud55c\ub2e4. \uae30\uc801\uc801\uc73c\ub85c \uc0b4\uc544\ub0a8\uc740 \uc2b9\uac1d\ub4e4. \uadf8\ub7ec\ub098 \uce68\ubab0\ud558\ub294 \uae30\uccb4, \uad76\uc8fc\ub9b0 \uc2dd\uc778 \uc0c1\uc5b4 \ub5bc \uc18d\uc5d0\uc11c \uc774\uc81c\ubd80\ud130\ub294 \uc9c4\uc9dc \uae30\uc801\uc744 \ubc14\ub77c\uc57c \ud558\ub294\ub370..."
+    overview: "로스앤젤레스발 상하이행 여객기가 화재로 폭발하며 태평양 한복판에 추락한다. 기적적으로 살아남은 승객들. 그러나 침몰하는 기체, 굶주린 식인 상어 떼 속에서 이제부터는 진짜 기적을 바라야 하는데..."
   },
   {
-    id: "upcoming_20256308", title: "\uc778\ud134", director: "\uae40\ub3c4\uc601",
+    id: "upcoming_20255100", title: "97 혜자, 표류기", director: "정기혁",
+    cast: ["정은지", "이혜", "우주영"],
+    releaseDate: "2026-09-09", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/aLRk4Y2jFBccbknDRkQKjX4HaXJ.jpg",
+    isRevealed: false,
+    overview: "서울에 취직하여 고군분투 중인 혜자는 반지하에서 오피스텔로 올라가기를 꿈꾼다. 보험사 콜센터에서 일하는 혜자는 거친 사투리와 불같은 성격 때문에 회사에서 어려움이 많다. 며칠 뒤, 오피스텔로 가기로 결심한 혜자는 엄마에게 돈을 빌리기 위해 부산행 기차를 탄다. 부산에 도착한 혜자는 아무리 문을 두드려도 엄마가 나오지 않자, 엄마의 친구 희숙에게 전화를 건다."
+  },
+  {
+    id: "upcoming_20266148", title: "아버지의 집밥", director: "이준익",
+    cast: ["정진영", "이정은", "변요한"],
+    releaseDate: "2026-09-09", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/wapb8RjHDm8XmFarQIt4idgIUSi.jpg",
+    isRevealed: false,
+    overview: "평생 부엌 근처엔 가본 적도 없는 가부장 아버지 ‘하응’. 결혼 이후 줄곧 가족들의 밥상을 차려온 아내 ‘순애’의 고마움은 모른 채, 삼시세끼 까탈스럽게 집밥만 찾는다. 어느 날 ‘순애’가 요리를 하지 못하는 ‘요리백지증’에 걸리자 집밥의 평화가 깨진 ‘하응’은 생존을 위해 인생 첫 요리에 도전한다. ‘순애’는 ‘하응’의 요리가 맛있으면 칭찬, 맛 없으면 벌점을 주기로 하고 “벌점 10점을 채우면 이혼!”이라는 청천벽력 선언을 내뱉는데…! 과연 ‘하응’은 집밥에 성공할 수 있을까?"
+  },
+  {
+    id: "upcoming_20265963", title: "프랙티컬 매직: 새로운 챕터", director: "수잔 비에르",
+    cast: ["산드라 블록", "니콜 키드먼", "스톡카드 채닝"],
+    releaseDate: "2026-09-09", genre: ["판타지", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/7jCV8dkRFK3DGJ4dTqlvrMTFPwZ.jpg",
+    isRevealed: false,
+    overview: ""
+  },
+  {
+    id: "upcoming_20265423", title: "더 드라마", director: "크리스토퍼 보글리",
+    cast: ["젠데이아 콜먼", "로버트 패틴슨"],
+    releaseDate: "2026-09-09", genre: ["드라마", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/9MKVekk642o1IXug6VSerPqIrZc.jpg",
+    isRevealed: false,
+    overview: "결혼식을 일주일 앞둔 행복한 커플 엠마와 찰리. 우연히 알게 된 상대방의 비밀로 인해 단단했던 믿음이 흔들린다. 첫만남부터 서로를 완벽히 안다고 생각했던 두 사람, 작은 균열은 걷잡을 수 없이 커진 채 모두의 모습을 비추고…"
+  },
+  {
+    id: "upcoming_20265275", title: "네 얼굴로는 울 수 없어", director: "사카시타 유이치로",
+    cast: ["요시네 쿄코", "타카하시 카이토"],
+    releaseDate: "2026-09-09", genre: ["드라마", "판타지"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/nxbVK5NzYIHyClTF1OqDvXctzow.jpg",
+    isRevealed: false,
+    overview: "열다섯 살 여름, ‘리쿠’와 ‘마나미’는 우연한 사고로 몸이 뒤바뀐다. 하루면 끝날 줄 알았던 시간은 어느새 15년이 되고, 첫사랑과 꿈, 취업과 연애까지 가장 소중한 순간들을 서로의 삶으로 살아가게 된다. 내 얼굴로 웃을 수도, 네 얼굴로 울 수도 없었던 시간. 그리고 15년 후, 다시 찾아온 여름은 두 사람의 운명을 다시 흔들기 시작하는데…."
+  },
+  {
+    id: "upcoming_20261707", title: "연옥: 살인마들의 자치구역", director: "이현명",
+    cast: ["브루스 칸", "이채영", "김재현"],
+    releaseDate: "2026-09-09", genre: ["액션", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/Aw2oCnLMoMiWA8r9LfdCK94JnaT.jpg",
+    isRevealed: false,
+    overview: "1급 흉악범들조차 살아남기 힘든 수용소 '연옥'. 법도 질서도 존재하지 않는 이곳에서는 오직 힘만이 살아남는다. 모든 죄수들이 두려워하는 연옥의 절대 권력자 ‘염왕’. 어느 날, 그를 제거해 달라는 위험한 제안을 받은 한 남자 ‘유성'. 생존과 자유를 걸고 연옥의 절대 권력에 맞서기 시작한다. 끝없는 폭력과 배신, 예측할 수 없는 함정 속에서 목숨을 건 마지막 사투가 시작된다!"
+  },
+  {
+    id: "upcoming_20262005", title: "카를로비바리", director: "이용석",
+    cast: ["이제연", "오지호", "신지원"],
+    releaseDate: "2026-09-09", genre: ["코미디", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/kK5KblzoMJUU4DVjKouOQMrahF3.jpg",
+    isRevealed: false,
+    overview: "체코 서부에 위치한 아름다운 도시, 카를로비바리. 영화감독 ‘성재’는 카를로비바리를 배경으로 대본을 완성하고, 이후 그의 작품은 각종 공모전 수상, 그리고 영화제작까지 투자를 받게 된다! 국내 세트장 촬영을 모두 마치고, 드디어 현지 촬영만을 남겨 둔 상황. 그런데… 투자받은 제작비가 모두 사라져 버린다! 투자금을 토해내지 않기 위해서는 무슨 일을 써서라도 반드시 영화를 완성해야 하는 상황! 과연 성재와 친구들은 카를로비바리를 가지 않고 무사히 영화를 완성할 수 있을까?"
+  },
+  {
+    id: "upcoming_20204561", title: "착지연습", director: "마민지",
+    cast: [],
+    releaseDate: "2026-09-10", genre: ["다큐멘터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/A6dQ9cWkz4LxqRaxvL8fScaUGfl.jpg",
+    isRevealed: false,
+    overview: "출판계와 문단계의 성폭력 사건을 공론화한 탁은, 미투 이후 무너진 일상 속에서 다시 살아가기 위해 고군분투한다. 눈을 뜨고, 밥을 먹고, 씻고, 집 밖을 나서는 일상은 반복되는 긴장과 자신과의 싸움으로 채워진다. 그런 탁이 발 딛고 선 곳은 생존자와 연대인들이 함께 만든 예술-회복 공동체 ‘상여자의 착지술’이다. 이들은 매주 안전한 공간에 모여 간식을 나누고, 돌아온 가해자에 대한 분노를 털어놓고 함께 울고 웃는다. 또한 다양한 성폭력 생존자와 연대인을 대상으로 예술 프로그램을 기획하고 운영하며 안전한 공유지를 확장해 나간다. 하지만 이 공동체 역시 완벽하지는 않다. 기대가 어긋나고, 상처가 드러나며, 관계는 균열을 겪기도 한다. 영화는 완벽하지 않은 관계 속에서 다시 말하고, 움직이고, 연결되려 애써 온 지난 5년의 시간을 따라간다. 탁과 ‘상여자의 착지술’ 사람들은 각자의 속도로 더딘 회복의 능선을 따라 각자의 착지를 연습한다."
+  },
+  {
+    id: "upcoming_20256308", title: "인턴", director: "김도영",
     cast: ["최민식", "한소희", "김준한"],
     releaseDate: "2026-09-16", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/p61xAS4xprjWbHUkRX7rmI37ImL.jpg",
     isRevealed: false,
-    overview: "\ucc3d\uc5c5 1\ub144 \ubc18 \ub9cc\uc5d0 \uc9c1\uc6d0 220\uba85\uc758 \uc131\uacf5\uc2e0\ud654\ub97c \uc774\ub8ec \uc904\uc2a4\ub294 TPO\uc5d0 \ub9de\ub294 \ud328\uc158\uc13c\uc2a4, \uc5c5\ubb34\ub97c \uc704\ud574 \uc0ac\ubb34\uc2e4\uc5d0\uc11c\ub3c4 \ub04a\uc784 \uc5c6\ub294 \uccb4\ub825\uad00\ub9ac \ubfd0\ub9cc \uc544\ub2c8\ub77c \uace0\uac1d\uc744 \uc704\ud574 \ud3ec\uc7a5\uae4c\uc9c0 \uc9c1\uc811 \ud558\ub294 \uc5f4\uc815\uc801\uc778 30\uc138 \uc5ec\uc131 CEO\uc774\ub2e4. \ud68c\uc0ac\uc5d0\uc11c \uc740\ud1f4\ud574 \ubb34\ub8cc\ud55c \uc77c\uc0c1\uc744 \uc774\uc5b4\uac00\uace0 \uc788\ub358 \ubca4\uc740 \uc2dc\ub2c8\uc5b4 \uc778\ud134\uc744 \ubf51\ub294\ub2e4\ub294 \uc5b4\ub290 \uc628\ub77c\uc778 \ud68c\uc0ac\uc5d0 \uc9c0\uc6d0\ud55c\ub2e4. \uba74\uc811 \uacfc\uc815\uc5d0\uc11c \ub192\uc740 \uc810\uc218\ub97c \ubc1b\uc740 \uadf8\ub294 \uc904\uc2a4\uc758 \uc778\ud134\uc73c\ub85c \ucc44\uc6a9\ub418\ub294\ub370, \uadf8\ub140\ub294 \ucef4\ud4e8\ud130\ub3c4 \uc81c\ub300\ub85c \ub2e4\ub8e8\uc9c0 \ubabb\ud558\ub294 \ubca4\uc774 \uc790\uc2e0\uc744 \ub3c4\uc6b8 \uc77c\uc740 \uc808\ub300 \uc5c6\uc744 \uac70\ub77c \uc0dd\uac01\ud55c\ub2e4. \ud558\uc9c0\ub9cc \uc904\uc2a4\uac00 \ub208\uce58\ucc44\uc9c0 \ubabb\ud558\ub294 \uc0ac\uc774 \ubca4\uc740 \uc11c\uc11c\ud788 \uadf8\ub140\uc758 \uc77c\uc0c1\uc5d0 \uc5c6\uc5b4\uc11c\ub294 \uc548 \ub418\ub294 \uc0ac\ub78c\uc774 \ub418\uc5b4\uac04\ub2e4."
+    overview: "창업 1년 반 만에 직원 220명의 성공신화를 이룬 줄스는 TPO에 맞는 패션센스, 업무를 위해 사무실에서도 끊임 없는 체력관리 뿐만 아니라 고객을 위해 포장까지 직접 하는 열정적인 30세 여성 CEO이다. 회사에서 은퇴해 무료한 일상을 이어가고 있던 벤은 시니어 인턴을 뽑는다는 어느 온라인 회사에 지원한다. 면접 과정에서 높은 점수를 받은 그는 줄스의 인턴으로 채용되는데, 그녀는 컴퓨터도 제대로 다루지 못하는 벤이 자신을 도울 일은 절대 없을 거라 생각한다. 하지만 줄스가 눈치채지 못하는 사이 벤은 서서히 그녀의 일상에 없어서는 안 되는 사람이 되어간다."
   },
   {
-    id: "upcoming_20258102", title: "\ucca0\ub4e4 \ubb34\ub835", director: "\uc815\uc2b9\uc624",
+    id: "upcoming_20258102", title: "철들 무렵", director: "정승오",
     cast: ["기주봉", "하윤경", "양말복"],
     releaseDate: "2026-09-16", genre: ["드라마", "가족"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/7gBqPAjf7jLZxbp61Zn2oak2SUW.jpg",
     isRevealed: false,
-    overview: "\uc6a9\uc811\uae30\uc0ac \ucca0\ud0dd\uc774 \uc554 \ub9d0\uae30 \uc120\uace0\ub97c \ubc1b\ub294\ub2e4. \uc774 \uc18c\uc2dd\uc740 \ub2e8\uc5ed\ubc30\uc6b0\uc778 \uc678\ub3d9\ub538 \uc815\ubbf8\ubfd0\ub9cc \uc544\ub2c8\ub77c, \ucca0\ud0dd\uacfc \uc0ac\uc2e4\uc0c1 \uc774\ud63c\ud55c \uc0c1\ud0dc\ub85c \uacf5\ubb34\uc6d0 \uc740\ud1f4 \ud6c4 \ub178\ud6c4\ub97c \uc990\uae30\ub358 \ud604\uc219, \uad6c\uc21c\uc744 \uc55e\ub454 \ud604\uc219\uc758 \uc5b4\uba38\ub2c8 \uc625\ub0a8, \ucca0\ud0dd\uc758 \uce5c\ud615 \uad00\ud0dd\uacfc \uad00\ud0dd\uc758 \uc190\uc790 \ub3d9\ubbfc\uc758 \uc0b6\uae4c\uc9c0 \uc601\ud5a5\uc744 \ubbf8\uce58\uae30 \uc2dc\uc791\ud55c\ub2e4. \uba40\ub9ac \uc9c0\ub0b4\ub358 \uc591\uac00 \uac00\uc871\ub4e4\uc740 \uacfc\uac70\ub97c \ubc18\ucd94\ud558\uba70, \uc11c\ub85c\uc5d0\uac8c \uacea\uc544 \uc788\ub358 \ub9c8\uc74c\uc758 \uace0\ub984\uacfc \ub9c8\uc8fc\ud558\uac8c \ub418\ub294\ub370\u2026 \uc8fd\uc74c\uc758 \uadf8\ub9bc\uc790\uc640 \ud568\uaed8 \ucc3e\uc544\uc628 \uc774\ub4e4\uc758 \uc2dc\uac04, \u2018\ucca0\ub4e4 \ubb34\ub835\u2019\uc774\ub2e4."
+    overview: "용접기사 철택이 암 말기 선고를 받는다. 이 소식은 단역배우인 외동딸 정미뿐만 아니라, 철택과 사실상 이혼한 상태로 공무원 은퇴 후 노후를 즐기던 현숙, 구순을 앞둔 현숙의 어머니 옥남, 철택의 친형 관택과 관택의 손자 동민의 삶까지 영향을 미치기 시작한다. 멀리 지내던 양가 가족들은 과거를 반추하며, 서로에게 곪아 있던 마음의 고름과 마주하게 되는데… 죽음의 그림자와 함께 찾아온 이들의 시간, ‘철들 무렵’이다."
   },
   {
-    id: "upcoming_20264831", title: "\uc640\uc774\ud504", director: "\uc774\uc218\uc131",
+    id: "upcoming_20264831", title: "와이프", director: "이수성",
     cast: ["류태준", "염승이"],
     releaseDate: "2026-09-16", genre: ["스릴러", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/3Iar08BAPPflIaJvwTrOndCzk4Z.jpg",
     isRevealed: false,
-    overview: "\ubbf8\uad6d \uac70\ub300 \ubc29\uc1a1\uc0ac\uc758 CEO\uc778 \uc870\uc548\ub098 \uc5d0\ubc84\ud2b8\ub294 \uae30\ud68d\ud558\ub294 \ud504\ub85c\uadf8\ub7a8\ub9c8\ub2e4 \uc5c4\uccad\ub09c \uc13c\uc138\uc774\uc158\uc744 \ubd88\ub7ec \uc77c\uc73c\ud0a4\uba70 \uc2b9\uc2b9\uc7a5\uad6c \ud558\uc5ec \ubaa8\ub4e0 \uc5ec\uc131\ub4e4\ub85c\ubd80\ud130 \ubd80\ub7ec\uc6c0\uacfc \uc120\ub9dd\uc758 \ub300\uc0c1\uc774 \ub41c\ub2e4. \uadf8\ub7ec\ub358 \uc5b4\ub290 \ub0a0, \ub108\ubb34\ub3c4 \uc790\uadf9\uc801\uc778 \ubc29\uc1a1\uc73c\ub85c \uc778\ud574 \uc0ac\ud68c\uc801 \ud30c\uc7a5\uc744 \uc77c\uc73c\ud0a4\ub294 \uc0ac\uac74\uc774 \ubc1c\uc0dd, \ubaa8\ub4e0 \ucc45\uc784\uc744 \uc9c0\uace0 \ud558\ub8e8\uc544\uce68\uc5d0 \ud574\uace0\ub2f9\ud558\uac8c \ub41c\ub2e4. \uc0c1\uc2e4\uac10\uc5d0 \ube60\uc9c4 \uadf8\ub140\ub97c \uc704\ud574 \ub0a8\ud3b8 \uc6d4\ud130\ub294 \uc0b4\uae30 \uc88b\uc740 \ub9c8\uc744 \uc2a4\ud15d\ud3ec\ub4dc\uc5d0\uc11c \uc0c8\ub85c\uc6b4 \uc0dd\ud65c\uc744 \uc2dc\uc791\ud560 \uac83\uc744 \uc81c\uc548\ud558\uace0 \uadf8\uacf3\uc73c\ub85c \uc774\uc0ac\ud558\uac8c \ub41c\ub2e4.  \uc2a4\ud15d\ud3ec\ub4dc\uc5d0 \ub3c4\ucc29\ud55c \uc870\uc548\ub098 \uac00\uc871. \uadf8\ub4e4\uc744 \uae30\ub2e4\ub9ac\uace0 \uc788\ub294 \uac83\uc740 \ub85c\ubd07 \uac15\uc544\uc9c0\ubd80\ud130 \ub9d0\ud558\ub294 \ub0c9\uc7a5\uace0\uae4c\uc9c0 \ubaa8\ub4e0 \uac83\uc744 \uac16\ucd98 \ud654\ub824\ud55c \uc800\ud0dd\uacfc \ud3c9\uc628\ud558\uace0 \uc548\ub77d\ud55c \ub9c8\uc744 \ubd84\uc704\uae30 \uadf8\ub9ac\uace0 \ub108\ubb34\ub3c4 \uce5c\uc808\ud55c \ub9c8\uc744 \uc0ac\ub78c\ub4e4\uc774\ub2e4. \uc2a4\ud29c\uc5b4\ub514\uc2a4\ub97c \ub2a5\uac00\ud558\ub294 \ud55c\uacb0\uac19\uc740 \ubbf8\uc18c, \ubc14\ube44 \uc778\ud615\uc744 \uc5f0\uc0c1\ucf00 \ud558\ub294 \ud654\ub824\ud55c \uc637\ucc28\ub9bc \uadf8\ub9ac\uace0 \ub0a8\ud3b8\uc5d0\uac90 \ud55c\uacb0\uac19\uc774 \uace0\ubd84\uace0\ubd84\ud55c \ud604\ubaa8\uc591\ucc98\uc758 \ubaa8\uc2b5\uae4c\uc9c0... \uba3c\uc9c0 \ud55c \ud1a8 \uc5c6\ub294 \uc9d1\uc548 \uccad\uc18c\uc5d0 \uc2ec\uc9c0\uc5b4 \ub0a8\ud3b8\uc758 \uce90\ub514 \uc5ed\ud560\uae4c\uc9c0 \ub2a5\uc219\ud558\uac8c \uc18c\ud654\ud574\ub0b4\ub294 \uc774\ub4e4 \ud2c8\uc5d0\uc11c \uc870\uc548\ub098\ub294 \uc5b4\ub9ac\ub465\uc808\ud558\uae30\ub9cc \ud558\ub2e4. \uc5b4\ub290 \ud55c \uacf3 \ud760\uc7a1\uc744 \ub370 \uc5c6\uc774 \uc644\ubcbd\ud55c \uadf8\ub140\ub4e4. \ud558\uc9c0\ub9cc \ubb34\uc5b8\uac00 \uc218\uc0c1\ud558\ub2e4?! \ubd84\uba85 \uc0b4\uae30 \uc88b\uace0 \ud3c9\uc628\ud55c \ub9c8\uc744 \uc2a4\ud15d\ud3ec\ub4dc\uc5d0\uc11c \uac10\ucdb0\uc9c4 \ubb54\uac00\uac00 \uc788\ub294\ub370..."
+    overview: "미국 거대 방송사의 CEO인 조안나 에버트는 기획하는 프로그램마다 엄청난 센세이션을 불러 일으키며 승승장구 하여 모든 여성들로부터 부러움과 선망의 대상이 된다. 그러던 어느 날, 너무도 자극적인 방송으로 인해 사회적 파장을 일으키는 사건이 발생, 모든 책임을 지고 하루아침에 해고당하게 된다. 상실감에 빠진 그녀를 위해 남편 월터는 살기 좋은 마을 스텝포드에서 새로운 생활을 시작할 것을 제안하고 그곳으로 이사하게 된다.  스텝포드에 도착한 조안나 가족. 그들을 기다리고 있는 것은 로봇 강아지부터 말하는 냉장고까지 모든 것을 갖춘 화려한 저택과 평온하고 안락한 마을 분위기 그리고 너무도 친절한 마을 사람들이다. 스튜어디스를 능가하는 한결같은 미소, 바비 인형을 연상케 하는 화려한 옷차림 그리고 남편에겐 한결같이 고분고분한 현모양처의 모습까지... 먼지 한 톨 없는 집안 청소에 심지어 남편의 캐디 역할까지 능숙하게 소화해내는 이들 틈에서 조안나는 어리둥절하기만 하다. 어느 한 곳 흠잡을 데 없이 완벽한 그녀들. 하지만 무언가 수상하다?! 분명 살기 좋고 평온한 마을 스텝포드에서 감춰진 뭔가가 있는데..."
   },
   {
-    id: "upcoming_20255033", title: "\uc554\uc0b4\uc790(\ub4e4)", director: "\ud5c8\uc9c4\ud638",
+    id: "upcoming_20265587", title: "디지몬 어드벤처 : 운명적 만남 & 우리들의 워 게임!", director: "호소다 마모루",
+    cast: [],
+    releaseDate: "2026-09-16", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/p0SmmqmDvgpTg75hc0wPxTdsAlS.jpg",
+    isRevealed: false,
+    overview: "디지몬 어드벤쳐, 그보다 좀 더 이전의 이야기. 야가미 타이치(신태일)와 그의 여동생인 히카리(신나리)가 어릴 적 코로몬과 운명적인 만남을 가졌던 때를 그리고 있다."
+  },
+  {
+    id: "upcoming_20255033", title: "암살자(들)", director: "허진호",
     cast: ["유해진", "박해일", "이민호"],
     releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/c55ijsOdntj6P25vDwHLdgsBpmV.jpg",
     isRevealed: false,
-    overview: "\ub300\ud55c\ubbfc\uad6d\uc744 \ucda9\uaca9\uc5d0 \ube60\ub728\ub9b0 8.15 \uc800\uaca9 \uc0ac\uac74\uc758 \uc758\ud639\uacfc \ubc30\ud6c4\ub97c \ucd94\uc801\ud558\ub294 \uc774\uc57c\uae30\ub97c \uadf8\ub9b0 \uc601\ud654"
+    overview: "대한민국을 충격에 빠뜨린 8.15 저격 사건의 의혹과 배후를 추적하는 이야기를 그린 영화"
   },
   {
-    id: "upcoming_20254904", title: "\uac00\ub2a5\ud55c \uc0ac\ub791", director: "\uc774\ucc3d\ub3d9",
+    id: "upcoming_20254904", title: "가능한 사랑", director: "이창동",
     cast: ["전도연", "설경구", "조인성"],
     releaseDate: "2026-09-23", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/7UAzxqezg5yvZyK3k62wOAzg0Zs.jpg",
     isRevealed: false,
-    overview: "\ud574\uace0 \ub178\ub3d9\uc790\uc640 \uadf8\uc758 \uc544\ub0b4 \uadf8\ub9ac\uace0 \ub2e4\ud050\uba58\ud130\ub9ac \uac10\ub3c5\uacfc \uadf8\ub140\uc758 \ub0a8\ud3b8. \ub450 \ubd80\ubd80\uac00 \ub2e4\ud050\uba58\ud130\ub9ac \uc81c\uc791\uc744 \uacc4\uae30\ub85c \ub9cc\ub098, \uc11c\ub85c\uc758 \ub2e4\ub978 \uc0b6\uacfc \uc228\uc740 \uc695\ub9dd\uc744 \ub9c8\uc8fc\ud55c\ub2e4."
+    overview: "해고 노동자와 그의 아내 그리고 다큐멘터리 감독과 그녀의 남편. 두 부부가 다큐멘터리 제작을 계기로 만나, 서로의 다른 삶과 숨은 욕망을 마주한다."
   },
   {
-    id: "upcoming_20256161", title: "\ud0c0\uc9dc: \ubca8\uc81c\ubd91\uc758 \ub178\ub798", director: "\ucd5c\uad6d\ud76c",
+    id: "upcoming_20256161", title: "타짜: 벨제붑의 노래", director: "최국희",
     cast: ["변요한", "노재원", "미요시 아야카"],
     releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/ss17VgiopOsYKcyqn0YGZ2lzN0W.jpg",
     isRevealed: false,
-    overview: "\uc911\uc138 \uc720\ub7fd, \uc885\uad50\uc778\ub4e4\uc740 \uce74\ub4dc\uac00 \uc545\ub9c8\uc758 \ub3c4\uad6c\ub77c\uace0 \uc0dd\uac01\ud588\ub2e4. \ud2b9\ud788 \uc8fd\uc74c\uc744 \ub73b\ud558\ub294 \uc2a4\ud398\uc774\ub4dc 13\uc7a5\uc5d4 \ubaa8\ub450 \uc545\ub9c8\uc758 \uc774\ub984\uc774 \ub4e4\uc5b4 \uc788\ub2e4. \uc9c0\uc625\uc73c\ub85c \ub5a8\uc5b4\uc9c4 \ucd94\ub77d\ud55c \ucc9c\uc0ac '\ub8e8\uc2dc\ud37c'\uc640 \uc9c0\uc625\uc758 \uae30\uc874 \uc9c0\ubc30\uc790 '\ubca8\uc81c\ubd91'. \ub450 \uc545\ub9c8\ub294 \ubaa8\ub4e0 \uac83\uc744 \uac78\uace0 \ub3c4\ubc15\uc73c\ub85c \uc2b9\ubd80\ub97c \ub0b4\uae30\ub85c \uacb0\uc815\ud588\ub2e4. \ud0c0\uace0\ub09c \ub057\ubc1c\ub85c \uc0ac\ub78c\uc758 \ub9c8\uc74c\uc744 \uc0ac\ub85c\uc7a1\ub294 '\uc7a5\ud0dc\uc601'\uacfc \ucc9c\ubd80\uc801\uc778 \uba38\ub9ac\uc640 \ub178\ub825\uc73c\ub85c \uc2a4\uc2a4\ub85c\ub97c \uc99d\uba85\ud558\ub294 '\ubc15\ud0dc\uc601'. \ud559\ucc3d \uc2dc\uc808\ubd80\ud130 \uc808\uce5c\ud55c \uce5c\uad6c\uc778 \ub450 \uc0ac\ub78c\uc740 \uc628\ub77c\uc778 \uce74\uc9c0\ub178 \uc0ac\uc5c5\uc5d0 \ub6f0\uc5b4\ub4e4\uba70 \uc2b9\uc2b9\uc7a5\uad6c\ud558\uace0, \uc0ac\uc5c5\uc758 \uc131\uacf5\uc774 \ucee4\uc9c8\uc218\ub85d \ub7ed\ud0a4\ud55c \uc7a5\ud0dc\ub9cc \uc8fc\ubaa9\ubc1b\uc790, \ubc15\ud0dc\uc758 \uc9c8\ud22c\ub294 \uc870\uc6a9\ud788 \uc790\ub77c\ub09c\ub2e4. \uc131\uacf5\uc758 \uaf2d\ub300\uae30\uc5d0\uc11c \uc9c8\ud22c\ub294 \ubc30\uc2e0\uc73c\ub85c \ubcc0\ud55c\ub2e4. \uc7a5\ud0dc\uc601\uc740 \ubca0\ud2b8\ub0a8 \ucd9c\uc7a5 \uc911 \ubc15\ud0dc\uc601\uc758 \uc608\uc0c1\uce58 \ubabb\ud55c \ubc30\uc2e0\uc73c\ub85c \ub098\ub77d\uc5d0 \ub5a8\uc5b4\uc9c0\uace0, \uae30\uc801\uc801\uc73c\ub85c \uc0b4\uc544\ub0a8\uc544 \uc804\uc124\uc758 \ud0c0\uc9dc \u2018\uacfd\ub3d9\uc6b1\u2019\uc5d0\uac8c \ud3ec\ucee4\ub97c \uc0ac\uc0ac \ubc1b\ub294\ub2e4. \ud55c\ud3b8, \uc57c\ucfe0\uc790 \uc870\uc9c1\uc774 \ubc30\ud6c4\uc5d0 \uc788\ub294 '\uac00\ub124\ucf54'\ub294 \ud55c\uad6d\uc758 \uc628\ub77c\uc778 \uce74\uc9c0\ub178 \uc0ac\uc5c5\uc5d0 \uad00\uc2ec\uc744 \uac16\uace0 \uc77c\ubcf8\uacfc \ubca0\ud2b8\ub0a8\uc758 \uac70\ubb3c\ub4e4\uc774 \ucc38\uc5ec\ud55c \uac70\uc561\uc758 \uae00\ub85c\ubc8c \ub3c4\ubc15\ud310\uc744 \uc14b\ud305 \ud55c\ub2e4. \ubcbc\ub791 \ub05d \ub3c4\ubc15\ud310, \uac19\uc740 \uc774\ub984, \ub2e4\ub978 \uc6b4\uba85\uc758 \uce5c\uad6c \uc7a5\ud0dc\uc601\uacfc \ubc15\ud0dc\uc601\uc740 \ub9c8\uce68\ub0b4 \uadf8 \uacf3\uc5d0\uc11c \ub9c8\uc8fc\ud558\ub294\ub370\u2026"
+    overview: "중세 유럽, 종교인들은 카드가 악마의 도구라고 생각했다. 특히 죽음을 뜻하는 스페이드 13장엔 모두 악마의 이름이 들어 있다. 지옥으로 떨어진 추락한 천사 '루시퍼'와 지옥의 기존 지배자 '벨제붑'. 두 악마는 모든 것을 걸고 도박으로 승부를 내기로 결정했다. 타고난 끗발로 사람의 마음을 사로잡는 '장태영'과 천부적인 머리와 노력으로 스스로를 증명하는 '박태영'. 학창 시절부터 절친한 친구인 두 사람은 온라인 카지노 사업에 뛰어들며 승승장구하고, 사업의 성공이 커질수록 럭키한 장태만 주목받자, 박태의 질투는 조용히 자라난다. 성공의 꼭대기에서 질투는 배신으로 변한다. 장태영은 베트남 출장 중 박태영의 예상치 못한 배신으로 나락에 떨어지고, 기적적으로 살아남아 전설의 타짜 ‘곽동욱’에게 포커를 사사 받는다. 한편, 야쿠자 조직이 배후에 있는 '가네코'는 한국의 온라인 카지노 사업에 관심을 갖고 일본과 베트남의 거물들이 참여한 거액의 글로벌 도박판을 셋팅 한다. 벼랑 끝 도박판, 같은 이름, 다른 운명의 친구 장태영과 박태영은 마침내 그 곳에서 마주하는데…"
   },
   {
-    id: "upcoming_20264801", title: "\ud3ec\uac00\ud2bc \uc544\uc77c\ub79c\ub4dc", director: "\uc870\uc5d8 \ud06c\ub85c\ud3ec\ub4dc",
+    id: "upcoming_20264801", title: "포가튼 아일랜드", director: "조엘 크로포드",
     cast: ["H.E.R", "라이자 소베라노", "데이브 프랭코"],
     releaseDate: "2026-09-23", genre: ["판타지", "코미디", "어드벤처"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
@@ -491,15 +582,65 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: ""
   },
   {
-    id: "upcoming_20266267", title: "\ub098\uc758 \uc0ac\uc801\uc778 \uc608\uc220\uac00", director: "\ucf04\ud2b8 \uc874\uc2a4",
+    id: "upcoming_20266267", title: "나의 사적인 예술가", director: "켄트 존스",
     cast: ["윌렘 데포", "그레타 리"],
     releaseDate: "2026-09-23", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/hv7zKr3cCdOFhNVcqWYj74Ij6KX.jpg",
     isRevealed: false,
-    overview: "\uacfc\uac70 \uc2dc\uc9d1 \ud55c \uad8c\uc744 \ucd9c\uac04\ud588\uc9c0\ub9cc \uc9c0\uae08\uc740 \ub274\uc695\uc758 \uc6b0\uccb4\uad6d\uc5d0\uc11c \uc77c\ud558\uba70 \ud3c9\ubc94\ud55c \uc77c\uc0c1\uc744 \uc0b4\uc544\uac00\ub294 \u2018\uc5d0\ub4dc \uc0c9\uc2a4\ubc84\uac70\u2019. \uc5b4\ub290 \ub0a0, \uadf8\uc758 \uc55e\uc5d0 \uc790\uc2e0\uc758 \uc2dc\uc5d0 \ub9e4\ub8cc\ub41c \uc80a\uc740 \uc608\uc220 \ubaa8\uc784\uc758 \ub9ac\ub354 \u2018\ub9c8\uc774\uc5b4\uc2a4\u2019\uac00 \ucc3e\uc544\uc624\uace0 \uadf8\ub4e4\uc758 \ubaa8\uc784\uc5d0 \u2018\uc5d0\ub4dc\u2019\ub97c \ucd08\ub300\ud55c\ub2e4. \ub4a4\ub2a6\uc740 \ucc2c\uc0ac \uc18d\uc5d0 \uc78a\uace0 \uc788\ub358 \ub0a0\ub4e4\uc744 \ub2e4\uc2dc \ub5a0\uc62c\ub9ac\uac8c \ub41c \u2018\uc5d0\ub4dc\u2019. \uadf8\ub7ec\ub098 \uc810\ucc28 \uadf8\ub4e4\uc758 \uc80a\uc74c\uacfc \ubd80, \uc790\uc2e0\uc758 \ud604\uc2e4\uc774 \uad50\ucc28\ud558\uace0 \ub9c8\uc74c \uc18d\uc5d0 \uc608\uc0c1\uce58 \ubabb\ud55c \uac10\uc815\ub4e4\uc774 \ud53c\uc5b4\ub098\uac8c \ub418\ub294\ub370..."
-  }
+    overview: "과거 시집 한 권을 출간했지만 지금은 뉴욕의 우체국에서 일하며 평범한 일상을 살아가는 ‘에드 색스버거’. 어느 날, 그의 앞에 자신의 시에 매료된 젊은 예술 모임의 리더 ‘마이어스’가 찾아오고 그들의 모임에 ‘에드’를 초대한다. 뒤늦은 찬사 속에 잊고 있던 날들을 다시 떠올리게 된 ‘에드’. 그러나 점차 그들의 젊음과 부, 자신의 현실이 교차하고 마음 속에 예상치 못한 감정들이 피어나게 되는데..."
+  },
+  {
+    id: "upcoming_20262961", title: "이방인", director: "프랑수아 오종",
+    cast: ["벤자민 부아쟁", "드니 라방", "스완 아를로"],
+    releaseDate: "2026-09-30", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2NoWaSTgKF7FcJ0Lr5NrvDDINOv.jpg",
+    isRevealed: false,
+    overview: "청년 ‘뫼르소’는 어머니의 부고 소식을 듣고 장례를 치르지만 어딘가 무감하다. 집으로 돌아온 그는 해수욕장에서 옛 동료 ‘마리’를 우연히 만나 사랑을 나눈다. 이웃 ‘레몽’과 가깝게 지내던 ‘뫼르소’는 예상치 못한 비극에 휘말린다."
+  },
+  {
+    id: "upcoming_20224573", title: "부활남: 더 레드", director: "백",
+    cast: ["구교환", "신승호", "강기영"],
+    releaseDate: "2026-09-30", genre: ["액션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/nLsyRK3SmtdIftozpCd8sGQMRGD.jpg",
+    isRevealed: false,
+    overview: "근거 없는 자신감이 유일한 스펙인 취준생 ‘석환’이 죽은 뒤 72시간이면 부활하는 능력을 갖고 있다는 걸 알게 된 후 의문의 추격을 당하며 펼쳐지는 이야기"
+  },
+  {
+    id: "upcoming_20261807", title: "극장판 치이카와: 인어 섬의 비밀", director: "오이카와 케이",
+    cast: ["아오키 하루카", "타나카 마코토", "오자와 아리"],
+    releaseDate: "2026-09-30", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/5TMyytCI5Pfc9c1eNsljiCdiB05.jpg",
+    isRevealed: false,
+    overview: "어느 날, 광장에서 쉬고 있던 치이카와와 가르마 앞에 얼굴에 전단지를 붙인 토끼가 나타난다. 그곳엔 “특별한 섬으로의 초대”라는 글귀가 적혀 있는데... “섬에서 간단한 토벌만 해도 보수 100배!” “한정 섬라멘과 한정 디저트까지, 달콤한 것도 매콤한 것도 사실상 무료.” 솔깃한 문구에 이끌린 치이카와와 친구들은 섬에서 열리는 행사에 참가하기로 한다. 초대장의 내용이 어딘가 수상하다고 느끼는 해달과, 부푼 마음으로 배에 오르는 치이카와와 친구들. 모두가 기대를 안은 채 특별한 섬에 도착하는데! 과연 그 섬에는 어떤 비밀이 숨겨져 있을까...?!"
+  },
+  {
+    id: "upcoming_20261068", title: "가족여행", director: "김정태",
+    cast: ["이휘향", "서영희", "김정태"],
+    releaseDate: "2026-09-30", genre: ["가족", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ab0jA90IuyjydjDe99lH51kA8BN.jpg",
+    isRevealed: false,
+    overview: "무늬만 영화감독인 남편, 뱀파이어 코스프레에 진심인 딸, 베트남 참전용사 시아버지, 그리고 치매에 걸린 시어머니까지. 이 문제적 가족의 생계를 책임지며 모두를 돌보던 며느리 ‘영주’는 보호센터로부터 더 이상 시어머니 ‘순임’을 맡을 수 없다는 통보를 받는다. ‘순임’의 생일을 기념하고자 부산으로 떠난 즉흥 가족 여행. 급하게 빌린 낡은 승합차가 위태롭게 고속도로를 달릴수록 감춰졌던 여행의 진짜 목적과 비밀들이 하나씩 드러나기 시작하는데…"
+  },
+  {
+    id: "upcoming_20264847", title: "알파", director: "줄리아 뒤쿠르노",
+    cast: ["멜리사 보로스", "골시프테 파라하니", "타하르 라힘"],
+    releaseDate: "2026-09-30", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/tUZaajRDFjitxzCQK87vlRDedox.jpg",
+    isRevealed: false,
+    overview: "몸을 석고처럼 굳게 만드는 혈액 매개 바이러스가 퍼지는 도시. 13세 소녀 알파는 친구들과의 파티에서 의문의 'A'자 문신을 새긴 채 집으로 돌아오고, 의사인 엄마는 알파가 바이러스에 감염됐을지 모른다는 불안감에 휩싸인다. 감염 여부 결과를 기다리는 2주 사이, 학교에는 소문이 퍼지기 시작하고 소문은 곧 낙인이 되어 알파를 옭아맨다. 그리고 삼촌의 등장은 알파와 엄마의 불안을 증폭시키는데…"
+  },
 ];
 
 // FILMOGRAPHIES
