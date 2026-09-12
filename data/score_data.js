@@ -1,4 +1,7 @@
-// score 데이터베이스 — 자동 갱신 (2026-09-12 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-09-13 08:01 KST)
+// MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
+// SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
+
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -193,7 +196,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-09-12 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-09-13 08:01 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -439,6 +442,16 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: ""
   },
   {
+    id: "upcoming_20266793", title: "\uc5d4\ud558\uc774\ud508 \ube0c\uc774\uc54c\ucf58\uc11c\ud2b8 : \ub370\uc2a4\ud2f0\ub2c8", director: "\uae40\uc9c0\uc560",
+    cast: [],
+    releaseDate: "2026-09-18", genre: ["공연"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/uO42vQHjDQ1CYSdCiNUY5iP7YqO.jpg",
+    isRevealed: false,
+    overview: ""
+  },
+  {
     id: "upcoming_20256161", title: "\ud0c0\uc9dc: \ubca8\uc81c\ubd91\uc758 \ub178\ub798", director: "\ucd5c\uad6d\ud76c",
     cast: ["변요한", "노재원", "미요시 아야카"],
     releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
@@ -507,16 +520,6 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/5TMyytCI5Pfc9c1eNsljiCdiB05.jpg",
     isRevealed: false,
     overview: "\uc5b4\ub290 \ub0a0, \uad11\uc7a5\uc5d0\uc11c \uc26c\uace0 \uc788\ub358 \uce58\uc774\uce74\uc640\uc640 \uac00\ub974\ub9c8 \uc55e\uc5d0 \uc5bc\uad74\uc5d0 \uc804\ub2e8\uc9c0\ub97c \ubd99\uc778 \ud1a0\ub07c\uac00 \ub098\ud0c0\ub09c\ub2e4. \uadf8\uacf3\uc5d4 \u201c\ud2b9\ubcc4\ud55c \uc12c\uc73c\ub85c\uc758 \ucd08\ub300\u201d\ub77c\ub294 \uae00\uadc0\uac00 \uc801\ud600 \uc788\ub294\ub370... \u201c\uc12c\uc5d0\uc11c \uac04\ub2e8\ud55c \ud1a0\ubc8c\ub9cc \ud574\ub3c4 \ubcf4\uc218 100\ubc30!\u201d \u201c\ud55c\uc815 \uc12c\ub77c\uba58\uacfc \ud55c\uc815 \ub514\uc800\ud2b8\uae4c\uc9c0, \ub2ec\ucf64\ud55c \uac83\ub3c4 \ub9e4\ucf64\ud55c \uac83\ub3c4 \uc0ac\uc2e4\uc0c1 \ubb34\ub8cc.\u201d \uc194\uae43\ud55c \ubb38\uad6c\uc5d0 \uc774\ub04c\ub9b0 \uce58\uc774\uce74\uc640\uc640 \uce5c\uad6c\ub4e4\uc740 \uc12c\uc5d0\uc11c \uc5f4\ub9ac\ub294 \ud589\uc0ac\uc5d0 \ucc38\uac00\ud558\uae30\ub85c \ud55c\ub2e4. \ucd08\ub300\uc7a5\uc758 \ub0b4\uc6a9\uc774 \uc5b4\ub518\uac00 \uc218\uc0c1\ud558\ub2e4\uace0 \ub290\ub07c\ub294 \ud574\ub2ec\uacfc, \ubd80\ud47c \ub9c8\uc74c\uc73c\ub85c \ubc30\uc5d0 \uc624\ub974\ub294 \uce58\uc774\uce74\uc640\uc640 \uce5c\uad6c\ub4e4. \ubaa8\ub450\uac00 \uae30\ub300\ub97c \uc548\uc740 \ucc44 \ud2b9\ubcc4\ud55c \uc12c\uc5d0 \ub3c4\ucc29\ud558\ub294\ub370! \uacfc\uc5f0 \uadf8 \uc12c\uc5d0\ub294 \uc5b4\ub5a4 \ube44\ubc00\uc774 \uc228\uaca8\uc838 \uc788\uc744\uae4c...?!"
-  },
-  {
-    id: "upcoming_20264775", title: "\ub514\uac70", director: "\uc54c\ub808\ud55c\ub4dc\ub85c \uace4\uc798\ub808\uc2a4 \uc774\ub0d0\ub9ac\ud22c",
-    cast: ["톰 크루즈", "산드라 휠러", "존 굿맨"],
-    releaseDate: "2026-10-03", genre: ["코미디", "드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/jV5Mfasg8dP3XK5nuXLetBN3APx.jpg",
-    isRevealed: false,
-    overview: "\"\ub05d\uae4c\uc9c0 \ud30c\uac70\ub098, \uc8fd\uac70\ub098! \uc804 \uc138\uacc4\ub97c \ub4a4\ud754\ub4e0 \ub300\uc7ac\uc559. \u2018\ub514\uac70 \ub85d\uc6f0\u2019\uc758 \uc0bd \ub05d\uc5d0\uc11c \uc2dc\uc791\ub41c \uc774\uc57c\uae30\ub97c \ud655\uc778\ud558\ub77c!\" 3\ub300\uc9f8 \uc11d\uc720 \uc7ac\ubc8c\ub85c \uc0b4\uc544\uc628 \u2018\ub514\uac70 \ub85d\uc6f0\u2019\uc740 \ucd5c\uc18c\ud55c\uc758 \uc190\uc2e4, \ucd5c\ub300\ud55c\uc758 \uc774\uc775\uc744 \ucd94\uad6c\ud558\uba70 \ub3c8\uc774 \ub418\ub294 \uc77c\uc774\ub77c\uba74 \ubb34\uc5c7\uc774\ub4e0 \ub9c8\ub2e4\ud558\uc9c0 \uc54a\ub294\ub2e4. \uadf8\ub7ec\ub358 \uc5b4\ub290 \ub0a0, \uadf8\ub9b0\ub780\ub4dc\uc758 \ube59\ud558 \uc2dc\ucd94 \uc2dc\uc124\uc5d0\uc11c \uc791\uc740 \uade0\uc5f4\uc774 \ubc1c\uacac\ub418\uc9c0\ub9cc \u2018\ub514\uac70\u2019\ub294 \ub300\uc218\ub86d\uc9c0 \uc54a\uc740 \ubb38\uc81c\ub77c \uc5ec\uae30\uace0 \ub118\uae34\ub2e4. \ud558\uc9c0\ub9cc \uc0ac\uc18c\ud558\uac8c \uc5ec\uacbc\ub358 \uade0\uc5f4\uc740 \uac77\uc7a1\uc744 \uc218 \uc5c6\uc774 \ucee4\uc9c0\uba70 \uc804 \uc138\uacc4\ub97c \ub0a0\ub824\ubc84\ub9b4 \uac70\ub300\ud55c \uc7ac\ub09c\uc73c\ub85c \ubc88\uc838\uac00\uace0 \uacb0\uad6d \u2018\ub514\uac70\u2019\ub294 \ucd08\uc720\uc758 \uc0ac\ud0dc\ub97c \ud574\uacb0\ud558\uae30 \uc704\ud574 \uc9c1\uc811 \ub098\uc11c\ub294\ub370\u2026"
   }
 ];
 
