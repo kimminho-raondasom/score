@@ -1,5 +1,5 @@
 // score Service Worker — 오프라인 캐싱 (2026-09-22)
-const CACHE_NAME = 'score-v3';
+const CACHE_NAME = 'score-v4';
 const ASSETS = [
   '/score/',
   '/score/index.html',
@@ -34,7 +34,13 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
 
-  const pathname = new URL(e.request.url).pathname;
+  // 외부(TMDB/Unsplash 등) 이미지는 SW가 가로채지 않음 — iOS/WebView opaque 캐시 렌더링 문제 방지
+  const reqUrl = new URL(e.request.url);
+  if (reqUrl.origin !== self.location.origin && e.request.destination === 'image') {
+    return;
+  }
+
+  const pathname = reqUrl.pathname;
   const isAppResource =
     pathname === '/score/' ||
     pathname === '/score/index.html' ||
