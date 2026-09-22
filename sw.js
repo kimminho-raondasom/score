@@ -1,5 +1,5 @@
-// score Service Worker — 오프라인 캐싱 (2026-08-09)
-const CACHE_NAME = 'score-v2';
+// score Service Worker — 오프라인 캐싱 (2026-09-22)
+const CACHE_NAME = 'score-v3';
 const ASSETS = [
   '/score/',
   '/score/index.html',
@@ -30,9 +30,30 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-// 요청 처리: 캐시 우선, 실패 시 네트워크
+// 요청 처리: 데이터/앱 코드는 네트워크 우선(최신 유지), 그 외 캐시 우선
 self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
+
+  const pathname = new URL(e.request.url).pathname;
+  const isAppResource =
+    pathname === '/score/' ||
+    pathname === '/score/index.html' ||
+    pathname.endsWith('/score/data/score_data.js');
+
+  if (isAppResource) {
+    e.respondWith(
+      fetch(e.request)
+        .then((resp) => {
+          if (resp && resp.status === 200) {
+            const clone = resp.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          }
+          return resp;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
 
   e.respondWith(
     caches.match(e.request).then((cached) => {
