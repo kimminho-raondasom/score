@@ -1,4 +1,4 @@
-// score 데이터베이스 — 자동 갱신 (2026-09-22 11:35 KST)
+// score 데이터베이스 — 자동 갱신 (2026-09-22 13:15 KST)
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -17,7 +17,7 @@ const MOVIES_DATABASE = [
       { line: "대한민국 육군은 다 같은 편입니다!", character: "이태신 (정우성)" }
     ],
     choseong: "ㅅㅇㅇ ㅂ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wjpRNDRqI0KAg95F7HFG0LjdFQX.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/ukVVnY9ovwl78WE5KndcpA6SnAm.jpg"
   },
   {
     id: "exhuma", title: "파묘", director: "장재현",
@@ -32,7 +32,7 @@ const MOVIES_DATABASE = [
       { line: "얘들아, 굿하자!", character: "화림 (김고은)" }
     ],
     choseong: "ㅍㅁ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/sGaKrQpmHmMWyGbBjM9RFD6x9ij.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/tw0i3kkmOTjDjGFZTLHKhoeXVvA.jpg"
   },
   {
     id: "parasite", title: "기생충", director: "봉준호",
@@ -47,7 +47,7 @@ const MOVIES_DATABASE = [
       { line: "가장 완벽한 계획이 뭔지 아냐? 무계획이야.", character: "기택 (송강호)" }
     ],
     choseong: "ㄱㅅㅊ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/jjHccoFjbqlfr4VGLVLT7yek0Xn.jpg"
   },
   {
     id: "extreme_job", title: "극한직업", director: "이병헌",
@@ -62,7 +62,7 @@ const MOVIES_DATABASE = [
       { line: "왜 자꾸 장사가 잘 되는 건데!", character: "마형사 (진선규)" }
     ],
     choseong: "ㄱㅎㅈㅇ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aGPHBpBPDlqRIZHHfzE4aXnpZmL.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/lzzb384pgYyr0GQvu3K2ZW62CEE.jpg"
   },
   {
     id: "crime_city_4", title: "범죄도시4", director: "허명행",
@@ -77,7 +77,7 @@ const MOVIES_DATABASE = [
       { line: "이유가 어딨어, 나쁜 놈은 그냥 잡는 거지.", character: "마석도 (마동석)" }
     ],
     choseong: "ㅂㅈㄷㅅ4",
-    posterUrl: "https://image.tmdb.org/t/p/w300/vUiUXkDeXAuMCCJLvvhRNTFNxjT.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/jucHQwnRSma1O9V2bM007e4eSd7.jpg"
   },
   {
     id: "smugglers", title: "밀수", director: "류승완",
@@ -92,7 +92,7 @@ const MOVIES_DATABASE = [
       { line: "이 판에 의리가 어딨어, 돈만 있으면 그만이지.", character: "권필삼 (조인성)" }
     ],
     choseong: "ㅁㅅ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8bKQICnBHPo6eCIcjxRkJfFrAeT.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/jC2LxPFC3UXenXK18iCJgfRPlrw.jpg"
   },
   {
     id: "concrete_utopia", title: "콘크리트 유토피아", director: "엄태화",
@@ -106,9 +106,9 @@ const MOVIES_DATABASE = [
       { line: "저는 이 아파트가 평범한 사람들의 집이라고 생각합니다.", character: "영탁 (이병헌)" }
     ],
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wOJSO8iBOEZvNFGMQgJXVbFdoMf.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/aKApVX9hc5otPxa3Jbf27sW6tsi.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-09-22 11:35 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-09-22 13:15 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
