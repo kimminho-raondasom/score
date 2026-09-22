@@ -333,106 +333,267 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
+  // ── KOBIS(영진위) API 자동 수집 (2026-09-22 12:34 KST, 실행 시점 기준 1개월 이내) ──
   {
-    id: "upcoming_20255033", title: "\uc554\uc0b4\uc790(\ub4e4)", director: "\ud5c8\uc9c4\ud638",
+    id: "upcoming_20264801", title: "포가튼 아일랜드", director: "조엘 크로포드",
+    cast: ["H.E.R", "라이자 소베라노", "데이브 프랭코"],
+    releaseDate: "2026-09-23", genre: ["판타지", "코미디", "어드벤처"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/bIQY9RLkqUhdwOBExK4k3ggxddF.jpg",
+    isRevealed: false,
+    overview: "성격은 달라도 마음만큼은 누구보다 잘 통했던 ‘조’와 ‘라이사’는 최고의 베프로 모든 순간을 함께하며 둘만의 기억을 쌓아간다. 그러나 졸업과 함께 서로 다른 환경을 살아가던 두 사람의 우정은 조금씩 흔들리기 시작한다. 그러던 어느 날, 전설처럼 전해지던 신비한 포털을 발견한 두 사람은 기억이 사라지는 세계, ‘포가튼 아일랜드’로 빨려 들어가게 되고, 시공간의 경계를 넘나드는 이 섬을 떠나기 위해선 가장 소중한 추억을 포기해야 하는 규칙이 주어진다. 기억을 훔치는 섬의 지배자 ‘마낭’이 두 사람을 위협하는 가운데 ‘조’와 ‘라이사’는 섬에서 만난 새로운 친구들과 비밀을 쫓기 시작하지만 진실에 가까워질수록 두 사람의 기억은 사라질 위기에 처하는데…"
+  },
+  {
+    id: "upcoming_20255033", title: "암살자(들)", director: "허진호",
     cast: ["유해진", "박해일", "이민호"],
     releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/c55ijsOdntj6P25vDwHLdgsBpmV.jpg",
     isRevealed: false,
-    overview: "\ub300\ud55c\ubbfc\uad6d\uc744 \ucda9\uaca9\uc5d0 \ube60\ub728\ub9b0 8.15 \uc800\uaca9 \uc0ac\uac74\uc758 \uc758\ud639\uacfc \ubc30\ud6c4\ub97c \ucd94\uc801\ud558\ub294 \uc774\uc57c\uae30\ub97c \uadf8\ub9b0 \uc601\ud654"
+    overview: "대한민국을 충격에 빠뜨린 8.15 저격 사건의 의혹과 배후를 추적하는 이야기를 그린 영화"
   },
   {
-    id: "upcoming_20266267", title: "\ub098\uc758 \uc0ac\uc801\uc778 \uc608\uc220\uac00", director: "\ucf04\ud2b8 \uc874\uc2a4",
+    id: "upcoming_20266267", title: "나의 사적인 예술가", director: "켄트 존스",
     cast: ["윌렘 데포", "그레타 리"],
     releaseDate: "2026-09-23", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/hv7zKr3cCdOFhNVcqWYj74Ij6KX.jpg",
     isRevealed: false,
-    overview: "\uacfc\uac70 \uc2dc\uc9d1 \ud55c \uad8c\uc744 \ucd9c\uac04\ud588\uc9c0\ub9cc \uc9c0\uae08\uc740 \ub274\uc695\uc758 \uc6b0\uccb4\uad6d\uc5d0\uc11c \uc77c\ud558\uba70 \ud3c9\ubc94\ud55c \uc77c\uc0c1\uc744 \uc0b4\uc544\uac00\ub294 \u2018\uc5d0\ub4dc \uc0c9\uc2a4\ubc84\uac70\u2019. \uc5b4\ub290 \ub0a0, \uadf8\uc758 \uc55e\uc5d0 \uc790\uc2e0\uc758 \uc2dc\uc5d0 \ub9e4\ub8cc\ub41c \uc80a\uc740 \uc608\uc220 \ubaa8\uc784\uc758 \ub9ac\ub354 \u2018\ub9c8\uc774\uc5b4\uc2a4\u2019\uac00 \ucc3e\uc544\uc624\uace0 \uadf8\ub4e4\uc758 \ubaa8\uc784\uc5d0 \u2018\uc5d0\ub4dc\u2019\ub97c \ucd08\ub300\ud55c\ub2e4. \ub4a4\ub2a6\uc740 \ucc2c\uc0ac \uc18d\uc5d0 \uc78a\uace0 \uc788\ub358 \ub0a0\ub4e4\uc744 \ub2e4\uc2dc \ub5a0\uc62c\ub9ac\uac8c \ub41c \u2018\uc5d0\ub4dc\u2019. \uadf8\ub7ec\ub098 \uc810\ucc28 \uadf8\ub4e4\uc758 \uc80a\uc74c\uacfc \ubd80, \uc790\uc2e0\uc758 \ud604\uc2e4\uc774 \uad50\ucc28\ud558\uace0 \ub9c8\uc74c \uc18d\uc5d0 \uc608\uc0c1\uce58 \ubabb\ud55c \uac10\uc815\ub4e4\uc774 \ud53c\uc5b4\ub098\uac8c \ub418\ub294\ub370..."
+    overview: "과거 시집 한 권을 출간했지만 지금은 뉴욕의 우체국에서 일하며 평범한 일상을 살아가는 ‘에드 색스버거’. 어느 날, 그의 앞에 자신의 시에 매료된 젊은 예술 모임의 리더 ‘마이어스’가 찾아오고 그들의 모임에 ‘에드’를 초대한다. 뒤늦은 찬사 속에 잊고 있던 날들을 다시 떠올리게 된 ‘에드’. 그러나 점차 그들의 젊음과 부, 자신의 현실이 교차하고 마음 속에 예상치 못한 감정들이 피어나게 되는데..."
   },
   {
-    id: "upcoming_20254904", title: "\uac00\ub2a5\ud55c \uc0ac\ub791", director: "\uc774\ucc3d\ub3d9",
+    id: "upcoming_20254904", title: "가능한 사랑", director: "이창동",
     cast: ["전도연", "설경구", "조인성"],
     releaseDate: "2026-09-23", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/7UAzxqezg5yvZyK3k62wOAzg0Zs.jpg",
     isRevealed: false,
-    overview: "\ud574\uace0 \ub178\ub3d9\uc790\uc640 \uadf8\uc758 \uc544\ub0b4 \uadf8\ub9ac\uace0 \ub2e4\ud050\uba58\ud130\ub9ac \uac10\ub3c5\uacfc \uadf8\ub140\uc758 \ub0a8\ud3b8. \ub450 \ubd80\ubd80\uac00 \ub2e4\ud050\uba58\ud130\ub9ac \uc81c\uc791\uc744 \uacc4\uae30\ub85c \ub9cc\ub098, \uc11c\ub85c\uc758 \ub2e4\ub978 \uc0b6\uacfc \uc228\uc740 \uc695\ub9dd\uc744 \ub9c8\uc8fc\ud55c\ub2e4."
+    overview: "해고 노동자와 그의 아내 그리고 다큐멘터리 감독과 그녀의 남편. 두 부부가 다큐멘터리 제작을 계기로 만나, 서로의 다른 삶과 숨은 욕망을 마주한다."
   },
   {
-    id: "upcoming_20256161", title: "\ud0c0\uc9dc: \ubca8\uc81c\ubd91\uc758 \ub178\ub798", director: "\ucd5c\uad6d\ud76c",
+    id: "upcoming_20256161", title: "타짜: 벨제붑의 노래", director: "최국희",
     cast: ["변요한", "노재원", "미요시 아야카"],
     releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/ueigb5zra1tj6FTK9yhh2P33P9B.jpg",
     isRevealed: false,
-    overview: "\ud0c0\uace0\ub09c \ub057\ubc1c\ub85c \uc0ac\ub78c\uc758 \ub9c8\uc74c\uc744 \uc0ac\ub85c\uc7a1\ub294 \uc7a5\ud0dc\uc601\uacfc \ucc9c\ubd80\uc801\uc778 \uba38\ub9ac\uc640 \ub178\ub825\uc73c\ub85c \uc2a4\uc2a4\ub85c\ub97c \uc99d\uba85\ud558\ub294 \ubc15\ud0dc\uc601. \ud559\ucc3d \uc2dc\uc808\ubd80\ud130 \uc808\uce5c\ud55c \uce5c\uad6c\uc778 \ub450 \uc0ac\ub78c\uc740 \uc628\ub77c\uc778 \uce74\uc9c0\ub178 \uc0ac\uc5c5\uc5d0 \ub6f0\uc5b4\ub4e4\uba70 \uc2b9\uc2b9\uc7a5\uad6c\ud558\uace0, \uc0ac\uc5c5\uc758 \uc131\uacf5\uc774 \ucee4\uc9c8\uc218\ub85d \ub7ed\ud0a4\ud55c \uc7a5\ud0dc\ub9cc \uc8fc\ubaa9\ubc1b\uc790, \ubc15\ud0dc\uc758 \uc9c8\ud22c\ub294 \uc870\uc6a9\ud788 \uc790\ub77c\ub09c\ub2e4. \uc131\uacf5\uc758 \uaf2d\ub300\uae30\uc5d0\uc11c \uc9c8\ud22c\ub294 \ubc30\uc2e0\uc73c\ub85c \ubcc0\ud55c\ub2e4. \uc7a5\ud0dc\uc601\uc740 \ubca0\ud2b8\ub0a8 \ucd9c\uc7a5 \uc911 \ubc15\ud0dc\uc601\uc758 \uc608\uc0c1\uce58 \ubabb\ud55c \ubc30\uc2e0\uc73c\ub85c \ub098\ub77d\uc5d0 \ub5a8\uc5b4\uc9c0\uace0, \uae30\uc801\uc801\uc73c\ub85c \uc0b4\uc544\ub0a8\uc544 \uc804\uc124\uc758 \ud0c0\uc9dc \uacfd\ub3d9\uc6b1\uc5d0\uac8c \ud3ec\ucee4\ub97c \uc0ac\uc0ac \ubc1b\ub294\ub2e4. \ud55c\ud3b8, \uc57c\ucfe0\uc790 \uc870\uc9c1\uc774 \ubc30\ud6c4\uc5d0 \uc788\ub294 \uac00\ub124\ucf54\ub294 \ud55c\uad6d\uc758 \uc628\ub77c\uc778 \uce74\uc9c0\ub178 \uc0ac\uc5c5\uc5d0 \uad00\uc2ec\uc744 \uac16\uace0 \uc77c\ubcf8\uacfc \ubca0\ud2b8\ub0a8\uc758 \uac70\ubb3c\ub4e4\uc774 \ucc38\uc5ec\ud55c \uac70\uc561\uc758 \uae00\ub85c\ubc8c \ub3c4\ubc15\ud310\uc744 \uc14b\ud305 \ud55c\ub2e4. \ubcbc\ub791 \ub05d \ub3c4\ubc15\ud310, \uac19\uc740 \uc774\ub984, \ub2e4\ub978 \uc6b4\uba85\uc758 \uce5c\uad6c \uc7a5\ud0dc\uc601\uacfc \ubc15\ud0dc\uc601\uc740 \ub9c8\uce68\ub0b4 \uadf8 \uacf3\uc5d0\uc11c \ub9c8\uc8fc\ud558\ub294\ub370\u2026"
+    overview: "타고난 끗발로 사람의 마음을 사로잡는 장태영과 천부적인 머리와 노력으로 스스로를 증명하는 박태영. 학창 시절부터 절친한 친구인 두 사람은 온라인 카지노 사업에 뛰어들며 승승장구하고, 사업의 성공이 커질수록 럭키한 장태만 주목받자, 박태의 질투는 조용히 자라난다. 성공의 꼭대기에서 질투는 배신으로 변한다. 장태영은 베트남 출장 중 박태영의 예상치 못한 배신으로 나락에 떨어지고, 기적적으로 살아남아 전설의 타짜 곽동욱에게 포커를 사사 받는다. 한편, 야쿠자 조직이 배후에 있는 가네코는 한국의 온라인 카지노 사업에 관심을 갖고 일본과 베트남의 거물들이 참여한 거액의 글로벌 도박판을 셋팅 한다. 벼랑 끝 도박판, 같은 이름, 다른 운명의 친구 장태영과 박태영은 마침내 그 곳에서 마주하는데…"
   },
   {
-    id: "upcoming_20243684", title: "\ud3ec\ub974\ud14c", director: "\uae40\ud615\ubbfc",
-    cast: ["임채영", "이정은", "김재홍"],
-    releaseDate: "2026-09-30", genre: ["공포(호러)", "미스터리"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/4q33XeazR4lxJj7kRtl03OeqLHK.jpg",
-    isRevealed: false,
-    overview: "\uc0ac\ud68c \ucd08\ub144\uc0dd \uc5f0\uc9c0\ub294 \uae4a\uc740 \uc0b0\uc18d\uc758 \uc720\uba85 \uc74c\uc545 \uc2a4\ud29c\ub514\uc624 \u2018\ud3ec\ub974\ud14c\u2019\uc5d0 \uc785\uc0ac\ud558\uba70 \uafc8\uc5d0 \ud55c \uac78\uc74c \ub2e4\uac00\uc120\ub2e4. \ud558\uc9c0\ub9cc \uce74\ub9ac\uc2a4\ub9c8 \ub118\uce58\ub294 \ub514\ub809\ud130 \uc815\ud654\uc758 \uc808\ub300\uc801\uc778 \ud1b5\uc81c \uc544\ub798, \uadf8\ub140\ub294 \uc810\ucc28 \uc774\ub984 \uc5c6\ub294 \uace0\uc2a4\ud2b8\ub77c\uc774\ud130\ub85c \uc18c\ubaa8\ub418\uc5b4\uac04\ub2e4. \uadf8\ub7ec\ub358 \uc5b4\ub290 \ub0a0\ubd80\ud130 \uc2a4\ud29c\ub514\uc624\uc5d0\uc11c\ub294 \uc124\uba85\ud560 \uc218 \uc5c6\ub294 \uae30\uc774\ud55c \uc77c\ub4e4\uc774 \ubc8c\uc5b4\uc9c0\uace0, \uc5f0\uc9c0\ub294 \ud604\uc2e4\uacfc \ud658\uac01\uc758 \uacbd\uacc4 \uc18d\uc73c\ub85c \ube60\uc838\ub4e0\ub2e4. \ub05d\uc5c6\uc774 \ub0b4\ub9ac\ub294 \uc7a5\ub9c8\uc640 \uace0\ub9bd\ub41c \uc791\uc5c5\uc2e4 \uc18d\uc5d0\uc11c, \uadf8\ub140\ub294 \uc5b5\ub20c\ub9b0 \uc695\ub9dd\uacfc \ubd84\ub178, \uadf8\ub9ac\uace0 \u2018\ud3ec\ub974\ud14c\u2019\uc5d0 \uc2a4\uba70\ub4e0 \uc5b4\ub460\uc758 \uc2e4\uccb4\uc640 \ub9c8\uc8fc\ud558\uac8c \ub41c\ub2e4."
-  },
-  {
-    id: "upcoming_20264847", title: "\uc54c\ud30c", director: "\uc904\ub9ac\uc544 \ub4a4\ucfe0\ub974\ub178",
-    cast: ["멜리사 보로스", "골시프테 파라하니", "타하르 라힘"],
-    releaseDate: "2026-09-30", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/tUZaajRDFjitxzCQK87vlRDedox.jpg",
-    isRevealed: false,
-    overview: "\ubab8\uc744 \uc11d\uace0\ucc98\ub7fc \uad73\uac8c \ub9cc\ub4dc\ub294 \ud608\uc561 \ub9e4\uac1c \ubc14\uc774\ub7ec\uc2a4\uac00 \ud37c\uc9c0\ub294 \ub3c4\uc2dc. 13\uc138 \uc18c\ub140 \uc54c\ud30c\ub294 \uce5c\uad6c\ub4e4\uacfc\uc758 \ud30c\ud2f0\uc5d0\uc11c \uc758\ubb38\uc758 'A'\uc790 \ubb38\uc2e0\uc744 \uc0c8\uae34 \ucc44 \uc9d1\uc73c\ub85c \ub3cc\uc544\uc624\uace0, \uc758\uc0ac\uc778 \uc5c4\ub9c8\ub294 \uc54c\ud30c\uac00 \ubc14\uc774\ub7ec\uc2a4\uc5d0 \uac10\uc5fc\ub410\uc744\uc9c0 \ubaa8\ub978\ub2e4\ub294 \ubd88\uc548\uac10\uc5d0 \ud729\uc2f8\uc778\ub2e4. \uac10\uc5fc \uc5ec\ubd80 \uacb0\uacfc\ub97c \uae30\ub2e4\ub9ac\ub294 2\uc8fc \uc0ac\uc774, \ud559\uad50\uc5d0\ub294 \uc18c\ubb38\uc774 \ud37c\uc9c0\uae30 \uc2dc\uc791\ud558\uace0 \uc18c\ubb38\uc740 \uace7 \ub099\uc778\uc774 \ub418\uc5b4 \uc54c\ud30c\ub97c \uc62d\uc544\ub9e8\ub2e4. \uadf8\ub9ac\uace0 \uc0bc\ucd0c\uc758 \ub4f1\uc7a5\uc740 \uc54c\ud30c\uc640 \uc5c4\ub9c8\uc758 \ubd88\uc548\uc744 \uc99d\ud3ed\uc2dc\ud0a4\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20266281", title: "\uc2a4\ud2f0\uce58 \ud5e4\ub4dc: \ube44\ubc00\uc758 \uc131 \uaf2c\ub9c8\uad34\ubb3c", director: "\uc2a4\ud2f0\ube0c \ud5c8\ub4dc\uc2a8",
-    cast: ["황정민", "추영우", "박수영"],
-    releaseDate: "2026-09-30", genre: ["애니메이션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/dTcAE69YKmEatDPCl1BmOpFHbUb.jpg",
-    isRevealed: false,
-    overview: "\uc791\uc740 \ub9c8\uc744\uc774 \ub0b4\ub824\ub2e4\ubcf4\uc774\ub294 \ub192\uc740 \ube44\ubc00\uc758 \uc131. \uadf8\uacf3\uc758 \uc2e4\ud5d8\uc2e4\uc5d0\uc11c \uc0b4\uace0 \uc788\ub294 \uad11\uae30 \uc5b4\ub9b0 \ucc9c\uc7ac \ubc15\uc0ac\ub294 \uae30\uc0c1\ucc9c\uc678\ud55c \ubaac\uc2a4\ud130\ub4e4\uc5d0\uac8c \uc0dd\uba85\uc744 \ubd88\uc5b4\ub123\uc9c0\ub9cc, \uc644\uc131\ub41c \ubaac\uc2a4\ud130\ub4e4\uc740 \uace7 \uadf8\uc758 \uae30\uc5b5 \uc18d\uc5d0\uc11c \uc78a\ud600\uc9c0\uae30 \uc77c\uc464. \uadf8\uc758 \uccab \ubc88\uc9f8 \ubaac\uc2a4\ud130\uc778 \u2018\uc2a4\ud2f0\uce58 \ud5e4\ub4dc\u2019\ub294 \ubc15\uc0ac\uac00 \uacc4\uc18d\ud574\uc11c \ub9cc\ub4e4\uc5b4\ub0b4\ub294 \uae30\uad34\ud558\uace0 \uc81c\uba4b\ub300\ub85c\uc778 \ubaac\uc2a4\ud130\ub4e4\uc744 \ub3cc\ubcf4\uace0 \uc131\uc758 \uc9c8\uc11c\ub97c \uc720\uc9c0\ud558\ub294 \uad00\ub9ac\uc790 \uc5ed\ud560\uc744 \ud558\uba70 \uc0b4\uc544\uac04\ub2e4. \uadf8\ub7ec\ub358 \uc5b4\ub290 \ub0a0, \ub5a0\ub3cc\uc774 \ubaac\uc2a4\ud130 \uc11c\ucee4\uc2a4\ub2e8\uc744 \uc774\ub044\ub294 \uc0ac\uae30\uafbc \ub2e8\uc7a5\uc774 \ub098\ud0c0\ub098 \u2018\uc2a4\ud2f0\uce58 \ud5e4\ub4dc\u2019\uc640 \ubaac\uc2a4\ud130\ub4e4\uc744 \uc11c\ucee4\uc2a4 \ubcfc\uac70\ub9ac\ub85c \ud314\uc544 \ub118\uae30\ub824 \ud558\uba70 \ubd80\uc640 \uba85\uc608, \uadf8\ub9ac\uace0 \uc5b4\uca4c\uba74 \uc0ac\ub791\uae4c\uc9c0 \uc8fc\uaca0\ub2e4\ub294 \ub2ec\ucf64\ud55c \uc81c\uc548\uc744 \ud558\uac8c \ub418\ub294\ub370\u2026"
-  },
-  {
-    id: "upcoming_20266817", title: "\uce74\ub974\ud154 \uc624\uc158", director: "\uc81c\uc2dc V. \uc874\uc2a8",
+    id: "upcoming_20266817", title: "카르텔 오션", director: "제시 V. 존슨",
     cast: ["안토니오 반데라스"],
     releaseDate: "2026-09-30", genre: ["스릴러", "액션"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/7bOuu1SRALGwsG2fLCTvRkCmQBj.jpg",
     isRevealed: false,
-    overview: "\uce5c\uad6c \ub2e4\uc12f \uba85\uc774 \uc0c1\uc5b4 \ucf00\uc774\uc9c0 \ub2e4\uc774\ube59\uc744 \uc990\uae30\uae30 \uc704\ud574 \uc5f4\ub300 \ud734\uc591\uc9c0\ub85c \ub5a0\ub09c\ub2e4. \ud558\uc9c0\ub9cc \uc774 \uc5ec\ud589\uc740 \uadf8\ub4e4\uc774 \ubaa8\ub974\uac8c \u2018\ubc88\uc2a4\u2019\uac00 \uc8fc\ub3c4\ud558\ub294 \ubc94\uc8c4 \uc870\uc9c1\uc758 \ud568\uc815\uc774\uc5c8\ub2e4. \ud63c\ub780\uc774 \ud3ed\ubc1c\ud55c \uc21c\uac04, \u2018\ud0c0\ud2f0\uc544\ub098\u2019\uc640 \u2018\ucf00\uc77c\ub9ac\u2019\ub294 \uc0b0\uc18c\ub3c4 \uc5bc\ub9c8 \ub0a8\uc9c0 \uc54a\uc740 \ucc44 \uc0c1\uc5b4 \ub5bc\uac00 \ub4e4\ub053\ub294 \ubc14\ub2e4\uc5d0 \uace0\ub9bd\ub41c\ub2e4. \uc2dc\uac04\uc774 \ube60\ub974\uac8c \ud758\ub7ec\uac00\ub294 \uac00\uc6b4\ub370, \ub450 \uc0ac\ub78c\uc740 \ubb3c \uc544\ub798\uc758 \uce58\uba85\uc801 \ud3ec\uc2dd\uc790\ub4e4\uacfc \ubb3c \uc704\uc5d0\uc11c \ub2e4\uac00\uc624\ub294 \ubc88\uc2a4 \uc77c\ub2f9\uc758 \uc704\ud611\uc5d0 \ub3d9\uc2dc\uc5d0 \ub9de\uc11c \uc0b4\uc544\ub0a8\uc544\uc57c \ud55c\ub2e4."
+    overview: "친구 다섯 명이 상어 케이지 다이빙을 즐기기 위해 열대 휴양지로 떠난다. 하지만 이 여행은 그들이 모르게 ‘번스’가 주도하는 범죄 조직의 함정이었다. 혼란이 폭발한 순간, ‘타티아나’와 ‘케일리’는 산소도 얼마 남지 않은 채 상어 떼가 들끓는 바다에 고립된다. 시간이 빠르게 흘러가는 가운데, 두 사람은 물 아래의 치명적 포식자들과 물 위에서 다가오는 번스 일당의 위협에 동시에 맞서 살아남아야 한다."
   },
   {
-    id: "upcoming_20265509", title: "\uac00\uc871\uc740 \uc544\ub2c8\uace0", director: "\ucc44\uc7ac\uc601",
+    id: "upcoming_20261068", title: "가족여행", director: "김정태",
+    cast: ["이휘향", "서영희", "김정태"],
+    releaseDate: "2026-09-30", genre: ["가족", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ab0jA90IuyjydjDe99lH51kA8BN.jpg",
+    isRevealed: false,
+    overview: "무늬만 영화감독인 남편, 뱀파이어 코스프레에 진심인 딸, 베트남 참전용사 시아버지, 그리고 치매에 걸린 시어머니까지. 이 문제적 가족의 생계를 책임지며 모두를 돌보던 며느리 ‘영주’는 보호센터로부터 더 이상 시어머니 ‘순임’을 맡을 수 없다는 통보를 받는다. ‘순임’의 생일을 기념하고자 부산으로 떠난 즉흥 가족 여행. 급하게 빌린 낡은 승합차가 위태롭게 고속도로를 달릴수록 감춰졌던 여행의 진짜 목적과 비밀들이 하나씩 드러나기 시작하는데…"
+  },
+  {
+    id: "upcoming_20243684", title: "포르테", director: "김형민",
+    cast: ["임채영", "이정은", "김재홍"],
+    releaseDate: "2026-09-30", genre: ["공포(호러)", "미스터리"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/4q33XeazR4lxJj7kRtl03OeqLHK.jpg",
+    isRevealed: false,
+    overview: "사회 초년생 연지는 깊은 산속의 유명 음악 스튜디오 ‘포르테’에 입사하며 꿈에 한 걸음 다가선다. 하지만 카리스마 넘치는 디렉터 정화의 절대적인 통제 아래, 그녀는 점차 이름 없는 고스트라이터로 소모되어간다. 그러던 어느 날부터 스튜디오에서는 설명할 수 없는 기이한 일들이 벌어지고, 연지는 현실과 환각의 경계 속으로 빠져든다. 끝없이 내리는 장마와 고립된 작업실 속에서, 그녀는 억눌린 욕망과 분노, 그리고 ‘포르테’에 스며든 어둠의 실체와 마주하게 된다."
+  },
+  {
+    id: "upcoming_20264847", title: "알파", director: "줄리아 뒤쿠르노",
+    cast: ["멜리사 보로스", "골시프테 파라하니", "타하르 라힘"],
+    releaseDate: "2026-09-30", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/tUZaajRDFjitxzCQK87vlRDedox.jpg",
+    isRevealed: false,
+    overview: "몸을 석고처럼 굳게 만드는 혈액 매개 바이러스가 퍼지는 도시. 13세 소녀 알파는 친구들과의 파티에서 의문의 'A'자 문신을 새긴 채 집으로 돌아오고, 의사인 엄마는 알파가 바이러스에 감염됐을지 모른다는 불안감에 휩싸인다. 감염 여부 결과를 기다리는 2주 사이, 학교에는 소문이 퍼지기 시작하고 소문은 곧 낙인이 되어 알파를 옭아맨다. 그리고 삼촌의 등장은 알파와 엄마의 불안을 증폭시키는데…"
+  },
+  {
+    id: "upcoming_20266281", title: "스티치 헤드: 비밀의 성 꼬마괴물", director: "스티브 허드슨",
+    cast: ["황정민", "추영우", "박수영"],
+    releaseDate: "2026-09-30", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/dTcAE69YKmEatDPCl1BmOpFHbUb.jpg",
+    isRevealed: false,
+    overview: "작은 마을이 내려다보이는 높은 비밀의 성. 그곳의 실험실에서 살고 있는 광기 어린 천재 박사는 기상천외한 몬스터들에게 생명을 불어넣지만, 완성된 몬스터들은 곧 그의 기억 속에서 잊혀지기 일쑤. 그의 첫 번째 몬스터인 ‘스티치 헤드’는 박사가 계속해서 만들어내는 기괴하고 제멋대로인 몬스터들을 돌보고 성의 질서를 유지하는 관리자 역할을 하며 살아간다. 그러던 어느 날, 떠돌이 몬스터 서커스단을 이끄는 사기꾼 단장이 나타나 ‘스티치 헤드’와 몬스터들을 서커스 볼거리로 팔아 넘기려 하며 부와 명예, 그리고 어쩌면 사랑까지 주겠다는 달콤한 제안을 하게 되는데…"
+  },
+  {
+    id: "upcoming_20262961", title: "이방인", director: "프랑수아 오종",
+    cast: ["벤자민 부아쟁", "드니 라방", "스완 아를로"],
+    releaseDate: "2026-09-30", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2NoWaSTgKF7FcJ0Lr5NrvDDINOv.jpg",
+    isRevealed: false,
+    overview: "청년 ‘뫼르소’는 어머니의 부고 소식을 듣고 장례를 치르지만 어딘가 무감하다. 집으로 돌아온 그는 해수욕장에서 옛 동료 ‘마리’를 우연히 만나 사랑을 나눈다. 이웃 ‘레몽’과 가깝게 지내던 ‘뫼르소’는 예상치 못한 비극에 휘말린다."
+  },
+  {
+    id: "upcoming_20261807", title: "극장판 치이카와: 인어 섬의 비밀", director: "오이카와 케이",
+    cast: ["아오키 하루카", "타나카 마코토", "오자와 아리"],
+    releaseDate: "2026-09-30", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/5TMyytCI5Pfc9c1eNsljiCdiB05.jpg",
+    isRevealed: false,
+    overview: "어느 날, 광장에서 쉬고 있던 치이카와와 가르마 앞에 얼굴에 전단지를 붙인 토끼가 나타난다. 그곳엔 “특별한 섬으로의 초대”라는 글귀가 적혀 있는데... “섬에서 간단한 토벌만 해도 보수 100배!” “한정 섬라멘과 한정 디저트까지, 달콤한 것도 매콤한 것도 사실상 무료.” 솔깃한 문구에 이끌린 치이카와와 친구들은 섬에서 열리는 행사에 참가하기로 한다. 초대장의 내용이 어딘가 수상하다고 느끼는 해달과, 부푼 마음으로 배에 오르는 치이카와와 친구들. 모두가 기대를 안은 채 특별한 섬에 도착하는데! 과연 그 섬에는 어떤 비밀이 숨겨져 있을까...?!"
+  },
+  {
+    id: "upcoming_20224573", title: "부활남: 더 레드", director: "백",
+    cast: ["구교환", "신승호", "강기영"],
+    releaseDate: "2026-09-30", genre: ["액션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/nLsyRK3SmtdIftozpCd8sGQMRGD.jpg",
+    isRevealed: false,
+    overview: "근거 없는 자신감이 유일한 스펙인 취준생 ‘석환’이 죽은 뒤 72시간이면 부활하는 능력을 갖고 있다는 걸 알게 된 후 의문의 추격을 당하며 펼쳐지는 이야기"
+  },
+  {
+    id: "upcoming_20265509", title: "가족은 아니고", director: "채재영",
     cast: ["이상하", "임유빈", "정희태"],
     releaseDate: "2026-10-01", genre: ["드라마", "코미디"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/ixBxZQRGej6KNybwfwcAWbABEJk.jpg",
     isRevealed: false,
-    overview: "\uacb0\ud63c 30\ub144 \ucc28, \uc544\ube60\uc758 \ubc14\ub78c\uc73c\ub85c \uc6b0\ub9ac \uac00\uc871\uc740 \ud558\ub8e8\uc544\uce68\uc5d0 \ub4a4\uc9d1\uc5b4\uc84c\ub2e4. \uc544\ube60\uac00 \uac00\uc9c4 \uc544\ud30c\ud2b8\ub97c \ubb3c\ub824\ubc1b\uc73c\ub824\uba74 \ubb34\uc2a8 \uc77c\uc774 \uc788\ub354\ub77c\ub3c4 \uc774 \uac00\uc871\uc744 \uc9c0\ucf1c\uc57c \ud55c\ub2e4. \uadf8\ub7f0\ub370 \ubb38\uc81c\ub294 \uadf8 \uc544\ud30c\ud2b8\uc5d0 \uc784\uc2e0\ud55c \uc544\ube60\uc758 \uc0c1\uac04\ub140\uac00 \uc0b4\uace0 \uc788\ub2e4?! \uadf8\ub140\ub294 \ub098\uc5d0\uac8c \uc544\uc774\uc758 \uc544\ube60\uac00 \ub418\uc5b4\ub2ec\ub77c\uace0 \ud558\ub294\ub370\u2026"
+    overview: "결혼 30년 차, 아빠의 바람으로 우리 가족은 하루아침에 뒤집어졌다. 아빠가 가진 아파트를 물려받으려면 무슨 일이 있더라도 이 가족을 지켜야 한다. 그런데 문제는 그 아파트에 임신한 아빠의 상간녀가 살고 있다?! 그녀는 나에게 아이의 아빠가 되어달라고 하는데…"
   },
   {
-    id: "upcoming_20264775", title: "\ub514\uac70", director: "\uc54c\ub808\ud55c\ub4dc\ub85c \uace4\uc798\ub808\uc2a4 \uc774\ub0d0\ub9ac\ud22c",
+    id: "upcoming_20264775", title: "디거", director: "알레한드로 곤잘레스 이냐리투",
     cast: ["톰 크루즈", "산드라 휠러", "존 굿맨"],
     releaseDate: "2026-10-03", genre: ["코미디", "드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
     posterUrl: "https://image.tmdb.org/t/p/w300/jV5Mfasg8dP3XK5nuXLetBN3APx.jpg",
     isRevealed: false,
-    overview: "\"\ub05d\uae4c\uc9c0 \ud30c\uac70\ub098, \uc8fd\uac70\ub098! \uc804 \uc138\uacc4\ub97c \ub4a4\ud754\ub4e0 \ub300\uc7ac\uc559. \u2018\ub514\uac70 \ub85d\uc6f0\u2019\uc758 \uc0bd \ub05d\uc5d0\uc11c \uc2dc\uc791\ub41c \uc774\uc57c\uae30\ub97c \ud655\uc778\ud558\ub77c!\" 3\ub300\uc9f8 \uc11d\uc720 \uc7ac\ubc8c\ub85c \uc0b4\uc544\uc628 \u2018\ub514\uac70 \ub85d\uc6f0\u2019\uc740 \ucd5c\uc18c\ud55c\uc758 \uc190\uc2e4, \ucd5c\ub300\ud55c\uc758 \uc774\uc775\uc744 \ucd94\uad6c\ud558\uba70 \ub3c8\uc774 \ub418\ub294 \uc77c\uc774\ub77c\uba74 \ubb34\uc5c7\uc774\ub4e0 \ub9c8\ub2e4\ud558\uc9c0 \uc54a\ub294\ub2e4. \uadf8\ub7ec\ub358 \uc5b4\ub290 \ub0a0, \uadf8\ub9b0\ub780\ub4dc\uc758 \ube59\ud558 \uc2dc\ucd94 \uc2dc\uc124\uc5d0\uc11c \uc791\uc740 \uade0\uc5f4\uc774 \ubc1c\uacac\ub418\uc9c0\ub9cc \u2018\ub514\uac70\u2019\ub294 \ub300\uc218\ub86d\uc9c0 \uc54a\uc740 \ubb38\uc81c\ub77c \uc5ec\uae30\uace0 \ub118\uae34\ub2e4. \ud558\uc9c0\ub9cc \uc0ac\uc18c\ud558\uac8c \uc5ec\uacbc\ub358 \uade0\uc5f4\uc740 \uac77\uc7a1\uc744 \uc218 \uc5c6\uc774 \ucee4\uc9c0\uba70 \uc804 \uc138\uacc4\ub97c \ub0a0\ub824\ubc84\ub9b4 \uac70\ub300\ud55c \uc7ac\ub09c\uc73c\ub85c \ubc88\uc838\uac00\uace0 \uacb0\uad6d \u2018\ub514\uac70\u2019\ub294 \ucd08\uc720\uc758 \uc0ac\ud0dc\ub97c \ud574\uacb0\ud558\uae30 \uc704\ud574 \uc9c1\uc811 \ub098\uc11c\ub294\ub370\u2026"
-  }
+    overview: "\"끝까지 파거나, 죽거나! 전 세계를 뒤흔든 대재앙. ‘디거 록웰’의 삽 끝에서 시작된 이야기를 확인하라!\" 3대째 석유 재벌로 살아온 ‘디거 록웰’은 최소한의 손실, 최대한의 이익을 추구하며 돈이 되는 일이라면 무엇이든 마다하지 않는다. 그러던 어느 날, 그린란드의 빙하 시추 시설에서 작은 균열이 발견되지만 ‘디거’는 대수롭지 않은 문제라 여기고 넘긴다. 하지만 사소하게 여겼던 균열은 걷잡을 수 없이 커지며 전 세계를 날려버릴 거대한 재난으로 번져가고 결국 ‘디거’는 초유의 사태를 해결하기 위해 직접 나서는데…"
+  },
+  {
+    id: "upcoming_20266610", title: "입에 대한 앙케트", director: "시미즈 다카시",
+    cast: ["츠나 케이토", "요시카와 아이미"],
+    releaseDate: "2026-10-07", genre: ["공포(호러)"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/cms5ib3HTaOCH4qw6aDPTV6MiW0.jpg",
+    isRevealed: false,
+    overview: "“그날 밤, 무슨 일이 있었는지 말씀드릴게요” 심령 명소로 유명한 묘지. 그곳에 저주받은 나무가 있다는 괴담에 이끌려 ‘쇼타’ 일행은 담력 시험에 나선다. 그리고 다음 날, 일행 중 한 명이 흔적도 없이 사라진다. 그날 이후, 남겨진 친구들의 주변에서 알 수 없는 일들이 하나둘씩 벌어지기 시작하는데… 사라진 한 명, 남겨진 5명의 증언. 증언이 쌓일수록 섬뜩한 진실이 드러난다."
+  },
+  {
+    id: "upcoming_20265486", title: "퓨리어스", director: "타니가키 켄지",
+    cast: ["사묘", "조 타슬림", "야얀 루히안"],
+    releaseDate: "2026-10-07", genre: ["액션", "범죄"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/x959xPUa6DebrSj2xNtF0NYSiCm.jpg",
+    isRevealed: false,
+    overview: "말을 할 수 없는 평범한 아버지 왕웨이. 어느 날 그의 딸 레이니가 거대 범죄 조직에 납치되고, 부패한 경찰마저 외면하자 직접 딸을 찾아 나선다. 그는 실종된 아내를 찾는 기자인 나빈과 힘을 합쳐 거침없이 조직의 심장부로 돌진한다. 마침내 마주한 딸 레이니. 하지만 그곳에는 수많은 아이들이 갇혀 있었고, 참담한 광경에 그들은 분노한다. 왕웨이와 나빈 그리고 레이니는 범죄 조직을 향해 거침없이 몸을 던지며, 폭발적인 무술 액션의 사투를 벌인다."
+  },
+  {
+    id: "upcoming_20258982", title: "홀리보이", director: "파올로 스트리폴리",
+    cast: ["미켈레 리온디노"],
+    releaseDate: "2026-10-07", genre: ["미스터리", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/vxkPiWdut20cHrFW57nduhhMR2V.jpg",
+    isRevealed: false,
+    overview: "과거의 상처를 간직한 교사 세르지오는 레미스로 전근을 간다.  이탈리아에서 가장 행복한 마을로 알려진 그곳은 새 출발을 위한 장소로 완벽해 보이지만, 아무도 모르는 놀라운 비밀이 숨겨져 있는데... '레미스의 천사'라고 불리는 소년 마테오와 매주 마테오를 만나기 위해 모이는 사람들. 마테오의 비밀을 알게 될수록, 완벽하게 행복했던 마을의 진짜 모습이 드러나기 시작한다."
+  },
+  {
+    id: "upcoming_20265062", title: "룩백", director: "고레에다 히로카즈",
+    cast: ["데구치 나츠키", "마키타 아쥬", "나나세 후리"],
+    releaseDate: "2026-10-08", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ehl2Du38qbg9M2cqfoVPUKgVDTy.jpg",
+    isRevealed: false,
+    overview: "4학년인 '후지노'는 학교 신문에 네컷 만화를 그리며 친구들의 극찬을 받는다. 그림에 대한 자신감으로 만화가를 꿈꾸던 ‘후지노’는 학교에 나오지 않는 동급생 ‘쿄모토’와 함께 네컷 만화를 연재하며 그림을 향한 한결 같은 마음으로 눈부신 우정을 쌓아 간다. 그러던 어느 날, 단 하나의 사건이 그들을 찾아 오는데... 만화만이 세상이 전부였던 두 소녀의 가슴 벅찬 성장 이야기가 시작된다!"
+  },
+  {
+    id: "upcoming_20266263", title: "전자오락수호대", director: "엄영식",
+    cast: [],
+    releaseDate: "2026-10-14", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/w2MLLbXARkOYkuWn71H5Cd5tCLX.jpg",
+    isRevealed: false,
+    overview: "플레이어가 게임을 즐길 수 있도록 무대 뒤에서 세팅하는 비밀 조직 ‘전자오락수호대’. 게임 속 모든 것을 만드는 그들의 최우선 수칙은 보안 유지다. “절대로 게임 플레이어에게 정체를 들키지 말 것!” 모바일 게임 부서의 최연소 팀장 승진을 앞둔 사내 최고 에이스 요원 ‘패치’. 하지만 의문의 음모에 휘말려 망해가는 고전 게임 부서 ‘용검 전설’로 좌천되고 만다. 설상가상 마을을 청소하던 패치의 실수로 게임의 핵심 아이템 ‘용검’이 버려지고 아무도 찾지 않던 ‘용검 전설’에 마침 새로운 플레이어 ‘용사’가 접속하는데…! 과연 ‘패치’는 게임의 강제 종료를 막고, ‘용사’를 무사히 엔딩까지 이끌 수 있을까? 극악의 난이도로 돌아온 전설적인 게임이 다시 시작된다!"
+  },
+  {
+    id: "upcoming_20244860", title: "퍼플 스왈로우", director: "조영근",
+    cast: ["임유원", "정재윤"],
+    releaseDate: "2026-10-14", genre: ["판타지", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/npyRrauXZLocuj0CemoMJwtgLdw.jpg",
+    isRevealed: false,
+    overview: "겨울 한가운데, 소설을 함께 쓰던 동료의 등단 소식을 듣고 씁쓸히 돌아온 여자. 그녀는 집에 있던 남편이 무심히 던진 말을 듣는다. 보일러실에서 제비를 봤다고. 여자는 믿지 않는다. 하지만 그날 밤, 창밖 어딘가에서 낯설고도 신비로운 자줏빛 지저귐이 들려오고 여자는 홀린 듯 천천히 발걸음을 옮기기 시작하는데…"
+  },
+  {
+    id: "upcoming_20267401", title: "고잉홈프로젝트: 라벨 & 쇼스타코비치 인 시네마", director: "성유진",
+    cast: [],
+    releaseDate: "2026-10-17", genre: ["공연"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/tlCk1izTg4EsOR5AjVauq3OuTuT.jpg",
+    isRevealed: false,
+    overview: "세계 무대에서 활동 중인 젊은 연주자들이 의기투합한 ‘고잉홈프로젝트’. 쇼스타코비치 교향곡 7번과 라벨 “볼레로”를 지휘자 없이 연주하는 그들만의 유니크한 도전! 100인조의 대편성 오케스트라가 선사하는 압도적 사운드의 공연 실황"
+  },
+  {
+    id: "upcoming_20250053", title: "실낙원", director: "연상호",
+    cast: ["김현주", "배현성"],
+    releaseDate: "2026-10-21", genre: ["스릴러", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/5KlDjIPhH6QBAxiQ2y3THmUksCj.jpg",
+    isRevealed: false,
+    overview: "9년 전 캠핑스쿨 버스 실종 사건으로 아들을 잃은 류소영은 '낙원의 아이들'이라는 AI 프로그램을 통해 어린 시절의 아들과 만나며 하루하루를 버텨낸다. 그러던 어느 날 죽은 줄로만 알았던 아들 류선우가 9년 만에 집으로 돌아온다. 기적 같은 생존 소식에 세상은 들썩이지만 흉터로 가득한 몸과 서늘한 눈빛, 무엇보다 자신이 기억하는 순수했던 아들의 흔적을 어디에서도 찾을 수 없는 낯선 모습에 소영은 불안감을 느낀다. 소영과 선우, 그리고 AI로 생성된 어린 시절의 선우까지 기묘하고 불편한 동거가 시작되고 소영은 점점 드러나는 아들의 실체에 충격을 받는데..."
+  },
+  {
+    id: "upcoming_20258640", title: "차오", director: "아오키 야스히로",
+    cast: ["야마다 안나", "미야케 켄타", "츠치야 안나"],
+    releaseDate: "2026-10-21", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/keH6s9PoWSVVHgeNcPVaWyiYl8l.jpg",
+    isRevealed: false,
+    overview: "인간과 인어가 공존하는 미래 도시. 선박 회사에 다니는 평범한 회사원 스테판은 어느 날, 인어 왕국의 공주 차오에게 난데없는 청혼을 받는다. 전대미문의 프러포즈는 순식간에 온 세상에 퍼지고, 두 사람의 결혼은 어느새 '인간과 인어, 두 종족의 우호를 상징하는 세기의 결혼식'으로 떠들썩해진다. 영문도 모른 채 분위기에 휩쓸려 식을 올린 스테판! 인간 세계가 처음인 차오와의 하루하루는 아슬아슬하고 두근거리는 나날의 연속이다! 하지만 순수하고 한결같은 차오의 애정 앞에서, 스테판의 마음에도 조금씩 따뜻한 감정이 피어나기 시작하는데. 과연 두 사람의 사랑은 어디로 향하게 될까?"
+  },
+  {
+    id: "upcoming_20266423", title: "레위기", director: "애드리언 치아렐라",
+    cast: [],
+    releaseDate: "2026-10-21", genre: ["공포(호러)", "멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mrtO4O6tUdwWibPv0pKi13C1vC9.jpg",
+    isRevealed: false,
+    overview: "두 십대 소년은 자신이 가장 욕망하는 사람의 모습으로 변하는 폭력적인 존재로부터 도망쳐야 한다. 그리고 그 존재는, 서로의 모습을 하고 있다."
+  },
+  {
+    id: "upcoming_20265145", title: "눈 둘 데가 없네", director: "홍상수",
+    cast: ["김민희", "최명길", "권해효"],
+    releaseDate: "2026-10-21", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/iHhmuWaxDKuULzauyOzBXPT32fJ.jpg",
+    isRevealed: false,
+    overview: "부모가 어릴 적 이혼했고, 상희는 대부분의 시간을 조부모와 함께 살았다. 남자 동생과 함께 제주도에 정착한 어머니를 찾아간다. 마지막으로 어머니를 본 게 십 년은 되었다. 새아버지는 도큐멘터리를 만드는 사람이고, 요새는 “초분”에 관한 영화를 만들고 있다. 엄마가 하는 밥집은 대박이 났고, 거기서 큰 돈을 벌었다고 한다. 새아버지가 데리고 온 딸도 만나는데, 이제 막 그림을 시작한 참이다. 상희는 과자 수입회사에서 일하면서 남는 시간에 아주 짧은 영화들을 혼자서 만들고 있다. 이박 삼일을 이 사람들과 함께 시간을 보내는데, 전엔 몰랐던 사실들, 받아들이기 힘든 충고들, 값싼 칭찬들이 오고 간다. 돌아오는 날 아침, 상희가 만든 영화 중 하나를 다른 식구들이 그녀 몰래 보고 있다."
+  },
 ];
 
 // FILMOGRAPHIES
