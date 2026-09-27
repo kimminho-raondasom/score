@@ -333,56 +333,26 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
-  // ── KOBIS(영진위) API 자동 수집 (2026-09-22 12:34 KST, 실행 시점 기준 1개월 이내) ──
+  // ── KOBIS(영진위) API 자동 수집 (2026-09-28 00:01 KST, 실행 시점 기준 1개월 이내) ──
   {
-    id: "upcoming_20264801", title: "포가튼 아일랜드", director: "조엘 크로포드",
-    cast: ["H.E.R", "라이자 소베라노", "데이브 프랭코"],
-    releaseDate: "2026-09-23", genre: ["판타지", "코미디", "어드벤처"],
+    id: "upcoming_20262961", title: "이방인", director: "프랑수아 오종",
+    cast: ["벤자민 부아쟁", "드니 라방", "스완 아를로"],
+    releaseDate: "2026-09-30", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/bIQY9RLkqUhdwOBExK4k3ggxddF.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2NoWaSTgKF7FcJ0Lr5NrvDDINOv.jpg",
     isRevealed: false,
-    overview: "성격은 달라도 마음만큼은 누구보다 잘 통했던 ‘조’와 ‘라이사’는 최고의 베프로 모든 순간을 함께하며 둘만의 기억을 쌓아간다. 그러나 졸업과 함께 서로 다른 환경을 살아가던 두 사람의 우정은 조금씩 흔들리기 시작한다. 그러던 어느 날, 전설처럼 전해지던 신비한 포털을 발견한 두 사람은 기억이 사라지는 세계, ‘포가튼 아일랜드’로 빨려 들어가게 되고, 시공간의 경계를 넘나드는 이 섬을 떠나기 위해선 가장 소중한 추억을 포기해야 하는 규칙이 주어진다. 기억을 훔치는 섬의 지배자 ‘마낭’이 두 사람을 위협하는 가운데 ‘조’와 ‘라이사’는 섬에서 만난 새로운 친구들과 비밀을 쫓기 시작하지만 진실에 가까워질수록 두 사람의 기억은 사라질 위기에 처하는데…"
+    overview: "청년 ‘뫼르소’는 어머니의 부고 소식을 듣고 장례를 치르지만 어딘가 무감하다. 집으로 돌아온 그는 해수욕장에서 옛 동료 ‘마리’를 우연히 만나 사랑을 나눈다. 이웃 ‘레몽’과 가깝게 지내던 ‘뫼르소’는 예상치 못한 비극에 휘말린다."
   },
   {
-    id: "upcoming_20255033", title: "암살자(들)", director: "허진호",
-    cast: ["유해진", "박해일", "이민호"],
-    releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
+    id: "upcoming_20224573", title: "부활남: 더 레드", director: "백",
+    cast: ["구교환", "신승호", "강기영"],
+    releaseDate: "2026-09-30", genre: ["액션"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/c55ijsOdntj6P25vDwHLdgsBpmV.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/nLsyRK3SmtdIftozpCd8sGQMRGD.jpg",
     isRevealed: false,
-    overview: "대한민국을 충격에 빠뜨린 8.15 저격 사건의 의혹과 배후를 추적하는 이야기를 그린 영화"
-  },
-  {
-    id: "upcoming_20266267", title: "나의 사적인 예술가", director: "켄트 존스",
-    cast: ["윌렘 데포", "그레타 리"],
-    releaseDate: "2026-09-23", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/hv7zKr3cCdOFhNVcqWYj74Ij6KX.jpg",
-    isRevealed: false,
-    overview: "과거 시집 한 권을 출간했지만 지금은 뉴욕의 우체국에서 일하며 평범한 일상을 살아가는 ‘에드 색스버거’. 어느 날, 그의 앞에 자신의 시에 매료된 젊은 예술 모임의 리더 ‘마이어스’가 찾아오고 그들의 모임에 ‘에드’를 초대한다. 뒤늦은 찬사 속에 잊고 있던 날들을 다시 떠올리게 된 ‘에드’. 그러나 점차 그들의 젊음과 부, 자신의 현실이 교차하고 마음 속에 예상치 못한 감정들이 피어나게 되는데..."
-  },
-  {
-    id: "upcoming_20254904", title: "가능한 사랑", director: "이창동",
-    cast: ["전도연", "설경구", "조인성"],
-    releaseDate: "2026-09-23", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/7UAzxqezg5yvZyK3k62wOAzg0Zs.jpg",
-    isRevealed: false,
-    overview: "해고 노동자와 그의 아내 그리고 다큐멘터리 감독과 그녀의 남편. 두 부부가 다큐멘터리 제작을 계기로 만나, 서로의 다른 삶과 숨은 욕망을 마주한다."
-  },
-  {
-    id: "upcoming_20256161", title: "타짜: 벨제붑의 노래", director: "최국희",
-    cast: ["변요한", "노재원", "미요시 아야카"],
-    releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ueigb5zra1tj6FTK9yhh2P33P9B.jpg",
-    isRevealed: false,
-    overview: "타고난 끗발로 사람의 마음을 사로잡는 장태영과 천부적인 머리와 노력으로 스스로를 증명하는 박태영. 학창 시절부터 절친한 친구인 두 사람은 온라인 카지노 사업에 뛰어들며 승승장구하고, 사업의 성공이 커질수록 럭키한 장태만 주목받자, 박태의 질투는 조용히 자라난다. 성공의 꼭대기에서 질투는 배신으로 변한다. 장태영은 베트남 출장 중 박태영의 예상치 못한 배신으로 나락에 떨어지고, 기적적으로 살아남아 전설의 타짜 곽동욱에게 포커를 사사 받는다. 한편, 야쿠자 조직이 배후에 있는 가네코는 한국의 온라인 카지노 사업에 관심을 갖고 일본과 베트남의 거물들이 참여한 거액의 글로벌 도박판을 셋팅 한다. 벼랑 끝 도박판, 같은 이름, 다른 운명의 친구 장태영과 박태영은 마침내 그 곳에서 마주하는데…"
+    overview: "근거 없는 자신감이 유일한 스펙인 취준생 ‘석환’이 죽은 뒤 72시간이면 부활하는 능력을 갖고 있다는 걸 알게 된 후 의문의 추격을 당하며 펼쳐지는 이야기"
   },
   {
     id: "upcoming_20266817", title: "카르텔 오션", director: "제시 V. 존슨",
@@ -390,7 +360,7 @@ const UPCOMING_MOVIES_DATABASE = [
     releaseDate: "2026-09-30", genre: ["스릴러", "액션"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/7bOuu1SRALGwsG2fLCTvRkCmQBj.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/zxTQqW2BYaBjLIvdfkXNnVfpfB3.jpg",
     isRevealed: false,
     overview: "친구 다섯 명이 상어 케이지 다이빙을 즐기기 위해 열대 휴양지로 떠난다. 하지만 이 여행은 그들이 모르게 ‘번스’가 주도하는 범죄 조직의 함정이었다. 혼란이 폭발한 순간, ‘타티아나’와 ‘케일리’는 산소도 얼마 남지 않은 채 상어 떼가 들끓는 바다에 고립된다. 시간이 빠르게 흘러가는 가운데, 두 사람은 물 아래의 치명적 포식자들과 물 위에서 다가오는 번스 일당의 위협에 동시에 맞서 살아남아야 한다."
   },
@@ -435,16 +405,6 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "작은 마을이 내려다보이는 높은 비밀의 성. 그곳의 실험실에서 살고 있는 광기 어린 천재 박사는 기상천외한 몬스터들에게 생명을 불어넣지만, 완성된 몬스터들은 곧 그의 기억 속에서 잊혀지기 일쑤. 그의 첫 번째 몬스터인 ‘스티치 헤드’는 박사가 계속해서 만들어내는 기괴하고 제멋대로인 몬스터들을 돌보고 성의 질서를 유지하는 관리자 역할을 하며 살아간다. 그러던 어느 날, 떠돌이 몬스터 서커스단을 이끄는 사기꾼 단장이 나타나 ‘스티치 헤드’와 몬스터들을 서커스 볼거리로 팔아 넘기려 하며 부와 명예, 그리고 어쩌면 사랑까지 주겠다는 달콤한 제안을 하게 되는데…"
   },
   {
-    id: "upcoming_20262961", title: "이방인", director: "프랑수아 오종",
-    cast: ["벤자민 부아쟁", "드니 라방", "스완 아를로"],
-    releaseDate: "2026-09-30", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/2NoWaSTgKF7FcJ0Lr5NrvDDINOv.jpg",
-    isRevealed: false,
-    overview: "청년 ‘뫼르소’는 어머니의 부고 소식을 듣고 장례를 치르지만 어딘가 무감하다. 집으로 돌아온 그는 해수욕장에서 옛 동료 ‘마리’를 우연히 만나 사랑을 나눈다. 이웃 ‘레몽’과 가깝게 지내던 ‘뫼르소’는 예상치 못한 비극에 휘말린다."
-  },
-  {
     id: "upcoming_20261807", title: "극장판 치이카와: 인어 섬의 비밀", director: "오이카와 케이",
     cast: ["아오키 하루카", "타나카 마코토", "오자와 아리"],
     releaseDate: "2026-09-30", genre: ["애니메이션"],
@@ -453,16 +413,6 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/5TMyytCI5Pfc9c1eNsljiCdiB05.jpg",
     isRevealed: false,
     overview: "어느 날, 광장에서 쉬고 있던 치이카와와 가르마 앞에 얼굴에 전단지를 붙인 토끼가 나타난다. 그곳엔 “특별한 섬으로의 초대”라는 글귀가 적혀 있는데... “섬에서 간단한 토벌만 해도 보수 100배!” “한정 섬라멘과 한정 디저트까지, 달콤한 것도 매콤한 것도 사실상 무료.” 솔깃한 문구에 이끌린 치이카와와 친구들은 섬에서 열리는 행사에 참가하기로 한다. 초대장의 내용이 어딘가 수상하다고 느끼는 해달과, 부푼 마음으로 배에 오르는 치이카와와 친구들. 모두가 기대를 안은 채 특별한 섬에 도착하는데! 과연 그 섬에는 어떤 비밀이 숨겨져 있을까...?!"
-  },
-  {
-    id: "upcoming_20224573", title: "부활남: 더 레드", director: "백",
-    cast: ["구교환", "신승호", "강기영"],
-    releaseDate: "2026-09-30", genre: ["액션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/nLsyRK3SmtdIftozpCd8sGQMRGD.jpg",
-    isRevealed: false,
-    overview: "근거 없는 자신감이 유일한 스펙인 취준생 ‘석환’이 죽은 뒤 72시간이면 부활하는 능력을 갖고 있다는 걸 알게 된 후 의문의 추격을 당하며 펼쳐지는 이야기"
   },
   {
     id: "upcoming_20265509", title: "가족은 아니고", director: "채재영",
@@ -523,6 +473,16 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/ehl2Du38qbg9M2cqfoVPUKgVDTy.jpg",
     isRevealed: false,
     overview: "4학년인 '후지노'는 학교 신문에 네컷 만화를 그리며 친구들의 극찬을 받는다. 그림에 대한 자신감으로 만화가를 꿈꾸던 ‘후지노’는 학교에 나오지 않는 동급생 ‘쿄모토’와 함께 네컷 만화를 연재하며 그림을 향한 한결 같은 마음으로 눈부신 우정을 쌓아 간다. 그러던 어느 날, 단 하나의 사건이 그들을 찾아 오는데... 만화만이 세상이 전부였던 두 소녀의 가슴 벅찬 성장 이야기가 시작된다!"
+  },
+  {
+    id: "upcoming_20266898", title: "파리스 그린이 밝는 날에", director: "시노미야 요시토시",
+    cast: ["하기와라 리쿠", "후루카와 코토네", "이리노 미유"],
+    releaseDate: "2026-10-14", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2qarnbiETjCO65kAhW3SRb6ZnE0.jpg",
+    isRevealed: false,
+    overview: "오랜 전통의 불꽃공장 '타테와키 불꽃점'은 마을 재개발로 인해 철거 위기에 놓여 있다. 그곳에서 자란 케이타로는 아버지를 대신해 환상의 불꽃 '슈하리'를 완성시키려 홀로 분투하고 있었다. 여름의 마지막 날, 도쿄에서 지내던 소꿉친구 카오루가 고향으로 돌아온다. 잃어버린 시간과 유대를 되찾으려는 듯 서로 부딪히면서, 불꽃의 완성과 발사를 둘러싼 놀라운 계획을 세우는데… 환상의 불꽃에 담긴 희망, 그리고 그 열쇠를 쥔 '카로쿠쇼'. 불티가 밤을 밝히고, 새로운 아침을 맞이할 때 케이타로와 친구들이 각자 손에 쥐게 될 미래는 무엇일까?"
   },
   {
     id: "upcoming_20266263", title: "전자오락수호대", director: "엄영식",
