@@ -333,67 +333,7 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
-  // ── KOBIS(영진위) API 자동 수집 (2026-10-05 00:02 KST, 실행 시점 기준 1개월 이내) ──
-  {
-    id: "upcoming_20266610", title: "입에 대한 앙케트", director: "시미즈 다카시",
-    cast: ["츠나 케이토", "요시카와 아이미"],
-    releaseDate: "2026-10-07", genre: ["공포(호러)"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/cms5ib3HTaOCH4qw6aDPTV6MiW0.jpg",
-    isRevealed: false,
-    overview: "“그날 밤, 무슨 일이 있었는지 말씀드릴게요” 심령 명소로 유명한 묘지. 그곳에 저주받은 나무가 있다는 괴담에 이끌려 ‘쇼타’ 일행은 담력 시험에 나선다. 그리고 다음 날, 일행 중 한 명이 흔적도 없이 사라진다. 그날 이후, 남겨진 친구들의 주변에서 알 수 없는 일들이 하나둘씩 벌어지기 시작하는데… 사라진 한 명, 남겨진 5명의 증언. 증언이 쌓일수록 섬뜩한 진실이 드러난다."
-  },
-  {
-    id: "upcoming_20265486", title: "퓨리어스", director: "타니가키 켄지",
-    cast: ["사묘", "조 타슬림", "야얀 루히안"],
-    releaseDate: "2026-10-07", genre: ["액션", "범죄"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/x959xPUa6DebrSj2xNtF0NYSiCm.jpg",
-    isRevealed: false,
-    overview: "말을 할 수 없는 평범한 아버지 왕웨이. 어느 날 그의 딸 레이니가 거대 범죄 조직에 납치되고, 부패한 경찰마저 외면하자 직접 딸을 찾아 나선다. 그는 실종된 아내를 찾는 기자인 나빈과 힘을 합쳐 거침없이 조직의 심장부로 돌진한다. 마침내 마주한 딸 레이니. 하지만 그곳에는 수많은 아이들이 갇혀 있었고, 참담한 광경에 그들은 분노한다. 왕웨이와 나빈 그리고 레이니는 범죄 조직을 향해 거침없이 몸을 던지며, 폭발적인 무술 액션의 사투를 벌인다."
-  },
-  {
-    id: "upcoming_20258982", title: "홀리보이", director: "파올로 스트리폴리",
-    cast: ["미켈레 리온디노"],
-    releaseDate: "2026-10-07", genre: ["미스터리", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/vxkPiWdut20cHrFW57nduhhMR2V.jpg",
-    isRevealed: false,
-    overview: "과거의 상처를 간직한 교사 세르지오는 레미스로 전근을 간다.  이탈리아에서 가장 행복한 마을로 알려진 그곳은 새 출발을 위한 장소로 완벽해 보이지만, 아무도 모르는 놀라운 비밀이 숨겨져 있는데... '레미스의 천사'라고 불리는 소년 마테오와 매주 마테오를 만나기 위해 모이는 사람들. 마테오의 비밀을 알게 될수록, 완벽하게 행복했던 마을의 진짜 모습이 드러나기 시작한다."
-  },
-  {
-    id: "upcoming_20265062", title: "룩백", director: "고레에다 히로카즈",
-    cast: ["데구치 나츠키", "마키타 아쥬", "나나세 후리"],
-    releaseDate: "2026-10-08", genre: ["드라마"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ehl2Du38qbg9M2cqfoVPUKgVDTy.jpg",
-    isRevealed: false,
-    overview: "4학년인 '후지노'는 학교 신문에 네컷 만화를 그리며 친구들의 극찬을 받는다. 그림에 대한 자신감으로 만화가를 꿈꾸던 ‘후지노’는 학교에 나오지 않는 동급생 ‘쿄모토’와 함께 네컷 만화를 연재하며 그림을 향한 한결 같은 마음으로 눈부신 우정을 쌓아 간다. 그러던 어느 날, 단 하나의 사건이 그들을 찾아 오는데... 만화만이 세상이 전부였던 두 소녀의 가슴 벅찬 성장 이야기가 시작된다!"
-  },
-  {
-    id: "upcoming_20264444", title: " 웨일폴: 고래에 먹힌 남자", director: "브라이언 더필드",
-    cast: ["오스틴 에이브람스", "조슈 브롤린", "엘리자베스 슈"],
-    releaseDate: "2026-10-14", genre: ["어드벤처", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/xGBfktTdfIYxODqKFDDNYgNPIqm.jpg",
-    isRevealed: false,
-    overview: "사라진 아버지의 유해를 찾기 위해 바다로 뛰어든 다이버 ‘제이’. 하지만 심해에서 거센 물살에 휩쓸려 무게 60톤, 길이 24m에 다르는 거대한 향유고래에게 산 채로 먹히고 만다. 공기 탱크의 잔압계는 점점 빠르게 줄어들고, 빠져나갈 곳도, 멈출 수도 없는 살아있는 고래 뱃속에서 살아남기 위한 필사의 사투를 벌이는데…"
-  },
-  {
-    id: "upcoming_20266898", title: "파리스 그린이 밝는 날에", director: "시노미야 요시토시",
-    cast: ["하기와라 리쿠", "후루카와 코토네", "이리노 미유"],
-    releaseDate: "2026-10-14", genre: ["애니메이션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/2qarnbiETjCO65kAhW3SRb6ZnE0.jpg",
-    isRevealed: false,
-    overview: "오랜 전통의 불꽃공장 '타테와키 불꽃점'은 마을 재개발로 인해 철거 위기에 놓여 있다. 그곳에서 자란 케이타로는 아버지를 대신해 환상의 불꽃 '슈하리'를 완성시키려 홀로 분투하고 있었다. 여름의 마지막 날, 도쿄에서 지내던 소꿉친구 카오루가 고향으로 돌아온다. 잃어버린 시간과 유대를 되찾으려는 듯 서로 부딪히면서, 불꽃의 완성과 발사를 둘러싼 놀라운 계획을 세우는데… 환상의 불꽃에 담긴 희망, 그리고 그 열쇠를 쥔 '카로쿠쇼'. 불티가 밤을 밝히고, 새로운 아침을 맞이할 때 케이타로와 친구들이 각자 손에 쥐게 될 미래는 무엇일까?"
-  },
+  // ── KOBIS(영진위) API 자동 수집 (2026-10-12 00:01 KST, 실행 시점 기준 1개월 이내) ──
   {
     id: "upcoming_20263410", title: "스트리트 파이터", director: "키타오 사쿠라이",
     cast: ["앤드류 코지", "노아 센티네오", "칼리나 리앙"],
@@ -405,6 +345,16 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "1993년, 춘리의 제안으로 다시 격투장에서 맞붙게 된 숙명의 라이벌 류와 켄 마스터즈가 목숨을 건 배틀 로얄 속에 숨겨진 거대한 음모의 실체를 마주하게 되는 오락 액션 영화"
   },
   {
+    id: "upcoming_20264444", title: " 웨일폴: 고래에 먹힌 남자", director: "브라이언 더필드",
+    cast: ["오스틴 에이브람스", "조슈 브롤린", "엘리자베스 슈"],
+    releaseDate: "2026-10-14", genre: ["어드벤처", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/6ke2azOZ9sfe7SMn7rPhQWd0FPD.jpg",
+    isRevealed: false,
+    overview: "사라진 아버지의 유해를 찾기 위해 바다로 뛰어든 다이버 ‘제이’. 하지만 심해에서 거센 물살에 휩쓸려 무게 60톤, 길이 24m에 다르는 거대한 향유고래에게 산 채로 먹히고 만다. 공기 탱크의 잔압계는 점점 빠르게 줄어들고, 빠져나갈 곳도, 멈출 수도 없는 살아있는 고래 뱃속에서 살아남기 위한 필사의 사투를 벌이는데…"
+  },
+  {
     id: "upcoming_20266263", title: "전자오락수호대", director: "엄영식",
     cast: [],
     releaseDate: "2026-10-14", genre: ["애니메이션"],
@@ -413,6 +363,16 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/w2MLLbXARkOYkuWn71H5Cd5tCLX.jpg",
     isRevealed: false,
     overview: "플레이어가 게임을 즐길 수 있도록 무대 뒤에서 세팅하는 비밀 조직 ‘전자오락수호대’. 게임 속 모든 것을 만드는 그들의 최우선 수칙은 보안 유지다. “절대로 게임 플레이어에게 정체를 들키지 말 것!” 모바일 게임 부서의 최연소 팀장 승진을 앞둔 사내 최고 에이스 요원 ‘패치’. 하지만 의문의 음모에 휘말려 망해가는 고전 게임 부서 ‘용검 전설’로 좌천되고 만다. 설상가상 마을을 청소하던 패치의 실수로 게임의 핵심 아이템 ‘용검’이 버려지고 아무도 찾지 않던 ‘용검 전설’에 마침 새로운 플레이어 ‘용사’가 접속하는데…! 과연 ‘패치’는 게임의 강제 종료를 막고, ‘용사’를 무사히 엔딩까지 이끌 수 있을까? 극악의 난이도로 돌아온 전설적인 게임이 다시 시작된다!"
+  },
+  {
+    id: "upcoming_20266898", title: "파리스 그린이 밝는 날에", director: "시노미야 요시토시",
+    cast: ["하기와라 리쿠", "후루카와 코토네", "이리노 미유"],
+    releaseDate: "2026-10-14", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2qarnbiETjCO65kAhW3SRb6ZnE0.jpg",
+    isRevealed: false,
+    overview: "오랜 전통의 불꽃공장 '타테와키 불꽃점'은 마을 재개발로 인해 철거 위기에 놓여 있다. 그곳에서 자란 케이타로는 아버지를 대신해 환상의 불꽃 '슈하리'를 완성시키려 홀로 분투하고 있었다. 여름의 마지막 날, 도쿄에서 지내던 소꿉친구 카오루가 고향으로 돌아온다. 잃어버린 시간과 유대를 되찾으려는 듯 서로 부딪히면서, 불꽃의 완성과 발사를 둘러싼 놀라운 계획을 세우는데… 환상의 불꽃에 담긴 희망, 그리고 그 열쇠를 쥔 '카로쿠쇼'. 불티가 밤을 밝히고, 새로운 아침을 맞이할 때 케이타로와 친구들이 각자 손에 쥐게 될 미래는 무엇일까?"
   },
   {
     id: "upcoming_20266424", title: "인-아이 인 모션", director: "줄리엣 비노쉬",
@@ -445,24 +405,34 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "세계 무대에서 활동 중인 젊은 연주자들이 의기투합한 ‘고잉홈프로젝트’. 쇼스타코비치 교향곡 7번과 라벨 “볼레로”를 지휘자 없이 연주하는 그들만의 유니크한 도전! 100인조의 대편성 오케스트라가 선사하는 압도적 사운드의 공연 실황"
   },
   {
-    id: "upcoming_20266189", title: "여전히 찬란하게", director: "송일곤",
-    cast: ["김혜자", "박서경", "최주은"],
-    releaseDate: "2026-10-21", genre: ["드라마"],
+    id: "upcoming_20267571", title: "클레이페이스", director: "제임스 왓킨스",
+    cast: ["톰 리스 해리스", "나오미 애키", "다비드 덴칙"],
+    releaseDate: "2026-10-21", genre: ["공포(호러)", "스릴러"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/aqQNIHJaE3sIWWWvQPSZDLMvnj5.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/LSGpoSAlitss0KOvVakkeUToZo.jpg",
     isRevealed: false,
-    overview: "내 생애 가장 찬란한 순간을 함께한 단짝 친구를 60년 만에 다시 만난 순옥의 이야기"
+    overview: "할리우드의 주연 배우로 유명 영화제 수상을 눈 앞에 두며 꿈을 이루기 직전인 ‘맷 헤이건’. 그러나 한 순간의 실수로 범죄 조직의 타겟이 되어 얼굴이 처참하게 훼손되며 그의 빛나던 인생은 하루 아침에 비극으로 뒤바뀐다. 커리어도, 사람들도 모두 잃은 ‘맷’은 과학자 ‘닥터 케이틀린’의 미완성 최첨단 나노 기술에 마지막 희망을 걸고 기적적으로 예전의 얼굴을 되찾는 데 성공하지만 기쁨도 잠시 그의 몸에는 인간의 형체마저 무너뜨리는 끔찍한 변화가 시작된다. 또한 자신을 공격한 범죄 조직에 연루된 자들의 정체를 알게 되자 걷잡을 수 없는 분노에 사로잡힌 ‘맷’은 자신의 모든 것을 빼앗아간 이들을 향한 처절한 복수에 나서는데..."
   },
   {
-    id: "upcoming_20265383", title: "스틸레이", director: "설우인",
-    cast: [],
-    releaseDate: "2026-10-21", genre: ["액션", "SF"],
+    id: "upcoming_20266663", title: "보이는 여고생", director: "나카무라 요시히로",
+    cast: ["하라 나노카"],
+    releaseDate: "2026-10-21", genre: ["코미디", "공포(호러)"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/bFvw9KBSpyROH7pj1L2Kn7BDlIh.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/xz62wr1Ie6v4Lxt86bTfGRnjroN.jpg",
     isRevealed: false,
-    overview: "AI로봇 기업 '애턴(AETERN)'의 메인 서버에 어느 날 '자율예측시스템'이 발동한다. 스스로 판단을 내릴 수 있게 된 AI는 인간을 미래에 대한 위협으로 간주하고 제거를 결정한다. 자신을 개발한 '윤박사'와 연구원들을 휴머노이드 AIRA-3를 이용해 납치, 감금하는 AI. 이어서 '코드 제로' 바이러스를 탈취해 인류 종말 계획을 실행한다. 납치된 아빠를 찾아나선 '윤강'은 윤박사의 비밀 연구실에서 의문에 쌓인 전투 로봇(스틸레이)을 발견한다. '스틸레이'에 탑승한 윤강은 특수 조직 'SHADOW'를 도와 인질을 구하고 바이러스를 막기 위한 작전에 뛰어든다. 하지만 애턴의 AI 역시 인간의 반격에 맞서 AIRA-3를 전투형으로 업그레이드 하고 또 하나의 비밀 병기를 개발하는데... 과연 윤강은 아빠를 찾고 인류를 바이러스로 부터 구할 수 있을 것인가?!!"
+    overview: "어느 날 갑자기 귀신이 보이기 시작한 평범한 여고생 ‘미코’. 무시무시한 귀신들이 눈앞에 나타나도 ‘미코’가 할 수 있는 건 단 하나, 죽을 힘을 다해 ‘못 본 척’하는 것! 절친 ‘하나’에게 귀신이 붙어도 ‘미코’는 끝까지 모르는 척 학교 생활을 이어간다. 하지만 임시 담임 ‘토노 선생님’이 부임한 후 ‘하나’에게 이상한 변화가 나타나기 시작하고, 결국 ‘하나’가 쓰러지면서 상황은 걷잡을 수 없이 변하는데…"
+  },
+  {
+    id: "upcoming_20258640", title: "차오", director: "아오키 야스히로",
+    cast: ["야마다 안나", "미야케 켄타", "츠치야 안나"],
+    releaseDate: "2026-10-21", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/kCWRNQyOgKqTFcsIDbkbQbmeYbJ.jpg",
+    isRevealed: false,
+    overview: "인간과 인어가 공존하는 미래 도시. 선박 회사에 다니는 평범한 회사원 스테판은 어느 날, 인어 왕국의 공주 차오에게 난데없는 청혼을 받는다. 전대미문의 프러포즈는 순식간에 온 세상에 퍼지고, 두 사람의 결혼은 어느새 '인간과 인어, 두 종족의 우호를 상징하는 세기의 결혼식'으로 떠들썩해진다. 영문도 모른 채 분위기에 휩쓸려 식을 올린 스테판! 인간 세계가 처음인 차오와의 하루하루는 아슬아슬하고 두근거리는 나날의 연속이다! 하지만 순수하고 한결같은 차오의 애정 앞에서, 스테판의 마음에도 조금씩 따뜻한 감정이 피어나기 시작하는데. 과연 두 사람의 사랑은 어디로 향하게 될까?"
   },
   {
     id: "upcoming_20246036", title: "킬링타임", director: "장준엽",
@@ -475,14 +445,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "인터넷 방송 중 발생한 사망 사고로 나락에 떨어진 몰카 크루 ‘킬링타임’. 방송을 그만두고 자숙하던 ‘킬링타임’의 스트리머 ‘연우’는 ‘주원’의 제안으로 새로운 콘텐츠 촬영을 위해 폐병원을 찾는다. 하지만 촬영이 시작되자 정체불명의 존재가 크루들을 위협하고 더는 물러설 곳이 없던 크루들은 이제 반대로 생존을 위해 달려야 한다."
   },
   {
-    id: "upcoming_20258640", title: "차오", director: "아오키 야스히로",
-    cast: ["야마다 안나", "미야케 켄타", "츠치야 안나"],
-    releaseDate: "2026-10-21", genre: ["애니메이션"],
+    id: "upcoming_20266423", title: "레위기", director: "애드리언 치아렐라",
+    cast: [],
+    releaseDate: "2026-10-21", genre: ["공포(호러)", "멜로/로맨스"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/keH6s9PoWSVVHgeNcPVaWyiYl8l.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mrtO4O6tUdwWibPv0pKi13C1vC9.jpg",
     isRevealed: false,
-    overview: "인간과 인어가 공존하는 미래 도시. 선박 회사에 다니는 평범한 회사원 스테판은 어느 날, 인어 왕국의 공주 차오에게 난데없는 청혼을 받는다. 전대미문의 프러포즈는 순식간에 온 세상에 퍼지고, 두 사람의 결혼은 어느새 '인간과 인어, 두 종족의 우호를 상징하는 세기의 결혼식'으로 떠들썩해진다. 영문도 모른 채 분위기에 휩쓸려 식을 올린 스테판! 인간 세계가 처음인 차오와의 하루하루는 아슬아슬하고 두근거리는 나날의 연속이다! 하지만 순수하고 한결같은 차오의 애정 앞에서, 스테판의 마음에도 조금씩 따뜻한 감정이 피어나기 시작하는데. 과연 두 사람의 사랑은 어디로 향하게 될까?"
+    overview: "두 십대 소년은 자신이 가장 욕망하는 사람의 모습으로 변하는 폭력적인 존재로부터 도망쳐야 한다. 그리고 그 존재는, 서로의 모습을 하고 있다."
   },
   {
     id: "upcoming_20250053", title: "실낙원", director: "연상호",
@@ -495,14 +465,24 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "9년 전 캠핑스쿨 버스 실종 사건으로 아들을 잃은 류소영은 '낙원의 아이들'이라는 AI 프로그램을 통해 어린 시절의 아들과 만나며 하루하루를 버텨낸다. 그러던 어느 날 죽은 줄로만 알았던 아들 류선우가 9년 만에 집으로 돌아온다. 기적 같은 생존 소식에 세상은 들썩이지만 흉터로 가득한 몸과 서늘한 눈빛, 무엇보다 자신이 기억하는 순수했던 아들의 흔적을 어디에서도 찾을 수 없는 낯선 모습에 소영은 불안감을 느낀다. 소영과 선우, 그리고 AI로 생성된 어린 시절의 선우까지 기묘하고 불편한 동거가 시작되고 소영은 점점 드러나는 아들의 실체에 충격을 받는데..."
   },
   {
-    id: "upcoming_20266423", title: "레위기", director: "애드리언 치아렐라",
-    cast: [],
-    releaseDate: "2026-10-21", genre: ["공포(호러)", "멜로/로맨스"],
+    id: "upcoming_20266189", title: "여전히 찬란하게", director: "송일곤",
+    cast: ["김혜자", "박서경", "최주은"],
+    releaseDate: "2026-10-21", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/mrtO4O6tUdwWibPv0pKi13C1vC9.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/t9EUrwCxhppSryjEspwYi5gA7km.jpg",
     isRevealed: false,
-    overview: "두 십대 소년은 자신이 가장 욕망하는 사람의 모습으로 변하는 폭력적인 존재로부터 도망쳐야 한다. 그리고 그 존재는, 서로의 모습을 하고 있다."
+    overview: "“내일 너랑 서울 갈 생각하니까 심장이 막 콩닥거린다” 오랫동안 찾아 헤매던 단짝 ‘정임’과 마침내 다시 만난 ‘순옥’은 어릴 적 시골 마을에서부터 함께 염원하던 노래자랑 참가를 위해 서울행을 결심한다. 설렘도 잠시, ‘순옥'은 ‘정임’이 자신의 이름도, 꿈도, 함께했던 시간들까지도 조금씩 잊어간다는 것을 알게 된다. ‘순옥’은 사라져가는 기억을 붙잡듯 자꾸만 그 시절 이야기를 꺼내기 시작한다. “이제 우리 몸에 새겼으니까는 우리는 항시 함께 있는기다 이 말이다” 1942년, 빼어난 노래 실력을 가진 소녀 ‘정임'과 언제나 옆에서 열렬히 응원하는 소녀 ‘순옥'. 서로의 팔에 둘만의 증표를 새긴 두 소녀는 서울에서 노래하고 돈도 벌자는 꿈을 나누며 영원한 우정을 약속한다. 한편, 마을에는 공장 취직을 빌미로 소녀들을 잡아간다는 흉흉한 소문이 들려오고 두 사람은 다가오는 위협을 피해 숨을 곳을 찾는데…"
+  },
+  {
+    id: "upcoming_20265383", title: "스틸레이", director: "설우인",
+    cast: [],
+    releaseDate: "2026-10-21", genre: ["액션", "SF"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/bFvw9KBSpyROH7pj1L2Kn7BDlIh.jpg",
+    isRevealed: false,
+    overview: "AI로봇 기업 '애턴(AETERN)'의 메인 서버에 어느 날 '자율예측시스템'이 발동한다. 스스로 판단을 내릴 수 있게 된 AI는 인간을 미래에 대한 위협으로 간주하고 제거를 결정한다. 자신을 개발한 '윤박사'와 연구원들을 휴머노이드 AIRA-3를 이용해 납치, 감금하는 AI. 이어서 '코드 제로' 바이러스를 탈취해 인류 종말 계획을 실행한다. 납치된 아빠를 찾아나선 '윤강'은 윤박사의 비밀 연구실에서 의문에 쌓인 전투 로봇(스틸레이)을 발견한다. '스틸레이'에 탑승한 윤강은 특수 조직 'SHADOW'를 도와 인질을 구하고 바이러스를 막기 위한 작전에 뛰어든다. 하지만 애턴의 AI 역시 인간의 반격에 맞서 AIRA-3를 전투형으로 업그레이드 하고 또 하나의 비밀 병기를 개발하는데... 과연 윤강은 아빠를 찾고 인류를 바이러스로 부터 구할 수 있을 것인가?!!"
   },
   {
     id: "upcoming_20265145", title: "눈 둘 데가 없네", director: "홍상수",
@@ -515,24 +495,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "부모가 어릴 적 이혼했고, 상희는 대부분의 시간을 조부모와 함께 살았다. 남자 동생과 함께 제주도에 정착한 어머니를 찾아간다. 마지막으로 어머니를 본 게 십 년은 되었다. 새아버지는 도큐멘터리를 만드는 사람이고, 요새는 “초분”에 관한 영화를 만들고 있다. 엄마가 하는 밥집은 대박이 났고, 거기서 큰 돈을 벌었다고 한다. 새아버지가 데리고 온 딸도 만나는데, 이제 막 그림을 시작한 참이다. 상희는 과자 수입회사에서 일하면서 남는 시간에 아주 짧은 영화들을 혼자서 만들고 있다. 이박 삼일을 이 사람들과 함께 시간을 보내는데, 전엔 몰랐던 사실들, 받아들이기 힘든 충고들, 값싼 칭찬들이 오고 간다. 돌아오는 날 아침, 상희가 만든 영화 중 하나를 다른 식구들이 그녀 몰래 보고 있다."
   },
   {
-    id: "upcoming_20265965", title: "7데이즈 7피플", director: "정다원",
-    cast: ["임진화", "서은수", "정일우"],
-    releaseDate: "2026-10-28", genre: ["드라마"],
+    id: "upcoming_20266764", title: "그대, 별처럼", director: "후지이 미치히토",
+    cast: ["요코하마 류세이", "히로세 스즈"],
+    releaseDate: "2026-10-28", genre: ["멜로/로맨스"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/87jSNlIblQWhBga2yzwwFKT8C2u.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/phTrle2mrBqjhsFMYrK9Uacu6cd.jpg",
     isRevealed: false,
-    overview: "영원할 것만 같던 7년 연애의 끝이 보이는 순간 “일주일만 시간을 줄래? 딱 일주일.” 이별 유예 기간은 단 7일. 인디뮤지션 ‘진화’는 7명의 지인을 만나며 고민을 털어놓는다. 음악과 사랑, 과연 무엇을 놓아야 할까? 꿈과 현실 앞에 선 ‘진화’는 일생일대의 결정을 하게 되는데... 인생의 중요한 선택을 앞두고 딱 7일이 주어진다면 우린 누구를 만나, 어떤 선택을 하게 될까?"
-  },
-  {
-    id: "upcoming_20231795", title: "수능, 출제의 비밀", director: "이용재",
-    cast: ["이선빈", "유재명", "김영민"],
-    releaseDate: "2026-10-28", genre: ["코미디"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/ohrJjtvKciICoeH80z973JnBoHo.jpg",
-    isRevealed: false,
-    overview: "수능 D-DAY, 정답은 이미 정해져 있다? 그 정답을 만드는 사람들이 지금 이 방에 모였습니다. 대한민국 최고의 수능 출제 전문가 전원. 외부 차단 40일, 중도 이탈 불가. 오탈자도 시비도 없는 전국의 모든 지원자들에게 ‘공정한’ 문제 출제. 적중률 100%, 본인들이 직접 출제하니까. 40일간의 미션, “문제없는 문제”를 만들어라!"
+    overview: "아름다운 바다와 하늘이 펼쳐진 세토 내해의 어느 섬. 섬으로 전학 온 카이와, 이 섬에서 자란 아키미. 두 사람은 모두 축복받지 못한 가정환경 속에서 마음의 응어리를 안고 살아왔고, 서로에게 유일한 버팀목이 되어 사랑에 빠진다. 꿈을 이루기 위해 도쿄로 향하는 카이와, 가족을 위해 섬에 남아 일하는 아키미. 그런 두 사람에게 무정하게도 수많은 ‘갈림길’이 들이닥친다. “나는 사랑하는 사람을 위해 내 인생을 망치고 싶어.” 15년에 걸친 길고 긴 사랑의 끝에, 두 사람이 내린 선택은 무엇일까."
   },
   {
     id: "upcoming_20264498", title: "하트 오브 비스트", director: "데이비드 에이어",
@@ -545,14 +515,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "비행기 추락 사고로 알래스카 오지에 고립된 전직 육군 특수부대원 ‘제임스’와 그의 은퇴한 군견 ‘오딘’이 매 순간 닥쳐오는 죽음의 위협 속에서 오직 서로에게만 의지한 채 처절한 사투를 벌이는 어드벤처 생존 드라마"
   },
   {
-    id: "upcoming_20266764", title: "그대, 별처럼", director: "후지이 미치히토",
-    cast: ["요코하마 류세이", "히로세 스즈"],
-    releaseDate: "2026-10-28", genre: ["멜로/로맨스"],
+    id: "upcoming_20265965", title: "7데이즈 7피플", director: "정다원",
+    cast: ["임진화", "서은수", "정일우"],
+    releaseDate: "2026-10-28", genre: ["드라마"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/phTrle2mrBqjhsFMYrK9Uacu6cd.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/87jSNlIblQWhBga2yzwwFKT8C2u.jpg",
     isRevealed: false,
-    overview: "아름다운 바다와 하늘이 펼쳐진 세토 내해의 어느 섬. 섬으로 전학 온 카이와, 이 섬에서 자란 아키미. 두 사람은 모두 축복받지 못한 가정환경 속에서 마음의 응어리를 안고 살아왔고, 서로에게 유일한 버팀목이 되어 사랑에 빠진다. 꿈을 이루기 위해 도쿄로 향하는 카이와, 가족을 위해 섬에 남아 일하는 아키미. 그런 두 사람에게 무정하게도 수많은 ‘갈림길’이 들이닥친다. “나는 사랑하는 사람을 위해 내 인생을 망치고 싶어.” 15년에 걸친 길고 긴 사랑의 끝에, 두 사람이 내린 선택은 무엇일까."
+    overview: "영원할 것만 같던 7년 연애의 끝이 보이는 순간 “일주일만 시간을 줄래? 딱 일주일.” 이별 유예 기간은 단 7일. 인디뮤지션 ‘진화’는 7명의 지인을 만나며 고민을 털어놓는다. 음악과 사랑, 과연 무엇을 놓아야 할까? 꿈과 현실 앞에 선 ‘진화’는 일생일대의 결정을 하게 되는데... 인생의 중요한 선택을 앞두고 딱 7일이 주어진다면 우린 누구를 만나, 어떤 선택을 하게 될까?"
   },
   {
     id: "upcoming_20246365", title: "흐르는 여정", director: "김진유",
@@ -563,6 +533,16 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/3uqAmY79L62qVsztb3UvbNaYwBK.jpg",
     isRevealed: false,
     overview: "남편이 남긴 피아노와 자동차를 가지고 아파트로 이사 간 춘희. 독일에서 온 지휘자 민준과 피아니스트를 꿈꾸는 소년 성찬을 만나 고요했던 일상에 새로운 선율이 흐른다. 봄날의 만남은 가을 바람과 함께 무르익고, 춘희가 오래 전부터 준비한 여행도 가까워지는데…"
+  },
+  {
+    id: "upcoming_20231795", title: "수능, 출제의 비밀", director: "이용재",
+    cast: ["이선빈", "유재명", "김영민"],
+    releaseDate: "2026-10-28", genre: ["코미디"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/ohrJjtvKciICoeH80z973JnBoHo.jpg",
+    isRevealed: false,
+    overview: "수능 D-DAY, 정답은 이미 정해져 있다? 그 정답을 만드는 사람들이 지금 이 방에 모였습니다. 대한민국 최고의 수능 출제 전문가 전원. 외부 차단 40일, 중도 이탈 불가. 오탈자도 시비도 없는 전국의 모든 지원자들에게 ‘공정한’ 문제 출제. 적중률 100%, 본인들이 직접 출제하니까. 40일간의 미션, “문제없는 문제”를 만들어라!"
   },
   {
     id: "upcoming_20266805", title: "브루넬로: 우아한 선구자", director: "쥬세페 토르나토레",
