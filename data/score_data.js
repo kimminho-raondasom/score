@@ -1,4 +1,4 @@
-// score 데이터베이스 — 자동 갱신 (2026-10-18 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-10-19 08:00 KST)
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -108,7 +108,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/aKApVX9hc5otPxa3Jbf27sW6tsi.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-10-18 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-10-19 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -173,7 +173,7 @@ const MOVIES_DATABASE = [
     vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
     similarRefs: [], famousLines: [],
     choseong: "\u3131\u314a",
-    posterUrl: "https://image.tmdb.org/t/p/w300/thK6glS5pklrlijsgSN6Hw9GLQK.jpg"
+    posterUrl: "https://image.tmdb.org/t/p/w300/hDPGsJxo8xX0OyqcMB8xI3RdaF3.jpg"
   },
   {
     id: "kobis_20253289", title: "\uadf9\uc7a5\ud310 \uadc0\uba78\uc758 \uce7c\ub0a0: \ubb34\ud55c\uc131\ud3b8", director: "\uc18c\ud1a0\uc790\ud0a4 \ud558\ub8e8\uc624",
