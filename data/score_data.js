@@ -1,4 +1,4 @@
-// score 데이터베이스 — 자동 갱신 (2026-10-27 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-10-28 08:00 KST)
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -108,7 +108,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/aKApVX9hc5otPxa3Jbf27sW6tsi.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-10-27 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-10-28 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -264,6 +264,17 @@ const MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/oTn0PoR8gSMpMqJaT2pUtkkN0Ia.jpg"
   },
   {
+    id: "kobis_20255033", title: "\uc554\uc0b4\uc790(\ub4e4)", director: "\ud5c8\uc9c4\ud638",
+    cast: ["유해진", "박해일", "이민호"],
+    releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "301~400\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u3147\u3145\u3148\u3137",
+    posterUrl: "https://image.tmdb.org/t/p/w300/c55ijsOdntj6P25vDwHLdgsBpmV.jpg"
+  },
+  {
     id: "kobis_20246489", title: "\ubbf8\uc158 \uc784\ud30c\uc11c\ube14: \ud30c\uc774\ub110 \ub808\ucf54\ub2dd", director: "\ud06c\ub9ac\uc2a4\ud1a0\ud37c \ub9e5\ucffc\ub9ac",
     cast: ["톰 크루즈", "헤일리 앳웰", "빙 라메스", "사이먼 페그", "바네사 커비"],
     releaseDate: "2025-05-17", genre: ["액션"],
@@ -284,17 +295,6 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u3147\u3137",
     posterUrl: "https://image.tmdb.org/t/p/w300/k4yTwFqvQDApqaoFdgubsbYcuno.jpg"
-  },
-  {
-    id: "kobis_20255033", title: "\uc554\uc0b4\uc790(\ub4e4)", director: "\ud5c8\uc9c4\ud638",
-    cast: ["유해진", "박해일", "이민호"],
-    releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3147\u3145\u3148\u3137",
-    posterUrl: "https://image.tmdb.org/t/p/w300/c55ijsOdntj6P25vDwHLdgsBpmV.jpg"
   },
   {
     id: "kobis_20254121", title: "\uc0b4\ubaa9\uc9c0", director: "\uc774\uc0c1\ubbfc",
