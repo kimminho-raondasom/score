@@ -333,87 +333,7 @@ const MOVIES_DATABASE = [
 
 // UPCOMING_MOVIES_DATABASE
 const UPCOMING_MOVIES_DATABASE = [
-  // ── KOBIS(영진위) API 자동 수집 (2026-11-02 00:01 KST, 실행 시점 기준 1개월 이내) ──
-  {
-    id: "upcoming_20259894", title: "최종면접 ", director: "김정훈",
-    cast: ["조이현", "김재원", "신승호"],
-    releaseDate: "2026-11-04", genre: ["미스터리"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wImwvRmbR28hPNDmaj5W7zvxk0T.jpg",
-    isRevealed: false,
-    overview: "치열한 경쟁률을 뚫고 최종면접에 오른 6명의 지원자. 한 달간 팀 토론을 준비하며 전원 합격을 꿈꾸던 이들에게 제한시간 2시간 동안 단 1명의 합격자를 직접 뽑으라는 과제가 주어진다. 관찰 카메라의 압박 속에 합격자를 가려내기 위한 토론과 투표를 이어가던 중 그들은 각자의 이름이 적힌 의문의 봉투를 발견한다. 봉투가 열릴 때마다 진실을 알 수 없는 비밀들이 공개되고, 공정한 경쟁을 약속했던 최종면접은 걷잡을 수 없는 폭로전으로 치닫는데..."
-  },
-  {
-    id: "upcoming_20266345", title: "잠들 수 없는 집", director: "크리스천 버나드",
-    cast: ["마리벨 베르두"],
-    releaseDate: "2026-11-04", genre: ["공포(호러)", "판타지", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/cXd3ldZahrBgZo71QLZ76I4Z9wG.jpg",
-    isRevealed: false,
-    overview: "두 아이와 함께 도심의 고급 아파트로 이사 온 싱글맘, 이사벨. 저렴한 월세에 행운이라 믿었던 새집에서의 첫날밤, 발밑에서 정체 모를 기괴한 진동과 소음이 들려오기 시작한다. 아래층에서 매일 밤 들려오는 비명과 수상쩍은 이웃들. 벽 너머의 기이한 속삭임이 깊어질수록 아이들은 뭔가에 사로잡히고 그녀는 패닉에 빠진다. 꿈에 그리던 안락한 보금자리가 마침내 악몽의 공간으로 변하기 시작한다."
-  },
-  {
-    id: "upcoming_20261695", title: "욕쟁이 할머니", director: "홍승표",
-    cast: [],
-    releaseDate: "2026-11-04", genre: ["다큐멘터리", "가족"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/wlXq2JRCmg1weFF0D88sNulbrWX.jpg",
-    isRevealed: false,
-    overview: "포천 '욕쟁이 할머니'로 불리며 평생 따뜻한 밥상을 내어주었던 나의 어머니. 어머니가 떠난 뒤, 막내아들 홍승표 화백은 식당과 그림 속에 남겨진 어머니를 다시 마주한다. 사라진 것이 아니라, 기억 속에 살아 있는 사람. 그리움을 따라 써 내려간 가장 애틋한 기록."
-  },
-  {
-    id: "upcoming_20266765", title: "와일드 호스 나인", director: "마틴 맥도나",
-    cast: ["존 말코비치", "샘 록웰", "스티브 부세미"],
-    releaseDate: "2026-11-04", genre: ["미스터리", "범죄", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/iVWvR4BWhdirFIMQwS1yNp2Hcft.jpg",
-    isRevealed: false,
-    overview: "1973년 칠레 쿠데타를 앞두고 이스터섬으로 파견된 CIA 요원 ‘크리스’와 ‘리’가 임무를 수행하던 중 과거의 비밀과 정체불명의 음모에 휘말리게 되는 미스터리 첩보 스릴러"
-  },
-  {
-    id: "upcoming_20243927", title: "낮과 밤은 서로에게", director: "김종관",
-    cast: ["김민하", "주종혁", "한선화"],
-    releaseDate: "2026-11-04", genre: ["멜로/로맨스"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/j88kf5fDOFiR5zrgVsIT1qe7hwD.jpg",
-    isRevealed: false,
-    overview: "같은 꿈을 꾼 두 사람, 유진과 현오. 엉뚱한 재회 속에서 영민에게 세상의 비밀을 이야기해 주는 상미. 첫 만남에 불신과 호기심의 경계를 오가는 소설가 혜진과 영화감독 동남. 이별 앞에 선 오랜 연인, 나경과 종수의 서툰 진심. 여름부터 가을까지, 하나의 계절이 흐르는 동안 낮과 밤에 머물다 간 서로 다른 사랑의 순간들을 만나다."
-  },
-  {
-    id: "upcoming_20265833", title: "변이", director: "마리옹 르 코롤레르",
-    cast: ["마라 타퀸", "카린 비아르"],
-    releaseDate: "2026-11-04", genre: ["스릴러", "미스터리", "공포(호러)"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/f52mjDYWRuLuaRwhE4R2kdkOlQb.jpg",
-    isRevealed: false,
-    overview: "한 햄버거 가게에서 진상의 요구를 견디다 못해 폭발한 우수 직원. 그 이후부터 극심한 스트레스에 지친 근로 청년들의 몸에서 이상 증세가 발생한다. 한편, 응급실 인턴 ‘마고’ 역시 과로로 번아웃을 겪고 자신의 몸에서 피가 터져 나오는 기이한 변화를 마주하는데…"
-  },
-  {
-    id: "upcoming_20267697", title: "명탐정 코난: 30호 살인 사건", director: "카마나카 노부하루",
-    cast: ["타카야마 미나미", "야마구치 캇페이"],
-    releaseDate: "2026-11-05", genre: ["애니메이션", "액션", "미스터리"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/8VIxElJnoGXJH4p3Av2BQwgcxpC.jpg",
-    isRevealed: false,
-    overview: "‘토토 타워’가 디자인된 1만 엔 신권 지폐가 발행되어 세상이 떠들썩한 가운데, 코난과 어린이 탐정단, 아가사 박사, 란과 소노코는 지폐 인쇄국 나가노 공장을 방문한다. 그 무렵, 경시청에서는 살인 사건 현장에서 발견된 신권 위조지폐로 인해 수사본부가 꾸려지고, 일본에서 발견된 30번째 위조지폐라는 점으로 인해 통칭 ‘30호 사건’으로 명명된다. 신권의 위조지폐 사건이 보도되면서 전국이 혼란해진 가운데 코난은 위조지폐가 인쇄된 것으로 추정되는 오사카의 지폐 인쇄국으로 향하고 거기서 헤이지가 수사에 합류한다. 그 외 시즈오카현과 가나가와현 등 각 지역에 위치한 지폐 인쇄국의 조사를 위해, 나가노현경의 야마토 칸스케, 모로후시 타카아키, 우에하라 유이 그리고 시즈오카현경의 요코미조 산고, 가나가와현경의 요코미조 쥬고 및 군마현경, 오사카부 경찰, 교토부 경찰까지 전국 경찰청에 이어 공안 후루야 레이, FBI 아카이 슈이치가 총출동해 국가적 위기에 맞선다! 통칭 30호, 신권 위조지폐 사건 발생! 전대미문 사건을 수사하기 위해 전원 출동! 국가적 위기에 맞서라!"
-  },
-  {
-    id: "upcoming_20264481", title: "모자 쓴 고양이", director: "알레산드로 칼로니",
-    cast: ["조정석", "사성웅", "배정미"],
-    releaseDate: "2026-11-06", genre: ["애니메이션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/lgLg6T1kv7fjfANRNM1QSvPKDJM.jpg",
-    isRevealed: false,
-    overview: "이제껏 본 적 없는 ‘씽’나는 ‘냥’리법석이 펼쳐진다! 기상천외한 마법으로 소동을 일으키는 ‘모자 쓴 고양이’에게 주어진 특급 임무! 잃어버린 ‘돌림시계’를 되찾기 위해 떠나는 새로운 모험! 상상력과 영감을 담당하는 비밀 기관 I.I.I.I.의 요원인 ‘모자 쓴 고양이’는 새로운 동네로 이사한 뒤 적응에 힘들어하는 남매 ‘가비’와 ‘세바스찬’에게 웃음과 기쁨을 되찾아 주라는 임무를 맡게 된다. 하지만 사고뭉치 ‘모자 쓴 고양이’는 집안을 난장판으로 만드는 것도 모자라 마법의 ‘돌림시계’를 잃어버리고 만다. 요원으로서의 능력을 검증받을 수 있는 마지막 기회, ‘모자 쓴 고양이’는 ‘가비’와 ‘세바스찬’ 남매에게 도움을 요청하는데... 과연 ‘돌림시계’를 되찾고 남매의 소원도 이루어줄 수 있을까?"
-  },
+  // ── KOBIS(영진위) API 자동 수집 (2026-11-09 00:02 KST, 실행 시점 기준 1개월 이내) ──
   {
     id: "upcoming_20255110", title: "호루몽", director: "이일하",
     cast: ["신숙옥", "케이코", "이백란"],
@@ -425,44 +345,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "2017년, 일본의 지상파 방송이 쏘아 올린 가짜 뉴스 한 발. 재일 코리안 3세 신숙옥은 순식간에 나라의 적이 됐다. 제지공장으로 팔려 온 할머니, 어디에도 뿌리내리지 못한 채 떠돌았던 어머니. 그리고 버려진 내장 ‘호루몽’을 씹어 삼키며 살아낸 사람들. 100년의 시간이 켜켜이 쌓여, 마침내 한 사람의 목소리로 터진다. 얌전히 당해주지 않은 반격이 시작된다. 550만 엔 배상 판결. 방송은 결국 폐지됐다. 끝까지 물러서지 않은 한 사람이 마침내 세상을 뒤흔든 순간. 그러나 신숙옥의 싸움은 아직 끝나지 않았다."
   },
   {
-    id: "upcoming_20259725", title: "후광", director: "노영완",
-    cast: ["최강현", "김한", "문성환"],
-    releaseDate: "2026-11-11", genre: ["드라마"],
+    id: "upcoming_20265420", title: "스크루지: 크리스마스 캐럴", director: "티 웨스트",
+    cast: ["조니 뎁", "이안 맥켈런", "루퍼트 그린트"],
+    releaseDate: "2026-11-11", genre: ["드라마", "판타지", "스릴러"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/722Rzxnlxzk11fB5g4W5n8NXNug.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mgWk3zPFLKisvKNtJGf6zxDX5gA.jpg",
     isRevealed: false,
-    overview: "희망의 빛을 찾는 27살 택배기사 민준. 우리가 매일 마주치지만 미처 보지 못했던 한 사람의 이야기."
-  },
-  {
-    id: "upcoming_20266589", title: "프레셔", director: "앤소니 마라스",
-    cast: ["앤드류 스캇", "브렌든 프레이저"],
-    releaseDate: "2026-11-11", genre: ["스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/TDagKyMKPlTP9LKXfOF9sDhkTR.jpg",
-    isRevealed: false,
-    overview: "D-데이 전 72시간 동안, 자유 세계의 운명이 위태로운 가운데, 드와이트 D. 아이젠하워 장군과 제임스 스태그 대위는 역사상 가장 대규모이자 가장 위험한 해상 상륙 작전을 감행할 것인지, 아니면 전쟁에서 완전히 패배할 위험을 감수할 것인지라는 불가능한 선택의 기로에 서게 된다."
-  },
-  {
-    id: "upcoming_20265535", title: "드골: 저항의 시작", director: "안토닌 보드리",
-    cast: ["시몬 압카리언", "브누와 마지멜", "아나마리아 바르톨로메이"],
-    releaseDate: "2026-11-11", genre: ["전쟁", "드라마", "액션"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/jIQoQrDSoBtxmLsymBsmElJqHOL.jpg",
-    isRevealed: false,
-    overview: "2차 세계대전, 프랑스는 나치에게 항복한다. 모두가 끝났다고 말하던 그때, 런던으로 건너간 무명의 장군 ‘드골’이 마이크를 잡는다. “프랑스 저항의 불꽃은 꺼지지 않을 것이다” 나치 편에 선 프랑스의 원수 ‘페탱’은 그에게 사형을 선고하고, 동맹 영국의 총리 ‘윈스턴 처칠’은 그를 협상 카드로 쥐고 흔들며, 미국 백악관은 그를 상대조차 하지 않는다. 전선은 밀리고, 파리에서는 저항 자체가 범죄가 된다. 그러나 방송을 들은 사람들이 각자의 자리에서 답한다. 사막의 병사들, 섬 하나가 통째로 바다를 건넌 어부들, 개선문으로 걸어간 파리의 학생 수천 명. 의지할 곳 없는 싸움에 그들은 스스로 뛰어든다."
-  },
-  {
-    id: "upcoming_20267548", title: "마더 메리", director: "데이빗 로워리",
-    cast: ["앤 해서웨이", "헌터 샤퍼"],
-    releaseDate: "2026-11-11", genre: ["드라마", "스릴러"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/zwq8pn5B5L4ba0gD66ekUkvwE4Y.jpg",
-    isRevealed: false,
-    overview: "세계적인 팝스타 마더 메리의 컴백. 무대에 오르기 전 아무도 몰랐던 3일. 자신을 완성할 단 한 벌의 의상을 위해, 오래전 버렸던 친구이자 디자이너 샘을 찾아간다. 한 때 서로를 가장 믿었던 두 사람. 드레스가 완성될수록, 갈등과 상처도 함께 풀려가는듯 하지만 마더 메리의 비밀은 둘을 알 수 없는 곳으로 이끈다."
+    overview: "거지도 구걸하지 않을 만큼 괴팍한 구두쇠 영감 스크루지. 모두가 즐거운 크리스마스조차 그에겐 시끌벅적하고 성가신 하루일 뿐이다. 그러던 크리스마스 이브, 그의 앞에 죽은 동업자의 유령이 나타나 지금처럼 살아간다면 끔찍한 운명을 맞이하게 될 것이라 경고하고, 이를 증명하기라도 하듯 곧이어 과거, 현재, 미래의 유령들이 차례로 스크루지를 찾아오며 그는 자신의 삶을 뒤바꿀 기묘한 모험을 하게 되는데…"
   },
   {
     id: "upcoming_20264929", title: "삼춘, 어디 감수광?", director: "양윤호",
@@ -475,6 +365,36 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "몸이 불편한 제주어 가수 ‘정원’은 오늘도 보는 이 하나 없는 제주 오일장 무대에서 묵묵히 기타를 치고 버스킹을 한다. 그 곁에는 ‘정원’의 노래를 카메라에 담는 영화감독 ‘윤호’와 당찬 무명 배우 ‘미정’이 있다. 노래를 왜 부르는지, 영화는 왜 찍는지, 연기는 계속하는 게 맞는지 저마다 가지고 있는 예술의 의미에 대한 깊은 회의와 고민을 안고 서울로 향하는데. 심청이를 찾는 심봉사처럼 절박하게 찾으면 알 수 있을까?"
   },
   {
+    id: "upcoming_20266589", title: "프레셔", director: "앤소니 마라스",
+    cast: ["앤드류 스캇", "브렌든 프레이저"],
+    releaseDate: "2026-11-11", genre: ["스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/TDagKyMKPlTP9LKXfOF9sDhkTR.jpg",
+    isRevealed: false,
+    overview: "D-데이 전 72시간 동안, 자유 세계의 운명이 위태로운 가운데, 드와이트 D. 아이젠하워 장군과 제임스 스태그 대위는 역사상 가장 대규모이자 가장 위험한 해상 상륙 작전을 감행할 것인지, 아니면 전쟁에서 완전히 패배할 위험을 감수할 것인지라는 불가능한 선택의 기로에 서게 된다."
+  },
+  {
+    id: "upcoming_20267548", title: "마더 메리", director: "데이빗 로워리",
+    cast: ["앤 해서웨이", "헌터 샤퍼"],
+    releaseDate: "2026-11-11", genre: ["드라마", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/38YXEA0CLpooLs5ScfTNaJeIyrI.jpg",
+    isRevealed: false,
+    overview: "세계적인 팝스타 마더 메리의 컴백. 무대에 오르기 전 아무도 몰랐던 3일. 자신을 완성할 단 한 벌의 의상을 위해, 오래전 버렸던 친구이자 디자이너 샘을 찾아간다. 한 때 서로를 가장 믿었던 두 사람. 드레스가 완성될수록, 갈등과 상처도 함께 풀려가는듯 하지만 마더 메리의 비밀은 둘을 알 수 없는 곳으로 이끈다."
+  },
+  {
+    id: "upcoming_20268218", title: "베리 베리 스트레인지 러브", director: "송희숙",
+    cast: ["이유하", "문우빈"],
+    releaseDate: "2026-11-11", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/7P0tesNtck7upZXjepgOnDl5krn.jpg",
+    isRevealed: false,
+    overview: "‘처음’이라는 말에 호기심이 톡! 숨겨둔 취향은 뜻밖의 고백으로 쏙, 잊지 못한 첫 감각을 따라가다 보면 평범한 만남마저 기상천외한 상상으로 팡! 갈수록 솔직해지고, 갈수록 이상해진다. 얌전한 척은 딱 여기까지!"
+  },
+  {
     id: "upcoming_20264957", title: "폴2: 데드포인트", director: "마이클 스피어리그",
     cast: ["버지니아 가드너", "그레이스 캐롤라인 커리", "해리엇 슬레이터"],
     releaseDate: "2026-11-11", genre: ["스릴러", "액션"],
@@ -483,6 +403,26 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/v62qy8mNmseNhhsB2SXfpnbu741.jpg",
     isRevealed: false,
     overview: "고도 제한 해제. 숨쉬기조차 힘든 해발 3,300m. 수십 년간 출입이 금지된 가장 위험한 산, '콴'. 한 번의 실수가 죽음으로 이어지는 곳. 이곳에선 비명마저 공중분해 된다."
+  },
+  {
+    id: "upcoming_20259725", title: "후광", director: "노영완",
+    cast: ["최강현", "김한", "문성환"],
+    releaseDate: "2026-11-11", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/722Rzxnlxzk11fB5g4W5n8NXNug.jpg",
+    isRevealed: false,
+    overview: "희망의 빛을 찾는 27살 택배기사 민준. 우리가 매일 마주치지만 미처 보지 못했던 한 사람의 이야기."
+  },
+  {
+    id: "upcoming_20265535", title: "드골: 저항의 시작", director: "안토닌 보드리",
+    cast: ["시몬 압카리언", "브누와 마지멜", "아나마리아 바르톨로메이"],
+    releaseDate: "2026-11-11", genre: ["전쟁", "드라마", "액션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/jIQoQrDSoBtxmLsymBsmElJqHOL.jpg",
+    isRevealed: false,
+    overview: "2차 세계대전, 프랑스는 나치에게 항복한다. 모두가 끝났다고 말하던 그때, 런던으로 건너간 무명의 장군 ‘드골’이 마이크를 잡는다. “프랑스 저항의 불꽃은 꺼지지 않을 것이다” 나치 편에 선 프랑스의 원수 ‘페탱’은 그에게 사형을 선고하고, 동맹 영국의 총리 ‘윈스턴 처칠’은 그를 협상 카드로 쥐고 흔들며, 미국 백악관은 그를 상대조차 하지 않는다. 전선은 밀리고, 파리에서는 저항 자체가 범죄가 된다. 그러나 방송을 들은 사람들이 각자의 자리에서 답한다. 사막의 병사들, 섬 하나가 통째로 바다를 건넌 어부들, 개선문으로 걸어간 파리의 학생 수천 명. 의지할 곳 없는 싸움에 그들은 스스로 뛰어든다."
   },
   {
     id: "upcoming_20267846", title: "극장판 마카앤로니: 기억탐험 대소동!", director: "우경민",
@@ -495,6 +435,56 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "언제나 티격태격하지만 둘도 없는 콤비였던 마카와 로니! 어느 날, 사소한 오해와 말다툼 끝에 대격돌하게 된 로니는 홧김에 발명품을 사용해 마카에 대한 기억을 몽땅 지워버리기로 결심한다. 하지만, 그 결심도 잠시 로니는 마카와 함께 보냈던 깊은 기억 속으로 들어가게 되는데…! 과연 마카와 로니는 엉켜버린 기억 속에서 서로의 마음을 확인하고 무사히 돌아올 수 있을까? 사고뭉치 콤비의 엉뚱하고 스펙터클한 기억 탐험이 시작된다!"
   },
   {
+    id: "upcoming_20268288", title: "광안 : 세자의 여자", director: "조바른",
+    cast: ["성준", "츄", "스윙스"],
+    releaseDate: "2026-11-18", genre: ["멜로/로맨스", "사극"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/g1aa08wocACsY5c9GYQZhojwekR.jpg",
+    isRevealed: false,
+    overview: "미친 눈을 가진 자라 하여 ‘광안’이라 불리는 세자 ‘이현’을 암살하기 위해 궁녀로 위장해 서궁에 잠입한 자객 ‘은우’가 계획과 달리 그를 사랑하게 되면서, 정해진 운명을 거스르기 시작하는 이야기"
+  },
+  {
+    id: "upcoming_20267121", title: "헝거게임 50번째 추첨의 날", director: "프란시스 로렌스",
+    cast: ["조셉 자다", "맥케나 그레이스", "엘 패닝"],
+    releaseDate: "2026-11-18", genre: ["액션", "스릴러", "어드벤처"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/6ehDHRVDtwe1oMu6EMtKC3SoVER.jpg",
+    isRevealed: false,
+    overview: "캐피톨을 비웃어 ‘역대 최하점’을 받은 흙수저 소년 헤이미치. 모두가 소년이 가장 먼저 죽을 것이라며 돈을 걸 때, 1점짜리 천재의 머릿속엔 이미 데스게임의 룰을 부술 완벽한 설계가 끝나 있었다. 생존율 0%, 맹독의 숲에 던져진 48명의 희생양, 오직 완력만 믿고 돌진하는 엘리트들 사이에서 헤이미치의 진짜 사냥감은 다른 참가자가 아닌 ‘시스템’ 그 자체다. 무기는 필요 없다. 오직 지능으로 판을 지배하는 1점짜리 천재의 뇌지컬 생존기가 폭발한다."
+  },
+  {
+    id: "upcoming_20268264", title: "임영웅 | 아임 히어로 더 스타디움 2", director: "오윤동",
+    cast: ["임영웅"],
+    releaseDate: "2026-11-18", genre: ["공연"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/yfJM70EELfyTyxwRzP10ffMDzu3.jpg",
+    isRevealed: false,
+    overview: "임영웅과 영웅시대가 함께 걸어온 10년을 기념하는 특별한 축제! 콘서트 누적 관객 100만 명 돌파라는 기념비적인 기록과 스타디움의 뜨거운 열기를 대형 스크린과 풍성한 사운드로 생생하게 담아낸 공연 실황 영화. 데뷔 10주년, 콘서트 누적 관객 100만 명 돌파! 임영웅과 영웅시대가 함께 써 내려온 특별한 기록, 그 찬란한 순간들이 스크린 위에 펼쳐진다. 스타디움 전체를 압도하는 임영웅의 독보적인 보컬과 객석을 물들이는 영웅시대의 뜨거운 열기. 그날의 눈부신 무대와 관객들의 환호가 생생하게 되살아난다. 무대와 객석의 경계를 넘어, 모두가 하나 되는 벅찬 순간! 잊지 못할 또 하나의 축제가 스크린에서 시작된다."
+  },
+  {
+    id: "upcoming_20268545", title: "저스트 플레이 데드", director: "마틴 캠벨",
+    cast: ["사무엘 L. 잭슨", "에바 그린"],
+    releaseDate: "2026-11-18", genre: ["액션", "범죄"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/e0WaDBrrBAMcq2stAXCR7rXEsiw.jpg",
+    isRevealed: false,
+    overview: ""
+  },
+  {
+    id: "upcoming_20265321", title: "아름다운 초저녁달", director: "타케무라 켄타로",
+    cast: ["미치에다 슌스케", "안자이 세이라"],
+    releaseDate: "2026-11-18", genre: ["멜로/로맨스"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/qb1ExMXRfo1hvZT691C8zfaFQ3r.jpg",
+    isRevealed: false,
+    overview: "외모와 지성을 겸비해 ′왕자′라 불리지만, 이성보다는 동성에게 ′멋진 남자′ 취급을 받는 현실에 복잡한 속내를 안고 살아가는 여고생 요이. 그녀의 앞에 또 다른 ′왕자′이자 화려한 존재감의 선배 코하쿠가 나타난다. 가벼워 보이는 인상과 달리 직진으로 마음을 전해오는 코하쿠의 애정 공세에 두 사람은 마침내 연애를 시작한다."
+  },
+  {
     id: "upcoming_20265410", title: "아더 마미", director: "롭 새비지",
     cast: ["제시카 차스테인", "제이 듀플래스", "아라벨라 올리비아 클락"],
     releaseDate: "2026-11-18", genre: ["공포(호러)"],
@@ -503,16 +493,6 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/fGRNCssTRrhYZxNzykGGCoMsAVq.jpg",
     isRevealed: false,
     overview: "여덟 살 소녀 벨라의 집은 겉보기엔 평온하지만, 일에 쫓겨 늘 집을 비우는 엄마 어슐라와 집안을 돌보는 아빠 러스 사이에는 말하지 못한 균열이 깊어져 간다. 부모의 다툼을 숨죽여 듣는 밤이 늘어갈 무렵, 벨라의 방 옷장 속에서 엄마와 똑같은 얼굴을 한 존재가 모습을 드러낸다. 벨라가 '아더 마미'라 부르게 된 그것은 자주 비어 있던 엄마의 자리를 대신하듯 아이의 곁을 맴돌며 끊임없이 속삭인다. \"네 마음속에 들어가도 될까?\" 벨라는 그때마다 고개를 젓지만 차마 그것을 쫓아내지는 못한다. 그리고 러스가 아내와 똑같이 생긴 낯선 침입자를 목격하면서, 옷장 속에 머물던 기척은 집 안 곳곳으로 번져가기 시작한다. 눈앞의 엄마가 진짜인지조차 분간할 수 없게 된 가족, 아이의 마음을 원하는 그것이 노리는 것은 과연 무엇일까."
-  },
-  {
-    id: "upcoming_20265321", title: "아름다운 초저녁달", director: "타케무라 켄타로",
-    cast: ["미치에다 슌스케", "안자이 세이라"],
-    releaseDate: "2026-11-18", genre: ["멜로/로맨스"],
-    openingSeats: "", openingDayScore: "", openingWeekScore: "",
-    finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/x0ILlcyCV4x5Zs7JgAysXchiPQI.jpg",
-    isRevealed: false,
-    overview: "외모와 지성을 겸비해 ′왕자′라 불리지만, 이성보다는 동성에게 ′멋진 남자′ 취급을 받는 현실에 복잡한 속내를 안고 살아가는 여고생 요이. 그녀의 앞에 또 다른 ′왕자′이자 화려한 존재감의 선배 코하쿠가 나타난다. 가벼워 보이는 인상과 달리 직진으로 마음을 전해오는 코하쿠의 애정 공세에 두 사람은 마침내 연애를 시작한다."
   },
   {
     id: "upcoming_20266362", title: "심야근무", director: "올랄로 루비오",
@@ -525,14 +505,24 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "야간 근무로 피로에 찌든 보안 요원 브렌다는 끔찍한 뺑소니 사고를 내고 시신을 유기한다. 두려움을 숨긴 채 새로운 근무지인 시립 영안실로 향하지만, 외부와 완전히 차단된 그곳은 스산한 적막과 백색 소음만이 감도는 고립된 공간이다. 브렌다는 밀려오는 죄책감을 억누르며 심야 근무를 시작하지만, 시간이 흐를수록 폐쇄된 영안실의 침묵은 숨통을 조여온다. 냉동 보관함 너머의 기이한 소음과 CCTV 화면을 잠식한 정체불명의 실루엣, 정체불명의 그림자와 그녀가 두고 온 죽음의 흔적들은 그녀를 점차 압박해 온다. 현실과 무의식의 경계가 무너진 고립된 시체 보관소에서 브렌다는 늘 자신을 괴롭혔던 트라우마에 시달리며 극심한 패닉에 빠져 드는데…"
   },
   {
-    id: "upcoming_20250649", title: "포킴스: 네 남자의 이야기", director: "이용석",
-    cast: ["박노식", "정영기", "김최용준"],
-    releaseDate: "2026-11-25", genre: ["가족", "드라마"],
+    id: "upcoming_20252688", title: "고인아파트", director: "김태경",
+    cast: ["유선", "이서연", "이천무"],
+    releaseDate: "2026-11-25", genre: ["미스터리", "스릴러"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/jSpd2ohIt9pQ2ube5eaH3RsgC1x.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/qZpFzF8pWYckgIcnPkaO8GPjfgO.jpg",
     isRevealed: false,
-    overview: "한인 영주권 사기 사건에 휘말린 '김'씨 성을 가진 네 명의 남자(이민자 1~2세대, 불법체류자, 그리고 유학생)가 희망이 없는 어둠 속에서 자신만의 탈출구를 찾기 위해 발버둥 치는 내용"
+    overview: "재개발을 기다리며 영끌로 산 낡은 공인아파트. 은진은 아이들과 함께 '몸테크'를 하러 이곳에 들어온다. 사는 사람이 거의 없는 동, 제대로 잠기지 않는 현관문, 정체를 알 수 없는 이웃들. 아들은 처음 보는 아이와 어울려 놀고, 은진은 밤마다 이상한 꿈에 시달린다. 꿈은 깨어 있는 시간까지 따라오고, 은진은 현실과 환영을 구분하지 못하기 시작한다. 이 집을 나가면 망한다. 아이들을 지키려는 은진의 집착은 선을 넘고, 가장 안전해야 할 집은 가족을 삼키는 공간으로 변해간다.가장 안전해야 할 집은 가족을 삼키는 공간으로 변해간다."
+  },
+  {
+    id: "upcoming_20268220", title: "마른 잎", director: "알렉상드르 코베리제",
+    cast: [],
+    releaseDate: "2026-11-25", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/vqwmhwqH2PzygNgnBpov7QDj0qL.jpg",
+    isRevealed: false,
+    overview: "스포츠 사진작가 리자가 편지를 남기고 사라집니다. 그녀는 실종 전, 조지아 외딴 마을의 축구장을 촬영하고 있었다고 합니다. 그녀의 아버지가 조지아 전역의 축구장을 돌아다니며 딸을 찾아 나섭니다. 투명인간인 리자의 동료 레반도 여정을 함께합니다."
   },
   {
     id: "upcoming_20257409", title: "완벽한 집", director: "정용기",
@@ -545,14 +535,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "졸업 유예와 기숙사 탈락으로 하루아침에 갈 곳을 잃은 대학생 ‘규빈’. 절박한 상황 속 우연한 기회로 서울 한복판에 있는 80평형 최고급 아파트에 사는 우아한 독거노인 ‘금림’의 룸메이트로 입주하게 된다. 꿈꿔본 적도 없는 완벽한 보금자리와 가족처럼 따뜻하게 대해주는 ‘금림’의 호의에 감동한 것도 잠시, 방에 설치한 홈캠에 정체불명의 움직임이 잡히고 밤마다 원인을 알 수 없는 기괴한 현상과 악몽에 시달리기 시작한다."
   },
   {
-    id: "upcoming_20266962", title: "드골2: 자유의 시대", director: "안토닌 보드리",
-    cast: ["시몬 압카리언", "니엘스 슈나이더", "아나마리아 바르톨로메이"],
-    releaseDate: "2026-11-25", genre: ["액션", "드라마", "전쟁"],
+    id: "upcoming_20263271", title: "미트 페어런츠 4", director: "존 햄버그",
+    cast: ["로버트 드 니로", "벤 스틸러", "아리아나 그란데"],
+    releaseDate: "2026-11-25", genre: ["코미디"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/3wxvG7GIs3PTExEjhF4fvB0KbBO.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/2IfBmpzSuHzjThm2RxgYjIRCU11.jpg",
     isRevealed: false,
-    overview: "1943년, 정부는 항복하고 국토는 점령당한 프랑스. 사형 선고를 받고 런던으로 망명한 장군 ‘드골’은 강대국들이 모인 카사블랑카 회담에서 믿기 힘든 현실과 마주한다. 미국이 프랑스의 대표 장군으로 40만 대군의 ‘지로’를 앞세웠다는 것. 드골에게 남은 병력은 운전병까지 다 합쳐도 1만 3천 명. 미국의 냉대와 영국의 최후통첩 속에서, 오직 사막의 1천 명과 파리 지하의 레지스탕스만을 믿고 강대국이 짜 놓은 판을 뒤엎기 위한 목숨을 건 승부에 나선다. 한 발만 물러서면 프랑스가 지도에서 사라지는 절체절명의 순간, 나라의 운명을 건 싸움이 펼쳐진다. 과연 드골은 동맹과 조국 양쪽의 배신을 뚫고 파리를 되찾을 수 있을까?"
+    overview: ""
   },
   {
     id: "upcoming_20257275", title: "레이오버 호텔", director: "최창환",
@@ -565,6 +555,26 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "뜻밖의 불시착으로 기타큐슈에 모인 사람들 누군가는 친구와의 여행을, 누군가는 사랑을, 누군가는 평범한 하루를 이어가려 한다. 하지만 계획에 없던 하룻밤은 그들의 시간을 완전히 바꿔놓는데…"
   },
   {
+    id: "upcoming_20250649", title: "포킴스: 네 남자의 이야기", director: "이용석",
+    cast: ["박노식", "정영기", "김최용준"],
+    releaseDate: "2026-11-25", genre: ["가족", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/jSpd2ohIt9pQ2ube5eaH3RsgC1x.jpg",
+    isRevealed: false,
+    overview: "한인 영주권 사기 사건에 휘말린 '김'씨 성을 가진 네 명의 남자(이민자 1~2세대, 불법체류자, 그리고 유학생)가 희망이 없는 어둠 속에서 자신만의 탈출구를 찾기 위해 발버둥 치는 내용"
+  },
+  {
+    id: "upcoming_20244970", title: "슬픈 열대", director: "박훈정",
+    cast: ["이신영", "박유림", "김명민"],
+    releaseDate: "2026-11-25", genre: ["액션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/d7wrWKhol3cBKfDcaJFg0vgW4NF.jpg",
+    isRevealed: false,
+    overview: "버려진 아이들을 킬러로 키워낸 조직 ‘슬픈 열대’의 절대자 ‘사부’가 살해당했다. 정글을 지배하던 공포의 대상이 사라지자, 형제처럼 자란 조직원들 사이에 균열과 의심이 걷잡을 수 없이 번져가고 그 틈을 타 오랜 동업자들마저 그의 빈자리를 차지하기 위해 움직이기 시작하는데..."
+  },
+  {
     id: "upcoming_20268219", title: "라파엘", director: "정주원",
     cast: [],
     releaseDate: "2026-11-25", genre: ["액션", "SF"],
@@ -575,14 +585,14 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "2050년, 기후 재난과 전쟁으로 무너진 세계. 허가 없이 태어난 아이는 즉시 사살되는 폐쇄 구역 '델모르'. 노쇠한 독재자 알렉세이 총리는 자신의 젊은 시절을 본뜬 전투형 안드로이드를 만들어 반군 제거의 사령관으로 보낸다. 감정이 없어야 하는 전쟁 병기 '알렉세이', 감정 수치가 오르는 순간 그는 폐기된다. 그러나 미등록자 소녀 소피아와 마지막 천주교 신부 미카엘을 만난 뒤, 그는 잊고 있던 인간성과 구원에 대한 갈망에 눈뜬다. 명령과 생존 사이, 전장 한가운데에서 그는 선택해야 한다. 나를 위해 살 것인가, 누군가를 위해 죽을 것인가?!"
   },
   {
-    id: "upcoming_20263271", title: "미트 페어런츠 4", director: "존 햄버그",
-    cast: ["로버트 드 니로", "벤 스틸러", "아리아나 그란데"],
-    releaseDate: "2026-11-25", genre: ["코미디"],
+    id: "upcoming_20266461", title: "눈 내리는 여름, 너에게", director: "김형협",
+    cast: ["정진운", "첼멕"],
+    releaseDate: "2026-11-25", genre: ["멜로/로맨스", "판타지"],
     openingSeats: "", openingDayScore: "", openingWeekScore: "",
     finalScore: "", vodSales: "", svodOtt: "",
-    posterUrl: "https://image.tmdb.org/t/p/w300/2IfBmpzSuHzjThm2RxgYjIRCU11.jpg",
+    posterUrl: "https://image.tmdb.org/t/p/w300/mRn8tSHrwXCUQRQo1OFV0BNhhHg.jpg",
     isRevealed: false,
-    overview: ""
+    overview: "3년 전 세상을 떠난 첫사랑이, 눈앞에 나타났다. 회사에서 몽골 출장을 떠난 인호. 우연히 오른 기차에서 첫사랑 아노와 뜻밖의 재회를 한다. 다시는 볼 수 없을 거라 생각했던 사람을 마주한 것도 잠시, 두 사람의 재회에는 설명할 수 없는 일이 연이어 벌어지기 시작한다. 인호는 자신이 살고 있던 시간과 전혀 다른 시간 속으로 들어와 있다는 사실을 알게 되는데..."
   },
   {
     id: "upcoming_20258787", title: "공무도하(公無渡河)", director: "한정국",
@@ -595,6 +605,16 @@ const UPCOMING_MOVIES_DATABASE = [
     overview: "무연고 탈북소녀 ‘이선화(18,여)’, 두만강을 건너며 생과 사의 경계를 넘어 남한에 도착했다. 하지만 동생의 사망 소식을 듣게 되고 망연자실해진다. 청처없이 떠돌던 중 동급생 주미의 가출 팸에 합류하게 되고, 새로운 가족으로 여기게 된다. 하지만 가출 팸이라는 불완전한 가족을 유지하기 위해 위험한 선택을 하게 되는데…."
   },
   {
+    id: "upcoming_20266962", title: "드골2: 자유의 시대", director: "안토닌 보드리",
+    cast: ["시몬 압카리언", "니엘스 슈나이더", "아나마리아 바르톨로메이"],
+    releaseDate: "2026-11-25", genre: ["액션", "드라마", "전쟁"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/3wxvG7GIs3PTExEjhF4fvB0KbBO.jpg",
+    isRevealed: false,
+    overview: "1943년, 정부는 항복하고 국토는 점령당한 프랑스. 사형 선고를 받고 런던으로 망명한 장군 ‘드골’은 강대국들이 모인 카사블랑카 회담에서 믿기 힘든 현실과 마주한다. 미국이 프랑스의 대표 장군으로 40만 대군의 ‘지로’를 앞세웠다는 것. 드골에게 남은 병력은 운전병까지 다 합쳐도 1만 3천 명. 미국의 냉대와 영국의 최후통첩 속에서, 오직 사막의 1천 명과 파리 지하의 레지스탕스만을 믿고 강대국이 짜 놓은 판을 뒤엎기 위한 목숨을 건 승부에 나선다. 한 발만 물러서면 프랑스가 지도에서 사라지는 절체절명의 순간, 나라의 운명을 건 싸움이 펼쳐진다. 과연 드골은 동맹과 조국 양쪽의 배신을 뚫고 파리를 되찾을 수 있을까?"
+  },
+  {
     id: "upcoming_20265954", title: "왼손 피아니스트", director: "김승주",
     cast: ["정영숙", "주우"],
     releaseDate: "2026-11-30", genre: ["드라마"],
@@ -603,6 +623,46 @@ const UPCOMING_MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/1v8BTkhIjaXwNBLXy32rPku42uv.jpg",
     isRevealed: false,
     overview: "촉망받던 피아니스트 이훈은 미국에서 박사과정을 밟던 중 갑작스러운 뇌졸중으로 쓰러진다. 오른손의 마비로 피아니스트로서의 꿈과 평범한 일상마저 모든게 무너지는 듯 했지만 어린 시절 피아노 스승인 전영혜 선생님을 통해 왼손만을 이용한 피아노 연주가 가능하다는 사실을 알게 되고, 다시 희망을 품는다. 어머니 풍옥희의 기도와 헌신적인 도움 속에서, 이훈은 절망을 딛고 왼손만으로 다시 자신만의 연주를 시작한다."
+  },
+  {
+    id: "upcoming_20264836", title: "머지않아, 이별입니다", director: "미키 타카히로",
+    cast: ["하마베 미나미", "메구로 렌"],
+    releaseDate: "2026-12-02", genre: ["드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/nYQO61aacketrgL3WBZ9AbwQuOh.jpg",
+    isRevealed: false,
+    overview: "오늘도 불합격 통보를 받은 취준생 미소라는 조문을 간 장례식장에서 한 임산부와 눈이 마주친다. 영혼이 보이는 것을 감추고 살아온 미소라는 한눈에 그녀가 이 세상 사람이 아님을 눈치챘지만 두고 온 물건을 찾아 달라는 거절 할 수 없는 부탁을 받게 된다. 미소라는 식을 준비 중인 장례 플래너 레이지에게 차마 고인의 부탁이라는 것을 밝히지 못한 채 어렵게 말을 전한다. 그러나 미소라의 특별함을 단번에 알아본 레이지는 고인의 못다 한 이야기를 들어줄 유일한 적임자로 그녀를 스카우트한다. 영혼을 보는 신입 장례 플래너 미소라와 베테랑 선배 레이지는 떠나는 이들과 남겨진 사람들의 마음에 매듭을 지어주는 가장 특별하고 아름다운 이별을 준비하게 되는데…"
+  },
+  {
+    id: "upcoming_20267586", title: "뉘른베르크", director: "제임스 밴더빌트",
+    cast: ["라미 말렉", "러셀 크로우"],
+    releaseDate: "2026-12-02", genre: ["드라마", "스릴러"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/4XrWoXmU0uiZyFugItApkHh4htD.jpg",
+    isRevealed: false,
+    overview: "제2차 세계대전 종전 직후인 1945년, 나치 전범들을 단죄하기 위한 사상 초유의 국제군사재판이 독일 뉘른베르크에서 개최된다. 재판에 앞서 미 육군 군의관이자 정신과의사인 더글러스 켈리 소령은 피고인들이 재판을 받을 정신적 능력이 있는지 평가하고, 그들이 저지른 악행의 근원을 파악하라는 임무를 부여받는다. 켈리 소령은 나치 서열 2위이자 히틀러의 후계자였던 헤르만 괴링과 마주하고, 일대일 면담을 거듭하며 치열한 심리전을 펼치게 된다. 괴링은 뛰어난 달변과 카리스마로 켈리를 심리적으로 흔들려 하고, 켈리는 괴물 같은 악인이 특별한 광신자가 아닌 지극히 평범한 인간 내면의 뒤틀린 욕망에서 비롯되었다는 서늘한 진실에 다가선다. 한편 미국 수석 검사 로버트 H. 잭슨은 인류 역사상 가장 중요한 법정 투쟁을 준비하는데… 정의와 악의 경계, 인간 본성의 심연을 마주한 두 남자의 팽팽한 지적 대결이 펼쳐진다."
+  },
+  {
+    id: "upcoming_20266762", title: "완벽한 초대", director: "올리비아 와일드",
+    cast: ["세스 로건", "올리비아 와일드", "페넬로페 크루즈"],
+    releaseDate: "2026-12-02", genre: ["코미디", "드라마"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/1AEuNADGA6LmGotYiwCZa43v0w2.jpg",
+    isRevealed: false,
+    overview: "대화 없는 결혼 생활에 무뎌진 부부 ‘앤젤라’와 ‘조’. 어느 날 윗집 커플 ‘피냐’와 ‘호크’가 흘려보낸 수상한 소음이 이들 사이에 흐르던 침묵을 깨운다. 궁금증을 참을 수 없는 ‘앤젤라’와 불만을 숨길 수 없는 ‘조’는 이런저런 핑계로 윗집 커플을 저녁 식사에 초대한다. 그러나 평범함을 거부한 대화가 오가면서 인생 최대의 아찔한 순간이 펼쳐지는데… 끝나기 직전의 우리, 선 넘어버린 그들. “마지막으로 […]한 게 언제예요?”"
+  },
+  {
+    id: "upcoming_20267848", title: "아기상어 크리스마스 스페셜: 산타 선발 대회", director: "변희선",
+    cast: ["강은애", "정재헌", "전태열"],
+    releaseDate: "2026-12-05", genre: ["애니메이션"],
+    openingSeats: "", openingDayScore: "", openingWeekScore: "",
+    finalScore: "", vodSales: "", svodOtt: "",
+    posterUrl: "https://image.tmdb.org/t/p/w300/qwy6HdVHkVVXWetXQMHCJgTkPHX.jpg",
+    isRevealed: false,
+    overview: "크리스마스를 앞두고 바닷속 산타 선발 대회가 열렸어요. 친구와 선물을 나누고 싶은 아기상어. 친구의 선물을 훔치고 싶은 도둑아기상어 친구와 매일 함께하고 싶은 윌리엄. 저마다의 크리스마스를 꿈꾸며 산타에 도전하고 굴뚝 통과하기, 빠르게 선물 배달하기. 그리고 아무도 예상치 못한 마지막 미션이 펼쳐지는데… 크리스마스의 기적을 가져올 올해의 산타는 누가 될까요? 🎅 “선물을 주는 설렘은 산타만 아는 비밀이야 🎁”"
   },
 ];
 
