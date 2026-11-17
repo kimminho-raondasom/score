@@ -1,4 +1,4 @@
-// score 데이터베이스 — 자동 갱신 (2026-11-17 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-11-18 08:00 KST)
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -108,7 +108,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/aKApVX9hc5otPxa3Jbf27sW6tsi.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-11-17 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-11-18 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -319,15 +319,15 @@ const MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/mH7QnJDxQibVZw0M66IBZbsw2O6.jpg"
   },
   {
-    id: "kobis_20259781", title: "\ud1a0\uc774 \uc2a4\ud1a0\ub9ac 5", director: "\uc564\ub4dc\ub958 \uc2a4\ud0e0\ud2bc",
-    cast: ["톰 행크스", "팀 알렌", "조앤 쿠삭", "그레타 리"],
-    releaseDate: "2026-06-17", genre: ["애니메이션", "어드벤처", "코미디"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
-    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    id: "kobis_20261807", title: "\uadf9\uc7a5\ud310 \uce58\uc774\uce74\uc640: \uc778\uc5b4 \uc12c\uc758 \ube44\ubc00", director: "\uc624\uc774\uce74\uc640 \ucf00\uc774",
+    cast: ["아오키 하루카", "타나카 마코토", "오자와 아리", "이주은", "손정민"],
+    releaseDate: "2026-09-30", genre: ["애니메이션"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
+    openingWeekScore: "51~70\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
     vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
     similarRefs: [], famousLines: [],
-    choseong: "\u314c\u3147 \u3145\u314c\u3139",
-    posterUrl: "https://image.tmdb.org/t/p/w300/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg"
+    choseong: "\u3131\u3148\u314d \u314a\u3147\u314b\u3147 \u3147\u3147 \u3145\u3147 \u3142\u3141",
+    posterUrl: "https://image.tmdb.org/t/p/w300/5TMyytCI5Pfc9c1eNsljiCdiB05.jpg"
   }
 ];
 
