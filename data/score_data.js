@@ -1,4 +1,4 @@
-// score 데이터베이스 — 자동 갱신 (2026-11-27 08:00 KST)
+// score 데이터베이스 — 자동 갱신 (2026-11-28 08:00 KST)
 // MOVIES_DATABASE + UPCOMING_MOVIES_DATABASE + FILMOGRAPHIES +
 // SCORE_QUIZ_POOL + AI_QUIZ_MOVIES + SAME_DAY_QUIZ
 
@@ -108,7 +108,7 @@ const MOVIES_DATABASE = [
     choseong: "ㅋㅋㄹㅌ ㅇㅌㅍㅇ",
     posterUrl: "https://image.tmdb.org/t/p/w300/aKApVX9hc5otPxa3Jbf27sW6tsi.jpg"
   },
-  // ── KOBIS 자동 수집 (2026-11-27 08:00 KST) ─────────────────────────────────────────
+  // ── KOBIS 자동 수집 (2026-11-28 08:00 KST) ─────────────────────────────────────────
   {
     id: "kobis_20242837", title: "\uc655\uacfc \uc0ac\ub294 \ub0a8\uc790", director: "\uc7a5\ud56d\uc900",
     cast: ["유해진", "박지훈", "유지태", "전미도", "김민"],
@@ -242,17 +242,6 @@ const MOVIES_DATABASE = [
     posterUrl: "https://image.tmdb.org/t/p/w300/rizG7S7y1JkXmbYwOYSFIjyydPF.jpg"
   },
   {
-    id: "kobis_20240737", title: "\ubaa8\uc544\ub098 2", director: "\ub370\uc774\ube0c \ub370\ub9ad \uc8fc\ub2c8\uc5b4",
-    cast: ["아우이 크라발호", "드웨인 존슨"],
-    releaseDate: "2024-11-27", genre: ["애니메이션"],
-    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "11~20\ub9cc\uba85",
-    openingWeekScore: "101\ub9cc\uba85 \uc774\uc0c1", finalScore: "301~400\ub9cc\uba85",
-    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
-    similarRefs: [], famousLines: [],
-    choseong: "\u3141\u3147\u3134",
-    posterUrl: "https://image.tmdb.org/t/p/w300/hwmwTFtMbzxAWbIOp1RyyiOCyx0.jpg"
-  },
-  {
     id: "kobis_20255033", title: "\uc554\uc0b4\uc790(\ub4e4)", director: "\ud5c8\uc9c4\ud638",
     cast: ["유해진", "박해일", "이민호"],
     releaseDate: "2026-09-23", genre: ["범죄", "드라마"],
@@ -328,6 +317,17 @@ const MOVIES_DATABASE = [
     similarRefs: [], famousLines: [],
     choseong: "\u3141\u314b",
     posterUrl: "https://image.tmdb.org/t/p/w300/mH7QnJDxQibVZw0M66IBZbsw2O6.jpg"
+  },
+  {
+    id: "kobis_20259781", title: "\ud1a0\uc774 \uc2a4\ud1a0\ub9ac 5", director: "\uc564\ub4dc\ub958 \uc2a4\ud0e0\ud2bc",
+    cast: ["톰 행크스", "팀 알렌", "조앤 쿠삭", "그레타 리"],
+    releaseDate: "2026-06-17", genre: ["애니메이션", "어드벤처", "코미디"],
+    openingSeats: "71\ub9cc\uc11d \uc774\uc0c1", openingDayScore: "8~10\ub9cc\uba85",
+    openingWeekScore: "71~100\ub9cc\uba85", finalScore: "251~300\ub9cc\uba85",
+    vodSales: "\ucd94\uc815\uac12 \uc5c6\uc74c", svodOtt: "\uae30\ud0c0",
+    similarRefs: [], famousLines: [],
+    choseong: "\u314c\u3147 \u3145\u314c\u3139",
+    posterUrl: "https://image.tmdb.org/t/p/w300/AqrJx3nVVMlKWXGaPIH32GzjEJA.jpg"
   }
 ];
 
